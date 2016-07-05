@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SouSuoJieMian" >
+
+    <ImageView
+        android:id="@+id/zairujiemian"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <Button
+        android:id="@+id/jinru"
+        android:layout_width="100sp"
+        android:layout_height="50sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        android:background="#00BFFF"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:textSize="15sp"
+        android:text="点击回家"
+        android:textColor="#fff" />
+
+</RelativeLayout>

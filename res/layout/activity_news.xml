@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ly_xinwen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/FanHui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:background="@drawable/fanhui" >
+            </ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="返回"
+                android:textColor="#fff"
+                android:textSize="20dp" >
+            </TextView>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/xinwen"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="时事新闻"
+            android:textColor="#fff"
+            android:textSize="25sp" >
+        </TextView>
+
+        <Button
+            android:id="@+id/title_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dip"
+            android:background="@drawable/btn_bg"
+            android:textColor="#fff" >
+        </Button>
+    </LinearLayout>
+
+    <com.minxing.view.PullToRefreshListView
+        android:id="@+id/frame_listview_news"
+        style="@style/widget_listview" />
+
+</LinearLayout>

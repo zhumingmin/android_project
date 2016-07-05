@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="title_bar">
+        <attr name="title_text" format="string"></attr>
+        <attr name="title_text_color" format="color"></attr>
+        <attr name="left_text" format="string"></attr>
+        <attr name="left_text_color" format="color"></attr>
+        <attr name="left_background" format="reference|color"></attr>
+        <attr name="right_text" format="string"></attr>
+        <attr name="right_text_color" format="color"></attr>
+        <attr name="right_background" format="reference|color"></attr>
+    </declare-styleable>
+
+</resources>

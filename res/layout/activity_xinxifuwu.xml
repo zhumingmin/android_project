@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:stretchColumns="0" >
+
+    <TextView
+        android:id="@+id/nongyezhushou"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:text="农业助手"
+        android:textColor="#ffffff"
+        android:textSize="25sp" >
+    </TextView>
+
+    <TableRow android:background="@drawable/sousuokuang"
+        android:layout_height="80dp" >
+
+        <EditText
+            android:id="@+id/newsousuo"
+            android:layout_height="wrap_content"
+            android:hint="搜索…"
+            android:maxLines="1" >
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/btnSpeak"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:contentDescription="@string/speak"
+            android:src="@drawable/yuyin" >
+        </ImageButton>
+    </TableRow>
+
+    <include
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        layout="@layout/activity_newvoicetool" >
+    </include>
+
+</TableLayout>

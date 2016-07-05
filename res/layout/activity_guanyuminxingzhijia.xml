@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/ZhuCeJieMian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/guanyuminxingzhijia" />
+
+    <TextView
+        android:id="@+id/baojian"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F8F8FF" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/guanyu1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="服务方：广东省广州市南沙区万顷沙镇民兴村"
+        android:textColor="#000000"
+        android:textSize="15sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/baojian"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F8F8FF" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/guanyu2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="提供方：华南农业大学数学与信息学院"
+        android:textColor="#000000"
+        android:textSize="15sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/baojian"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F8F8FF" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/guanyu3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="程序猿：小猪手001"
+        android:textColor="#000000"
+        android:textSize="15sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/baojian"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F8F8FF" >
+    </TextView>
+
+</LinearLayout>

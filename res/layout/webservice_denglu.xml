@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/denglubeijing"
+    android:orientation="vertical"
+    android:stretchColumns="1" >
+
+    <TextView
+        android:id="@+id/huanyindenglu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="150dp"
+        android:gravity="left"
+        android:text="欢迎登录"
+        android:textColor="#ffffff"
+        android:textSize="25sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/baojian"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="2dp"
+        android:background="#ffffff" >
+    </TextView>
+
+    <TableRow android:layout_marginTop="40dp" >
+
+        <TextView
+            android:id="@+id/ZhangHao"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="账号"
+            android:textColor="#ffffff"
+            android:textSize="20sp" >
+        </TextView>
+
+        <com.minxing.view.ClearEditText
+            android:id="@+id/TianXieZhangHao"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:digits="0123456789"
+            android:hint="输入用户名"
+            android:maxLength="18"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20dp" >
+
+        <TextView
+            android:id="@+id/MiMa"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="密码"
+            android:textColor="#ffffff"
+            android:textSize="20sp" >
+        </TextView>
+
+        <com.minxing.view.ClearEditText
+            android:id="@+id/TianXieMiMa"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="输入密码"
+            android:maxLength="6"
+            android:password="true"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </TableRow>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/savePasswordCB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="记住密码"
+            android:textColor="#ffffff"
+            android:textSize="20sp" >
+        </CheckBox>
+
+        <Button
+            android:id="@+id/DengLu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="#778899"
+            android:text="登录"
+            android:textColor="#ffffff"
+            android:textSize="20sp" >
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/ZhaoHuiMiMa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="找回密码"
+            android:textColor="#ffffff"
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/MianFeiZhuCe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="免费注册"
+            android:textColor="#B22222"
+            android:textSize="20sp" >
+        </TextView>
+    </LinearLayout>
+
+</TableLayout>

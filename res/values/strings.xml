@@ -1,0 +1,157 @@
+<resources>
+
+    <string name="app_name">民兴之家</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="pull_to_refresh_update">最近更新：</string>
+    <string name="question_pub_head_title">我要发帖</string>
+    <string name="minxingcun">民兴村政村位于万顷沙镇三民岛中部，全村共有556户， 户籍人口2150人，辖区面积为267公顷，耕地面积3838亩。2008年村工农业总产值2927万元。在上级党委和政府的正确领导和大力支持下，经多年努力创建，昔日的扶贫村、问题村已先后获得“广州市文明村”、“南沙区基层党建示范点”、“南沙区文明村”、“万顷沙镇工作先进村”等区、镇荣誉称号。近几年来，该村以发展经济为中心，以村镇规划为龙头，以改善民生为重点，积极推进新农村建设，全村呈现出了经济发展、生活安定、社会和谐的生动局面。</string>
+    <string name="minxingzixun">民兴资讯</string>
+    <string name="yewubanli">业务办理</string>
+    <string name="nongyezixun">农业资讯</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="no_nfc">该设备不支持NFC</string>
+    <string name="open_nfc">NFC功能没打开，请打开</string>
+    <string name="new_tag">新建标签</string>
+    <string name="back">返回</string>
+    <string name="write_tag">写入</string>
+    <string name="hint">将您的NFC标签靠在手机背面即可读取数据！</string>
+    <string name="edit_hint">请输入您要写入标签的内容</string>
+    <string name="fomate_text">格式化标签</string>
+    <string name="cancel">取消</string>
+    <string name="speak">Speak Now</string>
+    <string name="gundong">各位村名，点击下列业务图标可办理相应业务，点击业务电话咨询可进行相关业务咨询办理。</string>
+    <string name="strDuration">5:45</string>
+    <string name="strTitle">Rihanna Love the way lie</string>
+    <string name="strArtist">Just gona stand there and ...</string>
+    <string name="category_all">推荐</string>
+    <string name="category_all_my">推荐</string>
+    <string name="category_nongyezhengce">农业政策</string>
+    <string name="category_subscribe">订阅</string>
+    <string name="category_nongyexinwen">农业新闻</string>
+    <string name="category_health">健康</string>
+    <string name="category_sports">体育</string>
+    <string name="category_qita">其他</string>
+    <string name="category_car">汽车</string>
+    <string name="category_shengchanzhidao">生产指导</string>
+    <string name="category_finance">财经</string>
+    <string name="category_military">军事</string>
+    <string name="category_world">国际</string>
+    <string name="category_hot">热点</string>
+    <string name="category_positive">正能量</string>
+    <string name="category_essay_joke">段子</string>
+    <string name="category_image_funny">趣图</string>
+    <string name="category_image_ppmm">美女</string>
+    <string name="category_movie">电影</string>
+    <string name="category_digital">数码</string>
+    <string name="category_news_fashion">时尚</string>
+    <string name="category_rumor">辟谣</string>
+    <string name="category_marvel">奇葩</string>
+    <string name="category_news_game">游戏</string>
+    <string name="category_news_travel">旅游</string>
+    <string name="category_news_baby">育儿</string>
+    <string name="category_fitness">减肥</string>
+    <string name="category_news_regimen">养生</string>
+    <string name="category_news_food">美食</string>
+    <string name="category_government">政务</string>
+    <string name="category_news_history">历史</string>
+    <string name="category_news_discovery">探索</string>
+    <string name="category_news_story">故事</string>
+    <string name="category_news_essay">美文</string>
+    <string name="category_emotion">情感</string>
+    <string name="category_essay_saying">语录</string>
+    <string name="category_image_wonderful">美图</string>
+    <string name="category_news_house">家居</string>
+    <string name="category_news_home">房产</string>
+    <string name="category_funny">搞笑</string>
+    <string name="category_news_astrology">星座</string>
+    <string name="category_news_culture">文化</string>
+    <string name="category_graduate">毕业生</string>
+
+    <string-array name="item">
+                                                                                          <item>户籍咨询</item>
+        <item>医保咨询</item>
+        <item>财务咨询</item>
+        <item>计生咨询</item>
+        <item>报建咨询</item>
+ </string-array>
+    <string-array name="item3">
+                                                                                  <item>网易新闻</item>
+        <item>新浪新闻</item>
+        <item>腾讯新闻</item>
+        <item>搜狐新闻</item>
+        <item>凤凰新闻</item>
+ </string-array>
+    <string-array name="item1">
+  
+                                                                                                                                                                                                        <item>项目一</item>
+  
+                                                                                                                                                                                                        <item>项目二</item>
+  
+                                                                                                                                                                                                        <item>项目三</item>
+  
+                                                                                                                                                                                                        <item>项目四</item>
+        <item>项目五</item>
+  
+    </string-array>
+    <string-array name="item2">
+  
+                                                                                                                                                                                                        <item>周一上午9:00~10:00</item>
+  
+                                                                                                                                                                                                        <item>周一下午3:00~4:00</item>
+  
+                                                                                                                                                                                                        <item>周二上午9:00~10:00</item>
+  
+                                                                                                                                                                                                       <item>周二下午3:00~4:00</item>
+        <item>周三上午9:00~10:00</item>
+        <item>周三下午3:00~4:00</item>
+        <item>周四上午9:00~10:00</item>
+        <item>周四下午3:00~4:00</item>
+        <item>周五上午9:00~10:00</item>
+        <item>周五下午3:00~4:00</item>
+    </string-array>
+    <string-array name="item4">
+        <item>参选人一</item>
+        <item>参选人二</item>
+        <item>参选人三</item>
+        <item>参选人四</item>
+        <item>参选人五</item>
+        <item>参选人六</item>
+        <item>参选人七</item>
+    </string-array>
+    <!-- 小米推送 -->
+    <string name="ok">确认</string>
+    <string name="set_alias">设置别名</string>
+    <string name="unset_alias">撤销别名</string>
+    <string name="set_account">设置帐号</string>
+    <string name="unset_account">撤销帐号</string>
+    <string name="subscribe_topic">订阅标签</string>
+    <string name="unsubscribe_topic">撤销标签</string>
+    <string name="set_accept_time">设置时间</string>
+    <string name="pause_push">暂停推送</string>
+    <string name="resume_push">恢复推送</string>
+    <string name="start_time">开始时间</string>
+    <string name="end_time">结束时间</string>
+    <string name="register_success">Register push success.</string>
+    <string name="register_fail">Register push fail.</string>
+    <string name="recv_passthrough_message"> Receive a passthrough message. Content is \"%1$s\"</string>
+    <string name="click_notification_message"> Clicked a notification message. Content is \"%1$s\"</string>
+    <string name="arrive_notification_message"> Arrived a notification message. Content is \"%1$s\"</string>
+    <string name="set_alias_success"> Set alias \"%1$s\" success.</string>
+    <string name="set_alias_fail"> Set alias fail for %1$s.</string>
+    <string name="unset_alias_success"> Unset alias \"%1$s\" success.</string>
+    <string name="unset_alias_fail"> Unset alias fail for %1$s.</string>
+    <string name="set_account_success"> Set account \"%1$s\" success.</string>
+    <string name="set_account_fail"> Set account fail for %1$s.</string>
+    <string name="unset_account_success"> Unset account \"%1$s\" success.</string>
+    <string name="unset_account_fail"> Unset account fail for %1$s.</string>
+    <string name="subscribe_topic_success"> Subscribe topic \"%1$s\" success.</string>
+    <string name="subscribe_topic_fail"> Subscribe topic fail for %1$s.</string>
+    <string name="unsubscribe_topic_success"> Unsubscribe topic \"%1$s\" success.</string>
+    <string name="unsubscribe_topic_fail"> Unsubscribe topic fail for %1$s.</string>
+    <string name="set_accept_time_success"> Set accept time %1$s - %2$s success.</string>
+    <string name="set_accept_time_fail"> Set accept time fail for %1$s.</string>
+
+</resources>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical"
+    android:stretchColumns="1" >
+
+    <TextView
+        android:id="@+id/zhanghaoanquan"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:text="账号与安全"
+        android:textColor="#ffffff"
+        android:textSize="25sp" >
+    </TextView>
+
+    <TableRow
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF" >
+
+        <Button
+            android:id="@+id/nindezhanghao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#ffffff"
+            android:gravity="center|left"
+            android:text="账号"
+            android:textColor="#000000"
+            android:textSize="20sp" >
+        </Button>
+
+        <TextView
+            android:id="@+id/xianshizhanghao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:text="account"
+            android:textColor="#999999"
+            android:textSize="20sp" >
+        </TextView>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF" >
+
+        <Button
+            android:id="@+id/nindexingming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#ffffff"
+            android:gravity="center|left"
+            android:text="姓名"
+            android:textColor="#000000"
+            android:textSize="20sp" >
+        </Button>
+
+        <TextView
+            android:id="@+id/xianshixingming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:text="name"
+            android:textColor="#999999"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/jiantou" />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="2dp"
+        android:background="#FFFFFF" >
+
+        <Button
+            android:id="@+id/nindeshoujihao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="#ffffff"
+            android:gravity="center|left"
+            android:text="手机号码"
+            android:textColor="#000000"
+            android:textSize="20sp" >
+        </Button>
+
+        <TextView
+            android:id="@+id/xianshishoujihao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:text="number"
+            android:textColor="#999999"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/jiantou" />
+    </TableRow>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:stretchColumns="0" >
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/anquanzhongxin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#00000000"
+                android:gravity="left|center"
+                android:text="民兴之家安全中心"
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </Button>
+
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/jiantou" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:text="如果遇到账号信息泄露、忘记密码、诈骗等账号安全问题，可前往民兴之家安全中心。"
+        android:textColor="#999999"
+        android:textSize="15sp" >
+    </TextView>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:stretchColumns="0" >
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/ceshirukou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#00000000"
+                android:gravity="left|center"
+                android:text="后台测试入口"
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </Button>
+
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/jiantou" />
+        </TableRow>
+    </TableLayout>
+
+</TableLayout>

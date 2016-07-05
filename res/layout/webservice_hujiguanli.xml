@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ly_fanhui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/FanHui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:background="@drawable/fanhui" >
+            </ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="返回"
+                android:textColor="#fff"
+                android:textSize="20dp" >
+            </TextView>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hujiguanli"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="户籍管理"
+            android:textColor="#fff"
+            android:textSize="25sp" >
+        </TextView>
+
+        <Button
+            android:id="@+id/TiJiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dip"
+            android:text="提交"
+            android:textColor="#fff" >
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:textSize="20sp" >
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp" >
+
+            <LinearLayout
+                android:id="@+id/HuKouQianRu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:textColor="#000000"
+                android:textSize="20sp" >
+
+                <include layout="@layout/webservice_hukouqianru" >
+                </include>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/HuKouQianChu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#cccccc"
+                android:orientation="horizontal"
+                android:textColor="#000000"
+                android:textSize="20sp" >
+
+                <include layout="@layout/webservice_hukouqianchu" >
+                </include>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+</TabHost>

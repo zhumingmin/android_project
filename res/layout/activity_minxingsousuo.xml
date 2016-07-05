@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical"
+    android:stretchColumns="0" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ly_fanhui_sousuo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/FanHui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:background="@drawable/fanhui" >
+            </ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="返回"
+                android:textColor="#fff"
+                android:textSize="20dp" >
+            </TextView>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="民兴搜索"
+            android:textColor="#fff"
+            android:textSize="25sp" >
+        </TextView>
+
+        <Button
+            android:id="@+id/TiJiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dip"
+            android:background="@drawable/btn_bg"
+            android:textColor="#fff" >
+        </Button>
+    </LinearLayout>
+
+    <TableRow
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/sousuokuang" >
+
+        <EditText
+            android:id="@+id/newsousuo1"
+            android:layout_height="wrap_content"
+            android:hint="搜索…"
+            android:maxLines="1" >
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/btnSpeak1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:contentDescription="@string/speak"
+            android:src="@drawable/yuyin" >
+        </ImageButton>
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="20dp" >
+
+                <TextView
+                    android:id="@+id/tv_tip1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="left|center_vertical"
+                    android:text="搜索历史" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" >
+                </View>
+
+                <com.minxing.view.MyListView
+                    android:id="@+id/listView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                </com.minxing.view.MyListView>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" >
+            </View>
+
+            <TextView
+                android:id="@+id/tv_clear1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#F6F6F6"
+                android:gravity="center"
+                android:text="清除搜索历史" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" >
+            </View>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="搜索热词："
+        android:textSize="15dp" >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/soufanshiliu1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="#778899"
+                    android:text="搜番石榴"
+                    android:textColor="#ffffffff"
+                    android:textSize="10sp" >
+                </Button>
+
+                <Button
+                    android:id="@+id/soufenjiao1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="#778899"
+                    android:text="搜粉蕉"
+                    android:textColor="#ffffffff"
+                    android:textSize="10sp" >
+                </Button>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/soumugua1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="#778899"
+                    android:text="搜木瓜"
+                    android:textColor="#ffffffff"
+                    android:textSize="10sp" >
+                </Button>
+
+                <Button
+                    android:id="@+id/souqita1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="#778899"
+                    android:text="搜其他"
+                    android:textColor="#ffffffff"
+                    android:textSize="10sp" >
+                </Button>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/zhijiesousuo1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="2"
+            android:background="#778899"
+            android:text="直接搜索"
+            android:textColor="#ffffffff"
+            android:textSize="10sp" >
+        </Button>
+    </LinearLayout>
+
+</TableLayout>

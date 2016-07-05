@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ly_jiaofei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/FanHui4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:background="@drawable/fanhui" >
+            </ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="返回"
+                android:textColor="#fff"
+                android:textSize="20dp" >
+            </TextView>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ChaKanJiaoFei"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="查看缴费情况"
+            android:textColor="#fff"
+            android:textSize="25sp" >
+        </TextView>
+
+        <Button
+            android:id="@+id/title_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dip"
+            android:background="@drawable/btn_bg" >
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/chaxunzhanghao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="请输入您的身份证号码："
+            android:textColor="#000000"
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/tianxiechaxunzhanghao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="您的18位身份证号码"
+            android:maxLength="18"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/XiaZaiExcel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dip"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttonshape3"
+        android:text="查询一下"
+        android:textColor="#333333" >
+    </Button>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/chaxunjieguo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="查询结果为："
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/xianshichaxunjieguo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="您的缴费情况"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:text="暂未开通线上支付！可前往支付宝付款，付款账号为：123456@qq.com"
+            android:textColor="#999999"
+            android:textSize="15sp" >
+        </TextView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/xianshangjiaofei"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dip"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttonshape3"
+        android:text="线上缴费"
+        android:textColor="#333333" >
+    </Button>
+
+</TableLayout>

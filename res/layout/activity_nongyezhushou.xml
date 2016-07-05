@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:stretchColumns="0" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ly_fanhui_nongyezhushou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/FanHui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:background="@drawable/fanhui" >
+            </ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="返回"
+                android:textColor="#fff"
+                android:textSize="20dp" >
+            </TextView>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="民兴搜索"
+            android:textColor="#fff"
+            android:textSize="25sp" >
+        </TextView>
+
+        <Button
+            android:id="@+id/TiJiao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dip"
+            android:background="@drawable/btn_bg"
+            android:textColor="#fff" >
+        </Button>
+    </LinearLayout>
+
+    <TableRow
+        android:layout_height="80dp"
+        android:background="@drawable/sousuokuang" >
+
+        <EditText
+            android:id="@+id/newsousuo"
+            android:layout_height="wrap_content"
+            android:hint="搜索…"
+            android:maxLines="1" >
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/btnSpeak"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:contentDescription="@string/speak"
+            android:src="@drawable/yuyin" >
+        </ImageButton>
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="20dp" >
+
+                <TextView
+                    android:id="@+id/tv_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="left|center_vertical"
+                    android:text="搜索历史" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" >
+                </View>
+
+                <com.minxing.util.MyListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                </com.minxing.util.MyListView>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" >
+            </View>
+
+            <TextView
+                android:id="@+id/tv_clear"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#F6F6F6"
+                android:gravity="center"
+                android:text="清除搜索历史" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" >
+            </View>
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        layout="@layout/activity_newvoicetool" >
+    </include>
+
+</TableLayout>

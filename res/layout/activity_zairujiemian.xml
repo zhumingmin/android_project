@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wallpaper"
+    android:orientation="vertical" >
+
+  
+ <ImageView
+        android:id="@+id/ZaiRuJieMian"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/zairujiemian" />
+    
+    <TextView
+        android:id="@+id/MinXingCunJieShao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="民兴村政村位于万顷沙镇三民岛中部，全村共有556户， 户籍人口2150人，辖区面积为267公顷，耕地面积3838亩。2008年村工农业总产值2927万元。在上级党委和政府的正确领导和大力支持下，经多年努力创建，昔日的扶贫村、问题村已先后获得“广州市文明村”、“南沙区基层党建示范点”、“南沙区文明村”、“万顷沙镇工作先进村”等区、镇荣誉称号。近几年来，该村以发展经济为中心，以村镇规划为龙头，以改善民生为重点，积极推进新农村建设，全村呈现出了经济发展、生活安定、社会和谐的生动局面。"
+        android:textColor="#ffffff"
+        android:textSize="15sp" >
+    </TextView>
+
+
+    <Button
+        android:id="@+id/JinRuZhuYe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="进入民兴村"
+        android:textColor="#ffffff" >
+    </Button>
+
+</LinearLayout>

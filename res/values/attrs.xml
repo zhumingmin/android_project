@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <attr name="auto_play" forMymat="boolean" />
+
+    <declare-styleable name="SlidingSwitcherView">
+        <attr name="auto_play" />
+    </declare-styleable>
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="buttonBarStyle" format="reference" />
+        <attr name="buttonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
+</resources>

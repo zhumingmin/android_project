@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F5F5"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/XingMing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:text="请填写迁入人姓名："
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/TianXieXingMing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/ShengFenZhengHaoMa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="请填写身份证号码："
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/TianHaoMa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/LiYou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="请填写迁入理由："
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/TianXieLiYou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/ShangChuanZhaoPian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="请上传相关证明模板(长按图片可删除)"
+                android:textColor="#999999"
+                android:textSize="15sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+        </LinearLayout>
+
+        <com.minxing.util.ImageSelect
+            android:id="@+id/imageSelect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:numColumns="4"
+            android:stretchMode="columnWidth" />
+
+        <Button
+            android:id="@+id/ShangChuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dip"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/buttonshape3"
+            android:text="上传"
+            android:textColor="#333333" >
+        </Button>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="main_radio" type="id">false</item>
+    <item name="radio_button0" type="id">false</item>
+    <item name="radio_button1" type="id">false</item>
+    <item name="radio_button2" type="id">false</item>
+    <item name="radio_button3" type="id">false</item>
+
+</resources>

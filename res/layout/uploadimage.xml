@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:text="上传图片文件"
+        android:textColor="#ffffff"
+        android:textSize="25sp" >
+    </TextView>
+
+    <Button
+        android:id="@+id/selectImage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="#778899"
+        android:text="选择图片"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/uploadImageResult"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <Button
+        android:id="@+id/uploadImage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#778899"
+        android:onClick="postData"
+        android:text="上传图片"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dip"
+        android:layout_height="200dip"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitXY" />
+
+</LinearLayout>

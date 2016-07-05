@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/ly_fanhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/FanHui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dip"
+                    android:background="@drawable/fanhui" >
+                </ImageButton>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="返回"
+                    android:textColor="#fff"
+                    android:textSize="20dp" >
+                </TextView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/hujiguanli"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="户籍管理"
+                android:textColor="#fff"
+                android:textSize="25sp" >
+            </TextView>
+
+            <Button
+                android:id="@+id/TiJiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:background="@drawable/btn_bg"
+                android:textColor="#fff" >
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#F5F5F5"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/hujiqianru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#F5F5F5"
+                android:gravity="center"
+                android:text="户籍迁入"
+                android:textSize="22sp" >
+            </Button>
+
+            <Button
+                android:id="@+id/hujiqianchu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#F5F5F5"
+                android:gravity="center"
+                android:text="户籍迁出"
+                android:textSize="22sp" >
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/XingMing1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="请填写迁出人姓名："
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/TianXieXingMing1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/ShengFenZhengHaoMa1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="请填写身份证号码："
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/TianHaoMa1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/LiYou1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="请填写迁出理由："
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/TianXieLiYou1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/ShangChuanZhaoPian1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="请上传相关证明模板(长按图片可删除)"
+                android:textColor="#999999"
+                android:textSize="15sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <com.minxing.util.ImageSelect
+                android:id="@+id/imageSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:numColumns="4"
+                android:stretchMode="columnWidth" />
+
+            <Button
+                android:id="@+id/ShangChuan1"
+                style="@style/anniu_item"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="上传" >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

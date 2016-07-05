@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0" />
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.0"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <RadioGroup
+                android:id="@+id/main_tab_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="#000000"
+                android:gravity="bottom"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/main_tab_addExam"
+                    style="@style/footbar"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/bg_checkbox_menus0"
+                    android:text="民兴村" />
+
+                <RadioButton
+                    android:id="@+id/main_tab_myExam"
+                    style="@style/footbar"
+                    android:layout_weight="1.0"
+                    android:checked="true"
+                    android:drawableTop="@drawable/bg_checkbox_menus1"
+                    android:text="业务办理" />
+
+                <RadioButton
+                    android:id="@+id/main_tab_message"
+                    style="@style/footbar"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/bg_checkbox_menus2"
+                    android:text="农业助手" />
+
+                <RadioButton
+                    android:id="@+id/main_tab_shezhi"
+                    style="@style/footbar"
+                    android:layout_weight="1.0"
+                    android:drawableTop="@drawable/bg_checkbox_menus3"
+                    android:text="我的" />
+            </RadioGroup>
+        </FrameLayout>
+    </LinearLayout>
+
+</TabHost>

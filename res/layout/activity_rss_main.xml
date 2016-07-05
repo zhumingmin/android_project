@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/RSS"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:text="RSS新闻"
+        android:textColor="#ffffff"
+        android:textSize="25sp" >
+    </TextView>
+
+    <ListView
+        android:id="@+id/itemlist"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/RSS"
+        android:cacheColorHint="#00000000" />
+
+</RelativeLayout>

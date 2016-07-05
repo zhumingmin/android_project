@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/soufanshiliu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="#778899"
+                    android:text="搜番石榴"
+                    android:textColor="#ffffffff"
+                    android:textSize="10sp" >
+                </Button>
+
+                <Button
+                    android:id="@+id/soufenjiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="#778899"
+                    android:text="搜粉蕉"
+                    android:textColor="#ffffffff"
+                    android:textSize="10sp" >
+                </Button>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/soumugua"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="#778899"
+                    android:text="搜木瓜"
+                    android:textColor="#ffffffff"
+                    android:textSize="10sp" >
+                </Button>
+
+                <Button
+                    android:id="@+id/souqita"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="#778899"
+                    android:text="搜其他"
+                    android:textColor="#ffffffff"
+                    android:textSize="10sp" >
+                </Button>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/zhijiesousuo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="2"
+            android:background="#778899"
+            android:text="直接搜索"
+            android:textColor="#ffffffff"
+            android:textSize="10sp" >
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:background="#cccccc"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/xianshijieguo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="搜索结果如下："
+            android:textSize="15dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <com.minxing.util.PullToRefreshListView
+            android:id="@+id/frame_listview_news"
+            style="@style/widget_listview" />
+
+        <WebView
+            android:id="@+id/WebView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/jiafen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="#778899"
+            android:text="对搜索结果满意"
+            android:textColor="#fff"
+            android:textSize="10sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/koufen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="#778899"
+            android:text="对搜索结果不满意"
+            android:textColor="#fff"
+            android:textSize="10sp" >
+        </Button>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/gongzheng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:text="最终解释权归民兴村村委所有。"
+        android:textColor="#000000"
+        android:textSize="15sp" >
+    </TextView>
+
+</LinearLayout>
