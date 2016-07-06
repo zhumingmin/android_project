@@ -9,6 +9,7 @@ import com.zhumingmin.vmsofminxing.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ public class NewsDetailActivity extends Activity {
 	private TextView news_detail_date;
 	private TextView news_detail_commentcount;
 	private TextView news_detail_body;
+	private TextView yueduyuanwen;
 	private ImageButton fanhui1;
 	LinearLayout ly_xinwenxiangqing;
 	private ImageButton ib_share;
@@ -38,6 +40,7 @@ public class NewsDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_news_detail);
+		yueduyuanwen = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.yueduyuanwen);
 		fanhui1 = (ImageButton) findViewById(com.zhumingmin.vmsofminxing.R.id.xinwen_fanhui);
 		ly_xinwenxiangqing = (LinearLayout) findViewById(R.id.ly_xinwenxiangqing);
 		ib_share = (ImageButton) findViewById(com.zhumingmin.vmsofminxing.R.id.ib_share);
@@ -48,6 +51,18 @@ public class NewsDetailActivity extends Activity {
 				DisplayToast("将使用第三方工具实现，如友盟提供的分享功能！");
 				onActivityResult(0, 0, null);
 				shareBySystem();
+
+			}
+		});
+		yueduyuanwen.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent it = new Intent(Intent.ACTION_VIEW);
+				it.setData(Uri
+						.parse("http://news.163.com/16/0705/18/BR7U2NM300014PRF.html")); // 这里面是需要调转的rul
+				it = Intent.createChooser(it, null);
+				startActivity(it);
 
 			}
 		});
@@ -77,9 +92,7 @@ public class NewsDetailActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(NewsDetailActivity.this, NewsActivity.class);
-				startActivity(intent);
+
 				NewsDetailActivity.this.finish();
 
 			}

@@ -342,9 +342,6 @@ public class RegisterService extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 
-			Intent intent = new Intent();
-			intent.setClass(RegisterService.this, DengLuJieMianActivity.class);
-			startActivity(intent);
 			RegisterService.this.finish();
 			// overridePendingTransition(R.anim.slide_in_left,
 			// R.anim.slide_out_right);

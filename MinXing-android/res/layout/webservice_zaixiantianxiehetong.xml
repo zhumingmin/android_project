@@ -214,7 +214,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="right"
                 android:text="本合同最终解释权归民兴村村委所有。"
-                android:textColor="#000000"
+                android:textColor="#999999"
                 android:textSize="15sp" >
             </TextView>
         </LinearLayout>

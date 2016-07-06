@@ -36,6 +36,13 @@
             android:textSize="20sp" >
         </TextView>
 
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
         <EditText
             android:id="@+id/grxx_xingming_et"
             android:layout_width="match_parent"
@@ -46,6 +53,13 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <TextView
             android:id="@+id/grxx_lianxifangshi_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,6 +68,13 @@
             android:text="联系方式："
             android:textColor="#000000"
             android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
         </TextView>
 
         <EditText
@@ -67,6 +88,13 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <TextView
             android:id="@+id/grxx_shenfenzhenghao_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,6 +103,13 @@
             android:text="身份证号码："
             android:textColor="#000000"
             android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
         </TextView>
 
         <EditText
@@ -87,6 +122,13 @@
             android:password="true"
             android:textColor="#000000"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
     </LinearLayout>
 
     <Button

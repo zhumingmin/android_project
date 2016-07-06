@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F5F5F5"
     android:orientation="vertical" >
 
     <TextView
@@ -18,8 +18,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/sousuokuang"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
         android:orientation="vertical" >
 
         <TextView
@@ -37,8 +40,8 @@
             android:id="@+id/baojian"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="#F8F8FF" >
         </TextView>
 
@@ -59,110 +62,122 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:gravity="right"
-            android:text="2016年3月10日"
+            android:text="时间"
             android:textColor="#000000"
             android:textSize="15sp" >
         </TextView>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/canxuanren"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:text="请选择参选人:"
-        android:textColor="#000000"
-        android:textSize="20sp" >
-    </TextView>
-
-    <TextView
-        android:id="@+id/baojian"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F8F8FF" >
-    </TextView>
-
-    <Spinner
-        android:id="@+id/xuanzecanxuanren"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#F0F0F0"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/baojian"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F8F8FF" >
-    </TextView>
-
-    <TextView
-        android:id="@+id/canxuanzhiwei"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="参选职务："
-        android:textColor="#000000"
-        android:textSize="20sp" >
-    </TextView>
-
-    <TextView
-        android:id="@+id/baojian"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F8F8FF" >
-    </TextView>
-
-    <EditText
-        android:id="@+id/huoqucanxuanzhiwu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/gerenshiji"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="个人事迹："
-        android:textColor="#000000"
-        android:textSize="20sp" >
-    </TextView>
-
-    <TextView
-        android:id="@+id/baojian"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F8F8FF" >
-    </TextView>
-
-    <EditText
-        android:id="@+id/huoqugerenshiji"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/canxuanren"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="请选择参选人:"
+            android:textColor="#000000"
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <Spinner
+            android:id="@+id/xuanzecanxuanren"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#F0F0F0"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/canxuanzhiwei"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="参选职务："
+            android:textColor="#000000"
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/huoqucanxuanzhiwu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/gerenshiji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="个人事迹："
+            android:textColor="#000000"
+            android:textSize="20sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/baojian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/huoqugerenshiji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
         <Button
@@ -171,9 +186,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="#778899"
+            android:background="@drawable/buttonshape3"
             android:text="支持"
-            android:textColor="#fff"
+            android:textColor="#333333"
             android:textSize="15sp" >
         </Button>
 
@@ -183,9 +198,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="#778899"
+            android:background="@drawable/buttonshape3"
             android:text="围观"
-            android:textColor="#fff"
+            android:textColor="#333333"
             android:textSize="15sp" >
         </Button>
     </LinearLayout>
@@ -196,10 +211,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="right"
         android:text="最终解释权归民兴村村委所有。"
-        android:textColor="#000000"
+        android:textColor="#999999"
         android:textSize="15sp" >
     </TextView>
 

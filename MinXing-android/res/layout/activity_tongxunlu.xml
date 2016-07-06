@@ -27,7 +27,15 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:text="注意：各位村民，长按电话号码可以直接拨打电话。"
+        android:textColor="#999999"
         android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/baojian"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F8F8FF" >
+    </TextView>
 
     <ListView
         android:id="@+id/list_view"

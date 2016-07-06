@@ -51,6 +51,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:text="请将当前设备靠近其他NFC设备，别忘了触摸屏幕哦！"
+            android:textColor="#999999"
             android:textSize="15sp" />
     </LinearLayout>
 

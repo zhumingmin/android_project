@@ -43,6 +43,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="retrieveSampleData"
             android:text="时事新闻"
             android:textColor="#fff"
             android:textSize="25sp" >

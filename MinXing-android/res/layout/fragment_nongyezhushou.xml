@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_bg_color" >
+
+    <LinearLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bg"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/sousuo"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="5dip"
+            android:background="@drawable/sousuo" >
+        </ImageButton>
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="农业信息服务助手"
+            android:textColor="#fff"
+            android:textSize="25sp" >
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/gengduoxianshi"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_gravity="center"
+            android:layout_margin="5dip"
+            android:background="@drawable/gengduo" >
+        </ImageButton>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/category_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/top_category_height"
+        android:layout_below="@id/title_bar"
+        android:background="@drawable/bg_category_bar" >
+
+        <ImageView
+            android:id="@+id/icon_category"
+            android:layout_width="@dimen/top_category_height"
+            android:layout_height="@dimen/top_category_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center"
+            android:src="@drawable/ic_category_expand" />
+
+        <LinearLayout
+            android:id="@+id/dingbudaohanglan"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/top_category_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/icon_category" >
+
+            <com.minxing.view.CategoryTabStrip
+                android:id="@+id/category_strip"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/top_category_height"
+                android:clipToPadding="false"
+                android:paddingLeft="6.0dip"
+                android:paddingRight="6.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/category_layout"
+        tools:context="com.minxing.activity.WangYeLieBiao" />
+
+</RelativeLayout>

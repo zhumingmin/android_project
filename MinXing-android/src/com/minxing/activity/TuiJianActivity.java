@@ -40,7 +40,7 @@ public class TuiJianActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.fragment_main);
+		setContentView(R.layout.fragment_nongyezhushou);
 
 		tabs = (CategoryTabStrip) findViewById(R.id.category_strip);
 		pager = (ViewPager) findViewById(R.id.view_pager);

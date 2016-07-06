@@ -44,7 +44,7 @@ public class fmainFragmentthree extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater.inflate(R.layout.fragment_main, container, false);
+		View v = inflater.inflate(R.layout.fragment_nongyezhushou, container, false);
 		ExitApplication.getInstance().addActivity(getActivity());
 		gengduo = (ImageButton) v.findViewById(R.id.gengduoxianshi);
 		gengduo.setOnClickListener(new OnClickListener() {

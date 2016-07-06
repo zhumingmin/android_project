@@ -3,7 +3,9 @@ package com.minxing.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.minxing.activity.NewsDetailActivity;
 import com.minxing.activity.SerachView;
+import com.minxing.activity.TuiJianDetailActivity;
 import com.minxing.util.News;
 import com.minxing.util.NewsListViewAdapter;
 import com.minxing.view.PullToRefreshListView;
@@ -61,25 +63,9 @@ public class NewsFragment extends Fragment {
 		View listview = inflater.inflate(R.layout.fragment_tuijian, container,
 				false);
 		// --------------
-		this.initNewsData();
-		this.testLoadNewsData();
+
 		newsListViewAdapter = new NewsListViewAdapter(getActivity(),
 				newsDataList, R.layout.news_list_item);
-
-		pullToRefreshListView = (PullToRefreshListView) listview
-				.findViewById(R.id.frame_listview_news);
-
-		pullToRefreshListView.setAdapter(newsListViewAdapter);
-
-		// pullToRefreshListView
-		// .setOnItemClickListener(new AdapterView.OnItemClickListener() {
-		// public void onItemClick(AdapterView<?> parent, View view,
-		// int position, long id) {
-		// Intent intent = new Intent(getActivity(),
-		// NewsDetail.class);
-		// startActivity(intent);
-		// }
-		// });
 
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
@@ -100,6 +86,21 @@ public class NewsFragment extends Fragment {
 		switch (position) {
 		case 0:
 			// v1.loadUrl("http://baike.pcbaby.com.cn/qzbd/1270013.html");
+			this.initNewsData();
+			this.testLoadNewsData();
+			pullToRefreshListView = (PullToRefreshListView) listview
+					.findViewById(R.id.frame_listview_news);
+			pullToRefreshListView.setAdapter(newsListViewAdapter);
+
+			// pullToRefreshListView
+			// .setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			// public void onItemClick(AdapterView<?> parent,
+			// View view, int position, long id) {
+			// Intent intent = new Intent(getActivity(),
+			// TuiJianDetailActivity.class);
+			// startActivity(intent);
+			// }
+			// });
 			fl.addView(listview);
 			break;
 		case 1:
@@ -139,7 +140,7 @@ public class NewsFragment extends Fragment {
 	}
 
 	private void initNewsData() {
-		for (int i = 1; i <= 20; i++) {
+		for (int i = 1; i <= 10; i++) {
 			news = new News("广东省广州市万顷沙镇民兴村热点新闻" + i, "为民服务的村委们", "2016-1-" + i,
 					12 + i, "新闻内容" + i);
 			newsDataList.add(news);

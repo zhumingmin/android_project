@@ -45,6 +45,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -208,7 +209,7 @@ public class LoginService extends Activity {
 				Intent intent = new Intent();
 				intent.setClass(LoginService.this, RegisterService.class);
 				startActivity(intent);
-				LoginService.this.finish();
+
 			}
 		});
 		denglu.setOnClickListener(new LoginListener());
@@ -256,10 +257,10 @@ public class LoginService extends Activity {
 		private static final String TAG = "WebServiceTask";
 
 		// connection timeout, in milliseconds (waiting to connect)
-		private static final int CONN_TIMEOUT = 3000;
+		private final int CONN_TIMEOUT = 3000;
 
 		// socket timeout, in milliseconds (waiting for data)
-		private static final int SOCKET_TIMEOUT = 5000;
+		private final int SOCKET_TIMEOUT = 5000;
 
 		private int taskType = GET_TASK;
 		private Context mContext = null;
@@ -333,6 +334,7 @@ public class LoginService extends Activity {
 		protected void onPostExecute(String response) {
 
 			handleResponse(response);
+
 			pDlg.dismiss();
 
 		}
@@ -408,51 +410,51 @@ public class LoginService extends Activity {
 	@SuppressLint("ShowToast")
 	class LoginListener implements OnClickListener {
 
-		@SuppressWarnings("deprecation")
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			// String zhanghao = tianxiezhanghao.getText().toString();
-			// String mima1 = tianxiemima.getText().toString();
-			// if (!isNetworkAvailable(LoginService.this)) {
-			//
-			// Toast.makeText(getApplicationContext(), "网络未连接，请检查您的网络！", 0)
-			// .show();
-			// return;
-			// }
-			// if (zhanghao.equals("")) {
-			// Toast.makeText(getApplicationContext(), "账号不能空！", 0).show();
-			// return;
-			// }
-			// if (mima1.equals("")) {
-			// Toast.makeText(getApplicationContext(), "密码不能为空！", 0).show();
-			// return;
-			// }
-			//
-			// WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
-			// LoginService.this, "正在登陆...");
-			//
-			// wst.addNameValuePair("loginzhanghao", zhanghao);
-			// wst.addNameValuePair("loginmima", mima1);
-			//
-			// // the passed String is the URL we will POST to
-			// wst.execute(new String[] { SERVICE_URL });
+			String zhanghao = tianxiezhanghao.getText().toString();
+			String mima1 = tianxiemima.getText().toString();
+			if (!isNetworkAvailable(LoginService.this)) {
 
-			// post信息成功后在Android显示连接后台成功的标识
-			// if (wst.doInBackground(SERVICE_URL) != null) {
-			// Toast.makeText(getApplicationContext(), "登陆成功！", 0).show();
-			// Intent intent = new Intent();
-			// intent.setClass(LoginService.this, YeWuBanLi.class);
-			// startActivity(intent);
-			// LoginService.this.finish();
-			// } else {
-			// Toast.makeText(getApplicationContext(), "登陆失败！", 0).show();
-			// }
+				Toast.makeText(getApplicationContext(), "网络未连接，请检查您的网络！", 0)
+						.show();
+				return;
+			}
+			if (zhanghao.equals("")) {
+				Toast.makeText(getApplicationContext(), "账号不能空！", 0).show();
+				return;
+			}
+			if (mima1.equals("")) {
+				Toast.makeText(getApplicationContext(), "密码不能为空！", 0).show();
+				return;
+			}
+
+//			WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
+//					LoginService.this, "正在登陆...");
+//
+//			wst.addNameValuePair("loginzhanghao", zhanghao);
+//			wst.addNameValuePair("loginmima", mima1);
+//
+//			// the passed String is the URL we will POST to
+//			wst.execute(new String[] { SERVICE_URL });
+//
+//			// post信息成功后在Android显示连接后台成功的标识
+//			if (wst.CONN_TIMEOUT <= 3000) {
+//				Toast.makeText(getApplicationContext(), "登陆成功！", 0).show();
+//				if (wst.SOCKET_TIMEOUT <= 5000) {
+//					Intent intent = new Intent();
+//					intent.setClass(LoginService.this, YeWuBanLiActivity.class);
+//					startActivity(intent);
+//					LoginService.this.finish();
+//				}
+//			} else {
+//				Toast.makeText(getApplicationContext(), "登陆失败！", 0).show();
+//			}
 			Intent intent = new Intent();
 			intent.setClass(LoginService.this, YeWuBanLiActivity.class);
 			startActivity(intent);
 			LoginService.this.finish();
-
 		}
 
 	}
