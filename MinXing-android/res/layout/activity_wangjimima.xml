@@ -133,7 +133,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:background="#fff"
+        android:background="@drawable/buttonshape3"
         android:text="提交"
         android:textColor="#333333" >
     </Button>

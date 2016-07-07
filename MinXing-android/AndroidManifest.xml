@@ -460,8 +460,9 @@
         <activity android:name="com.minxing.activity.MinXingSouSuoJieGuoActivity" >
         </activity>
         <activity android:name="com.minxing.activity.TuiJianDetailActivity" >
-        </activity><activity android:name="com.minxing.restwebservice.NewsService" >
-</activity>
+        </activity>
+        <activity android:name="com.minxing.restwebservice.NewsService" >
+        </activity>
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"

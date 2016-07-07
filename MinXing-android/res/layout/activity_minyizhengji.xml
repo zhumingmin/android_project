@@ -213,7 +213,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:gravity="right"
-        android:text="最终解释权归民兴村村委所有。"
+        android:text="*最终解释权归民兴村村委所有。"
         android:textColor="#999999"
         android:textSize="15sp" >
     </TextView>
