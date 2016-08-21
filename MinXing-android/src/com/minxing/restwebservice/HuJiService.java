@@ -533,6 +533,12 @@ public class HuJiService extends TabActivity {
 		protected void onPostExecute(String response) {
 
 			handleResponse(response);
+			if (response != null) {
+				Toast.makeText(getApplicationContext(), "上传成功！", 0).show();
+
+			} else {
+				Toast.makeText(getApplicationContext(), "上传失败！", 0).show();
+			}
 			pDlg.dismiss();
 
 		}

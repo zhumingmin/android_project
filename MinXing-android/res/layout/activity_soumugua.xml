@@ -5,11 +5,12 @@
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/reci3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_bg"
         android:gravity="center"
-        android:text="搜木瓜"
+        android:text="热词搜索"
         android:textColor="#ffffff"
         android:textSize="25sp" >
     </TextView>

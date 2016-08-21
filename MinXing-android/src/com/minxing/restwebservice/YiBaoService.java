@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import com.minxing.PushMessage.XiaoMiTuiSong;
 import com.minxing.activity.YiBaoSheBaoActivity;
 import com.minxing.restwebservice.RegisterService;
+
 import com.zhumingmin.vmsofminxing.R;
 
 import android.app.Activity;
@@ -67,6 +68,7 @@ public class YiBaoService extends Activity {
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/yibaoguanli";
 
 	private static final String TAG = "YiBaoService";
+	EditText tianxiechaxunzhanghao, xianshichaxunjieguo;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,7 +76,8 @@ public class YiBaoService extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.webservice_chakanjiaofei);
 		ly_jiaofei = (LinearLayout) findViewById(R.id.ly_jiaofei);
-
+		tianxiechaxunzhanghao = (EditText) findViewById(R.id.tianxiechaxunzhanghao);
+		xianshichaxunjieguo = (EditText) findViewById(R.id.xianshichaxunjieguo);
 		fanhui = (ImageButton) findViewById(com.zhumingmin.vmsofminxing.R.id.FanHui4);
 		chaxun = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.XiaZaiExcel);
 		xianshangjiaofei = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.xianshangjiaofei);
@@ -104,6 +107,38 @@ public class YiBaoService extends Activity {
 				// R.anim.activity_left_in);
 			}
 		});
+		tianxiechaxunzhanghao.setOnKeyListener(new View.OnKeyListener() {// 输入完后按键盘上的搜索键
+
+					public boolean onKey(View v, int keyCode, KeyEvent event) {
+						if (keyCode == KeyEvent.KEYCODE_ENTER
+								&& event.getAction() == KeyEvent.ACTION_DOWN) {// 修改回车键功能
+							// 先隐藏键盘
+							((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+									.hideSoftInputFromWindow(getCurrentFocus()
+											.getWindowToken(),
+											InputMethodManager.HIDE_NOT_ALWAYS);
+							// 按完搜索键后将当前查询的关键字保存起来,如果该关键字已经存在就不执行保存
+							String shenfenzhenghaoma = tianxiechaxunzhanghao
+									.getText().toString();
+
+							if (shenfenzhenghaoma.equals("")) {
+								Toast.makeText(getApplicationContext(),
+										"身份证号码不能空！", 0).show();
+							}
+
+							WebServiceTask wst = new WebServiceTask(
+									WebServiceTask.POST_TASK,
+									YiBaoService.this, "Posting data...");
+
+							wst.addNameValuePair("shenfenzhenghaoma",
+									shenfenzhenghaoma);
+
+							wst.execute(new String[] { SERVICE_URL });
+
+						}
+						return false;
+					}
+				});
 
 	}
 
@@ -117,58 +152,14 @@ public class YiBaoService extends Activity {
 
 	}
 
-	// 清除信息方法
-	public void clearControls(View vw) {
-
-		EditText tianxiechaxunzhanghao = (EditText) findViewById(R.id.tianxiechaxunzhanghao);
-		EditText xianshichaxunjieguo = (EditText) findViewById(R.id.xianshichaxunjieguo);
-
-		tianxiechaxunzhanghao.setText("");
-		xianshichaxunjieguo.setText("");
-
-	}
-
-	// 上传信息到服务器 POST方法
-	public void postData(View vw) {
-
-		EditText tianxiechaxunzhanghao = (EditText) findViewById(R.id.tianxiechaxunzhanghao);
-		EditText xianshichaxunjieguo = (EditText) findViewById(R.id.xianshichaxunjieguo);
-
-		String shenfenzhenghaoma = tianxiechaxunzhanghao.getText().toString();
-		String jiaofeiqingkuan = xianshichaxunjieguo.getText().toString();
-
-		if (shenfenzhenghaoma.equals("") || jiaofeiqingkuan.equals("")) {
-			Toast.makeText(this, "Please enter in all required fields.",
-					Toast.LENGTH_LONG).show();
-			return;
-		}
-
-		WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK, this,
-				"Posting data...");
-
-		wst.addNameValuePair("shenfenzhenghaoma", shenfenzhenghaoma);
-		wst.addNameValuePair("jiaofeiqingkuan", jiaofeiqingkuan);
-
-		// the passed String is the URL we will POST to
-		wst.execute(new String[] { SERVICE_URL });
-
-	}
-
 	public void handleResponse(String response) {
-
-		EditText tianxiechaxunzhanghao = (EditText) findViewById(R.id.tianxiechaxunzhanghao);
-		EditText xianshichaxunjieguo = (EditText) findViewById(R.id.xianshichaxunjieguo);
-
-		tianxiechaxunzhanghao.setText("");
 
 		try {
 
 			JSONObject jso = new JSONObject(response);
 
-			String shenfenzhenghaoma = jso.getString("shenFenZhengHaoMa");
 			String jiaofeiqingkuan = jso.optString("jiaoFeiQingKuan");
 
-			tianxiechaxunzhanghao.setText(shenfenzhenghaoma);
 			xianshichaxunjieguo.setText(jiaofeiqingkuan);
 
 		} catch (Exception e) {
@@ -275,6 +266,12 @@ public class YiBaoService extends Activity {
 		protected void onPostExecute(String response) {
 
 			handleResponse(response);
+			if (response != null) {
+				Toast.makeText(getApplicationContext(), "查询成功！", 0).show();
+
+			} else {
+				Toast.makeText(getApplicationContext(), "查询失败！", 0).show();
+			}
 			pDlg.dismiss();
 			// System.out.println("输出"+response);
 
@@ -353,7 +350,7 @@ public class YiBaoService extends Activity {
 			intent.setClass(YiBaoService.this, YiBaoSheBaoActivity.class);
 			startActivity(intent);
 			YiBaoService.this.finish();
-			
+
 		}
 		return super.onKeyDown(keyCode, event);
 	}

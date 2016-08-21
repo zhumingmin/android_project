@@ -45,7 +45,7 @@ public class TuiJianActivity extends FragmentActivity {
 		tabs = (CategoryTabStrip) findViewById(R.id.category_strip);
 		pager = (ViewPager) findViewById(R.id.view_pager);
 		sousuo = (ImageButton) findViewById(R.id.sousuo);
-		gengduo = (ImageButton) findViewById(R.id.gengduoxianshi);
+		//gengduo = (ImageButton) findViewById(R.id.gengduoxianshi);
 		adapter = new MyPagerAdapter(getSupportFragmentManager());
 
 		pager.setAdapter(adapter);

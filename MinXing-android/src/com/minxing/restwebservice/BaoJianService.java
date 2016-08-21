@@ -24,6 +24,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.minxing.activity.YeWuBanLiActivity;
 import com.minxing.util.CustomArrayAdapter;
 import com.zhumingmin.vmsofminxing.R;
 
@@ -442,6 +443,12 @@ public class BaoJianService extends Activity {
 		protected void onPostExecute(String response) {
 
 			handleResponse(response);
+			if (response != null) {
+				Toast.makeText(getApplicationContext(), "上传成功！", 0).show();
+
+			} else {
+				Toast.makeText(getApplicationContext(), "上传失败！", 0).show();
+			}
 			pDlg.dismiss();
 
 		}

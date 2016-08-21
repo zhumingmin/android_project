@@ -18,6 +18,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -31,8 +32,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.minxing.util.ActionItem;
 import com.minxing.util.RecordSQLiteOpenHelper;
 import com.minxing.view.MyListView;
+import com.minxing.view.TitlePopup;
 import com.zhumingmin.vmsofminxing.R;
 
 public class MinXingSouSuoActivity extends Activity {
@@ -46,8 +49,8 @@ public class MinXingSouSuoActivity extends Activity {
 	private BaseAdapter adapter;
 	EditText newsousuo;
 	Button zhijiesousuo, soufanshiliu, soufenjiao, soumugua, souqita;
-	ImageButton btnSpeak;
-
+	ImageButton btnSpeak,sousuoshezhi;
+	private TitlePopup titlePopup;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,6 +65,16 @@ public class MinXingSouSuoActivity extends Activity {
 		soumugua = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.soumugua1);
 		souqita = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.souqita1);
 		tv_clear = (TextView) findViewById(R.id.tv_clear1);
+		sousuoshezhi = (ImageButton) findViewById(R.id.sousuoshezhi);
+		sousuoshezhi.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				titlePopup.show(v);
+			}
+		});
+		titlePopup = new TitlePopup(this, LayoutParams.WRAP_CONTENT,
+				LayoutParams.WRAP_CONTENT);
+		initData();
 		zhijiesousuo = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.zhijiesousuo1);
 		newsousuo = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.newsousuo1);
 
@@ -78,8 +91,10 @@ public class MinXingSouSuoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				String data = soufanshiliu.getText().toString();
 				Intent intent = new Intent(MinXingSouSuoActivity.this,
 						SouFanShiLiuActivity.class);
+				intent.putExtra("reci", data);
 				startActivity(intent);
 
 			}
@@ -90,8 +105,10 @@ public class MinXingSouSuoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				String data = soufenjiao.getText().toString();
 				Intent intent = new Intent(MinXingSouSuoActivity.this,
 						SouFenJiaoActivity.class);
+				intent.putExtra("reci", data);
 				startActivity(intent);
 
 			}
@@ -102,8 +119,10 @@ public class MinXingSouSuoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				String data = soumugua.getText().toString();
 				Intent intent = new Intent(MinXingSouSuoActivity.this,
 						SouMuGuaActivity.class);
+				intent.putExtra("reci", data);
 				startActivity(intent);
 
 			}
@@ -114,8 +133,10 @@ public class MinXingSouSuoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				String data = souqita.getText().toString();
 				Intent intent = new Intent(MinXingSouSuoActivity.this,
 						SouQiTaActivity.class);
+				intent.putExtra("reci", data);
 				startActivity(intent);
 
 			}
@@ -242,7 +263,17 @@ public class MinXingSouSuoActivity extends Activity {
 			}
 		});
 	}
+	private void initData() {
 
+		titlePopup.addAction(new ActionItem(this, "仅中文",
+				R.drawable.mm_title_btn_compose_normal));
+		titlePopup.addAction(new ActionItem(this, "仅英文",
+				R.drawable.mm_title_btn_receiver_normal));
+		titlePopup.addAction(new ActionItem(this, "中英混合",
+				R.drawable.mm_title_btn_keyboard_normal));
+		titlePopup.addAction(new ActionItem(this, "推荐设置",
+				R.drawable.mm_title_btn_qrcode_normal));
+	}
 	private void DisplayToast(String string) {
 		// TODO Auto-generated method stub
 		Toast.makeText(this, string, Toast.LENGTH_SHORT).show();

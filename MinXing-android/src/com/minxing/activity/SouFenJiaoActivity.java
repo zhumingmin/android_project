@@ -1,5 +1,7 @@
 package com.minxing.activity;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,6 +30,7 @@ public class SouFenJiaoActivity extends Activity {
 	// private Button mButton;
 	// private EditText mEditText;
 	private WebView mWebView;
+	private TextView reci;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -35,7 +38,9 @@ public class SouFenJiaoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_soufenjiao);
-
+		reci = (TextView) findViewById(R.id.reci2);
+		Intent intent = getIntent();
+		reci.setText(intent.getStringExtra("reci"));
 		mWebView = (WebView) findViewById(com.zhumingmin.vmsofminxing.R.id.WebView09);
 
 		WebSettings webSettings = mWebView.getSettings();
@@ -171,7 +176,8 @@ public class SouFenJiaoActivity extends Activity {
 			}
 		});
 
-		mWebView.loadUrl("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=2&dsp=baidubrowser&tn=09060019_2_pg&wd=%E7%B2%89%E8%95%89%E7%A7%8D%E6%A4%8D&rsv_spt=1&oq=%E7%95%AA%E7%9F%B3%E6%A6%B4%E7%A7%8D%E6%A4%8D&rsv_pq=9bc88d3200018c02&rsv_t=98e7Z950nEHwg%2FVlZv9ZSveVQSCar9QxoxXrZuuOGH6wKIPfUE0tD%2BdTC0705uvN6RIsBw&rsv_enter=1&rsv_sug3=2&rsv_sug1=2&rsv_sug2=0&inputT=2292&rsv_sug4=2293");
+		String keyword = reci.getText().toString();
+		mWebView.loadUrl("http://www.baidu.com/s?&wd=" + keyword);
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

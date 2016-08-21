@@ -109,18 +109,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/ZhaoHuiMiMa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:gravity="right"
-            android:text="找回密码"
+            android:gravity="left"
+            android:text="忘记密码"
             android:textColor="#ffffff"
-            android:textSize="20sp" >
+            android:textSize="15sp" >
         </TextView>
 
         <TextView
@@ -128,10 +129,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="right"
+            android:layout_marginRight="10dp"
             android:text="免费注册"
             android:textColor="#B22222"
-            android:textSize="20sp" >
+            android:textSize="15sp" >
         </TextView>
     </LinearLayout>
 

@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
@@ -29,11 +31,16 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -86,12 +93,60 @@ public class RegisterService extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE); 
+				String szImei = TelephonyMgr.getDeviceId(); 
+				String m_szDevIDShort = "35" + //we make this look like a valid IMEI 
 
+				Build.BOARD.length()%10 + 
+				Build.BRAND.length()%10 + 
+				Build.CPU_ABI.length()%10 + 
+				Build.DEVICE.length()%10 + 
+				Build.DISPLAY.length()%10 + 
+				Build.HOST.length()%10 + 
+				Build.ID.length()%10 + 
+				Build.MANUFACTURER.length()%10 + 
+				Build.MODEL.length()%10 + 
+				Build.PRODUCT.length()%10 + 
+				Build.TAGS.length()%10 + 
+				Build.TYPE.length()%10 + 
+				Build.USER.length()%10 ; //13 digits
+				String m_szAndroidID = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
+				WifiManager wm = (WifiManager)getSystemService(Context.WIFI_SERVICE); 
+				String m_szWLANMAC = wm.getConnectionInfo().getMacAddress();
+				BluetoothAdapter m_BluetoothAdapter = null; // Local Bluetooth adapter      
+				m_BluetoothAdapter = BluetoothAdapter.getDefaultAdapter();      
+				String m_szBTMAC = m_BluetoothAdapter.getAddress();
+				
+				String m_szLongID = szImei + m_szDevIDShort 
+					    + m_szAndroidID+ m_szWLANMAC + m_szBTMAC;      
+					// compute md5     
+					 MessageDigest m = null;   
+					try {
+					 m = MessageDigest.getInstance("MD5");
+					 } catch (NoSuchAlgorithmException e) {
+					 e.printStackTrace();   
+					}    
+					m.update(m_szLongID.getBytes(),0,m_szLongID.length());   
+					// get md5 bytes   
+					byte p_md5Data[] = m.digest();   
+					// create a hex string   
+					String m_szUniqueID = new String();   
+					for (int i=0;i<p_md5Data.length;i++) {   
+					     int b =  (0xFF & p_md5Data[i]);    
+					// if it is a single digit, make sure it have 0 in front (proper padding)    
+					    if (b <= 0xF) 
+					        m_szUniqueID+="0";    
+					// add number to string    
+					    m_szUniqueID+=Integer.toHexString(b); 
+					   }   // hex string to uppercase   
+					m_szUniqueID = m_szUniqueID.toUpperCase();
+					
 				String zhanghao = TianXieZhangHao1.getText().toString();
 				String xingming = TianXieXingming1.getText().toString();
 				String shoujihaoma = TianXieShouJiHaoMa1.getText().toString();
 				String mima1 = TianXieMiMa1.getText().toString();
 				String mima2 = TianXieMiMa2.getText().toString();
+				
 				if (zhanghao.equals("")) {
 					Toast.makeText(getApplicationContext(), "账号不能空！", 0).show();
 					return;
@@ -126,6 +181,7 @@ public class RegisterService extends Activity {
 				wst.addNameValuePair("shoujihaoma", shoujihaoma);
 				wst.addNameValuePair("mima1", mima1);
 				wst.addNameValuePair("mima2", mima2);
+				wst.addNameValuePair("uniqueID", m_szUniqueID);
 
 				// the passed String is the URL we will POST to
 				wst.execute(new String[] { SERVICE_URL });
@@ -268,6 +324,12 @@ public class RegisterService extends Activity {
 		protected void onPostExecute(String response) {
 
 			handleResponse(response);
+			if (response != null) {
+				Toast.makeText(getApplicationContext(), "注册成功！", 0).show();
+
+			} else {
+				Toast.makeText(getApplicationContext(), "注册失败！", 0).show();
+			}
 			pDlg.dismiss();
 
 		}

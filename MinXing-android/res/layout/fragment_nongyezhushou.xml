@@ -14,8 +14,8 @@
 
         <ImageButton
             android:id="@+id/sousuo"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dip"
             android:layout_marginLeft="10dip"
@@ -35,14 +35,14 @@
             android:textSize="25sp" >
         </TextView>
 
-        <ImageButton
-            android:id="@+id/gengduoxianshi"
-            android:layout_width="40dip"
-            android:layout_height="40dip"
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_margin="5dip"
-            android:background="@drawable/gengduo" >
-        </ImageButton>
+            android:background="@drawable/btn_bg"
+            android:textColor="#fff" >
+        </Button>
     </LinearLayout>
 
     <RelativeLayout

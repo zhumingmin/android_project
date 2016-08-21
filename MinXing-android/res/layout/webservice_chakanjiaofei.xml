@@ -107,6 +107,7 @@
         android:layout_margin="10dip"
         android:layout_marginTop="10dp"
         android:background="@drawable/buttonshape3"
+        android:onClick="retrieveSampleData"
         android:text="查询一下"
         android:textColor="#333333" >
     </Button>

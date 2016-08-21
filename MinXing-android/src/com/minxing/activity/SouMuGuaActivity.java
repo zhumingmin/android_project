@@ -1,5 +1,7 @@
 package com.minxing.activity;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,6 +30,7 @@ public class SouMuGuaActivity extends Activity {
 	// private Button mButton;
 	// private EditText mEditText;
 	private WebView mWebView;
+	private TextView reci;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -35,7 +38,9 @@ public class SouMuGuaActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_soumugua);
-
+		reci = (TextView) findViewById(R.id.reci3);
+		Intent intent = getIntent();
+		reci.setText(intent.getStringExtra("reci"));
 		mWebView = (WebView) findViewById(com.zhumingmin.vmsofminxing.R.id.WebView10);
 
 		WebSettings webSettings = mWebView.getSettings();
@@ -171,8 +176,8 @@ public class SouMuGuaActivity extends Activity {
 			}
 		});
 
-		mWebView.loadUrl("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=2&dsp=baidubrowser&tn=09060019_2_pg&wd=%E6%9C%A8%E7%93%9C%E7%A7%8D%E6%A4%8D&rsv_spt=1&oq=%E7%B2%89%E8%95%89%E7%A7%8D%E6%A4%8D&rsv_pq=b4091d2500014754&rsv_t=464619kWUtIBOVkBZyx05QUj6ftf8yw%2BDVQBBNnJU%2BYzZnHIZDVZ1mExVfzNE8xCQVh%2BDw&rsv_enter=1&inputT=1677&rsv_sug3=4&rsv_sug1=4&rsv_sug2=0&rsv_sug4=1677");
-	}
+		String keyword = reci.getText().toString();
+		mWebView.loadUrl("http://www.baidu.com/s?&wd=" + keyword);	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {

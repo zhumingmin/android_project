@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
 
-import com.minxing.fragment.fmainFragmentfour;
-import com.minxing.fragment.fmainFragmentthree;
-import com.minxing.fragment.fmainFragmenttwo;
-import com.minxing.fragment.mainFragmentone;
+import com.minxing.fragment.WoDeFragment;
+import com.minxing.fragment.NongYeZhuShouFragment;
+import com.minxing.fragment.YeWuBanLiFragment;
+import com.minxing.fragment.MinXingCunFragment;
 
 import com.zhumingmin.vmsofminxing.R;
 
@@ -72,10 +72,10 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 		i03 = getView(R.id.id_mainbutton_threeim);
 		i04 = getView(R.id.id_mainbutton_fourim);
 
-		fr01 = new mainFragmentone();
-		fr02 = new fmainFragmenttwo();
-		fr03 = new fmainFragmentthree();
-		fr04 = new fmainFragmentfour();
+		fr01 = new MinXingCunFragment();
+		fr02 = new YeWuBanLiFragment();
+		fr03 = new NongYeZhuShouFragment();
+		fr04 = new WoDeFragment();
 
 		mLists.add(fr01);
 		mLists.add(fr02);
@@ -98,6 +98,7 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 		};
 
 		Mviewpager.setAdapter(adapter);
+		Mviewpager.setCurrentItem(1);// 括号里的x变成你的默认页码
 
 		Mviewpager.setOnPageChangeListener(new OnPageChangeListener() {
 

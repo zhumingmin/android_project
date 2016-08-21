@@ -334,6 +334,17 @@ public class LoginService extends Activity {
 		protected void onPostExecute(String response) {
 
 			handleResponse(response);
+			if (response != null) {
+				Toast.makeText(getApplicationContext(), "登陆成功！", 0).show();
+
+				Intent intent = new Intent();
+				intent.setClass(LoginService.this, YeWuBanLiActivity.class);
+				startActivity(intent);
+				LoginService.this.finish();
+
+			} else {
+				Toast.makeText(getApplicationContext(), "登陆失败！", 0).show();
+			}
 
 			pDlg.dismiss();
 
@@ -430,31 +441,15 @@ public class LoginService extends Activity {
 				return;
 			}
 
-//			WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
-//					LoginService.this, "正在登陆...");
-//
-//			wst.addNameValuePair("loginzhanghao", zhanghao);
-//			wst.addNameValuePair("loginmima", mima1);
-//
-//			// the passed String is the URL we will POST to
-//			wst.execute(new String[] { SERVICE_URL });
-//
-//			// post信息成功后在Android显示连接后台成功的标识
-//			if (wst.CONN_TIMEOUT <= 3000) {
-//				Toast.makeText(getApplicationContext(), "登陆成功！", 0).show();
-//				if (wst.SOCKET_TIMEOUT <= 5000) {
-//					Intent intent = new Intent();
-//					intent.setClass(LoginService.this, YeWuBanLiActivity.class);
-//					startActivity(intent);
-//					LoginService.this.finish();
-//				}
-//			} else {
-//				Toast.makeText(getApplicationContext(), "登陆失败！", 0).show();
-//			}
-			Intent intent = new Intent();
-			intent.setClass(LoginService.this, YeWuBanLiActivity.class);
-			startActivity(intent);
-			LoginService.this.finish();
+			WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
+					LoginService.this, "正在登陆...");
+
+			wst.addNameValuePair("loginzhanghao", zhanghao);
+			wst.addNameValuePair("loginmima", mima1);
+
+			// the passed String is the URL we will POST to
+			wst.execute(new String[] { SERVICE_URL });
+
 		}
 
 	}

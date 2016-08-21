@@ -1,5 +1,7 @@
 package com.minxing.activity;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,6 +30,7 @@ public class SouQiTaActivity extends Activity {
 	// private Button mButton;
 	// private EditText mEditText;
 	private WebView mWebView;
+	private TextView reci;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -35,7 +38,9 @@ public class SouQiTaActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_souqita);
-
+		reci = (TextView) findViewById(R.id.reci4);
+		Intent intent = getIntent();
+		reci.setText(intent.getStringExtra("reci"));
 		mWebView = (WebView) findViewById(com.zhumingmin.vmsofminxing.R.id.WebView11);
 
 		WebSettings webSettings = mWebView.getSettings();
@@ -171,7 +176,8 @@ public class SouQiTaActivity extends Activity {
 			}
 		});
 
-		mWebView.loadUrl("https://www.baidu.com/index.php?tn=09060019_2_pg&ch=8");
+		String keyword = reci.getText().toString();
+		mWebView.loadUrl("http://www.baidu.com/s?&wd=" + keyword);
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {

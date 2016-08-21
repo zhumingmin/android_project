@@ -1,6 +1,6 @@
 package com.minxing.activity;
 
-import com.minxing.fragment.fmainFragmenttwo.TimeThread;
+import com.minxing.fragment.YeWuBanLiFragment.TimeThread;
 import com.minxing.restwebservice.HeTongService;
 import com.zhumingmin.vmsofminxing.R;
 
