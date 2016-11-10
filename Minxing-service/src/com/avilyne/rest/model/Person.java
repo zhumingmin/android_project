@@ -45,13 +45,13 @@ public class Person {
 		this.mima2 = mima2;
 	}
 
-	// public boolean getResult() {
-	// return result;
-	// }
-	//
-	// public void setResult(boolean result) {
-	// this.result = result;
-	// }
+	public String getuniqueID() {
+		return uniqueID;
+	}
+
+	public void setuniqueID(String uniqueID) {
+		this.uniqueID = uniqueID;
+	}
 
 	public long getId() {
 		return id;
@@ -69,12 +69,13 @@ public class Person {
 		shoujihaoma = "";
 		mima1 = "";
 		mima2 = "";
+		uniqueID = "";
 		// result = false;
 
 	}
 
 	public Person(long id, String zhanghao, String xingming,
-			String shoujihaoma, String mima1, String mima2) {
+			String shoujihaoma, String mima1, String mima2, String uniqueID) {
 
 		this.id = id;
 		this.zhanghao = zhanghao;
@@ -82,6 +83,7 @@ public class Person {
 		this.shoujihaoma = shoujihaoma;
 		this.mima1 = mima1;
 		this.mima2 = mima2;
+		this.uniqueID = uniqueID;
 		// this.result = result;
 	}
 
@@ -91,6 +93,7 @@ public class Person {
 	private String shoujihaoma;
 	private String mima1;
 	private String mima2;
+	private String uniqueID;
 	// private boolean result;
 
 }

@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,4 +10,33 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY" />
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="100dp"
+        android:gravity="center"
+        android:text="民  兴  之  家"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="75dp"
+        android:gravity="center"
+        android:text="竭 诚 为 您 服 务"
+        android:textColor="#F5F5F5"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/zairujiemian"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:src="@drawable/logo" />
+
+</FrameLayout>

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppBaseTheme" parent="android:Theme.Holo"></style>
 
@@ -148,6 +148,19 @@
         <item name="android:layout_marginLeft">6.0dip</item>
         <item name="android:layout_marginRight">6.0dip</item>
         <item name="android:background">@drawable/line_bluegray</item>
+    </style>
+
+    <style name="CustomWindowTitleBackground">
+        <item name="android:background">@drawable/btn_bg</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">25dp</item>
+    </style>
+
+    <style name="test">
+        <item name="android:windowTitleSize">50dp</item>
+        <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

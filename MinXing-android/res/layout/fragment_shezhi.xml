@@ -48,7 +48,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/right_permsg_center_tv_name"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -58,11 +58,11 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/right_permsg_center_tv_level"
+                android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/gerenxinxi"
-                android:layout_below="@id/right_permsg_center_tv_name"
+                android:layout_below="@id/name"
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="2dip"
                 android:layout_toRightOf="@id/gerenxinxi"
@@ -79,7 +79,7 @@
 
     <TableRow
         android:id="@+id/tr_toupiao"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="#FFFFFF" >
 
         <RelativeLayout
@@ -370,7 +370,7 @@
 
     <TableRow
         android:id="@+id/tr_shezhi"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="#FFFFFF" >
 
         <RelativeLayout

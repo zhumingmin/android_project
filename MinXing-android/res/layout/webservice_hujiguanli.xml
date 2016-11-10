@@ -50,12 +50,11 @@
         </TextView>
 
         <Button
-            android:id="@+id/TiJiao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dip"
-            android:text="提交"
+            android:background="@drawable/btn_bg"
             android:textColor="#fff" >
         </Button>
     </LinearLayout>
@@ -77,13 +76,13 @@
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:textSize="20sp" >
 
             <LinearLayout
                 android:id="@+id/HuKouQianRu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:textColor="#000000"
                 android:textSize="20sp" >
@@ -95,7 +94,7 @@
             <LinearLayout
                 android:id="@+id/HuKouQianChu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="#cccccc"
                 android:orientation="horizontal"
                 android:textColor="#000000"
@@ -105,6 +104,18 @@
                 </include>
             </LinearLayout>
         </FrameLayout>
+
+        <Button
+            android:id="@+id/huji_tijiao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/buttonshape3"
+            android:text="提交"
+            android:textColor="#333333" >
+        </Button>
     </LinearLayout>
 
 </TabHost>

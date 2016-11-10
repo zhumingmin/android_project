@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <com.minxing.view.PullToRefreshListView
+    <cn.minxing.view.PullToRefreshListView
         android:id="@+id/frame_listview_news"
         style="@style/widget_listview" />
 

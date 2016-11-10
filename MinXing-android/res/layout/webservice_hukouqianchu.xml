@@ -121,8 +121,8 @@
             </TextView>
         </LinearLayout>
 
-        <com.minxing.util.ImageSelect
-            android:id="@+id/imageSelect"
+        <cn.minxing.util.ImageSelect
+            android:id="@+id/imageSelect1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -131,18 +131,6 @@
             android:gravity="center"
             android:numColumns="4"
             android:stretchMode="columnWidth" />
-
-        <Button
-            android:id="@+id/ShangChuan1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dip"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/buttonshape3"
-            android:text="上传"
-            android:textColor="#333333" >
-        </Button>
     </LinearLayout>
 
 </ScrollView>

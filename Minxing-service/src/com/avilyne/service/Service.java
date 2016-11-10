@@ -32,12 +32,12 @@ public class Service {
 	}
 
 	public Boolean register(String account, String name, String phonenumber,
-			String password1, String password2, int id) {
+			String password1, String password2, String unique_id, int id) {
 
 		// 获取Sql查询语句
 		String regSql = "insert into account_table values('" + account + "','"
 				+ name + "','" + phonenumber + "','" + password1 + "','"
-				+ password2 + "','" + id + "') ";
+				+ password2 + "','" + unique_id + "','" + id + "') ";
 
 		// 获取DB对象
 		DBManager sql = DBManager.createInstance();

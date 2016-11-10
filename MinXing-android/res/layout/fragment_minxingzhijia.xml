@@ -19,8 +19,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_marginBottom="5dp" >
+        android:layout_height="200dp"
+        android:layout_marginBottom="10dp" >
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp"
@@ -74,59 +74,17 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="2dp"
         android:background="#FFFFFF" >
 
         <TextView
             android:id="@+id/text_minxingzhijia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
+            android:layout_margin="5dp"
             android:text="民兴村介绍"
             android:textColor="#666666"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
     </ScrollView>
-
-    <TableRow
-        android:layout_marginTop="5dp"
-        android:background="#FFFFFF" >
-
-        <Button
-            android:id="@+id/HeZuo"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="#00000000"
-            android:gravity="left|center"
-            android:text="合作"
-            android:textColor="#333333"
-            android:textSize="15sp" >
-        </Button>
-
-        <ImageView
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/jiantou" />
-    </TableRow>
-
-    <TableRow
-        android:layout_marginTop="2dp"
-        android:background="#FFFFFF" >
-
-        <Button
-            android:id="@+id/GengDuo"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="#00000000"
-            android:gravity="left|center"
-            android:text="更多"
-            android:textColor="#333333"
-            android:textSize="15sp" >
-        </Button>
-
-        <ImageView
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/jiantou" />
-    </TableRow>
 
 </TableLayout>

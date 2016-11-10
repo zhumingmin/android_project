@@ -109,11 +109,11 @@
                     android:background="#EEEEEE" >
                 </View>
 
-                <com.minxing.view.MyListView
+                <cn.minxing.view.MyListView
                     android:id="@+id/listView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
-                </com.minxing.view.MyListView>
+                </cn.minxing.view.MyListView>
             </LinearLayout>
 
             <View

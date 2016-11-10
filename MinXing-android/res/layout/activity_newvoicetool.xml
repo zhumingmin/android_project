@@ -121,7 +121,7 @@
             android:background="#F8F8FF" >
         </TextView>
 
-        <com.minxing.util.PullToRefreshListView
+        <cn.minxing.util.PullToRefreshListView
             android:id="@+id/frame_listview_news"
             style="@style/widget_listview" />
 

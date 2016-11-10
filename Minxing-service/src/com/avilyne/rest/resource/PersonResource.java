@@ -23,6 +23,7 @@ public class PersonResource {
 	private final static String ShouJiHao = "shoujihaoma";
 	private final static String MiMa1 = "mima1";
 	private final static String MiMa2 = "mima2";
+	private final static String UniqueID = "uniqueID";
 	Service service = new Service();
 	private Person register = new Person();
 	// private Person person = new Person();
@@ -53,10 +54,12 @@ public class PersonResource {
 		String shoujihaoma = registerParams.getFirst(ShouJiHao);
 		String mima1 = registerParams.getFirst(MiMa1);
 		String mima2 = registerParams.getFirst(MiMa2);
+		String uniqueID = registerParams.getFirst(UniqueID);
 
 		System.out.println("Storing posted " + "{账号: " + zhanghao + " "
 				+ "姓名: " + xingming + "  " + "手机号码: " + shoujihaoma + "  "
-				+ "密码1: " + mima1 + "  " + "密码2: " + mima2 + "}");
+				+ "密码1: " + mima1 + "  " + "密码2: " + mima2 + "  " + "手机唯一标识码: "
+				+ uniqueID + "}");
 
 		register.setZhangHao(zhanghao);
 		register.setXingMing(xingming);
@@ -66,10 +69,11 @@ public class PersonResource {
 
 		System.out.println("person info: " + register.getZhangHao() + " "
 				+ register.getXingMing() + " " + register.getShouJiHao() + " "
-				+ register.getMiMa1() + " " + register.getMiMa2());
+				+ register.getMiMa1() + " " + register.getMiMa2() + " "
+				+ register.getuniqueID());
 
 		boolean registerpost = service.register(zhanghao, xingming,
-				shoujihaoma, mima1, mima2, 0);
+				shoujihaoma, mima1, mima2, uniqueID, 0);
 		if (registerpost) {
 			System.out.print("注册成功！\n");
 

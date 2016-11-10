@@ -23,7 +23,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -90,9 +90,9 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name="com.minxing.PushMessage.DemoApplication"
+        android:name="cn.minxing.PushMessage.DemoApplication"
         android:allowBackup="true"
-        android:icon="@drawable/tubiao"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
@@ -100,7 +100,7 @@
         <uses-library android:name="android.test.runner" />
         <!--  -->
         <activity
-            android:name="com.minxing.activity.ZaiRuActivity"
+            android:name="cn.minxing.activity.ZaiRuActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -140,7 +140,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.minxing.PushMessage.DemoMessageReceiver"
+            android:name="cn.minxing.PushMessage.DemoMessageReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
@@ -171,7 +171,7 @@
         </receiver>
 
         <service
-            android:name="com.minxing.util.NotificationService"
+            android:name="cn.minxing.util.NotificationService"
             android:label="消息推送"
             android:process=":message" >
             <intent-filter>
@@ -180,94 +180,94 @@
         </service>
 
         <activity
-            android:name="com.minxing.activity.DaoHangLan"
+            android:name="cn.minxing.activity.DaoHangLan"
             android:label="导航栏" >
         </activity>
         <activity
-            android:name="com.minxing.activity.DengLuJieMianActivity"
+            android:name="cn.minxing.activity.DengLuJieMianActivity"
             android:label="登陆界面" >
         </activity>
         <activity
-            android:name="com.minxing.restwebservice.RegisterService"
+            android:name="cn.minxing.restwebservice.RegisterService"
             android:label="注册界面" >
         </activity>
         <activity
-            android:name="com.minxing.activity.WangJiMiMaActivity"
+            android:name="cn.minxing.restwebservice.WangJiMiMaService"
             android:label="忘记密码" >
         </activity>
         <activity
-            android:name="com.minxing.activity.CaiDan"
+            android:name="cn.minxing.activity.CaiDan"
             android:label="民兴村村务服务平台" >
         </activity>
         <activity
-            android:name="com.minxing.activity.MinXingCunJieShaoActivity"
+            android:name="cn.minxing.activity.MinXingCunJieShaoActivity"
             android:label="民兴村介绍" >
         </activity>
         <activity
-            android:name="com.minxing.activity.FloatViewService"
+            android:name="cn.minxing.activity.FloatViewService"
             android:label="悬浮窗口" >
         </activity>
         <activity
-            android:name="com.minxing.activity.Fragment1"
+            android:name="cn.minxing.activity.Fragment1"
             android:label="民兴村务" >
         </activity>
         <activity
-            android:name="com.minxing.activity.Fragment2"
+            android:name="cn.minxing.activity.Fragment2"
             android:label="民兴村村务服务办理" >
         </activity>
         <activity
-            android:name="com.minxing.activity.Fragment3"
+            android:name="cn.minxing.activity.Fragment3"
             android:label="农业资讯" >
         </activity>
         <activity
-            android:name="com.minxing.activity.NongYeZiXun"
+            android:name="cn.minxing.activity.NongYeZiXun"
             android:label="农业资讯" >
         </activity>
         <activity
-            android:name="com.minxing.activity.MinXingCun"
+            android:name="cn.minxing.activity.MinXingCun"
             android:label="民兴村" >
         </activity>
         <activity
-            android:name="com.minxing.activity.Activity04"
+            android:name="cn.minxing.activity.Activity04"
             android:label="测试post" >
         </activity>
         <activity
-            android:name="com.minxing.activity.ZhuCeActivity"
+            android:name="cn.minxing.activity.ZhuCeActivity"
             android:label="注册界面" >
         </activity>
         <activity
-            android:name="com.minxing.activity.MainTabActivity"
+            android:name="cn.minxing.activity.MainTabActivity"
             android:label="欢迎使用民兴村村务管理系统！" >
         </activity>
         <activity
-            android:name="com.minxing.activity.Home"
+            android:name="cn.minxing.activity.Home"
             android:label="欢迎使用民兴村村务管理系统！" >
         </activity>
         <activity
-            android:name="com.minxing.activity.HuJiGuanLiActivity"
+            android:name="cn.minxing.activity.HuJiGuanLiActivity"
             android:label="户籍管理界面" >
         </activity>
         <activity
-            android:name="com.minxing.activity.UploadImageActivity"
+            android:name="cn.minxing.activity.UploadImageActivity"
             android:label="上传文件" >
         </activity>
         <activity
-            android:name="com.minxing.restwebservice.PictureService"
+            android:name="cn.minxing.restwebservice.PictureService"
             android:label="上传文件" >
         </activity>
         <activity
-            android:name="com.minxing.activity.SelectPicActivity"
+            android:name="cn.minxing.activity.SelectPicActivity"
             android:theme="@style/DialogStyleBottom" />
         <activity
-            android:name="com.minxing.activity.GetMessageActivity"
+            android:name="cn.minxing.activity.GetMessageActivity"
             android:label="消息通知界面" >
         </activity>
         <activity
-            android:name="com.minxing.activity.YiBaoSheBaoActivity"
+            android:name="cn.minxing.activity.YiBaoSheBaoActivity"
             android:label="医保管理界面" >
         </activity>
         <activity
-            android:name="com.minxing.activity.HeTongGuanLiActivity"
+            android:name="cn.minxing.activity.HeTongGuanLiActivity"
             android:label="财务管理界面" >
         </activity>
         <activity
@@ -275,199 +275,201 @@
             android:label="文件下载界面" >
         </activity>
         <activity
-            android:name="com.minxing.activity.ChaKanMoBanActivity"
+            android:name="cn.minxing.activity.ChaKanMoBanActivity"
             android:label="疑问反馈" >
         </activity>
         <activity
-            android:name="com.minxing.activity.CW_ChaKanBaoBiaoActivity"
+            android:name="cn.minxing.activity.CW_ChaKanBaoBiaoActivity"
             android:label="查看报表" >
         </activity>
         <activity
-            android:name="com.minxing.activity.JiHuaShengYuActivity"
+            android:name="cn.minxing.activity.JiHuaShengYuActivity"
             android:label="计划生育界面" >
         </activity>
         <activity
-            android:name="com.minxing.activity.BaoJianGuanLiActivity"
+            android:name="cn.minxing.activity.BaoJianGuanLiActivity"
             android:label="报建管理界面" >
         </activity>
         <activity
-            android:name="com.minxing.activity.ShiShiXinWenActivity"
+            android:name="cn.minxing.activity.ShiShiXinWenActivity"
             android:label="时事新闻界面" >
         </activity>
         <activity
-            android:name="com.minxing.activity.LianJieXinWenActivity"
+            android:name="cn.minxing.activity.LianJieXinWenActivity"
             android:label="热点新闻" >
         </activity>
         <activity
-            android:name="com.minxing.activity.ZuiXinZhengCe"
+            android:name="cn.minxing.activity.ZuiXinZhengCe"
             android:label="最新政策" >
         </activity>
         <activity
-            android:name="com.minxing.activity.ZuiXinZhengCe1"
+            android:name="cn.minxing.activity.ZuiXinZhengCe1"
             android:label="最新政策" >
         </activity>
         <activity
-            android:name="com.minxing.activity.Gallery3DActivity"
+            android:name="cn.minxing.activity.Gallery3DActivity"
             android:label="民兴村介绍" >
         </activity>
         <activity
-            android:name="com.minxing.activity.MainActivity"
+            android:name="cn.minxing.activity.MainActivity"
             android:label="查看缴费情况" >
         </activity>
         <activity
-            android:name="com.minxing.activity.CaiDanLan"
+            android:name="cn.minxing.activity.CaiDanLan"
             android:label="信息服务平台" >
         </activity>
         <activity
-            android:name="com.minxing.activity.VoiceToolActivity"
+            android:name="cn.minxing.activity.VoiceToolActivity"
             android:label="农务信息语音助手" >
         </activity>
         <activity
-            android:name="com.minxing.activity.SerachView"
+            android:name="cn.minxing.activity.SerachView"
             android:label="农务信息语音助手" >
         </activity>
         <activity
-            android:name="com.minxing.activity.ZhiJieSouSuoActivity"
+            android:name="cn.minxing.activity.ZhiJieSouSuoActivity"
             android:label="直接搜索" >
         </activity>
         <activity
-            android:name="com.minxing.activity.SouFanShiLiuActivity"
+            android:name="cn.minxing.activity.SouFanShiLiuActivity"
             android:label="搜番石榴" >
         </activity>
         <activity
-            android:name="com.minxing.activity.SouFenJiaoActivity"
+            android:name="cn.minxing.activity.SouFenJiaoActivity"
             android:label="搜粉蕉" >
         </activity>
         <activity
-            android:name="com.minxing.activity.SouMuGuaActivity"
+            android:name="cn.minxing.activity.SouMuGuaActivity"
             android:label="搜木瓜" >
         </activity>
         <activity
-            android:name="com.minxing.activity.SouQiTaActivity"
+            android:name="cn.minxing.activity.SouQiTaActivity"
             android:label="搜其他" >
         </activity>
         <activity
-            android:name="com.minxing.activity.SheZhiActivity"
+            android:name="cn.minxing.activity.SheZhiActivity"
             android:label="我的中心" >
         </activity>
         <activity
-            android:name="com.minxing.activity.SZ_GRXXActivity"
+            android:name="cn.minxing.activity.SZ_GRXXActivity"
             android:label="个人信息" >
         </activity>
         <activity
-            android:name="com.minxing.activity.AndroidBeamMainActivity"
+            android:name="cn.minxing.activity.AndroidBeamMainActivity"
             android:label="传送信息" >
         </activity>
         <activity
-            android:name="com.minxing.activity.TongXunLuActivity"
+            android:name="cn.minxing.activity.TongXunLuActivity"
             android:label="通讯录" >
         </activity>
         <activity
-            android:name="com.minxing.activity.TianQiChaXunActivity"
+            android:name="cn.minxing.activity.TianQiChaXunActivity"
             android:label="天气查询" >
         </activity>
         <activity
-            android:name="com.minxing.activity.ReadTagActivity"
+            android:name="cn.minxing.activity.ReadTagActivity"
             android:label="读信息" >
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.minxing.activity.WriteTagActivity"
+            android:name="cn.minxing.activity.WriteTagActivity"
             android:label="写信息" >
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.minxing.activity.ChatRobtActivity"
+            android:name="cn.minxing.activity.ChatRobtActivity"
             android:label="小明" >
         </activity>
         <activity
-            android:name="com.minxing.activity.SZ_SheZhiActivity"
+            android:name="cn.minxing.activity.SZ_SheZhiActivity"
             android:label="设置" >
         </activity>
         <activity
-            android:name="com.minxing.activity.MinYiZhengJiActivity"
+            android:name="cn.minxing.activity.MinYiZhengJiActivity"
             android:label="民意征集" >
         </activity>
         <activity
-            android:name="com.minxing.activity.HelpActivity"
+            android:name="cn.minxing.activity.HelpActivity"
             android:label="帮助与反馈" >
         </activity>
         <activity
-            android:name="com.minxing.activity.GuanYuMinXingZhiJiaActivity"
+            android:name="cn.minxing.activity.GuanYuMinXingZhiJiaActivity"
             android:label="关于民兴之家" >
         </activity>
         <activity
-            android:name="com.minxing.activity.YuYinZhuShouActivity"
+            android:name="cn.minxing.activity.YuYinZhuShouActivity"
             android:label="语音助手" >
         </activity>
         <activity
-            android:name="com.minxing.activity.TouPiaoActivity"
+            android:name="cn.minxing.activity.TouPiaoActivity"
             android:label="投票管理" >
         </activity>
-        <activity android:name="com.minxing.activity.ZhangHaoAnQuanActivity" >
+        <activity android:name="cn.minxing.activity.ZhangHaoAnQuanActivity" >
         </activity>
         <!-- 测试界面 -->
         <activity
-            android:name="com.minxing.restfulwebservice.CertificateRest"
+            android:name="cn.minxing.restfulwebservice.CertificateRest"
             android:label="测试" >
         </activity>
         <activity
-            android:name="com.minxing.activity.TuiJianActivity"
+            android:name="cn.minxing.activity.TuiJianActivity"
             android:label="测试" >
         </activity>
         <activity
-            android:name="com.minxing.activity.YeWuBanLiActivity"
+            android:name="cn.minxing.activity.YeWuBanLiActivity"
             android:label="测试" >
         </activity>
         <activity
-            android:name="com.minxing.activity.WangYeLieBiao"
+            android:name="cn.minxing.activity.WangYeLieBiao"
             android:label="测试" >
         </activity>
         <activity
             android:name="com.minxing.recommend.DialogActivity"
             android:label="测试" >
         </activity>
-        <activity android:name="com.minxing.activity.NewsActivity" >
+        <activity android:name="cn.minxing.activity.NewsActivity" >
         </activity>
-        <activity android:name="com.minxing.activity.NewsDetailActivity" >
+        <activity android:name="cn.minxing.activity.NewsDetailActivity" >
         </activity>
-        <activity android:name="com.minxing.restwebservice.HeTongService" >
+        <activity android:name="cn.minxing.restwebservice.HeTongService" >
         </activity>
-        <activity android:name="com.minxing.restwebservice.BaoJianService" >
+        <activity android:name="cn.minxing.restwebservice.BaoJianService" >
         </activity>
-        <activity android:name="com.minxing.restwebservice.HuJiService" >
+        <activity android:name="cn.minxing.restwebservice.HuJiService" >
         </activity>
-        <activity android:name="com.minxing.restwebservice.YiBaoService" >
+        <activity android:name="cn.minxing.restwebservice.YiBaoService" >
         </activity>
-        <activity android:name="com.minxing.activity.TouPiaoJieGuoActivity" >
+        <activity android:name="cn.minxing.activity.TouPiaoJieGuoActivity" >
         </activity>
-        <activity android:name="com.minxing.activity.MinXingAnQuanZhongXinActivity" >
+        <activity android:name="cn.minxing.activity.MinXingAnQuanZhongXinActivity" >
         </activity>
-        <activity android:name="com.minxing.util.JianChaGengXin" >
+        <activity android:name="cn.minxing.util.JianChaGengXin" >
         </activity>
-        <activity android:name="com.minxing.activity.MinXingSheQuActivity" >
+        <activity android:name="cn.minxing.activity.MinXingSheQuActivity" >
         </activity>
-        <activity android:name="com.minxing.restwebservice.LoginService" >
+        <activity android:name="cn.minxing.restwebservice.LoginService" >
         </activity>
-        <activity android:name="com.minxing.activity.RssActivity" >
+        <activity android:name="cn.minxing.activity.RssActivity" >
         </activity>
-        <activity android:name="com.minxing.activity.ShowDescriptionActivity" >
+        <activity android:name="cn.minxing.activity.ShowDescriptionActivity" >
         </activity>
-        <activity android:name="com.minxing.activity.MinXingSouSuoActivity" >
+        <activity android:name="cn.minxing.activity.MinXingSouSuoActivity" >
         </activity>
-        <activity android:name="com.minxing.activity.MinXingSouSuoJieGuoActivity" >
+        <activity android:name="cn.minxing.activity.MinXingSouSuoJieGuoActivity" >
         </activity>
-        <activity android:name="com.minxing.activity.TuiJianDetailActivity" >
+        <activity android:name="cn.minxing.activity.TuiJianDetailActivity" >
         </activity>
-        <activity android:name="com.minxing.restwebservice.NewsService" >
+        <activity android:name="cn.minxing.restwebservice.NewsService" >
         </activity>
-        <activity android:name="com.minxing.activity.CatchActivity" >
+        <activity
+            android:name="cn.minxing.activity.CatchActivity"
+            android:label="时事新闻" >
         </activity>
-        <activity android:name="com.minxing.activity.CatchDetailActivity" >
+        <activity android:name="cn.minxing.activity.CatchDetailActivity" >
         </activity>
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
@@ -490,7 +492,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="com.minxing.activity.WBShareActivity"
+            android:name="cn.minxing.activity.WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -529,7 +531,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="com.minxing.PushMessage.wxapi.WXEntryActivity"
+            android:name="cn.minxing.PushMessage.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"

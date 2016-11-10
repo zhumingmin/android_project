@@ -201,7 +201,7 @@
                 android:background="#F8F8FF" >
             </TextView>
 
-            <com.minxing.util.ImageSelect
+            <cn.minxing.util.ImageSelect
                 android:id="@+id/imageSelect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

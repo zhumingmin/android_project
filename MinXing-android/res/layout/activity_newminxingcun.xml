@@ -23,14 +23,14 @@
         android:background="#4876FF" >
     </TextView>
 
-    <com.minxing.test.GalleryFlow
+    <cn.minxing.test.GalleryFlow
         android:id="@+id/Gallery01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp" >
-    </com.minxing.test.GalleryFlow>
+    </cn.minxing.test.GalleryFlow>
 
     <TextView
         android:id="@+id/baojian"

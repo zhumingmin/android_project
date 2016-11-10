@@ -10,7 +10,7 @@
         android:id="@+id/huanyindenglu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="150dp"
         android:gravity="left"
@@ -23,8 +23,8 @@
         android:id="@+id/baojian"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="2dp"
         android:background="#ffffff" >
     </TextView>
@@ -40,7 +40,7 @@
             android:textSize="20sp" >
         </TextView>
 
-        <com.minxing.view.ClearEditText
+        <cn.minxing.view.ClearEditText
             android:id="@+id/TianXieZhangHao"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
@@ -62,7 +62,7 @@
             android:textSize="20sp" >
         </TextView>
 
-        <com.minxing.view.ClearEditText
+        <cn.minxing.view.ClearEditText
             android:id="@+id/TianXieMiMa"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
@@ -128,9 +128,9 @@
             android:id="@+id/MianFeiZhuCe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:layout_marginRight="10dp"
             android:text="免费注册"
             android:textColor="#B22222"
             android:textSize="15sp" >

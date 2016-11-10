@@ -109,7 +109,7 @@ public class HuJiQianChuResource {
 				+ "\\" + time + "-" + qianchurenxingming + "-户籍证明材料" + ".png";
 		byte[] c = Base64.decode(uploadpicture);
 		System.out.println("Storing posted " + "{迁出人姓名: " + qianchurenxingming
-				+ " " + "身份证号码: " + shenfenzhenghaoma + "  " + "迁出理由: "
+				+ " " + "身份证号码: " + shenfenzhenghaoma + "  " + "迁出理由: \n"
 				+ qianchuliyou + "编码后的照片参数:\n" + uploadpicture + "\n照片地址："
 				+ picPath + "\n是否转换成功："
 				+ stringToImage(uploadpicture, cunchudizhi) + "\n解码后的照片参数" + c
@@ -129,7 +129,7 @@ public class HuJiQianChuResource {
 
 		// 验证处理
 		boolean huji = hujiservice.hujiservice(qianchurenxingming,
-				shenfenzhenghaoma, qianchuliyou, picPath, 0);// 空指针异常
+				shenfenzhenghaoma, qianchuliyou, uploadpicture, 0);// 空指针异常
 		if (huji) {
 			System.out.print("户籍业务信息上传成功！\n");
 

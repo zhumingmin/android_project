@@ -12,15 +12,16 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Request;
 
 import com.avilyne.rest.model.YiBaoGuanLi;
+import com.avilyne.service.YiBaoService;
 
 @Path("/yibaoguanli")
 public class YiBaoGuanLiResource {
 
-	private final static String ShenFenZhengHaoMa = "shenFenZhengHaoma";
-	private final static String JiaoFeiQingKuan = "jiaoFeiQingKuan";
+	private final static String ShenFenZhengHaoMa = "shenfenzhenghaoma";
 
-	private YiBaoGuanLi yibaoguanli = new YiBaoGuanLi(1, "123456",
-			"ÄúÐèÒª½É·Ñ£¡");
+	YiBaoService yibaoservice = new YiBaoService();
+	static String shenfenzhenghaoma;
+	private final YiBaoGuanLi yibaoguanli = new YiBaoGuanLi();
 
 	@Context
 	UriInfo uriInfo;
@@ -35,19 +36,6 @@ public class YiBaoGuanLiResource {
 		return "Demo service is ready!";
 	}
 
-	@GET
-	@Path("cx")
-	@Produces(MediaType.APPLICATION_JSON)
-	public YiBaoGuanLi getYiBaoGuanLi() {
-
-		System.out.println("Returning result: " + "{"
-				+ yibaoguanli.getShenFenZhengHaoMa() + ";"
-				+ yibaoguanli.getJiaoFeiQingKuan() + "}");
-		System.out.println(yibaoguanli);
-
-		return yibaoguanli;
-	}
-
 	// Use data from the client source to create a new Person object, returned
 	// in JSON format.
 	@POST
@@ -56,21 +44,29 @@ public class YiBaoGuanLiResource {
 	public YiBaoGuanLi postYiBaoGuanLi(
 			MultivaluedMap<String, String> yibaoguanliParams) {
 
-		String shenfenzhenghaoma = yibaoguanliParams
+		 shenfenzhenghaoma = yibaoguanliParams
 				.getFirst(ShenFenZhengHaoMa);
-		String jiaofeiqingkuan = yibaoguanliParams.getFirst(JiaoFeiQingKuan);
 
-		System.out.println("Storing posted " + shenfenzhenghaoma + " "
-				+ jiaofeiqingkuan);
+		System.out.println("Storing posted " + shenfenzhenghaoma);
 
 		yibaoguanli.setShenFenZhengHaoMa(shenfenzhenghaoma);
-		yibaoguanli.setJiaoFeiQingKuan(jiaofeiqingkuan);
 
 		System.out.println("yibaoguanli info: "
-				+ yibaoguanli.getShenFenZhengHaoMa() + " "
-				+ yibaoguanli.getJiaoFeiQingKuan());
+				+ yibaoguanli.getShenFenZhengHaoMa());
 
 		return yibaoguanli;
 
+	}
+
+	String result = yibaoservice.yibao(shenfenzhenghaoma);
+	private YiBaoGuanLi getyibaoguanli = new YiBaoGuanLi(1,
+			shenfenzhenghaoma, result);
+
+	@GET
+	@Path("cx")
+	@Produces(MediaType.APPLICATION_JSON)
+	public YiBaoGuanLi getYiBaoGuanLi() {
+		System.out.println(yibaoguanli.getShenFenZhengHaoMa());
+		return getyibaoguanli;
 	}
 }

@@ -1,5 +1,6 @@
 package com.avilyne.rest.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -7,43 +8,59 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class News {
 
-	public String getTitle() {
+	public ArrayList<String> getTitle() {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(ArrayList<String> title) {
 		this.title = title;
 	}
 
-	public String getAuthor() {
-		return author;
+	public ArrayList<String> getCategory() {
+		return category;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setCategory(ArrayList<String> category) {
+		this.category = category;
 	}
 
-	public String getPubDate() {
+	public ArrayList<String> getPubDate() {
 		return pubdate;
 	}
 
-	public void setPubDate(String pubdate) {
+	public void setPubDate(ArrayList<String> pubdate) {
 		this.pubdate = pubdate;
 	}
 
-	public int getCommentCount() {
-		return commentcount;
+	public ArrayList<String> getRead() {
+		return read;
 	}
 
-	public void setCommentCount(int commentcount) {
-		this.commentcount = commentcount;
+	public void setRead(ArrayList<String> read) {
+		this.read = read;
 	}
 
-	public String getBody() {
+	public ArrayList<String> getLike() {
+		return like;
+	}
+
+	public void setLike(ArrayList<String> like) {
+		this.like = like;
+	}
+
+	public ArrayList<String> getUnlike() {
+		return unlike;
+	}
+
+	public void setUnlike(ArrayList<String> unlike) {
+		this.unlike = unlike;
+	}
+
+	public ArrayList<String> getBody() {
 		return body;
 	}
 
-	public void setBody(String body) {
+	public void setBody(ArrayList<String> body) {
 		this.body = body;
 	}
 
@@ -53,6 +70,14 @@ public class News {
 
 	public void setLink(String link) {
 		this.link = link;
+	}
+
+	public ArrayList<String> getPicturepath() {
+		return picturepath;
+	}
+
+	public void setPicturepath(ArrayList<String> picturepath) {
+		this.picturepath = picturepath;
 	}
 
 	public long getId() {
@@ -66,31 +91,42 @@ public class News {
 	public News() {
 
 		id = -1;
-		title = "";
-		author = "";
+		title = null;
+		category = null;
 		pubdate = null;
-		commentcount = 0;
-		body = "";
+		read = null;
+		like = null;
+		unlike = null;
+		body = null;
 		link = "";
+		picturepath = null;
 	}
 
-	public News(long id, String title, String author, String pubdate,
-			int commentcount, String body, String link) {
+	public News(long id, ArrayList<String> title, ArrayList<String> category,
+			ArrayList<String> pubdate, ArrayList<String> read,
+			ArrayList<String> like, ArrayList<String> unlike,
+			ArrayList<String> body, String link, ArrayList<String> picturepath) {
 
 		this.id = id;
 		this.title = title;
-		this.author = author;
+		this.category = category;
 		this.pubdate = pubdate;
-		this.commentcount = commentcount;
+		this.read = read;
+		this.like = like;
+		this.unlike = unlike;
 		this.body = body;
 		this.link = link;
+		this.picturepath = picturepath;
 	}
 
 	private long id;
-	private String title;
-	private String author;
-	private String pubdate;
-	private int commentcount;
-	private String body;
+	private ArrayList<String> title;
+	private ArrayList<String> category;
+	private ArrayList<String> pubdate;
+	private ArrayList<String> read;
+	private ArrayList<String> like;
+	private ArrayList<String> unlike;
+	private ArrayList<String> body;
 	private String link;
+	private ArrayList<String> picturepath;
 }
