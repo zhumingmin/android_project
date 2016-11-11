@@ -189,10 +189,16 @@ public class WoDeFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
+				String data1 = name.getText().toString();
+				String data2 = phone.getText().toString();
+				String data3 = account;
 				Intent intent = new Intent();
 				intent = new Intent(getActivity(), SZ_SheZhiActivity.class);
+				intent.putExtra("data1", data1);
+				intent.putExtra("data2", data2);
+				intent.putExtra("data3", data3);
 				startActivity(intent);
+
 			}
 		});
 		tr_gerenxinxi.setOnClickListener(new Button.OnClickListener() {
@@ -213,6 +219,7 @@ public class WoDeFragment extends Fragment {
 		});
 
 		return v;
+
 	}
 
 	// 从服务器端获取信息 GET方法
@@ -228,8 +235,8 @@ public class WoDeFragment extends Fragment {
 	public void postSampleData() {
 		LoginService ls = new LoginService();
 		account = ls.account();
-		
-		//account = "340881199211110332";
+
+		// account = "340881199211110332";
 
 		if (account.equals("")) {
 			Toast.makeText(getActivity().getApplicationContext(), "账号有误！", 0)

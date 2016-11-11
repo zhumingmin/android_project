@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    android:orientation="vertical"
-    android:stretchColumns="0" >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,80 +58,68 @@
         </Button>
     </LinearLayout>
 
-    <TableRow
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF" >
-
-        <Button
-            android:id="@+id/tudihetong"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="#00000000"
-            android:gravity="left|center"
-            android:text="土地合同模板"
-            android:textColor="#000000"
-            android:textSize="20sp" >
-        </Button>
-
-        <TextView
-            android:id="@+id/chakan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="查看"
-            android:textSize="20sp" >
-        </TextView>
-    </TableRow>
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F8F8FF" >
-    </TextView>
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/hetong"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" >
-    </ImageView>
-
-    <TableRow android:background="#FFFFFF" >
-
-        <Button
-            android:id="@+id/dianpuhetong"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="#00000000"
-            android:gravity="left|center"
-            android:text="店铺合同"
-            android:textColor="#000000"
-            android:textSize="20sp" >
-        </Button>
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/chakan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="查看"
-            android:textSize="20sp" >
-        </TextView>
-    </TableRow>
+            <TextView
+                android:id="@+id/tudihetong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#FFF"
+                android:gravity="center"
+                android:text="土地合同模板"
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F8F8FF" >
-    </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
 
-    <ImageView
-        android:id="@+id/hetong1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" >
-    </ImageView>
+            <ImageView
+                android:id="@+id/hetong"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" >
+            </ImageView>
 
-</TableLayout>
+            <TextView
+                android:id="@+id/dianpuhetong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#FFF"
+                android:gravity="center"
+                android:text="店铺合同"
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <ImageView
+                android:id="@+id/hetong1"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" >
+            </ImageView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

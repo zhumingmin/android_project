@@ -41,7 +41,7 @@ public class ChaKanMoBanActivity extends Activity {
 	Bitmap bp = null;
 	private TextView yuanyin;
 	private EditText tianxieyuanyin;
-	private Button tudihetong, dianpuhetong;
+
 	private ImageButton fanhuishangyiye;
 	int m_count = 0;
 	ProgressDialog m_pDialog;
@@ -57,8 +57,7 @@ public class ChaKanMoBanActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_chakanmoban);
 		fanhuishangyiye = (ImageButton) findViewById(com.zhumingmin.vmsofminxing.R.id.FanHuiShangYiYe);
-		tudihetong = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.tudihetong);
-		dianpuhetong = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.dianpuhetong);
+
 		hetong = (ImageView) findViewById(com.zhumingmin.vmsofminxing.R.id.hetong);
 		hetong1 = (ImageView) findViewById(com.zhumingmin.vmsofminxing.R.id.hetong1);
 		ly_fanhui = (LinearLayout) findViewById(com.zhumingmin.vmsofminxing.R.id.ly_fanhui_chakanmuban);
@@ -125,7 +124,8 @@ public class ChaKanMoBanActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(ChaKanMoBanActivity.this, HeTongGuanLiActivity.class);
+				intent.setClass(ChaKanMoBanActivity.this,
+						HeTongGuanLiActivity.class);
 				startActivity(intent);
 				ChaKanMoBanActivity.this.finish();
 
@@ -138,7 +138,8 @@ public class ChaKanMoBanActivity extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 			Intent intent = new Intent();
-			intent.setClass(ChaKanMoBanActivity.this, HeTongGuanLiActivity.class);
+			intent.setClass(ChaKanMoBanActivity.this,
+					HeTongGuanLiActivity.class);
 			startActivity(intent);
 			ChaKanMoBanActivity.this.finish();
 

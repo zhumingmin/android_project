@@ -1,5 +1,6 @@
 package cn.minxing.activity;
 
+import cn.minxing.fragment.WoDeFragment;
 import cn.minxing.restfulwebservice.CertificateRest;
 import android.app.Activity;
 import android.content.Intent;
@@ -29,10 +30,11 @@ public class ZhangHaoAnQuanActivity extends Activity {
 		xianshishoujihao = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.xianshishoujihao);
 		anquanzhongxin = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.anquanzhongxin);
 		ceshirukou = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.ceshirukou);
+		Intent intent = getIntent();
 
-		xianshizhanghao.setText("123009988433337657");
-		xianshixingming.setText("张三");
-		xianshishoujihao.setText("18826487090");
+		xianshizhanghao.setText(intent.getStringExtra("data3"));
+		xianshixingming.setText(intent.getStringExtra("data1"));
+		xianshishoujihao.setText(intent.getStringExtra("data2"));
 		ceshirukou.setOnClickListener(new Button.OnClickListener() {
 
 			@Override

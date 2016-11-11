@@ -22,6 +22,7 @@ public class SZ_SheZhiActivity extends Activity {
 
 	private Button zhanghaoanquan, bangzhu, guanyu, shezhi_zhanghaoanquan,
 			shezhi_gengxin, zhuxiaodenglu;
+	String data1, data2, data3;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,6 +35,10 @@ public class SZ_SheZhiActivity extends Activity {
 		guanyu = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.shezhi_guanyu);
 		zhuxiaodenglu = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.zhuxiaodenglu);
 		shezhi_zhanghaoanquan = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.shezhi_zhanghaoanquan);
+		Intent intent = getIntent();
+		data1 = intent.getStringExtra("data1");
+		data2 = intent.getStringExtra("data2");
+		data3 = intent.getStringExtra("data3");
 
 		zhuxiaodenglu.setOnClickListener(new OnClickListener() {
 			@Override
@@ -71,11 +76,14 @@ public class SZ_SheZhiActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+
 				Intent intent = new Intent();
-				intent.setClass(SZ_SheZhiActivity.this,
+				intent = new Intent(SZ_SheZhiActivity.this,
 						ZhangHaoAnQuanActivity.class);
+				intent.putExtra("data1", data1);
+				intent.putExtra("data2", data2);
+				intent.putExtra("data3", data3);
 				startActivity(intent);
-				SZ_SheZhiActivity.this.finish();
 			}
 
 		});

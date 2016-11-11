@@ -22,27 +22,6 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="拍照写入NFC标签(长按图片可删除)"
-        android:textColor="#999999"
-        android:textSize="15sp" >
-    </TextView>
-
-    <cn.minxing.util.ImageSelect
-        android:id="@+id/imageSelect"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="center"
-        android:numColumns="4"
-        android:stretchMode="columnWidth" />
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
