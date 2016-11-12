@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -17,9 +16,9 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
-
 import com.zhumingmin.vmsofminxing.R;
-
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.net.Uri;
@@ -30,15 +29,19 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CatchActivity extends ListActivity {
+@SuppressLint("HandlerLeak")
+public class CatchActivity extends Activity {
 	ListView listview;
 	TextView textview;
 	Handler handler;
+	LinearLayout ly_fanhui;
 	List<Map<String, Object>> data;
 
 	// final String CSDNURL = "http://www.csdn.net/";
@@ -47,8 +50,9 @@ public class CatchActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//setContentView(R.layout.listview);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.listview);
+		ly_fanhui = (LinearLayout) findViewById(R.id.xw_fanhui);
 		handler = getHandler();
 		ThreadStart();
 	}
@@ -70,6 +74,16 @@ public class CatchActivity extends ListActivity {
 				handler.sendMessage(msg);
 			}
 		}.start();
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				finish();
+
+			}
+		});
 	}
 
 	/**
@@ -88,6 +102,7 @@ public class CatchActivity extends ListActivity {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("title", mr.group(1));
 			map.put("url", mr.group(3));
+
 			result.add(map);
 		}
 		return result;
@@ -103,8 +118,9 @@ public class CatchActivity extends ListActivity {
 					Toast.makeText(CatchActivity.this, "数据获取失败",
 							Toast.LENGTH_SHORT).show();
 				} else {
+
 					initListview();
-				
+
 				}
 			}
 		};
@@ -115,9 +131,10 @@ public class CatchActivity extends ListActivity {
 	 */
 	private void initListview() {
 
-		listview = getListView();
+		// listview = getListView();
 
-		// listview = (ListView) findViewById(R.id.list);
+		listview = (ListView) findViewById(R.id.list);
+
 		SimpleAdapter adapter = new SimpleAdapter(this, data,
 				android.R.layout.simple_list_item_1, new String[] { "title" },
 				new int[] { android.R.id.text1 });
@@ -145,6 +162,7 @@ public class CatchActivity extends ListActivity {
 	 *            请求网址
 	 * @return 网页内容的字符串
 	 */
+	@SuppressWarnings("deprecation")
 	private String http_get(String url) {
 		final int RETRY_TIME = 3;
 		HttpClient httpClient = null;
@@ -184,6 +202,7 @@ public class CatchActivity extends ListActivity {
 		return responseBody;
 	}
 
+	@SuppressWarnings("deprecation")
 	private HttpClient getHttpClient() {
 		HttpParams httpParams = new BasicHttpParams();
 		// 设定连接超时和读取超时时间
