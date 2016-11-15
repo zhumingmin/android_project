@@ -25,13 +25,14 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
         android:text="提示：您可以把有数据的标签贴靠在手机的背面即可读取数据!" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:background="#F5F5F5"
         android:orientation="vertical" >
 
@@ -46,8 +47,8 @@
 
         <TextView
             android:id="@+id/resultText"
-            android:layout_width="fill_parent"
-            android:layout_height="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -55,28 +56,19 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:text="@string/hint"
-            android:textSize="@dimen/text_size" />
+            android:textSize="15dp" />
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/jump"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="5dp"
-        android:background="#ff04aeda"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/jump"
-            android:layout_width="137dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/btn_bg"
-            android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:text="@string/new_tag"
-            android:textColor="#ffffffff"
-            android:textSize="20sp" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/buttonshape3"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="@string/new_tag"
+        android:textSize="20sp" />
 
 </LinearLayout>

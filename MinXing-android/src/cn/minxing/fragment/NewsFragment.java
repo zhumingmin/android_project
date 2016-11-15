@@ -105,33 +105,77 @@ public class NewsFragment extends Fragment {
 			fl.addView(listview);
 			break;
 		case 1:
-			v1.loadUrl("http://baike.pcbaby.com.cn/qzbd/1270013.html");
-			fl.addView(v1);
+			//v1.loadUrl("http://baike.pcbaby.com.cn/qzbd/1270013.html");
+			
+			
+			this.initNewsData();
+			this.testLoadNewsData();
+			pullToRefreshListView = (PullToRefreshListView) listview
+					.findViewById(R.id.frame_listview_news);
+			pullToRefreshListView.setAdapter(newsListViewAdapter);
+			
+			fl.addView(listview);
 			break;
 		case 2:
-			v.setText("PAGE " + position);
-			v.setGravity(Gravity.CENTER);
-			fl.addView(v);
+//			v.setText("PAGE " + position);
+//			v.setGravity(Gravity.CENTER);
+			
+			this.initNewsData();
+			this.testLoadNewsData();
+			pullToRefreshListView = (PullToRefreshListView) listview
+					.findViewById(R.id.frame_listview_news);
+			pullToRefreshListView.setAdapter(newsListViewAdapter);
+			
+			
+			fl.addView(listview);
 			break;
 		case 3:
-			v.setText("PAGE " + position);
-			v.setGravity(Gravity.CENTER);
-			fl.addView(v);
+//			v.setText("PAGE " + position);
+//			v.setGravity(Gravity.CENTER);
+			
+			this.initNewsData();
+			this.testLoadNewsData();
+			pullToRefreshListView = (PullToRefreshListView) listview
+					.findViewById(R.id.frame_listview_news);
+			pullToRefreshListView.setAdapter(newsListViewAdapter);
+			
+			fl.addView(listview);
 			break;
 		case 4:
-			v.setText("PAGE " + position);
-			v.setGravity(Gravity.CENTER);
-			fl.addView(v);
+//			v.setText("PAGE " + position);
+//			v.setGravity(Gravity.CENTER);
+			
+			this.initNewsData();
+			this.testLoadNewsData();
+			pullToRefreshListView = (PullToRefreshListView) listview
+					.findViewById(R.id.frame_listview_news);
+			pullToRefreshListView.setAdapter(newsListViewAdapter);
+			
+			fl.addView(listview);
 			break;
 		case 5:
-			v.setText("PAGE " + position);
-			v.setGravity(Gravity.CENTER);
-			fl.addView(v);
+//			v.setText("PAGE " + position);
+//			v.setGravity(Gravity.CENTER);
+			
+			this.initNewsData();
+			this.testLoadNewsData();
+			pullToRefreshListView = (PullToRefreshListView) listview
+					.findViewById(R.id.frame_listview_news);
+			pullToRefreshListView.setAdapter(newsListViewAdapter);
+			
+			fl.addView(listview);
 			break;
 		case 6:
-			v.setText("PAGE " + position);
-			v.setGravity(Gravity.CENTER);
-			fl.addView(v);
+//			v.setText("PAGE " + position);
+//			v.setGravity(Gravity.CENTER);
+			
+			this.initNewsData();
+			this.testLoadNewsData();
+			pullToRefreshListView = (PullToRefreshListView) listview
+					.findViewById(R.id.frame_listview_news);
+			pullToRefreshListView.setAdapter(newsListViewAdapter);
+			
+			fl.addView(listview);
 			break;
 		default:
 			break;

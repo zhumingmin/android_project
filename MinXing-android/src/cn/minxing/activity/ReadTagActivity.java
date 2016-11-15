@@ -80,9 +80,9 @@ public class ReadTagActivity extends Activity {
 		// resultImage.setImageBitmap(null);
 		// 显示结果Text
 		resultText = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.resultText);
-		textView3 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.textView3);
-		textView2 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.textView2);
-		textView1 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.textView1);
+//		textView3 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.textView3);
+//		textView2 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.textView2);
+//		textView1 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.textView1);
 
 		// 写入标签按钮
 		mJumpTagBtn = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.jump);

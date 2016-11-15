@@ -68,49 +68,49 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 	private Uri uri;
 	private ArrayList<Bitmap> images;// 上传的图片
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-		if (requestCode == ImageSelect.PHOTO_REQUEST_GALLERY) {
-			// 从相册返回的数据
-			if (data != null) {
-				// 得到图片的全路径
-
-				uri = data.getData();
-
-				imageSelect.crop(uri);
-
-			}
-
-		} else if (requestCode == ImageSelect.PHOTO_REQUEST_CAREMA) {
-			// 从相机返回的数据
-			// if (hasSdcard()) {
-			imageSelect.crop(Uri.fromFile(imageSelect.tempFile));
-			// } else {
-			// Toast.makeText(MyActivity01.this, "未找到存储卡，无法存储照片！", 0).show();
-			// }
-
-		} else if (requestCode == ImageSelect.PHOTO_REQUEST_CUT) {
-			// 从剪切图片返回的数据
-			if (data != null) {
-				Bitmap bitmap = data.getParcelableExtra("data");
-
-				imageSelect.addImageByBitmap(bitmap);
-
-			}
-
-			try {
-				// 将临时文件删除
-				if (imageSelect.tempFile != null) {
-					imageSelect.tempFile.delete();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		super.onActivityResult(requestCode, resultCode, data);
-	}
+//	@Override
+//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//
+//		if (requestCode == ImageSelect.PHOTO_REQUEST_GALLERY) {
+//			// 从相册返回的数据
+//			if (data != null) {
+//				// 得到图片的全路径
+//
+//				uri = data.getData();
+//
+//				imageSelect.crop(uri);
+//
+//			}
+//
+//		} else if (requestCode == ImageSelect.PHOTO_REQUEST_CAREMA) {
+//			// 从相机返回的数据
+//			// if (hasSdcard()) {
+//			imageSelect.crop(Uri.fromFile(imageSelect.tempFile));
+//			// } else {
+//			// Toast.makeText(MyActivity01.this, "未找到存储卡，无法存储照片！", 0).show();
+//			// }
+//
+//		} else if (requestCode == ImageSelect.PHOTO_REQUEST_CUT) {
+//			// 从剪切图片返回的数据
+//			if (data != null) {
+//				Bitmap bitmap = data.getParcelableExtra("data");
+//
+//				imageSelect.addImageByBitmap(bitmap);
+//
+//			}
+//
+//			try {
+//				// 将临时文件删除
+//				if (imageSelect.tempFile != null) {
+//					imageSelect.tempFile.delete();
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		super.onActivityResult(requestCode, resultCode, data);
+//	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -118,7 +118,7 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_write_tag);
-		initImageSelect();
+		//initImageSelect();
 		writeBtn = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.xieru);
 		writeBtn.setOnClickListener(this);
 		mContentEditText = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.content_edit);
@@ -223,24 +223,24 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 
 	// 根据文本生成一个NdefRecord
 	private NdefMessage getNoteAsNdef() {
-		images = imageSelect.getImages();
-		String[] pojo = { MediaStore.Images.Media.DATA };
-		Cursor cursor = managedQuery(uri, pojo, null, null, null);
-
-		int columnIndex = cursor.getColumnIndexOrThrow(pojo[0]);
-		cursor.moveToFirst();
-		cursor.close();
+//		images = imageSelect.getImages();
+//		String[] pojo = { MediaStore.Images.Media.DATA };
+//		Cursor cursor = managedQuery(uri, pojo, null, null, null);
+//
+//		int columnIndex = cursor.getColumnIndexOrThrow(pojo[0]);
+//		cursor.moveToFirst();
+//		cursor.close();
 		String text = mContentEditText.getText().toString();
-		String imagepath = imageToString(cursor.getString(columnIndex));
-		String resulttext = imagepath;
+		//String imagepath = imageToString(cursor.getString(columnIndex));
+		//String resulttext = imagepath;
 		if (text.equals("")) {
 			return null;
 		} else {
 			byte[] textBytes = text.getBytes();
-			byte[] imageBytes = imagepath.getBytes();
+			//byte[] imageBytes = imagepath.getBytes();
 			// image/jpeg text/plain
 			NdefRecord textRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA,
-					"image/jpeg".getBytes(), new byte[] {}, textBytes);
+					"text/plain".getBytes(), new byte[] {}, textBytes);
 			return new NdefMessage(new NdefRecord[] { textRecord });
 		}
 
@@ -299,41 +299,41 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 	}
 
-	private void initImageSelect() {
-		imageSelect = (ImageSelect) findViewById(R.id.imageSelect);
-		imageSelect
-				.setOnImageSelectClickListener(new OnImageSelectClickListener() {
-					@Override
-					public void onClick(int id) {
-						// TODO Auto-generated method stub
-						Toast.makeText(getApplicationContext(), "" + id, 0)
-								.show();
-					}
-				});
-	}
-
-	/**
-	 * 利用BASE64Encoder对图片进行base64转码将图片转为string
-	 * 
-	 * @param imgFile
-	 *            文件路径
-	 * @return 返回编码后的string
-	 */
-	public static String imageToString(String imgFile) {
-		// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
-		InputStream in = null;
-		byte[] data = null;
-		// 读取图片字节数组
-		try {
-			in = new FileInputStream(imgFile);
-			data = new byte[in.available()];
-			in.read(data);
-			in.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		// 返回Base64编码过的字节数组字符串
-		String str = new String(Base64.encode(data));
-		return str;
-	}
+//	private void initImageSelect() {
+//		imageSelect = (ImageSelect) findViewById(R.id.imageSelect);
+//		imageSelect
+//				.setOnImageSelectClickListener(new OnImageSelectClickListener() {
+//					@Override
+//					public void onClick(int id) {
+//						// TODO Auto-generated method stub
+//						Toast.makeText(getApplicationContext(), "" + id, 0)
+//								.show();
+//					}
+//				});
+//	}
+//
+//	/**
+//	 * 利用BASE64Encoder对图片进行base64转码将图片转为string
+//	 * 
+//	 * @param imgFile
+//	 *            文件路径
+//	 * @return 返回编码后的string
+//	 */
+//	public static String imageToString(String imgFile) {
+//		// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+//		InputStream in = null;
+//		byte[] data = null;
+//		// 读取图片字节数组
+//		try {
+//			in = new FileInputStream(imgFile);
+//			data = new byte[in.available()];
+//			in.read(data);
+//			in.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		// 返回Base64编码过的字节数组字符串
+//		String str = new String(Base64.encode(data));
+//		return str;
+//	}
 }

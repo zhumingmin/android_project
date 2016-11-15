@@ -43,6 +43,7 @@ import com.umeng.comm.core.impl.CommunityFactory;
 import com.umeng.comm.core.sdkmanager.ShareSDKManager;
 import com.zhumingmin.vmsofminxing.R;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
@@ -51,8 +52,11 @@ import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings.Secure;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.telephony.TelephonyManager;
 import android.text.Layout;
 import android.util.Log;
@@ -70,7 +74,7 @@ import android.widget.Toast;
 import com.umeng.comm.ui.fragments.CommunityMainFragment;
 
 public class WoDeFragment extends Fragment {
-
+	private Handler handler;
 	private TableRow tr_gerenxinxi, tr_toupiao, tr_shequ, tr_tongxun,
 			tr_xinxichaxun, tr_tongxunlu, tr_xianliao, tr_shezhi, tr_rss;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/myaccount";
@@ -79,13 +83,29 @@ public class WoDeFragment extends Fragment {
 	TextView name, phone;
 	static String account;
 
+	@SuppressLint("HandlerLeak")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.fragment_shezhi, container, false);
-		postSampleData();
-		retrieveSampleData();
+		// ViewPager vp = new ViewPager(getActivity());
+
+		handler = new Handler() {
+
+			@SuppressLint("HandlerLeak")
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				super.handleMessage(msg);
+
+				postSampleData();
+				retrieveSampleData();
+
+			}
+		};
+		handler.sendEmptyMessageDelayed(0, 2000);
+
 		ExitApplication.getInstance().addActivity(getActivity());
 		tr_gerenxinxi = (TableRow) v.findViewById(R.id.tr_gerenxinxi);
 		tr_toupiao = (TableRow) v.findViewById(R.id.tr_toupiao);

@@ -16,6 +16,15 @@
         android:textSize="25sp" >
     </TextView>
 
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="5dp"
+        android:textColor="#000000"
+        android:textSize="20sp" >
+    </ListView>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,21 +38,5 @@
         android:text="注意：各位村民，长按电话号码可以直接拨打电话。"
         android:textColor="#999999"
         android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/baojian"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F8F8FF" >
-    </TextView>
-
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginTop="5dp"
-        android:textColor="#000000"
-        android:textSize="20sp" >
-    </ListView>
 
 </LinearLayout>

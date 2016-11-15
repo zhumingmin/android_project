@@ -21,8 +21,8 @@ import android.widget.Toast;
 
 public class TongXunLuActivity extends Activity {
 
-	private String[] data = { "书记：18826487090", "村长：18826487090",
-			"妇联主任：18826487090", "大陆/台湾地区报警求助：110", "香港报警：999", "医疗救护：120",
+	private String[] data = { "书记：1234567890", "村长：1234567890",
+			"妇联主任：1234567890", "大陆/台湾地区报警求助：110", "香港报警：999", "医疗救护：120",
 			"火警：119", "交通事故：122" };
 
 	// private List<TongXunLu> tongxunlu = new ArrayList<TongXunLu>();
@@ -32,8 +32,9 @@ public class TongXunLuActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_tongxunlu);
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(TongXunLuActivity.this,
-				android.R.layout.simple_list_item_1, data);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+				TongXunLuActivity.this, android.R.layout.simple_list_item_1,
+				data);
 		ListView listview = (ListView) findViewById(com.zhumingmin.vmsofminxing.R.id.list_view);
 		listview.setAdapter(adapter);
 		listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
