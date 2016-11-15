@@ -469,6 +469,10 @@
             android:name="cn.minxing.activity.CatchActivity"
             android:label="时事新闻" >
         </activity>
+        <activity android:name="cn.minxing.rsystem.SerachActivity" />
+        <activity android:name="cn.minxing.rsystem.SerachDetailActivity" />
+        <activity android:name="cn.minxing.rsystem.SerachListActivity" />
+        <activity android:name="cn.minxing.rsystem.ReCiSerachActivity" />
         <activity android:name="cn.minxing.activity.CatchDetailActivity" >
         </activity>
         <activity

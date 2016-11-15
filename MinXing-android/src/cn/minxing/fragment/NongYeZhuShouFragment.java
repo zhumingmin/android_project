@@ -7,6 +7,7 @@ import cn.minxing.PushMessage.ExitApplication;
 import cn.minxing.activity.MinXingSouSuoActivity;
 import cn.minxing.activity.SerachView;
 import cn.minxing.activity.ShiShiXinWenActivity;
+import cn.minxing.rsystem.SerachActivity;
 import cn.minxing.util.ActionItem;
 import cn.minxing.view.CategoryTabStrip;
 import cn.minxing.view.TitlePopup;
@@ -45,15 +46,16 @@ public class NongYeZhuShouFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater.inflate(R.layout.fragment_nongyezhushou, container, false);
+		View v = inflater.inflate(R.layout.fragment_nongyezhushou, container,
+				false);
 		ExitApplication.getInstance().addActivity(getActivity());
-		//gengduo = (ImageButton) v.findViewById(R.id.gengduoxianshi);
-//		gengduo.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				titlePopup.show(v);
-//			}
-//		});
+		// gengduo = (ImageButton) v.findViewById(R.id.gengduoxianshi);
+		// gengduo.setOnClickListener(new OnClickListener() {
+		// @Override
+		// public void onClick(View v) {
+		// titlePopup.show(v);
+		// }
+		// });
 		titlePopup = new TitlePopup(getActivity(), LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
 		initData();
@@ -71,7 +73,6 @@ public class NongYeZhuShouFragment extends Fragment {
 		pager.setAdapter(adapter);
 
 		tabs.setViewPager(pager);
-		
 
 		sousuo.setOnClickListener(new Button.OnClickListener() {
 
@@ -81,7 +82,7 @@ public class NongYeZhuShouFragment extends Fragment {
 
 				Intent intent = new Intent();
 				// intent = new Intent(getActivity(), SerachView.class);
-				intent = new Intent(getActivity(), MinXingSouSuoActivity.class);
+				intent = new Intent(getActivity(), SerachActivity.class);
 				startActivity(intent);
 
 			}
