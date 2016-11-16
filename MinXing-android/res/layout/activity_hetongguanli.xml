@@ -157,7 +157,7 @@
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/gundong"
+            android:text="@string/caiwu_gundong"
             android:textSize="15sp" />
 
         <TextView

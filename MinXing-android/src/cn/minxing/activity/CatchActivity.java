@@ -136,8 +136,8 @@ public class CatchActivity extends Activity {
 		listview = (ListView) findViewById(R.id.list);
 
 		SimpleAdapter adapter = new SimpleAdapter(this, data,
-				android.R.layout.simple_list_item_1, new String[] { "title" },
-				new int[] { android.R.id.text1 });
+				R.layout.minxing_list_item, new String[] { "title" },
+				new int[] { R.id.text });
 		listview.setAdapter(adapter);
 		listview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,

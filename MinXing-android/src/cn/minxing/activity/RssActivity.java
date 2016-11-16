@@ -6,6 +6,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import cn.minxing.util.CustomArrayAdapter;
 import cn.minxing.util.RssFeed;
 import cn.minxing.util.RssFeed_SAXParser;
 import cn.minxing.util.RssItem;
@@ -20,14 +21,18 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class RssActivity extends Activity implements OnItemClickListener {
-
-	public final String RSS_URL = "http://news.ifeng.com/rss/index.xml";
-
+	private Spinner sp_rss;
+	String RSS_URL = "http://news.163.com/special/00011K6L/rss_newstop.xml";
+	// http://news.163.com/special/00011K6L/rss_newstop.xml
+	private CustomArrayAdapter<CharSequence> mAdapter;
 	public final String tag = "RSSReader";
 	private RssFeed feed = null;
 
@@ -36,37 +41,78 @@ public class RssActivity extends Activity implements OnItemClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_rss_main);
-		new Thread(new Runnable() {
+
+		String[] kexuanxiangmu = getResources().getStringArray(R.array.item3);
+		this.mAdapter = new CustomArrayAdapter<CharSequence>(this,
+				kexuanxiangmu);
+
+		sp_rss = (Spinner) findViewById(com.zhumingmin.vmsofminxing.R.id.sp_rss);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_dropdown_item, kexuanxiangmu);
+		sp_rss.setAdapter(adapter);
+		sp_rss.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+
 			@Override
-			public void run() {
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
 
-				try {
-
-					feed = new RssFeed_SAXParser().getFeed(RSS_URL);
-					System.out.println(feed.getAllItems());
-
-				} catch (ParserConfigurationException e) {
-					e.printStackTrace();
-				} catch (SAXException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				// 利用Activity.runOnUiThread(Runnable)把更新ui的代码创建在Runnable中，然后在需要更新ui时，把这个Runnable对象传给Activity.runOnUiThread(Runnable)。
-				RssActivity.this.runOnUiThread(new Runnable() {
-
+				new Thread(new Runnable() {
 					@Override
 					public void run() {
 
-						// TODO Auto-generated method stub
-						showListView();
+						try {
+							TextView tx_spinner1 = (TextView) sp_rss
+									.getSelectedView();
+							String rss = (String) tx_spinner1.getText();
+							if (rss == "网易新闻") {
+
+							} else if (rss == "新浪新闻") {
+
+								RSS_URL = "http://rss.sina.com.cn/news/marquee/ddt.xml";
+							} else if (rss == "腾讯新闻") {
+								RSS_URL = "http://news.qq.com/newsgn/rss_newsgn.xml";
+							} else if (rss == "搜狐新闻") {
+								RSS_URL = "http://news.sohu.com/rss/guonei.xml";
+							} else if (rss == "凤凰新闻") {
+								RSS_URL = "http://news.ifeng.com/rss/index.xml";
+							}
+
+							feed = new RssFeed_SAXParser().getFeed(RSS_URL);
+							System.out.println(feed.getAllItems());
+
+						} catch (ParserConfigurationException e) {
+							e.printStackTrace();
+						} catch (SAXException e) {
+							e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						// 利用Activity.runOnUiThread(Runnable)把更新ui的代码创建在Runnable中，然后在需要更新ui时，把这个Runnable对象传给Activity.runOnUiThread(Runnable)。
+						RssActivity.this.runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+
+								// TODO Auto-generated method stub
+								showListView();
+
+							}
+
+						});
 
 					}
+				}).start();
+				arg0.setVisibility(View.VISIBLE);
+			}
 
-				});
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
 
 			}
-		}).start();
+
+		});
 
 	}
 
@@ -79,9 +125,9 @@ public class RssActivity extends Activity implements OnItemClickListener {
 
 		}
 		SimpleAdapter simpleAdapter = new SimpleAdapter(this,
-				feed.getAllItems(), android.R.layout.simple_list_item_2,
-				new String[] { RssItem.TITLE, RssItem.PUBDATE }, new int[] {
-						android.R.id.text1, android.R.id.text2 });
+				feed.getAllItems(), R.layout.minxing_list_item_2, new String[] {
+						RssItem.TITLE, RssItem.PUBDATE }, new int[] {
+						R.id.minxingtext1, R.id.minxingtext2 });
 		itemList.setAdapter(simpleAdapter);
 		itemList.setOnItemClickListener(this);
 		itemList.setSelection(0);

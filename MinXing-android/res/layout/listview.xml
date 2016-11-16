@@ -93,9 +93,8 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="#F5F5F5"
-            android:dividerHeight="1dp"
-            android:listSelector="@drawable/list_selector" />
+            android:divider="#D3D3D3"
+         android:dividerHeight="1dp" />
     </LinearLayout>
 
     <TableRow

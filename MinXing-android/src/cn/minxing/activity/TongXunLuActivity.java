@@ -3,6 +3,8 @@ package cn.minxing.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -15,6 +17,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -33,7 +36,7 @@ public class TongXunLuActivity extends Activity {
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_tongxunlu);
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-				TongXunLuActivity.this, android.R.layout.simple_list_item_1,
+				TongXunLuActivity.this, R.layout.minxing_list_item,
 				data);
 		ListView listview = (ListView) findViewById(com.zhumingmin.vmsofminxing.R.id.list_view);
 		listview.setAdapter(adapter);

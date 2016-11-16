@@ -89,7 +89,6 @@ public class WoDeFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.fragment_shezhi, container, false);
-		// ViewPager vp = new ViewPager(getActivity());
 
 		handler = new Handler() {
 
@@ -98,13 +97,11 @@ public class WoDeFragment extends Fragment {
 			public void handleMessage(Message msg) {
 				// TODO Auto-generated method stub
 				super.handleMessage(msg);
-
 				postSampleData();
 				retrieveSampleData();
-
 			}
 		};
-		handler.sendEmptyMessageDelayed(0, 2000);
+		handler.sendEmptyMessageDelayed(0, 0);
 
 		ExitApplication.getInstance().addActivity(getActivity());
 		tr_gerenxinxi = (TableRow) v.findViewById(R.id.tr_gerenxinxi);

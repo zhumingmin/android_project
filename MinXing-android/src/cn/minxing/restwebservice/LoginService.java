@@ -44,6 +44,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.Log;
@@ -116,6 +118,7 @@ public class LoginService extends Activity {
 			savePasswordCB.setSaveEnabled(false);
 			break;
 		}
+
 		savePasswordCB
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 					@Override
@@ -153,6 +156,19 @@ public class LoginService extends Activity {
 
 			}
 		});
+
+		/*
+		 * 自动登录的功能，需要设置自动登录的条件
+		 */
+		View v = getWindow().getDecorView().findViewById(android.R.id.content);
+		if (remdname.getString("name", "") != null) {
+			v.post(new Runnable() {
+				@Override
+				public void run() {
+					denglu.performClick();
+				}
+			});
+		}
 
 		denglu.setOnClickListener(new Button.OnClickListener() {
 

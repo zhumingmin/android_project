@@ -19,11 +19,17 @@
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:textColor="#000000"
-        android:textSize="20sp" >
+        android:divider="#D3D3D3"
+        android:dividerHeight="1dp" >
     </ListView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D3D3D3" >
+    </TextView>
 
     <TextView
         android:layout_width="match_parent"

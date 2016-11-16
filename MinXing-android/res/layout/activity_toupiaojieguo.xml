@@ -1,296 +1,302 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5" >
+    android:background="#F5F5F5"
+    android:orientation="vertical" >
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/toupiaogeiguo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="40dp"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:text="投票情况"
+        android:textColor="#ffffff"
+        android:textSize="25sp" >
+    </TextView>
 
-        <TextView
-            android:id="@+id/toupiaogeiguo"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/btn_bg"
-            android:gravity="center"
-            android:text="投票情况"
-            android:textColor="#ffffff"
-            android:textSize="25sp" >
-        </TextView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <LinearLayout
-            android:id="@+id/ly_jingxuan1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#FFFFFF"
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@+id/tr_toupiao"
+                android:id="@+id/ly_jingxuan1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
                 android:background="#FFFFFF"
-                android:orientation="horizontal" >
+                android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/toupiao"
+                <LinearLayout
+                    android:id="@+id/tr_toupiao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="竞选人：赵一"
-                    android:textSize="15sp" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal" >
 
-                <TextView
-                    android:id="@+id/toupiao"
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="竞选人：赵一"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="竞选职位：书记"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tr_toupiao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="竞选职位：书记"
-                    android:textSize="15sp" />
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="得票数：19"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="主要方向：农业种植"
+                        android:textSize="15sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/tr_toupiao"
+                android:id="@+id/ly_jingxuan2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_margin="10dp"
                 android:background="#FFFFFF"
-                android:orientation="horizontal" >
+                android:orientation="vertical" >
 
-                <TextView
-                    android:id="@+id/toupiao"
+                <LinearLayout
+                    android:id="@+id/tr_toupiao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="得票数：19"
-                    android:textSize="15sp" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal" >
 
-                <TextView
-                    android:id="@+id/toupiao"
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="竞选人：张三"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="竞选职位：村长"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tr_toupiao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="主要方向：农业种植"
-                    android:textSize="15sp" />
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="得票数：13"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="主要方向：水利建设"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_jingxuan3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/tr_toupiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="竞选人：李四"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="竞选职位：妇联主任"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tr_toupiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="得票数：10"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="主要方向：计划生育"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_jingxuan3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#FFFFFF"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/tr_toupiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="竞选人：王五"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="竞选职位：副书记"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tr_toupiao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="得票数：11"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/toupiao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="主要方向：医保社保"
+                        android:textSize="15sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/ly_jingxuan2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#FFFFFF"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:id="@+id/tr_toupiao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="20dp"
-                android:background="#FFFFFF"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="竞选人：张三"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="竞选职位：村长"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/tr_toupiao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
-                android:background="#FFFFFF"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="得票数：13"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="主要方向：水利建设"
-                    android:textSize="15sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ly_jingxuan3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#FFFFFF"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:id="@+id/tr_toupiao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="20dp"
-                android:background="#FFFFFF"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="竞选人：李四"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="竞选职位：妇联主任"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/tr_toupiao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
-                android:background="#FFFFFF"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="得票数：10"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="主要方向：计划生育"
-                    android:textSize="15sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ly_jingxuan3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#FFFFFF"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:id="@+id/tr_toupiao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="20dp"
-                android:background="#FFFFFF"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="竞选人：王五"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="竞选职位：副书记"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/tr_toupiao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
-                android:background="#FFFFFF"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="得票数：11"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/toupiao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="主要方向：医保社保"
-                    android:textSize="15sp" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>
