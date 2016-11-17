@@ -5,14 +5,13 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import cn.minxing.PushMessage.ExitApplication;
 import cn.minxing.activity.Gallery3DActivity;
 import cn.minxing.activity.MinXingCunJieShaoActivity;
 import cn.minxing.activity.YeWuBanLiActivity;
-
+import cn.minxing.util.TextJustification;
 import com.zhumingmin.vmsofminxing.R;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Point;
 import android.net.Uri;
@@ -35,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
+@SuppressLint("NewApi")
 public class MinXingCunFragment extends Fragment {
 	private Button gengduo, hezuo;
 	private TextView minxingcun, minxingcun_01, minxingcun_02, minxingcun_03,
@@ -69,19 +69,29 @@ public class MinXingCunFragment extends Fragment {
 		ExitApplication.getInstance().addActivity(getActivity());
 		text_minxingzhijia = (TextView) v
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.text_minxingzhijia);
-		String str = "该村有区一级小学、幼儿园各一所，镇人民医院分院一间，综合性市场一个。民兴村政村位于万顷沙镇三民岛中部，全村共有五百五十六户， 户籍人口两千一百五十人，辖区面积为两百六十七公顷，耕地面积三千三百八十亩。二零零八年村工农业总产值两千九百二十七万元。在上级党委和政府的正确领导和大力支持下，经多年努力创建，昔日的扶贫村、问题村已先后获得广州市文明村、南沙区基层党建示范点、南沙区文明村、万顷沙镇工作先进村等区、镇荣誉称号。近几年来，该村以发展经济为中心，以村镇规划为龙头，以改善民生为重点，积极推进新农村建设，全村呈现出了经济发展、生活安定、社会和谐的生动局面。";
+		String str = "民兴村有区一级小学、幼儿园各一所，镇人民医院分院一间，综合性市场一个。民兴村政村位于万顷沙镇三民岛中部，全村共有五百五十六户， 户籍人口两千一百五十人，辖区面积为两百六十七公顷，耕地面积三千三百八十亩。二零零八年村工农业总产值两千九百二十七万元。在上级党委和政府的正确领导和大力支持下，经多年努力创建，昔日的扶贫村、问题村已先后获得广州市文明村、南沙区基层党建示范点、南沙区文明村、万顷沙镇工作先进村等区、镇荣誉称号。近几年来，该村以发展经济为中心，以村镇规划为龙头，以改善民生为重点，积极推进新农村建设，全村呈现出了经济发展、生活安定、社会和谐的生动局面。";
 
-		// Display display =
-		// getActivity().getWindowManager().getDefaultDisplay();
-		// size = new Point();
+		text_minxingzhijia.setText(str);
+		
+		// text_minxingzhijia.post(new Runnable() {
+		//
+		// @Override
+		// public void run() {
+		// Display display = getActivity().getWindowManager()
+		// .getDefaultDisplay();
 		// DisplayMetrics dm = new DisplayMetrics();
 		// display.getMetrics(dm);
-		// density = dm.density;
-		// display.getSize(size);
-		// text_minxingzhijia.setLineSpacing(0f, 1.2f);
-		// 设置TextView
-		text_minxingzhijia.setText(str);
-		// TextJustification.justify(text_minxingzhijia,size.x);
+		// int width = dm.widthPixels;
+		// // 根据屏幕调整文字大小
+		// text_minxingzhijia.setLineSpacing(0f, 1.5f);
+		// text_minxingzhijia.setTextSize(8 * (float) width / 320f);
+		// // 设置TextView
+		// TextJustification.justify(text_minxingzhijia,
+		// text_minxingzhijia.getWidth());
+		// }
+		//
+		// });
+
 		imageResId = new int[] { R.drawable.item1, R.drawable.item2,
 				R.drawable.item3, R.drawable.item4, R.drawable.item5 };
 		titles = new String[imageResId.length];

@@ -90,20 +90,8 @@ public class WoDeFragment extends Fragment {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.fragment_shezhi, container, false);
 
-		handler = new Handler() {
-
-			@SuppressLint("HandlerLeak")
-			@Override
-			public void handleMessage(Message msg) {
-				// TODO Auto-generated method stub
-				super.handleMessage(msg);
-				postSampleData();
-				retrieveSampleData();
-			}
-		};
-		handler.sendEmptyMessageDelayed(0, 0);
-
 		ExitApplication.getInstance().addActivity(getActivity());
+
 		tr_gerenxinxi = (TableRow) v.findViewById(R.id.tr_gerenxinxi);
 		tr_toupiao = (TableRow) v.findViewById(R.id.tr_toupiao);
 		tr_shequ = (TableRow) v.findViewById(R.id.tr_shequ);
@@ -115,6 +103,25 @@ public class WoDeFragment extends Fragment {
 		tr_rss = (TableRow) v.findViewById(R.id.tr_rss);
 		name = (TextView) v.findViewById(R.id.name);
 		phone = (TextView) v.findViewById(R.id.phone);
+		name.setText("村名张三");
+		// 希望能实现获取账号信息后不再访问后台
+		handler = new Handler() {
+
+			@SuppressLint("HandlerLeak")
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				super.handleMessage(msg);
+
+				if (name.getText().toString() != "村名张三") {
+
+				} else {
+					postSampleData();
+					retrieveSampleData();
+				}
+			}
+		};
+		handler.sendEmptyMessageDelayed(0, 0);
 		tr_toupiao.setOnClickListener(new Button.OnClickListener() {
 
 			@Override

@@ -84,7 +84,7 @@
             android:layout_margin="5dp"
             android:text="民兴村介绍"
             android:textColor="#666666"
-            android:textSize="15sp" />
+            android:textSize="15dp" />
     </ScrollView>
 
 </TableLayout>

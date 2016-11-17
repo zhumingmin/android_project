@@ -73,14 +73,14 @@
             android:textSize="20sp" >
         </Button>
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="更多"
-            android:textColor="#000000"
-            android:textSize="20dp" >
-        </TextView>
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:src="@drawable/jiantou" >
+        </ImageView>
     </TableRow>
 
     <LinearLayout
@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="#D3D3D3"
-         android:dividerHeight="1dp" />
+            android:dividerHeight="1dp" />
     </LinearLayout>
 
     <TableRow
@@ -112,14 +112,14 @@
             android:textSize="20sp" >
         </Button>
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="更多"
-            android:textColor="#000000"
-            android:textSize="20dp" >
-        </TextView>
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:src="@drawable/jiantou" >
+        </ImageView>
     </TableRow>
 
 </TableLayout>

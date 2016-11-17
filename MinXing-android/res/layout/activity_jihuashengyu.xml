@@ -71,7 +71,7 @@
             android:layout_marginLeft="10dp"
             android:background="#00000000"
             android:gravity="left|center"
-            android:text="最新政策:"
+            android:text="最新政策"
             android:textColor="#000000"
             android:textSize="20sp" >
         </Button>
