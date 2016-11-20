@@ -140,7 +140,24 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/buttonshape3"
-        android:text="传送" >
+        android:text="NFC传送" >
     </Button>
+  
+    <Button
+        android:id="@+id/shengcheng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttonshape3"
+        android:text="生成二维码" />
+
+    <ImageView
+        android:id="@+id/erweima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="显示二维码图片" />
 
 </LinearLayout>

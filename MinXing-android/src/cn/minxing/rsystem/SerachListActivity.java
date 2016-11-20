@@ -61,7 +61,7 @@ public class SerachListActivity extends Activity {
 	public static List<RS_News> newslist = new ArrayList<RS_News>();
 	private LinearLayout ly_fanhui;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/news";
-	private ImageButton load;
+	private Button load;
 	private TextView tv_result;
 	private static final String TAG = "SerachListActivity";
 	static String classname;
@@ -85,7 +85,7 @@ public class SerachListActivity extends Activity {
 
 		}
 
-		load = (ImageButton) findViewById(R.id.load);
+		load = (Button) findViewById(R.id.load);
 		load.setOnClickListener(new Button.OnClickListener() {
 
 			@Override

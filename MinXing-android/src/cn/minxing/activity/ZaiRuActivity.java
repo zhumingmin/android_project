@@ -8,12 +8,14 @@ import com.zhumingmin.vmsofminxing.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 //import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ZaiRuActivity extends Activity {
 
@@ -30,7 +32,10 @@ public class ZaiRuActivity extends Activity {
 		setContentView(R.layout.activity_flash);
 
 		iv = (ImageView) findViewById(R.id.zairujiemian);
-
+		TextView tv = (TextView) findViewById(R.id.slogan);
+		Typeface typeFace = Typeface.createFromAsset(getAssets(),
+				"fonts/ziti.TTF");
+		tv.setTypeface(typeFace);
 		VolleyLoadPicture vlp = new VolleyLoadPicture(this, iv);
 		vlp.getmImageLoader().get(picUrl, vlp.getOne_listener());
 

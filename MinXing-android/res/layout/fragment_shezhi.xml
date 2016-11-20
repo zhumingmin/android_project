@@ -54,11 +54,10 @@
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="13dip"
                 android:layout_toRightOf="@id/gerenxinxi"
-               
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/phone"
+                android:id="@+id/tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/gerenxinxi"
@@ -66,7 +65,18 @@
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="2dip"
                 android:layout_toRightOf="@id/gerenxinxi"
-                android:text="联系方式：15682215694"
+                android:text="联系方式："
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/gerenxinxi"
+                android:layout_below="@id/name"
+                android:layout_marginTop="2dip"
+                android:layout_toRightOf="@id/tel"
+                android:text="15682215694"
                 android:textSize="15sp" />
         </RelativeLayout>
 

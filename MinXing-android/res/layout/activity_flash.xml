@@ -1,42 +1,69 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SouSuoJieMian" >
 
-    <ImageView
-        android:id="@+id/zairujiemian"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY" />
+        android:layout_weight="1" >
 
-    <TextView
+        <ImageView
+            android:id="@+id/zairujiemian"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="100dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="3.5"
+        android:background="#FFFFFF"
         android:gravity="center"
-        android:text="民  兴  之  家"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="75dp"
-        android:gravity="center"
-        android:text="竭 诚 为 您 服 务"
-        android:textColor="#F5F5F5"
-        android:textSize="15sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="民  兴  之  家"
+            android:textColor="#999999"
+            android:textSize="25dp"
+            android:textStyle="bold" >
+        </TextView>
 
-    <ImageView
-        android:id="@+id/zairujiemian"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:src="@drawable/logo" />
+        <TextView
+            android:id="@+id/slogan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="竭 诚 为 您 服 务"
+            android:textSize="15dp" />
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/zairujiemian"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="© 2016 小猪. All rights reserved"
+            android:textSize="10dp" />
+    </LinearLayout>
+
+</LinearLayout>

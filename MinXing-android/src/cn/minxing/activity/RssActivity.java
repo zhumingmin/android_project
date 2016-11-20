@@ -30,11 +30,14 @@ import android.widget.Toast;
 
 public class RssActivity extends Activity implements OnItemClickListener {
 	private Spinner sp_rss;
-	String RSS_URL = "http://news.163.com/special/00011K6L/rss_newstop.xml";
+
 	// http://news.163.com/special/00011K6L/rss_newstop.xml
 	private CustomArrayAdapter<CharSequence> mAdapter;
 	public final String tag = "RSSReader";
 	private RssFeed feed = null;
+	String RSS_URL = null;
+	TextView tx_spinner1;
+	String rss = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,9 +50,11 @@ public class RssActivity extends Activity implements OnItemClickListener {
 				kexuanxiangmu);
 
 		sp_rss = (Spinner) findViewById(com.zhumingmin.vmsofminxing.R.id.sp_rss);
+
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_dropdown_item, kexuanxiangmu);
 		sp_rss.setAdapter(adapter);
+
 		sp_rss.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
 
 			@Override
@@ -57,26 +62,36 @@ public class RssActivity extends Activity implements OnItemClickListener {
 					int arg2, long arg3) {
 				// TODO Auto-generated method stub
 
+				// tx_spinner1 = (TextView) sp_rss.getSelectedView();
+				// rss = (String) tx_spinner1.getText();
+
+				switch (arg2) {
+				case 0:
+					RSS_URL = "http://news.163.com/special/00011K6L/rss_newstop.xml";
+
+				case 1:
+					RSS_URL = "http://rss.sina.com.cn/news/marquee/ddt.xml";
+
+				case 2:
+					RSS_URL = "http://news.qq.com/newsgn/rss_newsgn.xml";
+
+				case 3:
+					RSS_URL = "http://news.sohu.com/rss/guonei.xml";
+
+				case 4:
+					RSS_URL = "http://news.ifeng.com/rss/index.xml";
+
+				default:
+					break;
+				}
+
+				clearListView();
+
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
 
 						try {
-							TextView tx_spinner1 = (TextView) sp_rss
-									.getSelectedView();
-							String rss = (String) tx_spinner1.getText();
-							if (rss == "网易新闻") {
-
-							} else if (rss == "新浪新闻") {
-
-								RSS_URL = "http://rss.sina.com.cn/news/marquee/ddt.xml";
-							} else if (rss == "腾讯新闻") {
-								RSS_URL = "http://news.qq.com/newsgn/rss_newsgn.xml";
-							} else if (rss == "搜狐新闻") {
-								RSS_URL = "http://news.sohu.com/rss/guonei.xml";
-							} else if (rss == "凤凰新闻") {
-								RSS_URL = "http://news.ifeng.com/rss/index.xml";
-							}
 
 							feed = new RssFeed_SAXParser().getFeed(RSS_URL);
 							System.out.println(feed.getAllItems());
@@ -89,20 +104,22 @@ public class RssActivity extends Activity implements OnItemClickListener {
 							e.printStackTrace();
 						}
 						// 利用Activity.runOnUiThread(Runnable)把更新ui的代码创建在Runnable中，然后在需要更新ui时，把这个Runnable对象传给Activity.runOnUiThread(Runnable)。
+
 						RssActivity.this.runOnUiThread(new Runnable() {
 
 							@Override
 							public void run() {
 
 								// TODO Auto-generated method stub
+
 								showListView();
 
 							}
 
 						});
-
 					}
 				}).start();
+
 				arg0.setVisibility(View.VISIBLE);
 			}
 
@@ -113,6 +130,14 @@ public class RssActivity extends Activity implements OnItemClickListener {
 			}
 
 		});
+
+	}
+
+	private void clearListView() {
+
+		ListView itemList = (ListView) this.findViewById(R.id.itemlist);
+
+		itemList.setAdapter(null);
 
 	}
 

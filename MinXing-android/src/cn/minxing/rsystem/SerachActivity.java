@@ -80,8 +80,8 @@ public class SerachActivity extends Activity {
 	private SQLiteDatabase db;
 	private BaseAdapter adapter;
 	EditText newsousuo;
-	Button zhijiesousuo, soufanshiliu, soufenjiao, soumugua, souqita;
-	ImageButton btnSpeak, sousuoshezhi;
+	Button zhijiesousuo, soufanshiliu, soufenjiao, soumugua, souqita,sousuoshezhi;
+	ImageButton btnSpeak;
 	private RS_TitlePopup titlePopup;
 
 	@Override
@@ -106,7 +106,7 @@ public class SerachActivity extends Activity {
 		soumugua = (Button) findViewById(R.id.soumugua1);
 		souqita = (Button) findViewById(R.id.souqita1);
 		tv_clear = (TextView) findViewById(R.id.tv_clear1);
-		sousuoshezhi = (ImageButton) findViewById(R.id.sousuoshezhi);
+		sousuoshezhi = (Button) findViewById(R.id.sousuoshezhi);
 		sousuoshezhi.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
