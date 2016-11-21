@@ -22,7 +22,7 @@ public class ZaiRuActivity extends Activity {
 	private ImageView iv;
 	private Handler handler;
 	// private Drawable[] drawables;
-	public static final String picUrl = "http://sjbz.fd.zol-img.com.cn/t_s320x510c/g5/M00/00/03/ChMkJ1fJV6uIK38EAAhKBikWHIAAAU-FQF7CRIACEoe991.jpg";
+	public static final String picUrl = "http://imgsrc.baidu.com/forum/w%3D580/sign=dbe111adbc315c6043956be7bdb0cbe6/6fc2a21ea8d3fd1f7a2b1f82304e251f95ca5f35.jpg";
 
 	@SuppressLint("HandlerLeak")
 	@Override

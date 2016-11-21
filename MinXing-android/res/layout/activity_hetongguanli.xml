@@ -149,6 +149,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/caiwugonggao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -157,7 +158,7 @@
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/caiwu_gundong"
+            android:text="暂无公告"
             android:textSize="15sp" />
 
         <TextView
@@ -169,7 +170,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:gravity="right"
-            android:text="日期"
+            android:text="发布日期"
             android:textColor="#000000"
             android:textSize="15sp" >
         </TextView>

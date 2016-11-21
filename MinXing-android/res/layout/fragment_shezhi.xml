@@ -54,6 +54,7 @@
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="13dip"
                 android:layout_toRightOf="@id/gerenxinxi"
+                android:text="村民"
                 android:textSize="20sp" />
 
             <TextView
@@ -285,7 +286,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dip"
                 android:layout_toRightOf="@id/layout_5"
-                android:text="通讯录"
+                android:text="民兴通讯"
                 android:textSize="20sp" />
         </RelativeLayout>
 
@@ -327,7 +328,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dip"
                 android:layout_toRightOf="@id/layout_6"
-                android:text="闲聊"
+                android:text="民兴闲聊"
                 android:textSize="20sp" />
         </RelativeLayout>
 
@@ -368,7 +369,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dip"
                 android:layout_toRightOf="@id/layout_0"
-                android:text="RSS订阅"
+                android:text="RSS新闻"
                 android:textSize="20sp" />
         </RelativeLayout>
 

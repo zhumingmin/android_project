@@ -46,6 +46,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/toupiaogonggao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -54,11 +55,11 @@
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="@string/toupiao_gundong"
+            android:text="暂无公告"
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/shijian"
+            android:id="@+id/toupiaoshijian"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -66,7 +67,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:gravity="right"
-            android:text="时间"
+            android:text="发布日期"
             android:textColor="#000000"
             android:textSize="15sp" >
         </TextView>

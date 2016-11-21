@@ -23,7 +23,7 @@
     <string name="cancel">取消</string>
     <string name="speak">Speak Now</string>
     <string name="caiwu_gundong">各位村名，本村在2015-2016年度的收入为10万元，支出15万元。</string>
-    <string name="toupiao_gundong">各位村名，请选出你们心中最合适的村委。</string>
+    <string name="toupiao_gundong">各位村名，请选出你们心中最合适的村委，赶紧为他们投上一票吧！</string>
     <string name="strDuration">5:45</string>
     <string name="strTitle">Rihanna Love the way lie</string>
     <string name="strArtist">Just gona stand there and ...</string>
@@ -72,7 +72,7 @@
     <string name="category_graduate">毕业生</string>
 
     <string-array name="item">
-                                                                                                                          <item>户籍咨询</item>
+                                                                                                                                  <item>户籍咨询</item>
         <item>医保咨询</item>
         <item>财务咨询</item>
         <item>计生咨询</item>
@@ -87,25 +87,25 @@
  </string-array>
     <string-array name="item1">
   
-                                                                                                                                                                                                                                        <item>项目一</item>
+                                                                                                                                                                                                                                                <item>项目一</item>
   
-                                                                                                                                                                                                                                        <item>项目二</item>
+                                                                                                                                                                                                                                                <item>项目二</item>
   
-                                                                                                                                                                                                                                        <item>项目三</item>
+                                                                                                                                                                                                                                                <item>项目三</item>
   
-                                                                                                                                                                                                                                        <item>项目四</item>
+                                                                                                                                                                                                                                                <item>项目四</item>
         <item>项目五</item>
   
     </string-array>
     <string-array name="item2">
   
-                                                                                                                                                                                                                                        <item>周一上午9:00~10:00</item>
+                                                                                                                                                                                                                                                <item>周一上午9:00~10:00</item>
   
-                                                                                                                                                                                                                                        <item>周一下午3:00~4:00</item>
+                                                                                                                                                                                                                                                <item>周一下午3:00~4:00</item>
   
-                                                                                                                                                                                                                                        <item>周二上午9:00~10:00</item>
+                                                                                                                                                                                                                                                <item>周二上午9:00~10:00</item>
   
-                                                                                                                                                                                                                                       <item>周二下午3:00~4:00</item>
+                                                                                                                                                                                                                                               <item>周二下午3:00~4:00</item>
         <item>周三上午9:00~10:00</item>
         <item>周三下午3:00~4:00</item>
         <item>周四上午9:00~10:00</item>
