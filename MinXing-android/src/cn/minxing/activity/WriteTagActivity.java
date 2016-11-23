@@ -1,12 +1,28 @@
 package cn.minxing.activity;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONObject;
 import org.kobjects.base64.Base64;
 
+import cn.minxing.restwebservice.WangJiMiMaService;
 import cn.minxing.util.ImageSelect;
 import cn.minxing.util.ImageSelect.OnImageSelectClickListener;
 
@@ -15,9 +31,11 @@ import com.zhumingmin.vmsofminxing.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -33,13 +51,16 @@ import android.nfc.tech.MifareClassic;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.nfc.tech.NfcA;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -67,50 +88,53 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 	private Handler finishHand;
 	private Uri uri;
 	private ArrayList<Bitmap> images;// 上传的图片
+	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/nfctag";
+	private static final String TAG = "WriteTagActivity";
 
-//	@Override
-//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//		if (requestCode == ImageSelect.PHOTO_REQUEST_GALLERY) {
-//			// 从相册返回的数据
-//			if (data != null) {
-//				// 得到图片的全路径
-//
-//				uri = data.getData();
-//
-//				imageSelect.crop(uri);
-//
-//			}
-//
-//		} else if (requestCode == ImageSelect.PHOTO_REQUEST_CAREMA) {
-//			// 从相机返回的数据
-//			// if (hasSdcard()) {
-//			imageSelect.crop(Uri.fromFile(imageSelect.tempFile));
-//			// } else {
-//			// Toast.makeText(MyActivity01.this, "未找到存储卡，无法存储照片！", 0).show();
-//			// }
-//
-//		} else if (requestCode == ImageSelect.PHOTO_REQUEST_CUT) {
-//			// 从剪切图片返回的数据
-//			if (data != null) {
-//				Bitmap bitmap = data.getParcelableExtra("data");
-//
-//				imageSelect.addImageByBitmap(bitmap);
-//
-//			}
-//
-//			try {
-//				// 将临时文件删除
-//				if (imageSelect.tempFile != null) {
-//					imageSelect.tempFile.delete();
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//
-//		super.onActivityResult(requestCode, resultCode, data);
-//	}
+	// @Override
+	// protected void onActivityResult(int requestCode, int resultCode, Intent
+	// data) {
+	//
+	// if (requestCode == ImageSelect.PHOTO_REQUEST_GALLERY) {
+	// // 从相册返回的数据
+	// if (data != null) {
+	// // 得到图片的全路径
+	//
+	// uri = data.getData();
+	//
+	// imageSelect.crop(uri);
+	//
+	// }
+	//
+	// } else if (requestCode == ImageSelect.PHOTO_REQUEST_CAREMA) {
+	// // 从相机返回的数据
+	// // if (hasSdcard()) {
+	// imageSelect.crop(Uri.fromFile(imageSelect.tempFile));
+	// // } else {
+	// // Toast.makeText(MyActivity01.this, "未找到存储卡，无法存储照片！", 0).show();
+	// // }
+	//
+	// } else if (requestCode == ImageSelect.PHOTO_REQUEST_CUT) {
+	// // 从剪切图片返回的数据
+	// if (data != null) {
+	// Bitmap bitmap = data.getParcelableExtra("data");
+	//
+	// imageSelect.addImageByBitmap(bitmap);
+	//
+	// }
+	//
+	// try {
+	// // 将临时文件删除
+	// if (imageSelect.tempFile != null) {
+	// imageSelect.tempFile.delete();
+	// }
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
+	//
+	// super.onActivityResult(requestCode, resultCode, data);
+	// }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -118,7 +142,7 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_write_tag);
-		//initImageSelect();
+		// initImageSelect();
 		writeBtn = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.xieru);
 		writeBtn.setOnClickListener(this);
 		mContentEditText = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.content_edit);
@@ -178,6 +202,13 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 			if (mContentEditText.getText().toString().isEmpty()) {
 				showToast("您得先输入需要写入的数据！");
 				return;
+			}else{
+				WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
+						WriteTagActivity.this, "上传中...");
+
+				wst.addNameValuePair("nfctag", mContentEditText.getText().toString());
+
+				wst.execute(new String[] { SERVICE_URL });
 			}
 			dialog = new AlertDialog.Builder(this)
 					.setMessage("请您将需要写入数据的标签贴靠在手机背面！")
@@ -223,25 +254,29 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 
 	// 根据文本生成一个NdefRecord
 	private NdefMessage getNoteAsNdef() {
-//		images = imageSelect.getImages();
-//		String[] pojo = { MediaStore.Images.Media.DATA };
-//		Cursor cursor = managedQuery(uri, pojo, null, null, null);
-//
-//		int columnIndex = cursor.getColumnIndexOrThrow(pojo[0]);
-//		cursor.moveToFirst();
-//		cursor.close();
+		// images = imageSelect.getImages();
+		// String[] pojo = { MediaStore.Images.Media.DATA };
+		// Cursor cursor = managedQuery(uri, pojo, null, null, null);
+		//
+		// int columnIndex = cursor.getColumnIndexOrThrow(pojo[0]);
+		// cursor.moveToFirst();
+		// cursor.close();
 		String text = mContentEditText.getText().toString();
-		//String imagepath = imageToString(cursor.getString(columnIndex));
-		//String resulttext = imagepath;
+
+		// String imagepath = imageToString(cursor.getString(columnIndex));
+		// String resulttext = imagepath;
 		if (text.equals("")) {
 			return null;
 		} else {
+
 			byte[] textBytes = text.getBytes();
-			//byte[] imageBytes = imagepath.getBytes();
+			// byte[] imageBytes = imagepath.getBytes();
 			// image/jpeg text/plain
 			NdefRecord textRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA,
 					"text/plain".getBytes(), new byte[] {}, textBytes);
+			
 			return new NdefMessage(new NdefRecord[] { textRecord });
+
 		}
 
 	}
@@ -299,41 +334,227 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
 	}
 
-//	private void initImageSelect() {
-//		imageSelect = (ImageSelect) findViewById(R.id.imageSelect);
-//		imageSelect
-//				.setOnImageSelectClickListener(new OnImageSelectClickListener() {
-//					@Override
-//					public void onClick(int id) {
-//						// TODO Auto-generated method stub
-//						Toast.makeText(getApplicationContext(), "" + id, 0)
-//								.show();
-//					}
-//				});
-//	}
-//
-//	/**
-//	 * 利用BASE64Encoder对图片进行base64转码将图片转为string
-//	 * 
-//	 * @param imgFile
-//	 *            文件路径
-//	 * @return 返回编码后的string
-//	 */
-//	public static String imageToString(String imgFile) {
-//		// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
-//		InputStream in = null;
-//		byte[] data = null;
-//		// 读取图片字节数组
-//		try {
-//			in = new FileInputStream(imgFile);
-//			data = new byte[in.available()];
-//			in.read(data);
-//			in.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		// 返回Base64编码过的字节数组字符串
-//		String str = new String(Base64.encode(data));
-//		return str;
-//	}
+	public void handleResponse(String response) {
+
+		try {
+
+			JSONObject jso = new JSONObject(response);
+
+		} catch (Exception e) {
+			Log.e(TAG, e.getLocalizedMessage(), e);
+		}
+
+	}
+
+	// 隐藏键盘
+	private void hideKeyboard() {
+
+		InputMethodManager inputManager = (InputMethodManager) WriteTagActivity.this
+				.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+		inputManager.hideSoftInputFromWindow(WriteTagActivity.this
+				.getCurrentFocus().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+	}
+
+	// 主要操作部分
+	private class WebServiceTask extends AsyncTask<String, Integer, String> {
+
+		public static final int POST_TASK = 1;
+		public static final int GET_TASK = 2;
+
+		private static final String TAG = "WebServiceTask";
+
+		// connection timeout, in milliseconds (waiting to connect)
+		private static final int CONN_TIMEOUT = 3000;
+
+		// socket timeout, in milliseconds (waiting for data)
+		private static final int SOCKET_TIMEOUT = 5000;
+
+		private int taskType = GET_TASK;
+		private Context mContext = null;
+		private String processMessage = "Processing...";
+
+		private ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+
+		private ProgressDialog pDlg = null;
+
+		public WebServiceTask(int taskType, Context mContext,
+				String processMessage) {
+
+			this.taskType = taskType;
+			this.mContext = mContext;
+			this.processMessage = processMessage;
+		}
+
+		public void addNameValuePair(String name, String value) {
+
+			params.add(new BasicNameValuePair(name, value));
+		}
+
+		@SuppressWarnings("deprecation")
+		private void showProgressDialog() {
+
+			pDlg = new ProgressDialog(mContext);
+			pDlg.setMessage(processMessage);
+			pDlg.setProgressDrawable(mContext.getWallpaper());
+			pDlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			pDlg.setCancelable(false);
+			pDlg.show();
+
+		}
+
+		@Override
+		protected void onPreExecute() {
+
+			hideKeyboard();
+			showProgressDialog();
+
+		}
+
+		protected String doInBackground(String... urls) {
+
+			String url = urls[0];
+			String result = "";
+
+			HttpResponse response = doResponse(url);
+
+			if (response == null) {
+				return result;
+			} else {
+
+				try {
+
+					result = inputStreamToString(response.getEntity()
+							.getContent());
+
+				} catch (IllegalStateException e) {
+					Log.e(TAG, e.getLocalizedMessage(), e);
+
+				} catch (IOException e) {
+					Log.e(TAG, e.getLocalizedMessage(), e);
+				}
+
+			}
+
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(String response) {
+
+			handleResponse(response);
+			if (response != null) {
+				Toast.makeText(getApplicationContext(), "查询成功！", 0).show();
+
+			} else {
+				Toast.makeText(getApplicationContext(), "查询失败！", 0).show();
+			}
+			pDlg.dismiss();
+			// System.out.println("输出"+response);
+
+		}
+
+		// Establish connection and socket (data retrieval) timeouts
+		private HttpParams getHttpParams() {
+
+			HttpParams htpp = new BasicHttpParams();
+
+			HttpConnectionParams.setConnectionTimeout(htpp, CONN_TIMEOUT);
+			HttpConnectionParams.setSoTimeout(htpp, SOCKET_TIMEOUT);
+
+			return htpp;
+		}
+
+		private HttpResponse doResponse(String url) {
+
+			// Use our connection and data timeouts as parameters for our
+			// DefaultHttpClient
+			HttpClient httpclient = new DefaultHttpClient(getHttpParams());
+
+			HttpResponse response = null;
+
+			try {
+				switch (taskType) {
+
+				case POST_TASK:
+					HttpPost httppost = new HttpPost(url);
+					// Add parameters
+					httppost.setEntity(new UrlEncodedFormEntity(params,
+							HTTP.UTF_8));
+					response = httpclient.execute(httppost);
+					break;
+				case GET_TASK:
+					HttpGet httpget = new HttpGet(url);
+					response = httpclient.execute(httpget);
+					break;
+				}
+			} catch (Exception e) {
+
+				Log.e(TAG, e.getLocalizedMessage(), e);
+
+			}
+
+			return response;
+		}
+
+		private String inputStreamToString(InputStream is) {
+
+			String line = "";
+			StringBuilder total = new StringBuilder();
+
+			// Wrap a BufferedReader around the InputStream
+			BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+
+			try {
+				// Read response until the end
+				while ((line = rd.readLine()) != null) {
+					total.append(line);
+				}
+			} catch (IOException e) {
+				Log.e(TAG, e.getLocalizedMessage(), e);
+			}
+
+			// Return full string
+			return total.toString();
+		}
+
+	}
+	// private void initImageSelect() {
+	// imageSelect = (ImageSelect) findViewById(R.id.imageSelect);
+	// imageSelect
+	// .setOnImageSelectClickListener(new OnImageSelectClickListener() {
+	// @Override
+	// public void onClick(int id) {
+	// // TODO Auto-generated method stub
+	// Toast.makeText(getApplicationContext(), "" + id, 0)
+	// .show();
+	// }
+	// });
+	// }
+	//
+	// /**
+	// * 利用BASE64Encoder对图片进行base64转码将图片转为string
+	// *
+	// * @param imgFile
+	// * 文件路径
+	// * @return 返回编码后的string
+	// */
+	// public static String imageToString(String imgFile) {
+	// // 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+	// InputStream in = null;
+	// byte[] data = null;
+	// // 读取图片字节数组
+	// try {
+	// in = new FileInputStream(imgFile);
+	// data = new byte[in.available()];
+	// in.read(data);
+	// in.close();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// // 返回Base64编码过的字节数组字符串
+	// String str = new String(Base64.encode(data));
+	// return str;
+	// }
 }
