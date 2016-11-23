@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
 import cn.minxing.PushMessage.ExitApplication;
 import cn.minxing.activity.Gallery3DActivity;
 import cn.minxing.activity.MinXingCunJieShaoActivity;
 import cn.minxing.activity.YeWuBanLiActivity;
 import cn.minxing.util.TextJustification;
+
 import com.zhumingmin.vmsofminxing.R;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Point;
@@ -59,7 +62,10 @@ public class MinXingCunFragment extends Fragment {
 			viewPager.setCurrentItem(currentItem);
 		};
 	};
-
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -69,10 +75,11 @@ public class MinXingCunFragment extends Fragment {
 		ExitApplication.getInstance().addActivity(getActivity());
 		text_minxingzhijia = (TextView) v
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.text_minxingzhijia);
-		String str = "民兴村有区一级小学、幼儿园各一所，镇人民医院分院一间，综合性市场一个。民兴村政村位于万顷沙镇三民岛中部，全村共有五百五十六户， 户籍人口两千一百五十人，辖区面积为两百六十七公顷，耕地面积三千三百八十亩。二零零八年村工农业总产值两千九百二十七万元。在上级党委和政府的正确领导和大力支持下，经多年努力创建，昔日的扶贫村、问题村已先后获得广州市文明村、南沙区基层党建示范点、南沙区文明村、万顷沙镇工作先进村等区、镇荣誉称号。近几年来，该村以发展经济为中心，以村镇规划为龙头，以改善民生为重点，积极推进新农村建设，全村呈现出了经济发展、生活安定、社会和谐的生动局面。";
+		String str = "民兴村有区一级小学、幼儿园各一所，镇人民医院分院一间，综合性市场一个。民兴村政村位于万顷沙镇三民岛中部，全村共有五百五十六户， 户籍人口两千一百五十人，辖区面积为两百六十七公顷，耕地面积三千三百八十亩。二零零八年村工农业总产值两千九百二十七万元。在上级党委和政府的正确领导和大力支持下，经多年努力创建，昔日的扶贫村、问题村已先后获得广州市文明村、南沙区基层党建示范点、南沙区文明村、万顷沙镇工作先进村等区、镇荣誉称号。近几年来，该村以发展经济为中心，以村镇规划为龙头，以改善民生为重点，积极推进新农村建设，全村呈现出了经济发展、生活安定、社会和谐的生动局面。"
+				+ "\n";
 
 		text_minxingzhijia.setText(str);
-		
+
 		// text_minxingzhijia.post(new Runnable() {
 		//
 		// @Override

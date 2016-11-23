@@ -91,8 +91,9 @@
 
         <ScrollView
             android:id="@+id/scrollView1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp" >
 
             <TextView
                 android:id="@+id/text"
@@ -101,6 +102,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
+                android:lineSpacingExtra="2dp"
+                android:layout_marginBottom="15dp"
+                android:lineSpacingMultiplier="1.5"
                 android:text="TextView"
                 android:textSize="15sp" />
         </ScrollView>

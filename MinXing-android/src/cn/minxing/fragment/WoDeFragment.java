@@ -49,6 +49,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,6 +75,7 @@ import android.widget.Toast;
 
 import com.umeng.comm.ui.fragments.CommunityMainFragment;
 
+@SuppressLint("NewApi")
 public class WoDeFragment extends Fragment {
 	private Handler handler;
 	private TableRow tr_gerenxinxi, tr_toupiao, tr_shequ, tr_tongxun,
@@ -83,19 +86,32 @@ public class WoDeFragment extends Fragment {
 	TextView name, phone;
 	static String account;
 
+	/*
+	 * 即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。
+	 * 
+	 * @see android.support.v4.app.Fragment#setUserVisibleHint(boolean)
+	 */
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+	}
+
 	@SuppressLint("HandlerLeak")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater.inflate(R.layout.fragment_shezhi, container, false);
-
+		// View v = inflater.inflate(R.layout.fragment_shezhi, container,
+		// false);
+		// 2016.11.23更改
+		View v = inflater.inflate(R.layout.fragment_shezhi_new, container,
+				false);
 		ExitApplication.getInstance().addActivity(getActivity());
 
 		tr_gerenxinxi = (TableRow) v.findViewById(R.id.tr_gerenxinxi);
 		tr_toupiao = (TableRow) v.findViewById(R.id.tr_toupiao);
-		tr_shequ = (TableRow) v.findViewById(R.id.tr_shequ);
-		tr_tongxun = (TableRow) v.findViewById(R.id.tr_tongxun);
+		// tr_shequ = (TableRow) v.findViewById(R.id.tr_shequ);
+		// tr_tongxun = (TableRow) v.findViewById(R.id.tr_tongxun);
 		tr_xinxichaxun = (TableRow) v.findViewById(R.id.tr_xinxichaxun);
 		tr_tongxunlu = (TableRow) v.findViewById(R.id.tr_tongxunlu);
 		tr_xianliao = (TableRow) v.findViewById(R.id.tr_xianliao);
@@ -105,6 +121,7 @@ public class WoDeFragment extends Fragment {
 		phone = (TextView) v.findViewById(R.id.phone);
 		name.setText("村名张三");
 		// 希望能实现获取账号信息后不再访问后台
+
 		handler = new Handler() {
 
 			@SuppressLint("HandlerLeak")
@@ -122,6 +139,7 @@ public class WoDeFragment extends Fragment {
 			}
 		};
 		handler.sendEmptyMessageDelayed(0, 0);
+
 		tr_toupiao.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -145,44 +163,42 @@ public class WoDeFragment extends Fragment {
 			}
 		});
 
-		tr_shequ.setOnClickListener(new Button.OnClickListener() {
+		/*
+		 * //SDK出现了问题 tr_shequ.setOnClickListener(new Button.OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) {
+		 * 
+		 * // TODO Auto-generated method stub DisplayToast("稍后开通！");
+		 * 
+		 * CommunitySDK mCommSDK = CommunityFactory .getCommSDK(getActivity());
+		 * // 打开微社区的接口, 参数1为Context类型 mCommSDK.openCommunity(getActivity());
+		 * 
+		 * }
+		 * 
+		 * });
+		 */
 
-			@Override
-			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
-				DisplayToast("稍后开通！");
-				// Intent intent = new Intent();
-				// intent = new Intent(getActivity(), MinXingSheQu.class);
-				// startActivity(intent);
-				CommunitySDK mCommSDK = CommunityFactory
-						.getCommSDK(getActivity());
-				// 打开微社区的接口, 参数1为Context类型
-				mCommSDK.openCommunity(getActivity());
-
-			}
-
-		});
-		tr_tongxun.setOnClickListener(new Button.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
-				DisplayToast("稍后开通！");
-			}
-
-		});
-
+		/*
+		 * //根本没实现 tr_tongxun.setOnClickListener(new Button.OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) {
+		 * 
+		 * // TODO Auto-generated method stub DisplayToast("稍后开通！"); }
+		 * 
+		 * });
+		 */
 		tr_xinxichaxun.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
-				Intent intent = new Intent();
-				intent = new Intent(getActivity(), ReadTagActivity.class);
-				startActivity(intent);
+				if (hasNfc(getActivity())) {
+					Intent intent = new Intent();
+					intent = new Intent(getActivity(), ReadTagActivity.class);
+					startActivity(intent);
+				} else {
+					DisplayToast("您的设备暂不支持该功能！");
+				}
 			}
 
 		});
@@ -244,6 +260,21 @@ public class WoDeFragment extends Fragment {
 
 		return v;
 
+	}
+
+	@SuppressLint("NewApi")
+	public static boolean hasNfc(Context context) {
+		boolean bRet = false;
+		if (context == null)
+			return bRet;
+		NfcManager manager = (NfcManager) context
+				.getSystemService(Context.NFC_SERVICE);
+		NfcAdapter adapter = manager.getDefaultAdapter();
+		if (adapter != null && adapter.isEnabled()) {
+			// adapter存在，能启用
+			bRet = true;
+		}
+		return bRet;
 	}
 
 	// 从服务器端获取信息 GET方法

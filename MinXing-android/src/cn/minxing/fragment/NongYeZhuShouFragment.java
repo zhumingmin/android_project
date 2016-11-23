@@ -41,7 +41,10 @@ public class NongYeZhuShouFragment extends Fragment {
 	private MyPagerAdapter adapter;
 	private ImageButton sousuo, gengduo;
 	private TitlePopup titlePopup;
-
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

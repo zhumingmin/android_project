@@ -67,7 +67,8 @@ public class JiHuaShengYuActivity extends Activity {
 				+ "\n"
 				+ "\n获得《独生子女父母光荣证》的夫妻，独生子女发生意外伤残、死亡的，按照规定获得扶助。"
 				+ "\n"
-				+ "\n在国家提倡一对夫妻生育一个子女期间，按照规定应当享受计划生育家庭老年人奖励扶助的，继续享受相关奖励扶助。";
+				+ "\n在国家提倡一对夫妻生育一个子女期间，按照规定应当享受计划生育家庭老年人奖励扶助的，继续享受相关奖励扶助。"
+				+ "\n";
 		text.setText(str);
 		WebSettings webSettings = mWebView.getSettings();
 		webSettings.setJavaScriptEnabled(true);

@@ -50,7 +50,10 @@ public class NewsFragment extends Fragment {
 		f.setArguments(b);
 		return f;
 	}
-
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+	}
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

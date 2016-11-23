@@ -1,9 +1,13 @@
 package cn.minxing.activity;
 
 import cn.minxing.util.EncodingHandler;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -50,21 +54,27 @@ public class SZ_GRXXActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(SZ_GRXXActivity.this,
-						AndroidBeamMainActivity.class);
-				intent.putExtra("GGXX", grxx_xingming_tv.getText().toString()
-						.trim()
-						+ grxx_xingming_et.getText().toString().trim()
-						+ "\n"
-						+ grxx_lianxifangshi_tv.getText().toString().trim()
-						+ grxx_lianxifangshi_et.getText().toString().trim()
-						+ "\n"
-						+ grxx_shenfenzhenghao_tv.getText().toString().trim()
-						+ grxx_shenfenzhenghao_et.getText().toString().trim());
+				if (hasNfc(SZ_GRXXActivity.this)) {
+					Intent intent = new Intent();
+					intent.setClass(SZ_GRXXActivity.this,
+							AndroidBeamMainActivity.class);
+					intent.putExtra("GGXX", grxx_xingming_tv.getText()
+							.toString().trim()
+							+ grxx_xingming_et.getText().toString().trim()
+							+ "\n"
+							+ grxx_lianxifangshi_tv.getText().toString().trim()
+							+ grxx_lianxifangshi_et.getText().toString().trim()
+							+ "\n"
+							+ grxx_shenfenzhenghao_tv.getText().toString()
+									.trim()
+							+ grxx_shenfenzhenghao_et.getText().toString()
+									.trim());
 
-				startActivity(intent);
-				SZ_GRXXActivity.this.finish();
+					startActivity(intent);
+					SZ_GRXXActivity.this.finish();
+				} else {
+					DisplayToast("您的设备暂不支持该功能！");
+				}
 			}
 		});
 		shengcheng.setOnClickListener(new Button.OnClickListener() {
@@ -100,6 +110,21 @@ public class SZ_GRXXActivity extends Activity {
 
 	}
 
+	@SuppressLint("NewApi")
+	public static boolean hasNfc(Context context) {
+		boolean bRet = false;
+		if (context == null)
+			return bRet;
+		NfcManager manager = (NfcManager) context
+				.getSystemService(Context.NFC_SERVICE);
+		NfcAdapter adapter = manager.getDefaultAdapter();
+		if (adapter != null && adapter.isEnabled()) {
+			// adapter存在，能启用
+			bRet = true;
+		}
+		return bRet;
+	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
@@ -110,5 +135,11 @@ public class SZ_GRXXActivity extends Activity {
 			SZ_GRXXActivity.this.finish();
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	protected void DisplayToast(String string) {
+
+		// TODO Auto-generated method stub
+		Toast.makeText(SZ_GRXXActivity.this, string, Toast.LENGTH_SHORT).show();
 	}
 }
