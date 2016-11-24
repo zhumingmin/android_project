@@ -76,11 +76,13 @@ public class SerachActivity extends Activity {
 	private TextView tv_tip;
 	private RS_MyListView listView;
 	private TextView tv_clear;
-	private RS_RecordSQLiteOpenHelper helper = new RS_RecordSQLiteOpenHelper(this);;
+	private RS_RecordSQLiteOpenHelper helper = new RS_RecordSQLiteOpenHelper(
+			this);;
 	private SQLiteDatabase db;
 	private BaseAdapter adapter;
 	EditText newsousuo;
-	Button zhijiesousuo, soufanshiliu, soufenjiao, soumugua, souqita,sousuoshezhi;
+	Button zhijiesousuo, soufanshiliu, soufenjiao, soumugua, souqita,
+			sousuoshezhi;
 	ImageButton btnSpeak;
 	private RS_TitlePopup titlePopup;
 
@@ -341,9 +343,9 @@ public class SerachActivity extends Activity {
 		});
 
 		// 插入数据，便于测试，否则第一次进入没有数据怎么测试呀？
-		Date date = new Date();
-		long time = date.getTime();
-		insertData("Leo" + time);
+		// Date date = new Date();
+		// long time = date.getTime();
+		// insertData("Leo" + time);
 
 		// 第一次进入查询所有的历史记录
 		queryData("");

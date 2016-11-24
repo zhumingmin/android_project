@@ -3,6 +3,8 @@ package cn.minxing.activity;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import cn.minxing.activity.HuJiGuanLiActivity;
 import cn.minxing.activity.SZ_GRXXActivity;
 import cn.minxing.util.TextRecord;
@@ -26,6 +28,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 /**
@@ -43,6 +46,7 @@ public class AndroidBeamMainActivity extends Activity implements
 
 	private NfcAdapter mNfcAdapter;
 	private PendingIntent mPendingIntent;
+	private LinearLayout ly_fanhui;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -50,7 +54,15 @@ public class AndroidBeamMainActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_android_beam);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_chuansonggerenxinxi);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		mBeamText = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.edittext_beam_text);
 
 		mNfcAdapter = mNfcAdapter.getDefaultAdapter(this);

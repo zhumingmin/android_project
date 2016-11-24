@@ -63,6 +63,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,6 +91,7 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 	private ArrayList<Bitmap> images;// 上传的图片
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/nfctag";
 	private static final String TAG = "WriteTagActivity";
+	private LinearLayout ly_fanhui;
 
 	// @Override
 	// protected void onActivityResult(int requestCode, int resultCode, Intent
@@ -143,12 +145,21 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_write_tag);
 		// initImageSelect();
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_writetag);
 		writeBtn = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.xieru);
 		writeBtn.setOnClickListener(this);
 		mContentEditText = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.content_edit);
 		bbtn_cancel = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.btn_cancel);
 		bbtn_cancel.setOnClickListener(this);
 		// 获取nfc适配器，判断设备是否支持NFC功能
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 		if (nfcAdapter == null) {
 			Toast.makeText(
@@ -202,11 +213,13 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 			if (mContentEditText.getText().toString().isEmpty()) {
 				showToast("您得先输入需要写入的数据！");
 				return;
-			}else{
-				WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
-						WriteTagActivity.this, "上传中...");
+			} else {
+				WebServiceTask wst = new WebServiceTask(
+						WebServiceTask.POST_TASK, WriteTagActivity.this,
+						"上传中...");
 
-				wst.addNameValuePair("nfctag", mContentEditText.getText().toString());
+				wst.addNameValuePair("nfctag", mContentEditText.getText()
+						.toString());
 
 				wst.execute(new String[] { SERVICE_URL });
 			}
@@ -274,7 +287,7 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 			// image/jpeg text/plain
 			NdefRecord textRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA,
 					"text/plain".getBytes(), new byte[] {}, textBytes);
-			
+
 			return new NdefMessage(new NdefRecord[] { textRecord });
 
 		}

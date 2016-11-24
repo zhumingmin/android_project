@@ -1,5 +1,7 @@
 package cn.minxing.activity;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import cn.minxing.util.EncodingHandler;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -15,6 +17,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ public class SZ_GRXXActivity extends Activity {
 			grxx_shenfenzhenghao_et;
 	private Button grxx_chuansong, shengcheng;
 	private ImageView qrcodeImageView = null;
+	private LinearLayout ly_fanhui;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +43,15 @@ public class SZ_GRXXActivity extends Activity {
 		grxx_chuansong = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.grxx_chuansong);
 		shengcheng = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.shengcheng);
 		qrcodeImageView = (ImageView) findViewById(com.zhumingmin.vmsofminxing.R.id.erweima);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_gerenxinxi);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		// 这里需要修改
 		Intent intent = getIntent();
 		String data1 = intent.getStringExtra("data1");
@@ -71,7 +84,7 @@ public class SZ_GRXXActivity extends Activity {
 									.trim());
 
 					startActivity(intent);
-					SZ_GRXXActivity.this.finish();
+
 				} else {
 					DisplayToast("您的设备暂不支持该功能！");
 				}

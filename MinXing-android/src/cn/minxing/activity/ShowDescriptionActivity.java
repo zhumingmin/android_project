@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ShowDescriptionActivity extends Activity {
+	private LinearLayout ly_fanhui;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -20,7 +22,15 @@ public class ShowDescriptionActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_rss_show_description);
 		String content = null;
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_xiaoxixiangqing);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		Intent intent = getIntent();
 		if (intent != null) {
 			Bundle bundle = intent
@@ -40,14 +50,6 @@ public class ShowDescriptionActivity extends Activity {
 		TextView contentText = (TextView) this.findViewById(R.id.content);
 		contentText.setText(content);
 
-		Button backButton = (Button) this.findViewById(R.id.back);
-		backButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
 	}
 
 	@Override

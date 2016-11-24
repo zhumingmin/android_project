@@ -5,22 +5,61 @@
     android:background="@drawable/chat_bg_default"
     android:orientation="vertical" >
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/ly_chat_title"
         android:layout_width="fill_parent"
         android:layout_height="45dp"
-        android:background="@drawable/title_bar" >
+        android:background="@drawable/btn_bg" >
+
+        <LinearLayout
+            android:id="@+id/ly_fanhui_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/FanHui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dip"
+                android:background="@drawable/fanhui" >
+            </ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="返回"
+                android:textColor="#fff"
+                android:textSize="20dp" >
+            </TextView>
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/minyizhengji"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/btn_bg"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="民兴闲聊小助手"
-            android:textColor="#ffffff"
+            android:textColor="#fff"
             android:textSize="25sp" >
         </TextView>
-    </RelativeLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_bg"
+            android:text=""
+            android:textColor="#fff"
+            android:textSize="20dp" >
+        </Button>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/ly_chat_bottom"

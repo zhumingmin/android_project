@@ -1,5 +1,7 @@
 package cn.minxing.activity;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import cn.minxing.PushMessage.ExitApplication;
 import cn.minxing.PushMessage.XiaoMiTuiSong;
 import cn.minxing.restwebservice.LoginService;
@@ -16,6 +18,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class SZ_SheZhiActivity extends Activity {
@@ -23,6 +26,7 @@ public class SZ_SheZhiActivity extends Activity {
 	private Button zhanghaoanquan, bangzhu, guanyu, shezhi_zhanghaoanquan,
 			shezhi_gengxin, zhuxiaodenglu;
 	String data1, data2, data3;
+	private LinearLayout ly_fanhui;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,6 +39,15 @@ public class SZ_SheZhiActivity extends Activity {
 		guanyu = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.shezhi_guanyu);
 		zhuxiaodenglu = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.zhuxiaodenglu);
 		shezhi_zhanghaoanquan = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.shezhi_zhanghaoanquan);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_shezhi);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		Intent intent = getIntent();
 		data1 = intent.getStringExtra("data1");
 		data2 = intent.getStringExtra("data2");
@@ -96,7 +109,7 @@ public class SZ_SheZhiActivity extends Activity {
 				Intent intent = new Intent();
 				intent.setClass(SZ_SheZhiActivity.this, HelpActivity.class);
 				startActivity(intent);
-				SZ_SheZhiActivity.this.finish();
+
 			}
 
 		});
@@ -109,7 +122,7 @@ public class SZ_SheZhiActivity extends Activity {
 				intent.setClass(SZ_SheZhiActivity.this,
 						GuanYuMinXingZhiJiaActivity.class);
 				startActivity(intent);
-				SZ_SheZhiActivity.this.finish();
+
 			}
 		});
 

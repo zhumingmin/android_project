@@ -45,6 +45,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +59,7 @@ public class MinYiZhengJiActivity extends Activity {
 			"项目四", "项目五" };
 	ProgressDialog m_pDialog;
 	int m_count = 0;
+	private LinearLayout ly_fanhui;
 	private CustomArrayAdapter<CharSequence> mAdapter;
 	private static final int msgKey1 = 1;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/toupiaogonggao";
@@ -77,7 +79,15 @@ public class MinYiZhengJiActivity extends Activity {
 
 		huoqucanxuanzhiwu = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqucanxuanzhiwu);
 		huoqugerenshiji = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqugerenshiji);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_toupiao);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		zhichi.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -124,7 +134,7 @@ public class MinYiZhengJiActivity extends Activity {
 				Intent intent = new Intent(MinYiZhengJiActivity.this,
 						TouPiaoJieGuoActivity.class);
 				startActivity(intent);
-				MinYiZhengJiActivity.this.finish();
+
 			}
 		});
 		handler = new Handler() {

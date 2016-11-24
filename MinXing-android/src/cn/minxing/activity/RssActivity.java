@@ -22,6 +22,8 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
@@ -38,13 +40,21 @@ public class RssActivity extends Activity implements OnItemClickListener {
 	String RSS_URL = null;
 	TextView tx_spinner1;
 	String rss = null;
-
+	private LinearLayout ly_fanhui;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_rss_main);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_rss);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		String[] kexuanxiangmu = getResources().getStringArray(R.array.item3);
 		this.mAdapter = new CustomArrayAdapter<CharSequence>(this,
 				kexuanxiangmu);

@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class TongXunLuActivity extends Activity {
 	private String[] data = { "书记：1234567890", "村长：1234567890",
 			"妇联主任：1234567890", "大陆/台湾地区报警求助：110", "香港报警：999", "医疗救护：120",
 			"火警：119", "交通事故：122" };
+	private LinearLayout ly_fanhui;
 
 	// private List<TongXunLu> tongxunlu = new ArrayList<TongXunLu>();
 
@@ -34,10 +36,17 @@ public class TongXunLuActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_tongxunlu);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_tongxunlu);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-				TongXunLuActivity.this, R.layout.minxing_list_item,
-				data);
+				TongXunLuActivity.this, R.layout.minxing_list_item, data);
 		ListView listview = (ListView) findViewById(com.zhumingmin.vmsofminxing.R.id.list_view);
 		listview.setAdapter(adapter);
 		listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

@@ -38,6 +38,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class ReadTagActivity extends Activity {
 	private Button mJumpTagBtn, btn_cancel, xieru;
 	private boolean isFirst = true;
 	private ImageView resultImage;
+	private LinearLayout ly_fanhui;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -58,6 +60,15 @@ public class ReadTagActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_read_tag);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_read_tag);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		// 获取nfc适配器，判断设备是否支持NFC功能
 		nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 		if (nfcAdapter == null) {
@@ -73,16 +84,20 @@ public class ReadTagActivity extends Activity {
 							com.zhumingmin.vmsofminxing.R.string.open_nfc),
 					Toast.LENGTH_SHORT).show();
 		}
-		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_read_tag);
+
 		resultImage = (ImageView) findViewById(com.zhumingmin.vmsofminxing.R.id.resultImage);
+
 		WriteTagActivity wt = new WriteTagActivity();
 
 		// resultImage.setImageBitmap(null);
 		// 显示结果Text
 		resultText = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.resultText);
-//		textView3 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.textView3);
-//		textView2 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.textView2);
-//		textView1 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.textView1);
+		// textView3 = (TextView)
+		// findViewById(com.zhumingmin.vmsofminxing.R.id.textView3);
+		// textView2 = (TextView)
+		// findViewById(com.zhumingmin.vmsofminxing.R.id.textView2);
+		// textView1 = (TextView)
+		// findViewById(com.zhumingmin.vmsofminxing.R.id.textView1);
 
 		// 写入标签按钮
 		mJumpTagBtn = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.jump);
@@ -184,7 +199,8 @@ public class ReadTagActivity extends Activity {
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
 			case R.id.jump:
-				Intent intent = new Intent(ReadTagActivity.this, WriteTagActivity.class);
+				Intent intent = new Intent(ReadTagActivity.this,
+						WriteTagActivity.class);
 				startActivity(intent);
 
 			default:

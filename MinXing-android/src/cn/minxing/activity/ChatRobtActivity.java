@@ -15,7 +15,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import cn.minxing.activity.ChaKanMoBanActivity;
@@ -45,7 +47,7 @@ public class ChatRobtActivity extends Activity {
 	 * 适配器
 	 */
 	private ChatMessageAdapter mAdapter;
-
+	private LinearLayout ly_fanhui;
 	private Handler mHandler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			ChatMessage from = (ChatMessage) msg.obj;
@@ -60,7 +62,15 @@ public class ChatRobtActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main_chatting);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_chat);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 		initView();
 
 		mAdapter = new ChatMessageAdapter(this, mDatas);

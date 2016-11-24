@@ -1,5 +1,7 @@
 package cn.minxing.activity;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import cn.minxing.fragment.WoDeFragment;
 import cn.minxing.restfulwebservice.CertificateRest;
 import android.app.Activity;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ public class ZhangHaoAnQuanActivity extends Activity {
 	private Button zhanghaoanquan, bangzhu, guanyu, shezhi_zhanghaoanquan,
 			anquanzhongxin, ceshirukou;
 	private TextView xianshizhanghao, xianshixingming, xianshishoujihao;
+	private LinearLayout ly_fanhui;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,6 +34,16 @@ public class ZhangHaoAnQuanActivity extends Activity {
 		xianshishoujihao = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.xianshishoujihao);
 		anquanzhongxin = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.anquanzhongxin);
 		ceshirukou = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.ceshirukou);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_zhanghaoanquan);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
+
 		Intent intent = getIntent();
 
 		xianshizhanghao.setText(intent.getStringExtra("data3"));
