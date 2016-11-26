@@ -40,6 +40,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -94,8 +95,8 @@ public class LoginService extends Activity {
 		// findViewById(com.zhumingmin.vmsofminxing.R.id.email);
 		savePasswordCB = (CheckBox) findViewById(R.id.savePasswordCB);
 
-		tianxiezhanghao.setHint("您的身份证号码");
-		tianxiemima.setHint("六位包括字母和数字");
+		// tianxiezhanghao.setHint("您的身份证号码");
+		// tianxiemima.setHint("六位包括字母和数字");
 		tianxiezhanghao
 				.setFilters(new InputFilter[] { new InputFilter.LengthFilter(18) });
 		tianxiemima

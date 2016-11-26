@@ -21,8 +21,6 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
-import cn.minxing.activity.HeTongGuanLiActivity;
-
 import com.zhumingmin.vmsofminxing.R;
 
 import android.app.Activity;
@@ -83,7 +81,7 @@ public class HeTongService extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(HeTongService.this, HeTongGuanLiActivity.class);
+				intent.setClass(HeTongService.this, HeTongGuanLiService.class);
 				startActivity(intent);
 				HeTongService.this.finish();
 
@@ -328,7 +326,7 @@ public class HeTongService extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 			Intent intent = new Intent();
-			intent.setClass(HeTongService.this, HeTongGuanLiActivity.class);
+			intent.setClass(HeTongService.this, HeTongGuanLiService.class);
 			startActivity(intent);
 			HeTongService.this.finish();
 

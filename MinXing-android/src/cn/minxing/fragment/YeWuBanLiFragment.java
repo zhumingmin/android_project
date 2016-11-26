@@ -2,13 +2,13 @@ package cn.minxing.fragment;
 
 import cn.minxing.PushMessage.ExitApplication;
 import cn.minxing.activity.CatchActivity;
-import cn.minxing.activity.HeTongGuanLiActivity;
 import cn.minxing.activity.HuJiGuanLiActivity;
 import cn.minxing.activity.JiHuaShengYuActivity;
 import cn.minxing.activity.MinXingCunJieShaoActivity;
 import cn.minxing.activity.NewsActivity;
 import cn.minxing.activity.YiBaoSheBaoActivity;
 import cn.minxing.restwebservice.BaoJianService;
+import cn.minxing.restwebservice.HeTongGuanLiService;
 import cn.minxing.restwebservice.HuJiService;
 import cn.minxing.restwebservice.NewsService;
 
@@ -120,7 +120,7 @@ public class YeWuBanLiFragment extends Fragment {
 				// TODO Auto-generated method stub
 
 				Intent intent = new Intent();
-				intent = new Intent(getActivity(), HeTongGuanLiActivity.class);
+				intent = new Intent(getActivity(), HeTongGuanLiService.class);
 				startActivity(intent);
 			}
 		});

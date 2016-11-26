@@ -85,10 +85,8 @@ public class RegisterService extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(RegisterService.this, LoginService.class);
-				startActivity(intent);
-				RegisterService.this.finish();
+
+				finish();
 
 			}
 		});

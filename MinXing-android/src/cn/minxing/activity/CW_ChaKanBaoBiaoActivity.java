@@ -1,5 +1,6 @@
 package cn.minxing.activity;
 
+import cn.minxing.restwebservice.HeTongGuanLiService;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -82,7 +83,8 @@ public class CW_ChaKanBaoBiaoActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(CW_ChaKanBaoBiaoActivity.this, HeTongGuanLiActivity.class);
+				intent.setClass(CW_ChaKanBaoBiaoActivity.this,
+						HeTongGuanLiService.class);
 				startActivity(intent);
 				CW_ChaKanBaoBiaoActivity.this.finish();
 			}
@@ -93,7 +95,8 @@ public class CW_ChaKanBaoBiaoActivity extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 			Intent intent = new Intent();
-			intent.setClass(CW_ChaKanBaoBiaoActivity.this, HeTongGuanLiActivity.class);
+			intent.setClass(CW_ChaKanBaoBiaoActivity.this,
+					HeTongGuanLiService.class);
 			startActivity(intent);
 			CW_ChaKanBaoBiaoActivity.this.finish();
 		}

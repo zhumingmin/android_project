@@ -1,5 +1,7 @@
 package cn.minxing.activity;
 
+import cn.minxing.restwebservice.HeTongGuanLiService;
+
 import com.zhumingmin.vmsofminxing.R;
 
 import android.app.Activity;
@@ -125,7 +127,7 @@ public class ChaKanMoBanActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.setClass(ChaKanMoBanActivity.this,
-						HeTongGuanLiActivity.class);
+						HeTongGuanLiService.class);
 				startActivity(intent);
 				ChaKanMoBanActivity.this.finish();
 
@@ -139,7 +141,7 @@ public class ChaKanMoBanActivity extends Activity {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 			Intent intent = new Intent();
 			intent.setClass(ChaKanMoBanActivity.this,
-					HeTongGuanLiActivity.class);
+					HeTongGuanLiService.class);
 			startActivity(intent);
 			ChaKanMoBanActivity.this.finish();
 

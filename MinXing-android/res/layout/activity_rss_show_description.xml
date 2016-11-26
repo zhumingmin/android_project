@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -59,15 +60,20 @@
         </Button>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:autoLink="web"
-        android:text=""
-        android:textSize="15dp" />
+        android:background="#FFFFFF" >
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:autoLink="web"
+            android:text="新闻内容"
+            android:textSize="15dp" />
+    </LinearLayout>
 
 </LinearLayout>

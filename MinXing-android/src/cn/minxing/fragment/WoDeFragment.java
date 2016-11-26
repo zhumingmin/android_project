@@ -25,7 +25,6 @@ import org.json.JSONObject;
 import cn.minxing.PushMessage.ExitApplication;
 import cn.minxing.activity.ChatRobtActivity;
 import cn.minxing.activity.MinXingSheQuActivity;
-import cn.minxing.activity.MinYiZhengJiActivity;
 import cn.minxing.activity.ReadTagActivity;
 import cn.minxing.activity.RssActivity;
 import cn.minxing.activity.SZ_GRXXActivity;
@@ -35,6 +34,7 @@ import cn.minxing.activity.SheZhiActivity;
 import cn.minxing.activity.TianQiChaXunActivity;
 import cn.minxing.activity.TongXunLuActivity;
 import cn.minxing.restwebservice.LoginService;
+import cn.minxing.restwebservice.MinYiZhengJiService;
 import cn.minxing.restwebservice.RegisterService;
 import cn.minxing.restwebservice.YiBaoService;
 
@@ -147,7 +147,7 @@ public class WoDeFragment extends Fragment {
 				// TODO Auto-generated method stub
 
 				Intent intent = new Intent();
-				intent = new Intent(getActivity(), MinYiZhengJiActivity.class);
+				intent = new Intent(getActivity(), MinYiZhengJiService.class);
 				startActivity(intent);
 			}
 		});
@@ -282,7 +282,7 @@ public class WoDeFragment extends Fragment {
 
 		String sampleURL = SERVICE_URL + "/cx";
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK,
-				getActivity(), "正在更新，请稍候...");
+				getActivity(), "加载中...");
 		wst.execute(new String[] { sampleURL });
 
 	}

@@ -1,5 +1,6 @@
 package cn.minxing.activity;
 
+import cn.minxing.restwebservice.MinYiZhengJiService;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class SheZhiActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(SheZhiActivity.this, MinYiZhengJiActivity.class);
+				intent.setClass(SheZhiActivity.this, MinYiZhengJiService.class);
 				startActivity(intent);
 				SheZhiActivity.this.finish();
 			}

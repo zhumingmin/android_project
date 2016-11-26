@@ -1,5 +1,7 @@
 package cn.minxing.activity;
 
+import cn.minxing.restwebservice.MinYiZhengJiService;
+
 import com.zhumingmin.vmsofminxing.R;
 
 import android.app.Activity;
@@ -41,7 +43,7 @@ public class TouPiaoJieGuoActivity extends Activity {
 
 			Intent intent = new Intent();
 			intent.setClass(TouPiaoJieGuoActivity.this,
-					MinYiZhengJiActivity.class);
+					MinYiZhengJiService.class);
 			startActivity(intent);
 			TouPiaoJieGuoActivity.this.finish();
 		}

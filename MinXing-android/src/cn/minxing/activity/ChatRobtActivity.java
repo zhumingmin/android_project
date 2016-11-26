@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import cn.minxing.activity.ChaKanMoBanActivity;
-import cn.minxing.activity.HeTongGuanLiActivity;
+
 import cn.minxing.activity.SheZhiActivity;
 import cn.minxing.util.ChatMessage;
 import cn.minxing.util.ChatMessageAdapter;

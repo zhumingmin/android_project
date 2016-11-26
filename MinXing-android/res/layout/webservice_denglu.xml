@@ -14,9 +14,9 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="150dp"
         android:gravity="left"
-        android:text="欢迎登录"
+        android:text="欢 迎 登 录"
         android:textColor="#ffffff"
-        android:textSize="25sp" >
+        android:textSize="25dp" >
     </TextView>
 
     <TextView
@@ -31,47 +31,51 @@
 
     <TableRow android:layout_marginTop="40dp" >
 
-        <TextView
+        <ImageView
             android:id="@+id/ZhangHao"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="账号"
-            android:textColor="#ffffff"
-            android:textSize="20sp" >
-        </TextView>
+            android:gravity="center"
+            android:src="@drawable/zhanghu" >
+        </ImageView>
 
         <cn.minxing.view.ClearEditText
             android:id="@+id/TianXieZhangHao"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:digits="0123456789"
-            android:hint="输入用户名"
+            android:hint="身份证号码"
             android:maxLength="18"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textColorHint="#DCDCDC"
+            android:textSize="20dp" />
     </TableRow>
 
     <TableRow android:layout_marginTop="20dp" >
 
-        <TextView
+        <ImageView
             android:id="@+id/MiMa"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="密码"
-            android:textColor="#ffffff"
-            android:textSize="20sp" >
-        </TextView>
+            android:gravity="center"
+            android:src="@drawable/mima" >
+        </ImageView>
 
         <cn.minxing.view.ClearEditText
             android:id="@+id/TianXieMiMa"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:hint="输入密码"
+            android:hint="密码"
             android:maxLength="6"
             android:password="true"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textColorHint="#DCDCDC"
+            android:textSize="20dp" />
     </TableRow>
 
     <LinearLayout
@@ -99,8 +103,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="#778899"
-            android:text="登录"
+            android:background="@drawable/btn_bg"
+            android:text="登    录"
             android:textColor="#ffffff"
             android:textSize="20sp" >
         </Button>
@@ -132,7 +136,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="免费注册"
-            android:textColor="#B22222"
+            android:textColor="#4169E1"
             android:textSize="15sp" >
         </TextView>
     </LinearLayout>

@@ -267,7 +267,7 @@
             android:label="医保管理界面" >
         </activity>
         <activity
-            android:name="cn.minxing.activity.HeTongGuanLiActivity"
+            android:name="cn.minxing.restwebservice.HeTongGuanLiService"
             android:label="财务管理界面" >
         </activity>
         <activity
@@ -389,7 +389,7 @@
             android:label="设置" >
         </activity>
         <activity
-            android:name="cn.minxing.activity.MinYiZhengJiActivity"
+            android:name="cn.minxing.restwebservice.MinYiZhengJiService"
             android:label="民意征集" >
         </activity>
         <activity
