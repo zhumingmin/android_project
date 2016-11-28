@@ -184,7 +184,7 @@ public class LoginService extends Activity {
 
 				m_pDialog.setTitle("提示");
 
-				m_pDialog.setMessage("正在登陆，请稍后……");
+				m_pDialog.setMessage("登录中…");
 
 				m_pDialog
 						.setIcon(com.zhumingmin.vmsofminxing.R.drawable.tubiao1);
@@ -469,7 +469,7 @@ public class LoginService extends Activity {
 			}
 
 			WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
-					LoginService.this, "正在登陆...");
+					LoginService.this, "正在登录…");
 
 			wst.addNameValuePair("loginzhanghao", zhanghao);
 			wst.addNameValuePair("loginmima", mima1);

@@ -83,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
             android:text="account"
+            android:layout_marginRight="10dp"
             android:textColor="#999999"
             android:textSize="20sp" >
         </TextView>
@@ -110,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
             android:text="name"
+            android:layout_marginRight="10dp"
             android:textColor="#999999"
             android:textSize="20sp" />
 
@@ -141,6 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
             android:text="number"
+            android:layout_marginRight="10dp"
             android:textColor="#999999"
             android:textSize="20sp" />
 

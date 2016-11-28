@@ -188,8 +188,7 @@ public class RegisterService extends Activity {
 				}
 
 				WebServiceTask wst = new WebServiceTask(
-						WebServiceTask.POST_TASK, RegisterService.this,
-						"正在注册，请稍后……");
+						WebServiceTask.POST_TASK, RegisterService.this, "注册中…");
 
 				wst.addNameValuePair("zhanghao", zhanghao);
 				wst.addNameValuePair("xingming", xingming);

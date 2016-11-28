@@ -95,7 +95,7 @@ public class WangJiMiMaService extends Activity {
 
 				WebServiceTask wst = new WebServiceTask(
 						WebServiceTask.POST_TASK, WangJiMiMaService.this,
-						"找回密码中...");
+						"找回中…");
 
 				wst.addNameValuePair("zhanghao", zhucezhanghao);
 				wst.addNameValuePair("shoujihaoma", lianxidianhua);

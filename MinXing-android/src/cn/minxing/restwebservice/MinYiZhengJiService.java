@@ -155,7 +155,7 @@ public class MinYiZhengJiService extends Activity {
 
 		String sampleURL = SERVICE_URL + "/toupiao";
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this,
-				"加载中...");
+				"加载中…");
 		wst.execute(new String[] { sampleURL });
 	}
 

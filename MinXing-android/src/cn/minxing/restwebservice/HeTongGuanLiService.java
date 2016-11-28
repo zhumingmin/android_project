@@ -146,7 +146,7 @@ public class HeTongGuanLiService extends Activity {
 
 		String sampleURL = SERVICE_URL + "/caiwu";
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this,
-				"加载中...");
+				"加载中…");
 		wst.execute(new String[] { sampleURL });
 	}
 

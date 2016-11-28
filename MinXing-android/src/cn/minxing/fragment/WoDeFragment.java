@@ -119,7 +119,7 @@ public class WoDeFragment extends Fragment {
 		tr_rss = (TableRow) v.findViewById(R.id.tr_rss);
 		name = (TextView) v.findViewById(R.id.name);
 		phone = (TextView) v.findViewById(R.id.phone);
-		name.setText("村名张三");
+		// name.setText("村名张三");
 		// 希望能实现获取账号信息后不再访问后台
 
 		handler = new Handler() {
@@ -130,12 +130,10 @@ public class WoDeFragment extends Fragment {
 				// TODO Auto-generated method stub
 				super.handleMessage(msg);
 
-				if (name.getText().toString() != "村名张三") {
-
-				} else {
+				//if (name.getText().toString() == "村名张三") {
 					postSampleData();
 					retrieveSampleData();
-				}
+				//}
 			}
 		};
 		handler.sendEmptyMessageDelayed(0, 0);

@@ -8,6 +8,8 @@ import com.zhumingmin.vmsofminxing.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
 //import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -18,7 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ZaiRuActivity extends Activity {
-
+	boolean isFirstIn;
+	public static String sMallId = "";
 	private ImageView iv;
 	private Handler handler;
 	// private Drawable[] drawables;
@@ -44,32 +47,65 @@ public class ZaiRuActivity extends Activity {
 		vlp.getmImageLoader().get(picUrl, vlp.getOne_listener());
 		vlp.getmImageLoader().get(picUrl1, vlp.getOne_listener());
 		vlp.getmImageLoader().get(picUrl2, vlp.getOne_listener());
-		
-		handler = new Handler() {
 
-			@SuppressLint("HandlerLeak")
-			@Override
-			public void handleMessage(Message msg) {
-				// TODO Auto-generated method stub
-				super.handleMessage(msg);
-				jump();
-
-			}
-		};
-
-		handler.sendEmptyMessageDelayed(0, 2000);
+		// handler = new Handler() {
+		//
+		// @SuppressLint("HandlerLeak")
+		// @Override
+		// public void handleMessage(Message msg) {
+		// // TODO Auto-generated method stub
+		// super.handleMessage(msg);
+		// jump();
+		//
+		// }
+		// };
+		//
+		// handler.sendEmptyMessageDelayed(0, 2000);
 
 		// drawables = new Drawable[] { getResources().getDrawable(
 		// R.drawable.flash) };
-		//
 		// iv.setImageDrawable(drawables[0]);
 
+		// 获取SharedPreferences对象
+		SharedPreferences sp = ZaiRuActivity.this.getSharedPreferences("SP",
+				MODE_PRIVATE);
+		isFirstIn = sp.getBoolean("isFirstIn", true);
+		if (isFirstIn) {
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					goGuide();
+				}
+			}, 2000);
+			Editor editor = sp.edit();
+			editor.putBoolean("isFirstIn", false);
+			editor.commit();
+		} else {
+			new Handler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					goHome();
+				}
+			}, 2000);
+		}
 	}
 
 	protected void jump() {
 		// TODO jump to homepage activity
 		// Intent intent = new Intent(ZaiRuActivity.this, DengLuJieMian.class);
 		Intent intent = new Intent(ZaiRuActivity.this, LoginService.class);
+		startActivity(intent);
+		finish();
+	}
+
+	private void goHome() {
+		Intent intent = new Intent(ZaiRuActivity.this, LoginService.class);
+		startActivity(intent);
+		finish();
+	}
+
+	private void goGuide() {
+		Intent intent = new Intent(ZaiRuActivity.this, GuideViewPagerActivity.class);
 		startActivity(intent);
 		finish();
 	}

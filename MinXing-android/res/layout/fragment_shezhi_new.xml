@@ -54,7 +54,7 @@
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="13dip"
                 android:layout_toRightOf="@id/gerenxinxi"
-                android:text="村民"
+                android:text="村民张三"
                 android:textSize="20sp" />
 
             <TextView

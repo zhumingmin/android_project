@@ -153,7 +153,7 @@ public class YiBaoService extends Activity {
 	protected void jump() {
 		String sampleURL = SERVICE_URL + "/cx";
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this,
-				"正在查询，请稍候...");
+				"查询中…");
 		wst.execute(new String[] { sampleURL });
 	}
 

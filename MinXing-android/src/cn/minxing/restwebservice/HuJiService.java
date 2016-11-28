@@ -330,8 +330,7 @@ public class HuJiService extends TabActivity {
 					}
 
 					WebServiceTask wst = new WebServiceTask(
-							WebServiceTask.POST_TASK, HuJiService.this,
-							"正在上传中...");
+							WebServiceTask.POST_TASK, HuJiService.this, "上传中…");
 
 					wst.addNameValuePair("qianchurenxingming", xingming);
 					wst.addNameValuePair("shenfenzhenghaoma", haoma);

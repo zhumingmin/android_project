@@ -105,7 +105,7 @@ public class HeTongService extends Activity {
 		}
 
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK, this,
-				"提交中，请稍候...");
+				"提交中…");
 
 		wst.addNameValuePair("jiafang", jiafang);
 		wst.addNameValuePair("yifang", yifang);

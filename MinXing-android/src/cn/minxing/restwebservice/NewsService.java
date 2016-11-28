@@ -130,7 +130,7 @@ public class NewsService extends Activity {
 
 		String sampleURL = SERVICE_URL + "/1";
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this,
-				"正在查询，请稍候...");
+				"查询中…");
 		wst.execute(new String[] { sampleURL });
 
 	}
