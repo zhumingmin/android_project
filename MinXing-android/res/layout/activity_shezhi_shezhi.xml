@@ -185,7 +185,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/buttonshape2"
         android:gravity="center"
-        android:text="注销登录"
+        android:text="退出登录"
         android:textColor="#FFFFFF"
         android:textSize="20sp" >
     </Button>

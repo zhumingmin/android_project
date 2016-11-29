@@ -94,7 +94,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:hint="您的18位身份证号码"
+            android:hint="身份证号码"
             android:maxLength="18"
             android:textSize="20sp" />
     </LinearLayout>
@@ -128,7 +128,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:text="查询结果为："
+            android:text="您的查询结果为："
             android:textSize="20sp" >
         </TextView>
 
@@ -145,7 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:hint="您的缴费情况"
+            android:hint="缴费情况"
             android:textSize="20sp" />
 
         <TextView
@@ -154,7 +154,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:text="暂未开通线上支付！可前往支付宝付款，付款账号为：123456@qq.com"
             android:textColor="#999999"
             android:textSize="15sp" >

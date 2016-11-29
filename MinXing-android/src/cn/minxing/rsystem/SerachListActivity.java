@@ -25,8 +25,10 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import cn.minxing.activity.TianJiaHuiDaActivity;
 import cn.minxing.util.RS_News;
 import cn.minxing.util.RS_NewsAdapter;
+
 import com.zhumingmin.vmsofminxing.R;
 
 import android.app.Activity;
@@ -62,7 +64,7 @@ public class SerachListActivity extends Activity {
 	private LinearLayout ly_fanhui;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/news";
 	private Button load;
-	private TextView tv_result;
+	private TextView tv_result, tv_ugc;
 	private static final String TAG = "SerachListActivity";
 	static String classname;
 
@@ -73,6 +75,7 @@ public class SerachListActivity extends Activity {
 		setContentView(R.layout.activity_listview_rs);
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_liebiao);
 		tv_result = (TextView) findViewById(R.id.tv_result);
+		tv_ugc = (TextView) findViewById(R.id.tv_ugc);
 		Intent intent = getIntent();
 		if (intent != null) {
 			classname = intent.getStringExtra("classname");
@@ -109,6 +112,19 @@ public class SerachListActivity extends Activity {
 				startActivity(intent);
 				finish();
 			}
+		});
+		tv_ugc.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				SerachListActivity.this.finish();
+				Intent intent = new Intent(SerachListActivity.this,
+						TianJiaHuiDaActivity.class);
+				startActivity(intent);
+
+			}
+
 		});
 		RS_NewsAdapter adapter = new RS_NewsAdapter(SerachListActivity.this,
 				R.layout.news_list_item_rs, newslist);

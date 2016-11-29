@@ -104,7 +104,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/btn_bg"
-            android:text="登    录"
+            android:text="登    陆"
             android:textColor="#ffffff"
             android:textSize="20sp" >
         </Button>

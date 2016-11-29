@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:orientation="vertical"
-    android:stretchColumns="0" >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,8 +64,9 @@
 
     <TextView
         android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="暂无搜索结果！"
@@ -74,19 +74,37 @@
         android:textSize="15dp" >
     </TextView>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content" >
 
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:divider="#b5b5b5"
-            android:dividerHeight="1dp" />
-    </LinearLayout>
+            android:orientation="vertical" >
 
-</TableLayout>
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:divider="#b5b5b5"
+                android:dividerHeight="1dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_ugc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="对搜索结果不满意？"
+        android:textColor="#4169E1"
+        android:textSize="15sp" >
+    </TextView>
+
+</LinearLayout>

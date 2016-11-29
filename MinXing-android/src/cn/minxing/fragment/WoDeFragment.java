@@ -86,16 +86,6 @@ public class WoDeFragment extends Fragment {
 	TextView name, phone;
 	static String account;
 
-	/*
-	 * 即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。
-	 * 
-	 * @see android.support.v4.app.Fragment#setUserVisibleHint(boolean)
-	 */
-	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		super.setUserVisibleHint(isVisibleToUser);
-	}
-
 	@SuppressLint("HandlerLeak")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,24 +109,23 @@ public class WoDeFragment extends Fragment {
 		tr_rss = (TableRow) v.findViewById(R.id.tr_rss);
 		name = (TextView) v.findViewById(R.id.name);
 		phone = (TextView) v.findViewById(R.id.phone);
-		// name.setText("村名张三");
+
 		// 希望能实现获取账号信息后不再访问后台
 
-		handler = new Handler() {
-
-			@SuppressLint("HandlerLeak")
-			@Override
-			public void handleMessage(Message msg) {
-				// TODO Auto-generated method stub
-				super.handleMessage(msg);
-
-				//if (name.getText().toString() == "村名张三") {
-					postSampleData();
-					retrieveSampleData();
-				//}
-			}
-		};
-		handler.sendEmptyMessageDelayed(0, 0);
+		// handler = new Handler() {
+		//
+		// @SuppressLint("HandlerLeak")
+		// @Override
+		// public void handleMessage(Message msg) {
+		// // TODO Auto-generated method stub
+		// super.handleMessage(msg);
+		//
+		// postSampleData();
+		// retrieveSampleData();
+		//
+		// }
+		// };
+		// handler.sendEmptyMessageDelayed(0, 2000);
 
 		tr_toupiao.setOnClickListener(new Button.OnClickListener() {
 
@@ -280,7 +269,7 @@ public class WoDeFragment extends Fragment {
 
 		String sampleURL = SERVICE_URL + "/cx";
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK,
-				getActivity(), "加载中...");
+				getActivity(), "加载中…");
 		wst.execute(new String[] { sampleURL });
 
 	}
@@ -503,4 +492,33 @@ public class WoDeFragment extends Fragment {
 		Toast.makeText(getActivity(), string, Toast.LENGTH_SHORT).show();
 	}
 
+	/*
+	 * 即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。
+	 * 
+	 * @see android.support.v4.app.Fragment#setUserVisibleHint(boolean)
+	 */
+	// 以下的方法可以实现单个fragment的网络加载，而不会带动上下文fragment的动态加载
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+		if (isVisibleToUser) {
+			// 相当于Fragment的onResume
+			// handler = new Handler() {
+			//
+			// @SuppressLint("HandlerLeak")
+			// @Override
+			// public void handleMessage(Message msg) {
+			// // TODO Auto-generated method stub
+			// super.handleMessage(msg);
+
+			postSampleData();
+			retrieveSampleData();
+
+			// }
+			// };
+			// handler.sendEmptyMessageDelayed(0, 0);
+		} else {
+			// 相当于Fragment的onPause
+		}
+	}
 }
