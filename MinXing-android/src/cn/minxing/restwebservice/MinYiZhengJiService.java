@@ -66,6 +66,7 @@ public class MinYiZhengJiService extends Activity {
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/toupiaogonggao";
 	private static final String TAG = "MinYiZhengJiActivity";
 	private Handler handler;
+	boolean isReqing = false;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -145,7 +146,12 @@ public class MinYiZhengJiService extends Activity {
 			public void handleMessage(Message msg) {
 				// TODO Auto-generated method stub
 				super.handleMessage(msg);
-				updating();
+				if (!isReqing) {
+					updating();
+					isReqing = true;
+				} else {
+					return;
+				}
 			}
 		};
 		handler.sendEmptyMessageDelayed(0, 1000);

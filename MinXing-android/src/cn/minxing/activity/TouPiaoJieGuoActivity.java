@@ -41,11 +41,7 @@ public class TouPiaoJieGuoActivity extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 
-			Intent intent = new Intent();
-			intent.setClass(TouPiaoJieGuoActivity.this,
-					MinYiZhengJiService.class);
-			startActivity(intent);
-			TouPiaoJieGuoActivity.this.finish();
+			finish();
 		}
 		return super.onKeyDown(keyCode, event);
 	}

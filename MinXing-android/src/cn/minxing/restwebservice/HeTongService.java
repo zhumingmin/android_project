@@ -80,10 +80,7 @@ public class HeTongService extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				intent.setClass(HeTongService.this, HeTongGuanLiService.class);
-				startActivity(intent);
-				HeTongService.this.finish();
+				finish();
 
 			}
 		});
@@ -325,10 +322,7 @@ public class HeTongService extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
-			Intent intent = new Intent();
-			intent.setClass(HeTongService.this, HeTongGuanLiService.class);
-			startActivity(intent);
-			HeTongService.this.finish();
+			finish();
 
 		}
 		return super.onKeyDown(keyCode, event);

@@ -52,7 +52,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class HeTongGuanLiService extends Activity {
-	private Button chakanbaobiao, yiwenfankui;
+	private Button chakanbaobiao, chakanmoban;
 	private ImageButton fanhui;
 	private TextView caiwu, shijian, caiwugonggao;
 	LinearLayout ly_hetong;
@@ -60,6 +60,7 @@ public class HeTongGuanLiService extends Activity {
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/caiwugonggao";
 	private static final String TAG = "HeTongGuanLiActivity";
 	private Handler handler;
+	boolean isReqing = false;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,7 +75,7 @@ public class HeTongGuanLiService extends Activity {
 
 		fanhui = (ImageButton) findViewById(com.zhumingmin.vmsofminxing.R.id.FanHui);
 		chakanbaobiao = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.ChaKanBaoBiao);
-		yiwenfankui = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.YiWenFanKui);
+		chakanmoban = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.YiWenFanKui);
 		ly_hetong = (LinearLayout) findViewById(R.id.ly_hetong);
 
 		caiwu.setOnClickListener(new Button.OnClickListener() {
@@ -91,11 +92,11 @@ public class HeTongGuanLiService extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				HeTongGuanLiService.this.finish();
+				finish();
 
 			}
 		});
-		yiwenfankui.setOnClickListener(new Button.OnClickListener() {
+		chakanmoban.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -105,7 +106,7 @@ public class HeTongGuanLiService extends Activity {
 						ChaKanMoBanActivity.class);
 
 				startActivity(intent);
-				HeTongGuanLiService.this.finish();
+
 			}
 		});
 		chakanbaobiao.setOnClickListener(new Button.OnClickListener() {
@@ -118,7 +119,7 @@ public class HeTongGuanLiService extends Activity {
 				// intent.setClass(CaiWuGuanLi.this, CW_ChaKanBaoBiao.class);
 				intent.setClass(HeTongGuanLiService.this, HeTongService.class);
 				startActivity(intent);
-				HeTongGuanLiService.this.finish();
+
 			}
 		});
 		// yiwenfankui.setOnClickListener(new Button.OnClickListener() {
@@ -136,7 +137,13 @@ public class HeTongGuanLiService extends Activity {
 			public void handleMessage(Message msg) {
 				// TODO Auto-generated method stub
 				super.handleMessage(msg);
-				updating();
+				if (!isReqing) {
+					updating();
+					isReqing = true;
+				} else {
+					return;
+				}
+
 			}
 		};
 		handler.sendEmptyMessageDelayed(0, 1000);

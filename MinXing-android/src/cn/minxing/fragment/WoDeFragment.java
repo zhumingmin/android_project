@@ -85,6 +85,7 @@ public class WoDeFragment extends Fragment {
 	private static final String TAG = "WoDeFragment";
 	TextView name, phone;
 	static String account;
+	boolean isReqing = false;
 
 	@SuppressLint("HandlerLeak")
 	@Override
@@ -502,21 +503,14 @@ public class WoDeFragment extends Fragment {
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
 		if (isVisibleToUser) {
-			// 相当于Fragment的onResume
-			// handler = new Handler() {
-			//
-			// @SuppressLint("HandlerLeak")
-			// @Override
-			// public void handleMessage(Message msg) {
-			// // TODO Auto-generated method stub
-			// super.handleMessage(msg);
+			if (!isReqing) {
+				postSampleData();
+				retrieveSampleData();
+				isReqing = true;
+			} else {
+				return;
+			}
 
-			postSampleData();
-			retrieveSampleData();
-
-			// }
-			// };
-			// handler.sendEmptyMessageDelayed(0, 0);
 		} else {
 			// 相当于Fragment的onPause
 		}

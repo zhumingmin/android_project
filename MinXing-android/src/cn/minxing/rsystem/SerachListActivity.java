@@ -26,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cn.minxing.activity.TianJiaHuiDaActivity;
+
 import cn.minxing.util.RS_News;
 import cn.minxing.util.RS_NewsAdapter;
 
@@ -67,6 +68,7 @@ public class SerachListActivity extends Activity {
 	private TextView tv_result, tv_ugc;
 	private static final String TAG = "SerachListActivity";
 	static String classname;
+	boolean isReqing = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +80,19 @@ public class SerachListActivity extends Activity {
 		tv_ugc = (TextView) findViewById(R.id.tv_ugc);
 		Intent intent = getIntent();
 		if (intent != null) {
+
 			classname = intent.getStringExtra("classname");
+			if (!isReqing) {
+				String sampleURL = SERVICE_URL + "/1";
 
-			String sampleURL = SERVICE_URL + "/1";
-
-			WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK,
-					SerachListActivity.this, "正在加载，请稍候...");
-			wst.execute(new String[] { sampleURL });
+				WebServiceTask wst = new WebServiceTask(
+						WebServiceTask.GET_TASK, SerachListActivity.this,
+						"正在加载，请稍候...");
+				wst.execute(new String[] { sampleURL });
+				isReqing = true;
+			} else {
+				return;
+			}
 
 		}
 
@@ -107,9 +115,6 @@ public class SerachListActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(SerachListActivity.this,
-						SerachActivity.class);
-				startActivity(intent);
 				finish();
 			}
 		});
@@ -118,7 +123,7 @@ public class SerachListActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				SerachListActivity.this.finish();
+
 				Intent intent = new Intent(SerachListActivity.this,
 						TianJiaHuiDaActivity.class);
 				startActivity(intent);
@@ -373,10 +378,7 @@ public class SerachListActivity extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
-			Intent intent = new Intent();
-			intent.setClass(SerachListActivity.this, SerachActivity.class);
-			startActivity(intent);
-			SerachListActivity.this.finish();
+			finish();
 		}
 		return super.onKeyDown(keyCode, event);
 	}

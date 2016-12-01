@@ -85,6 +85,7 @@ public class SerachActivity extends Activity {
 			sousuoshezhi;
 	ImageButton btnSpeak;
 	private RS_TitlePopup titlePopup;
+	boolean isReqing = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +94,17 @@ public class SerachActivity extends Activity {
 		setContentView(R.layout.activity_minxingsousuo_rs);
 		Intent intent = getIntent();
 		if (intent != null) {
-			String sampleURL = SERVICE_URL2 + "/1";
-			WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK,
-					SerachActivity.this, "正在加载，请稍候...");
-			wst.execute(new String[] { sampleURL });
+			if (!isReqing) {
+				String sampleURL = SERVICE_URL2 + "/1";
+				WebServiceTask wst = new WebServiceTask(
+						WebServiceTask.GET_TASK, SerachActivity.this,
+						"正在加载，请稍候...");
+				wst.execute(new String[] { sampleURL });
+				isReqing = true;
+			} else {
+				return;
+			}
+
 		}
 		newsousuo = (EditText) findViewById(R.id.newsousuo1);
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_sousuo);
@@ -152,7 +160,6 @@ public class SerachActivity extends Activity {
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
 				startActivity(intent);
-				finish();
 
 			}
 
@@ -177,7 +184,6 @@ public class SerachActivity extends Activity {
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
 				startActivity(intent);
-				finish();
 
 			}
 
@@ -202,7 +208,7 @@ public class SerachActivity extends Activity {
 						SerachListActivity.class);
 				startActivity(intent);
 				intent.putExtra("classname", classname);
-				finish();
+
 			}
 
 		});
@@ -226,7 +232,7 @@ public class SerachActivity extends Activity {
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
 				startActivity(intent);
-				finish();
+
 			}
 
 		});
@@ -240,7 +246,6 @@ public class SerachActivity extends Activity {
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
 				startActivity(intent);
-				finish();
 
 			}
 
@@ -293,7 +298,6 @@ public class SerachActivity extends Activity {
 							Intent intent = new Intent(SerachActivity.this,
 									SerachListActivity.class);
 							startActivity(intent);
-							finish();
 
 						}
 						return false;
@@ -666,7 +670,7 @@ public class SerachActivity extends Activity {
 
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 
-			SerachActivity.this.finish();
+			finish();
 		}
 		return super.onKeyDown(keyCode, event);
 	}
