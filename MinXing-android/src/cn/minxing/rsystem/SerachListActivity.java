@@ -70,11 +70,19 @@ public class SerachListActivity extends Activity {
 	static String classname;
 	boolean isReqing = false;
 
+	/**
+	 * 刷新, 这种刷新方法，只有一个Activity实例。
+	 */
+	public void refresh() {
+		onCreate(null);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_listview_rs);
+
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_liebiao);
 		tv_result = (TextView) findViewById(R.id.tv_result);
 		tv_ugc = (TextView) findViewById(R.id.tv_ugc);
@@ -115,6 +123,10 @@ public class SerachListActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+
+				Intent intent = new Intent(SerachListActivity.this,
+						SerachActivity.class);
+				startActivity(intent);
 				finish();
 			}
 		});
@@ -378,7 +390,11 @@ public class SerachListActivity extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
+			Intent intent = new Intent(SerachListActivity.this,
+					SerachActivity.class);
+			startActivity(intent);
 			finish();
+
 		}
 		return super.onKeyDown(keyCode, event);
 	}

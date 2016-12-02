@@ -60,7 +60,7 @@ public class ZhangHaoAnQuanActivity extends Activity {
 						CertificateRest.class);
 				// intent.setClass(ZhangHaoAnQuan.this, TuiJian.class);
 				startActivity(intent);
-				ZhangHaoAnQuanActivity.this.finish();
+
 			}
 		});
 		anquanzhongxin.setOnClickListener(new Button.OnClickListener() {
@@ -74,7 +74,7 @@ public class ZhangHaoAnQuanActivity extends Activity {
 						MinXingAnQuanZhongXinActivity.class);
 				// intent.setClass(ZhangHaoAnQuan.this, TuiJian.class);
 				startActivity(intent);
-				ZhangHaoAnQuanActivity.this.finish();
+
 			}
 		});
 	}

@@ -1,6 +1,8 @@
 package cn.minxing.rsystem;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,8 +26,8 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
+import cn.minxing.activity.NewsDetailActivity;
 import cn.minxing.util.RS_News;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -48,16 +50,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sun.jersey.core.util.Base64;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.zhumingmin.vmsofminxing.R;
 
 public class SerachDetailActivity extends Activity {
-	private ImageButton jiafen, koufen;
+	private ImageButton jiafen, koufen, ib_share;
 	private TextView title, category, readnumber, tuijian, butuijian, body;
 	private LinearLayout ly_fanhui;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/newsnumber";
 	String picturepath = null;
 	private static final String TAG = "SerachDetailActivity";
 	ImageView imageViewOne;
+	final SHARE_MEDIA[] displaylist = new SHARE_MEDIA[] { SHARE_MEDIA.WEIXIN,
+			SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.SINA, SHARE_MEDIA.QQ,
+			SHARE_MEDIA.QZONE, SHARE_MEDIA.DOUBAN };
+	ImageView ivPlay;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +81,21 @@ public class SerachDetailActivity extends Activity {
 		body = (TextView) findViewById(R.id.body);
 		jiafen = (ImageButton) findViewById(R.id.jiafen);
 		koufen = (ImageButton) findViewById(R.id.koufen);
+
+		ivPlay = (ImageView) findViewById(R.id.ivPlay);
+
+		ib_share = (ImageButton) findViewById(R.id.ib_share);
+		ib_share.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				DisplayToast("将使用第三方工具实现，如友盟提供的分享功能！");
+
+				onActivityResult(0, 0, null);
+				shareBySystem();
+
+			}
+		});
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_xiangqing);
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
@@ -184,6 +207,25 @@ public class SerachDetailActivity extends Activity {
 				jiafen.setEnabled(false);// 设置这个属性
 			}
 		});
+		new UMShareListener() {
+			@Override
+			public void onResult(SHARE_MEDIA platform) {
+				Toast.makeText(SerachDetailActivity.this, platform + " 分享成功啦",
+						Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onError(SHARE_MEDIA platform, Throwable t) {
+				Toast.makeText(SerachDetailActivity.this, platform + " 分享失败啦",
+						Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onCancel(SHARE_MEDIA platform) {
+				Toast.makeText(SerachDetailActivity.this, platform + " 分享取消了",
+						Toast.LENGTH_SHORT).show();
+			}
+		};
 	}
 
 	public void postData(View vw) {
@@ -204,6 +246,70 @@ public class SerachDetailActivity extends Activity {
 		// the passed String is the URL we will POST to
 		wst.execute(new String[] { SERVICE_URL });
 
+	}
+
+	/**
+	 * 截取全屏
+	 * 
+	 * @return
+	 */
+	public Bitmap captureScreenWindow() {
+		getWindow().getDecorView().setDrawingCacheEnabled(true);
+		Bitmap bmp = getWindow().getDecorView().getDrawingCache();
+		return bmp;
+	}
+
+	/**
+	 * 保存到内存卡
+	 * 
+	 * @param bitName
+	 * @param mBitmap
+	 */
+	public void saveBitmapForSdCard(String bitName, Bitmap mBitmap) {
+		// 创建file对象
+		File f = new File("/sdcard/" + bitName + ".png");
+		try {
+			// 创建
+			f.createNewFile();
+		} catch (IOException e) {
+
+		}
+		FileOutputStream fOut = null;
+		try {
+			fOut = new FileOutputStream(f);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		// 原封不动的保存在内存卡上
+		mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+		try {
+			fOut.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			fOut.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/** * 通过系统的组件进行分享 */
+	private void shareBySystem() {
+		Bitmap bitmap = captureScreenWindow();
+		ivPlay.setImageBitmap(bitmap);
+		long time = System.currentTimeMillis();
+		saveBitmapForSdCard("img" + time, bitmap);
+
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("image/*");
+		intent.putExtra(Intent.EXTRA_SUBJECT, "Share");
+		
+		// 设置分享的内容
+		intent.putExtra(Intent.EXTRA_TEXT, title.getText().toString());
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(Intent.createChooser(intent, getTitle()));
+		ivPlay.setImageBitmap(null);
 	}
 
 	// 主要操作部分

@@ -69,14 +69,13 @@
         android:layout_marginTop="10dp"
         android:background="#FFFFFF" >
 
-        <EditText
+        <cn.minxing.view.ClearEditText
             android:id="@+id/newsousuo1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:hint="请输入关键词…"
-            android:maxLines="1" >
-        </EditText>
+            android:maxLines="1" />
 
         <ImageButton
             android:id="@+id/btnSpeak1"

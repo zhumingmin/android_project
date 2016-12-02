@@ -431,44 +431,25 @@
             android:name="com.minxing.recommend.DialogActivity"
             android:label="测试" >
         </activity>
-        <activity android:name="cn.minxing.activity.NewsActivity" >
-        </activity>
-        <activity android:name="cn.minxing.activity.NewsDetailActivity" >
-        </activity>
-        <activity android:name="cn.minxing.restwebservice.HeTongService" >
-        </activity>
-        <activity android:name="cn.minxing.restwebservice.BaoJianService" >
-        </activity>
-        <activity android:name="cn.minxing.restwebservice.HuJiService" >
-        </activity>
-        <activity android:name="cn.minxing.restwebservice.YiBaoService" >
-        </activity>
-        <activity android:name="cn.minxing.activity.TouPiaoJieGuoActivity" >
-        </activity>
-        <activity android:name="cn.minxing.activity.MinXingAnQuanZhongXinActivity" >
-        </activity>
-        <activity android:name="cn.minxing.util.JianChaGengXin" >
-        </activity>
-        <activity android:name="cn.minxing.activity.MinXingSheQuActivity" >
-        </activity>
-        <activity android:name="cn.minxing.restwebservice.LoginService" >
-        </activity>
-        <activity android:name="cn.minxing.activity.RssActivity" >
-        </activity>
-        <activity android:name="cn.minxing.activity.ShowDescriptionActivity" >
-        </activity>
-        <activity android:name="cn.minxing.activity.MinXingSouSuoActivity" >
-        </activity>
-        <activity android:name="cn.minxing.activity.MinXingSouSuoJieGuoActivity" >
-        </activity>
-        <activity android:name="cn.minxing.activity.TuiJianDetailActivity" >
-        </activity>
-        <activity android:name="cn.minxing.activity.GuideViewPagerActivity" >
-        </activity>
-        <activity android:name="cn.minxing.activity.TianJiaHuiDaActivity" >
-        </activity>
-        <activity android:name="cn.minxing.restwebservice.NewsService" >
-        </activity>
+        <activity android:name="cn.minxing.activity.NewsActivity" />
+        <activity android:name="cn.minxing.activity.NewsDetailActivity" />
+        <activity android:name="cn.minxing.restwebservice.HeTongService" />
+        <activity android:name="cn.minxing.restwebservice.BaoJianService" />
+        <activity android:name="cn.minxing.restwebservice.HuJiService" />
+        <activity android:name="cn.minxing.restwebservice.YiBaoService" />
+        <activity android:name="cn.minxing.activity.TouPiaoJieGuoActivity" />
+        <activity android:name="cn.minxing.activity.MinXingAnQuanZhongXinActivity" />
+        <activity android:name="cn.minxing.util.JianChaGengXin" />
+        <activity android:name="cn.minxing.activity.MinXingSheQuActivity" />
+        <activity android:name="cn.minxing.restwebservice.LoginService" />
+        <activity android:name="cn.minxing.activity.RssActivity" />
+        <activity android:name="cn.minxing.activity.ShowDescriptionActivity" />
+        <activity android:name="cn.minxing.activity.MinXingSouSuoActivity" />
+        <activity android:name="cn.minxing.activity.MinXingSouSuoJieGuoActivity" />
+        <activity android:name="cn.minxing.activity.TuiJianDetailActivity" />
+        <activity android:name="cn.minxing.activity.GuideViewPagerActivity" />
+        <activity android:name="cn.minxing.activity.TianJiaHuiDaActivity" />
+        <activity android:name="cn.minxing.restwebservice.NewsService" />
         <activity
             android:name="cn.minxing.activity.CatchActivity"
             android:label="时事新闻" >
@@ -477,8 +458,8 @@
         <activity android:name="cn.minxing.rsystem.SerachDetailActivity" />
         <activity android:name="cn.minxing.rsystem.SerachListActivity" />
         <activity android:name="cn.minxing.rsystem.ReCiSerachActivity" />
-        <activity android:name="cn.minxing.activity.CatchDetailActivity" >
-        </activity>
+        <activity android:name="cn.minxing.activity.CatchDetailActivity" />
+        <activity android:name="cn.minxing.activity.LiuYanActivity" />
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"

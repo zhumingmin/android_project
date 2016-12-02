@@ -31,6 +31,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -51,12 +53,12 @@ import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import cn.minxing.util.RS_ActionItem;
 import cn.minxing.util.RS_News;
 import cn.minxing.util.RS_RecordSQLiteOpenHelper;
 import cn.minxing.view.RS_MyListView;
 import cn.minxing.view.RS_TitlePopup;
+
 import com.zhumingmin.vmsofminxing.R;
 
 /*
@@ -86,6 +88,16 @@ public class SerachActivity extends Activity {
 	ImageButton btnSpeak;
 	private RS_TitlePopup titlePopup;
 	boolean isReqing = false;
+
+	// /**
+	// * 调用onCreate(), 目的是刷新数据,
+	// * 从另一activity界面返回到该activity界面时, 此方法自动调用
+	// */
+	// @Override
+	// protected void onResume() {
+	// super.onResume();
+	// onCreate(null);
+	// }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +172,7 @@ public class SerachActivity extends Activity {
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
 				startActivity(intent);
-
+				finish();
 			}
 
 		});
@@ -184,7 +196,7 @@ public class SerachActivity extends Activity {
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
 				startActivity(intent);
-
+				finish();
 			}
 
 		});
@@ -208,7 +220,7 @@ public class SerachActivity extends Activity {
 						SerachListActivity.class);
 				startActivity(intent);
 				intent.putExtra("classname", classname);
-
+				finish();
 			}
 
 		});
@@ -232,7 +244,7 @@ public class SerachActivity extends Activity {
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
 				startActivity(intent);
-
+				finish();
 			}
 
 		});
@@ -241,12 +253,27 @@ public class SerachActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				String keyword = newsousuo.getText().toString();
+
+				if (keyword.equals("")) {
+					Toast.makeText(getApplicationContext(), "关键词不能空！", 0)
+							.show();
+				}
+
+				WebServiceTask wst = new WebServiceTask(
+						WebServiceTask.POST_TASK, SerachActivity.this,
+						"正在搜索，请稍后…");
+
+				wst.addNameValuePair("keyword", keyword);
+
+				// the passed String is the URL we will POST to
+				wst.execute(new String[] { SERVICE_URL });
 				String classname = "SerachActivity";
 				Intent intent = new Intent(SerachActivity.this,
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
 				startActivity(intent);
-
+				finish();
 			}
 
 		});
@@ -298,7 +325,7 @@ public class SerachActivity extends Activity {
 							Intent intent = new Intent(SerachActivity.this,
 									SerachListActivity.class);
 							startActivity(intent);
-
+							finish();
 						}
 						return false;
 					}

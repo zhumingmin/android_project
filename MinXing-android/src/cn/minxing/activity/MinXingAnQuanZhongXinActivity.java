@@ -1,5 +1,7 @@
 package cn.minxing.activity;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import cn.minxing.restfulwebservice.CertificateRest;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,12 +22,20 @@ public class MinXingAnQuanZhongXinActivity extends Activity {
 	private Button zhanghaoanquan, bangzhu, guanyu, shezhi_zhanghaoanquan,
 			anquanzhongxin, ceshirukou;
 	private TextView xianshizhanghao, xianshixingming, xianshishoujihao;
-
+	private LinearLayout ly_fanhui;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_minxinganquanzhongxin);
+		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_anquanzhongxin);
+		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 	}
 
 	private void DisplayToast(String string) {
@@ -36,11 +47,7 @@ public class MinXingAnQuanZhongXinActivity extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 
-			Intent intent = new Intent();
-			intent.setClass(MinXingAnQuanZhongXinActivity.this,
-					SZ_SheZhiActivity.class);
-			startActivity(intent);
-			MinXingAnQuanZhongXinActivity.this.finish();
+			finish();
 		}
 		return super.onKeyDown(keyCode, event);
 	}

@@ -84,7 +84,7 @@ public class WoDeFragment extends Fragment {
 
 	private static final String TAG = "WoDeFragment";
 	TextView name, phone;
-	static String account;
+	static String account, grxx_name, grxx_phone;
 	boolean isReqing = false;
 
 	@SuppressLint("HandlerLeak")
@@ -303,7 +303,8 @@ public class WoDeFragment extends Fragment {
 
 			String xingming = jso.optString("name");
 			String dianhua = jso.optString("phonenumber");
-
+			grxx_name = xingming;
+			grxx_phone = dianhua;
 			name.setText(xingming);
 			phone.setText(dianhua);
 
@@ -507,8 +508,16 @@ public class WoDeFragment extends Fragment {
 				postSampleData();
 				retrieveSampleData();
 				isReqing = true;
-			} else {
-				return;
+			} 
+			
+			// else if (isReqing && grxx_name != null && grxx_phone != null) {
+			// name.setText(grxx_name);
+			// phone.setText(grxx_phone);
+			// }
+			else 
+			{
+				name.setText(grxx_name);
+				phone.setText(grxx_phone);
 			}
 
 		} else {

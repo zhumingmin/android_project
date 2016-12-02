@@ -49,11 +49,7 @@ public class GuanYuMinXingZhiJiaActivity extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 
-			Intent intent = new Intent();
-			intent.setClass(GuanYuMinXingZhiJiaActivity.this,
-					SZ_SheZhiActivity.class);
-			startActivity(intent);
-			GuanYuMinXingZhiJiaActivity.this.finish();
+			finish();
 		}
 		return super.onKeyDown(keyCode, event);
 	}

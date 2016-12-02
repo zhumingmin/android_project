@@ -49,12 +49,13 @@
         </TextView>
 
         <Button
+            android:id="@+id/liuyanban"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:background="@drawable/btn_bg"
-            android:text=""
+            android:text="留言板"
             android:textColor="#fff"
             android:textSize="20dp" >
         </Button>
@@ -63,7 +64,36 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/help" >
+        android:src="@drawable/guanyuminxingzhijia" >
     </ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff" >
+
+        <TextView
+            android:id="@+id/guanyu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:lineSpacingExtra="2dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text=""
+            android:textSize="15dp" >
+        </TextView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/guanyu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:text="*最终解释权归民兴村所有"
+        android:textColor="#999999"
+        android:textSize="15dp" >
+    </TextView>
 
 </LinearLayout>

@@ -67,6 +67,7 @@ public class MinYiZhengJiService extends Activity {
 	private static final String TAG = "MinYiZhengJiActivity";
 	private Handler handler;
 	boolean isReqing = false;
+	static String gonggaolan, gonggaoshijian;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -150,7 +151,9 @@ public class MinYiZhengJiService extends Activity {
 					updating();
 					isReqing = true;
 				} else {
-					return;
+
+					toupiaogonggao.setText(gonggaolan);
+					shijian.setText(gonggaoshijian);
 				}
 			}
 		};
@@ -174,7 +177,8 @@ public class MinYiZhengJiService extends Activity {
 
 			String announcement = jso.optString("gonggao");
 			String time = jso.optString("time");
-
+			gonggaolan = announcement;
+			gonggaoshijian = time;
 			toupiaogonggao.setText(announcement);
 			shijian.setText(time);
 

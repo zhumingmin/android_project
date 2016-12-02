@@ -61,6 +61,7 @@ public class HeTongGuanLiService extends Activity {
 	private static final String TAG = "HeTongGuanLiActivity";
 	private Handler handler;
 	boolean isReqing = false;
+	static String gonggaolan, gonggaoshijian;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -141,7 +142,8 @@ public class HeTongGuanLiService extends Activity {
 					updating();
 					isReqing = true;
 				} else {
-					return;
+					caiwugonggao.setText(gonggaolan);
+					shijian.setText(gonggaoshijian);
 				}
 
 			}
@@ -166,7 +168,8 @@ public class HeTongGuanLiService extends Activity {
 
 			String announcement = jso.optString("gonggao");
 			String time = jso.optString("time");
-
+			gonggaolan = announcement;
+			gonggaoshijian = time;
 			caiwugonggao.setText(announcement);
 			shijian.setText(time);
 
