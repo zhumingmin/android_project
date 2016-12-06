@@ -85,23 +85,15 @@ public class SerachListActivity extends Activity {
 
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_liebiao);
 		tv_result = (TextView) findViewById(R.id.tv_result);
-		tv_ugc = (TextView) findViewById(R.id.tv_ugc);
+		tv_ugc = (TextView) findViewById(R.id.tv_tianjiehuida);
+
 		Intent intent = getIntent();
 		if (intent != null) {
-
 			classname = intent.getStringExtra("classname");
-			if (!isReqing) {
-				String sampleURL = SERVICE_URL + "/1";
-
-				WebServiceTask wst = new WebServiceTask(
-						WebServiceTask.GET_TASK, SerachListActivity.this,
-						"正在加载，请稍候...");
-				wst.execute(new String[] { sampleURL });
-				isReqing = true;
-			} else {
-				return;
-			}
-
+			String sampleURL = SERVICE_URL + "/1";
+			WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK,
+					SerachListActivity.this, "正在加载，请稍候…");
+			wst.execute(new String[] { sampleURL });
 		}
 
 		load = (Button) findViewById(R.id.load);
@@ -118,6 +110,7 @@ public class SerachListActivity extends Activity {
 			}
 
 		});
+
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -130,19 +123,20 @@ public class SerachListActivity extends Activity {
 				finish();
 			}
 		});
+
 		tv_ugc.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {
+			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
 				Intent intent = new Intent(SerachListActivity.this,
 						TianJiaHuiDaActivity.class);
 				startActivity(intent);
-
 			}
 
 		});
+
 		RS_NewsAdapter adapter = new RS_NewsAdapter(SerachListActivity.this,
 				R.layout.news_list_item_rs, newslist);
 		adapter.notifyDataSetChanged();

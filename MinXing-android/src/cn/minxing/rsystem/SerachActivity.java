@@ -88,6 +88,7 @@ public class SerachActivity extends Activity {
 	ImageButton btnSpeak;
 	private RS_TitlePopup titlePopup;
 	boolean isReqing = false;
+	static String zhuti;
 
 	// /**
 	// * 调用onCreate(), 目的是刷新数据,
@@ -106,16 +107,11 @@ public class SerachActivity extends Activity {
 		setContentView(R.layout.activity_minxingsousuo_rs);
 		Intent intent = getIntent();
 		if (intent != null) {
-			if (!isReqing) {
-				String sampleURL = SERVICE_URL2 + "/1";
-				WebServiceTask wst = new WebServiceTask(
-						WebServiceTask.GET_TASK, SerachActivity.this,
-						"正在加载，请稍候...");
-				wst.execute(new String[] { sampleURL });
-				isReqing = true;
-			} else {
-				return;
-			}
+
+			String sampleURL = SERVICE_URL2 + "/1";
+			WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK,
+					SerachActivity.this, "正在加载，请稍候…");
+			wst.execute(new String[] { sampleURL });
 
 		}
 		newsousuo = (EditText) findViewById(R.id.newsousuo1);
@@ -161,7 +157,7 @@ public class SerachActivity extends Activity {
 
 				WebServiceTask wst = new WebServiceTask(
 						WebServiceTask.POST_TASK, SerachActivity.this,
-						"正在跳转，请稍后……");
+						"正在跳转，请稍后…");
 
 				wst.addNameValuePair("keyword", keyword);
 
@@ -182,7 +178,7 @@ public class SerachActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String keyword = soufenjiao.getText().toString();
-
+				zhuti = keyword;
 				WebServiceTask wst = new WebServiceTask(
 						WebServiceTask.POST_TASK, SerachActivity.this,
 						"正在跳转，请稍后……");
@@ -206,7 +202,7 @@ public class SerachActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String keyword = soumugua.getText().toString();
-
+				zhuti = keyword;
 				WebServiceTask wst = new WebServiceTask(
 						WebServiceTask.POST_TASK, SerachActivity.this,
 						"正在跳转，请稍后……");
@@ -230,7 +226,7 @@ public class SerachActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String keyword = souqita.getText().toString();
-
+				zhuti = keyword;
 				WebServiceTask wst = new WebServiceTask(
 						WebServiceTask.POST_TASK, SerachActivity.this,
 						"正在跳转，请稍后……");
@@ -254,7 +250,7 @@ public class SerachActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String keyword = newsousuo.getText().toString();
-
+				zhuti = keyword;
 				if (keyword.equals("")) {
 					Toast.makeText(getApplicationContext(), "关键词不能空！", 0)
 							.show();
@@ -308,7 +304,7 @@ public class SerachActivity extends Activity {
 							// TODO 根据输入的内容模糊查询商品，并跳转到另一个界面，由你自己去实现
 
 							String keyword = newsousuo.getText().toString();
-
+							zhuti = keyword;
 							if (keyword.equals("")) {
 								Toast.makeText(getApplicationContext(),
 										"关键词不能空！", 0).show();
@@ -486,6 +482,14 @@ public class SerachActivity extends Activity {
 			Log.e(TAG, e.getLocalizedMessage(), e);
 		}
 
+	}
+
+	public String zhuti() {
+		if (zhuti != null) {
+			return zhuti;
+		} else {
+			return "无明确主题";
+		}
 	}
 
 	public static String[] convertStrToArray(String str) {

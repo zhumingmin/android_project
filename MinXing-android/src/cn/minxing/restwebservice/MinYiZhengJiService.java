@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -21,7 +22,13 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
 import cn.minxing.activity.TouPiaoJieGuoActivity;
+import cn.minxing.rsystem.SerachDetailActivity;
+import cn.minxing.rsystem.SerachListActivity;
 import cn.minxing.util.CustomArrayAdapter;
+import cn.minxing.util.RS_News;
+import cn.minxing.util.RS_NewsAdapter;
+import cn.minxing.util.TP_PiaoShu;
+import cn.minxing.util.TP_PiaoShuAdapter;
 
 import com.zhumingmin.vmsofminxing.R;
 
@@ -47,27 +54,33 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("HandlerLeak")
 public class MinYiZhengJiService extends Activity {
 	private Button zhichi, weiguan;
-	private EditText huoqucanxuanzhiwu, huoqugerenshiji;
+	private EditText huoqucanxuanzhiwu, huoqugerenshiji, huoqupiaoshu;
 	private Spinner xuanzecanxuanren;
 	private TextView shijian, toupiaogonggao;
-	private static final String[] kexuancanxuanren = { "项目一", "项目二", "项目三",
-			"项目四", "项目五" };
+
 	ProgressDialog m_pDialog;
 	int m_count = 0;
 	private LinearLayout ly_fanhui;
 	private CustomArrayAdapter<CharSequence> mAdapter;
-	private static final int msgKey1 = 1;
-	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/toupiaogonggao";
+
+	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/vote";
+
 	private static final String TAG = "MinYiZhengJiActivity";
 	private Handler handler;
 	boolean isReqing = false;
 	static String gonggaolan, gonggaoshijian;
+	String[] strArray = null;
+	String[] strArray1 = null;
+	String[] strArray2 = null;
+	String[] strArray3 = null;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,12 +89,14 @@ public class MinYiZhengJiService extends Activity {
 
 		zhichi = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.zhichi);
 		weiguan = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.weiguan);
-		shijian = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.shijian);
+		shijian = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.toupiaoshijian);
 		toupiaogonggao = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.toupiaogonggao);
 		// new TimeThread().start();
-
+		xuanzecanxuanren = (Spinner) findViewById(com.zhumingmin.vmsofminxing.R.id.xuanzecanxuanren);
 		huoqucanxuanzhiwu = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqucanxuanzhiwu);
 		huoqugerenshiji = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqugerenshiji);
+		huoqupiaoshu = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqupiaoshu);
+
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_toupiao);
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
@@ -91,21 +106,29 @@ public class MinYiZhengJiService extends Activity {
 				finish();
 			}
 		});
-		zhichi.setOnClickListener(new Button.OnClickListener() {
+		handler = new Handler() {
 
+			@SuppressLint("HandlerLeak")
 			@Override
-			public void onClick(View v) {
+			public void handleMessage(Message msg) {
 				// TODO Auto-generated method stub
-				DisplayToast("您已支持该参选人！");
+				super.handleMessage(msg);
+				if (!isReqing) {
+					// updating();
+					updating();
+					isReqing = true;
+				} else {
+					toupiaogonggao.setText(gonggaolan);
+					shijian.setText(gonggaoshijian);
+				}
 			}
-		});
-
+		};
+		handler.sendEmptyMessageDelayed(0, 1000);
 		String[] kexuancanxuanren = getResources()
 				.getStringArray(R.array.item4);
 		this.mAdapter = new CustomArrayAdapter<CharSequence>(this,
 				kexuancanxuanren);
 
-		xuanzecanxuanren = (Spinner) findViewById(com.zhumingmin.vmsofminxing.R.id.xuanzecanxuanren);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_dropdown_item, kexuancanxuanren);
 		xuanzecanxuanren.setAdapter(adapter);
@@ -117,8 +140,8 @@ public class MinYiZhengJiService extends Activity {
 							int arg2, long arg3) {
 						// TODO Auto-generated method stub
 						arg0.setVisibility(View.VISIBLE);
-						huoqucanxuanzhiwu.setText("副书记");
-						huoqugerenshiji.setText("水利建设主要负责人");
+						// huoqucanxuanzhiwu.setText("副书记");
+						// huoqugerenshiji.setText("水利建设主要负责人");
 					}
 
 					@Override
@@ -128,6 +151,38 @@ public class MinYiZhengJiService extends Activity {
 					}
 
 				});
+
+		zhichi.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				DisplayToast("您已支持该参选人！");
+				int a = Integer.parseInt(huoqupiaoshu.getText().toString());
+				int b = a + 1;
+				String piaoshu = Integer.toString(b);
+				huoqupiaoshu.setText(piaoshu);
+				TextView spinnertotextview = (TextView) xuanzecanxuanren
+						.getSelectedView();
+				String canxuanren = spinnertotextview.getText().toString();
+				WebServiceTask wst = new WebServiceTask(
+						WebServiceTask.POST_TASK, MinYiZhengJiService.this,
+						"上传中…");
+				wst.addNameValuePair("piaoShu", piaoshu);
+				wst.addNameValuePair("canXuanRen", canxuanren);
+
+				wst.execute(new String[] { SERVICE_URL });
+				Intent intent = new Intent(MinYiZhengJiService.this,
+						TouPiaoJieGuoActivity.class);
+				intent.putExtra("canxuanren", strArray);
+				intent.putExtra("canxuanzhiwu", strArray1);
+				intent.putExtra("gerenshiji", strArray2);
+				intent.putExtra("piaoshu", strArray3);
+				startActivity(intent);
+				finish();
+			}
+		});
+
 		weiguan.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -136,33 +191,34 @@ public class MinYiZhengJiService extends Activity {
 				DisplayToast("选出自己心目中的好村委！");
 				Intent intent = new Intent(MinYiZhengJiService.this,
 						TouPiaoJieGuoActivity.class);
+
+				intent.putExtra("canxuanren", strArray);
+				intent.putExtra("canxuanzhiwu", strArray1);
+				intent.putExtra("gerenshiji", strArray2);
+				intent.putExtra("piaoshu", strArray3);
 				startActivity(intent);
+				finish();
 
 			}
 		});
-		handler = new Handler() {
 
-			@SuppressLint("HandlerLeak")
-			@Override
-			public void handleMessage(Message msg) {
-				// TODO Auto-generated method stub
-				super.handleMessage(msg);
-				if (!isReqing) {
-					updating();
-					isReqing = true;
-				} else {
-
-					toupiaogonggao.setText(gonggaolan);
-					shijian.setText(gonggaoshijian);
-				}
-			}
-		};
-		handler.sendEmptyMessageDelayed(0, 1000);
 	}
 
-	protected void updating() {
+	public static String[] convertStrToArray(String str) {
+		String[] strArray = null;
+		strArray = str.split(","); // 拆分字符为"," ,然后把结果交给数组strArray
+		return strArray;
+	}
 
-		String sampleURL = SERVICE_URL + "/toupiao";
+	// protected void updating() {
+	// String sampleURL = SERVICE_URL + "/toupiao";
+	// WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this,
+	// "加载中…");
+	// wst.execute(new String[] { sampleURL });
+	// }
+
+	protected void updating() {
+		String sampleURL = SERVICE_URL + "/minyi";
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this,
 				"加载中…");
 		wst.execute(new String[] { sampleURL });
@@ -171,16 +227,65 @@ public class MinYiZhengJiService extends Activity {
 	public void handleResponse(String response) {
 		shijian = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.toupiaoshijian);
 		toupiaogonggao = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.toupiaogonggao);
+		xuanzecanxuanren = (Spinner) findViewById(com.zhumingmin.vmsofminxing.R.id.xuanzecanxuanren);
+		huoqucanxuanzhiwu = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqucanxuanzhiwu);
+		huoqugerenshiji = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqugerenshiji);
+		huoqupiaoshu = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqupiaoshu);
+
 		try {
 
 			JSONObject jso = new JSONObject(response);
 
+			String canxuanren = jso.optString("canXuanRen");
+			String canxuanzhiwu = jso.optString("canXuanZhiWu");
+			String gerenshiji = jso.optString("geRenShiJi");
+			String piaoshu = jso.optString("piaoShu");
 			String announcement = jso.optString("gonggao");
 			String time = jso.optString("time");
 			gonggaolan = announcement;
 			gonggaoshijian = time;
 			toupiaogonggao.setText(announcement);
 			shijian.setText(time);
+			String pattern = "([-*/^()\\]\\[])";
+			canxuanren = canxuanren.replaceAll(pattern, "");
+			canxuanzhiwu = canxuanzhiwu.replaceAll(pattern, "");
+			gerenshiji = gerenshiji.replaceAll(pattern, "");
+			piaoshu = piaoshu.replaceAll(pattern, "");
+
+			strArray = convertStrToArray(canxuanren);
+			strArray1 = convertStrToArray(canxuanzhiwu);
+			strArray2 = convertStrToArray(gerenshiji);
+			strArray3 = convertStrToArray(piaoshu);
+			for (int i = 0; i < strArray.length; i++) {
+				strArray[i] = strArray[i].replace("\"", "");
+				strArray1[i] = strArray1[i].replace("\"", "");
+				strArray2[i] = strArray2[i].replace("\"", "");
+				strArray3[i] = strArray3[i].replace("\"", "");
+
+			}
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					android.R.layout.simple_spinner_dropdown_item, strArray);
+			xuanzecanxuanren.setAdapter(adapter);
+			xuanzecanxuanren
+					.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+
+						@Override
+						public void onItemSelected(AdapterView<?> arg0,
+								View arg1, int arg2, long arg3) {
+							// TODO Auto-generated method stub
+							arg0.setVisibility(View.VISIBLE);
+							huoqugerenshiji.setText(strArray1[arg2]);
+							huoqucanxuanzhiwu.setText(strArray2[arg2]);
+							huoqupiaoshu.setText(strArray3[arg2]);
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> arg0) {
+							// TODO Auto-generated method stub
+
+						}
+
+					});
 
 		} catch (Exception e) {
 			Log.e(TAG, e.getLocalizedMessage(), e);

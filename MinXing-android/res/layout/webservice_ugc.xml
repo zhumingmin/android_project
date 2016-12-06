@@ -38,7 +38,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tianjiahuida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -69,7 +68,7 @@
         android:background="#F5F5F5" >
 
         <EditText
-            android:id="@+id/content_edit"
+            android:id="@+id/content_huida"
             android:layout_width="fill_parent"
             android:layout_height="300dp"
             android:layout_marginBottom="10dp"
@@ -82,6 +81,30 @@
             android:hint="请输入您针对此问题的解答：" >
         </EditText>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/rs_zhuti"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:text="当前主题"
+        android:textColor="#333333"
+        android:textSize="15dp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/rs_shijian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:text="当前手机时间"
+        android:textColor="#333333"
+        android:textSize="15dp" >
+    </TextView>
 
     <Button
         android:id="@+id/tianjiahuida"
