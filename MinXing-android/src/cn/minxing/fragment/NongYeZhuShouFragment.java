@@ -4,36 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.minxing.PushMessage.ExitApplication;
-import cn.minxing.activity.MinXingSouSuoActivity;
-import cn.minxing.activity.SerachView;
-import cn.minxing.activity.ShiShiXinWenActivity;
+
 import cn.minxing.rsystem.SerachActivity;
+
 import cn.minxing.util.ActionItem;
+
 import cn.minxing.view.CategoryTabStrip;
 import cn.minxing.view.TitlePopup;
 
 import com.zhumingmin.vmsofminxing.R;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.KeyEvent;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
+
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 public class NongYeZhuShouFragment extends Fragment {
 	private CategoryTabStrip tabs;
@@ -41,10 +37,15 @@ public class NongYeZhuShouFragment extends Fragment {
 	private MyPagerAdapter adapter;
 	private ImageButton sousuo, gengduo;
 	private TitlePopup titlePopup;
+
+	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/news";
+	private static final String TAG = "NongYeZhuShouFragment";
+
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -84,7 +85,7 @@ public class NongYeZhuShouFragment extends Fragment {
 				// TODO Auto-generated method stub
 
 				Intent intent = new Intent();
-				// intent = new Intent(getActivity(), SerachView.class);
+
 				intent = new Intent(getActivity(), SerachActivity.class);
 				startActivity(intent);
 
@@ -141,9 +142,8 @@ public class NongYeZhuShouFragment extends Fragment {
 
 		@Override
 		public Fragment getItem(int position) {
-			return NewsFragment.newInstance(position);
+			return ZiXunFragment.newInstance(position);
 		}
 
 	}
-
 }

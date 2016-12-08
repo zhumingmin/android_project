@@ -5,12 +5,11 @@ import cn.minxing.activity.CatchActivity;
 import cn.minxing.activity.HuJiGuanLiActivity;
 import cn.minxing.activity.JiHuaShengYuActivity;
 import cn.minxing.activity.MinXingCunJieShaoActivity;
-import cn.minxing.activity.NewsActivity;
+
 import cn.minxing.activity.YiBaoSheBaoActivity;
 import cn.minxing.restwebservice.BaoJianService;
 import cn.minxing.restwebservice.HeTongGuanLiService;
 import cn.minxing.restwebservice.HuJiService;
-import cn.minxing.restwebservice.NewsService;
 
 import com.zhumingmin.vmsofminxing.R;
 

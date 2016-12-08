@@ -29,7 +29,7 @@ import cn.minxing.activity.ReadTagActivity;
 import cn.minxing.activity.RssActivity;
 import cn.minxing.activity.SZ_GRXXActivity;
 import cn.minxing.activity.SZ_SheZhiActivity;
-import cn.minxing.activity.SerachView;
+
 import cn.minxing.activity.SheZhiActivity;
 import cn.minxing.activity.TianQiChaXunActivity;
 import cn.minxing.activity.TongXunLuActivity;
@@ -508,14 +508,13 @@ public class WoDeFragment extends Fragment {
 				postSampleData();
 				retrieveSampleData();
 				isReqing = true;
-			} 
-			
+			}
+
 			// else if (isReqing && grxx_name != null && grxx_phone != null) {
 			// name.setText(grxx_name);
 			// phone.setText(grxx_phone);
 			// }
-			else 
-			{
+			else {
 				name.setText(grxx_name);
 				phone.setText(grxx_phone);
 			}

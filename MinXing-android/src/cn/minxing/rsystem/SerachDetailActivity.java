@@ -26,7 +26,6 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
-import cn.minxing.activity.NewsDetailActivity;
 import cn.minxing.util.RS_News;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -128,7 +127,6 @@ public class SerachDetailActivity extends Activity {
 		});
 
 		Intent intent = getIntent();
-
 		intent.getExtras();
 		Bundle data = intent.getExtras();
 		int position = data.getInt("news_id");
@@ -304,7 +302,7 @@ public class SerachDetailActivity extends Activity {
 		Intent intent = new Intent(Intent.ACTION_SEND);
 		intent.setType("image/*");
 		intent.putExtra(Intent.EXTRA_SUBJECT, "Share");
-		
+
 		// 设置分享的内容
 		intent.putExtra(Intent.EXTRA_TEXT, title.getText().toString());
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

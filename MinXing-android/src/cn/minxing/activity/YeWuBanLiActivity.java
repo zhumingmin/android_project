@@ -35,7 +35,7 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 	private ViewPager Mviewpager;
 	private LinearLayout layoutone, layouttwo, layoutthree, layoutfour;
 	private ImageView i01, i02, i03, i04;
-
+	//static String biaoti, laiyuan, yuedu, neirong;
 	private FragmentPagerAdapter adapter;
 	private List<Fragment> mLists = new ArrayList<Fragment>();
 
@@ -50,6 +50,38 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 		initEvent();
 
 	}
+
+//	public String returnbiaoTi() {
+//		return biaoti;
+//	}
+//
+//	public String returnlaiYuan() {
+//		return laiyuan;
+//	}
+//
+//	public String returnyueDu() {
+//		return yuedu;
+//	}
+//
+//	public String returnneiRong() {
+//		return neirong;
+//	}
+//
+//	public void setbiaoTi(String biaoti) {
+//		this.biaoti = biaoti;
+//	}
+//
+//	public void setlaiYuan(String laiyuan) {
+//		this.laiyuan = laiyuan;
+//	}
+//
+//	public void setyueDu(String yuedu) {
+//		this.yuedu = yuedu;
+//	}
+//
+//	public void setneiRong(String neirong) {
+//		this.neirong = neirong;
+//	}
 
 	private void initEvent() {
 		// TODO Auto-generated method stub

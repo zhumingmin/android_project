@@ -460,6 +460,7 @@
         <activity android:name="cn.minxing.rsystem.ReCiSerachActivity" />
         <activity android:name="cn.minxing.activity.CatchDetailActivity" />
         <activity android:name="cn.minxing.activity.LiuYanActivity" />
+        <activity android:name="cn.minxing.activity.ZiXunDetailActivity" />
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"
