@@ -4,28 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.minxing.PushMessage.ExitApplication;
-
 import cn.minxing.rsystem.SerachActivity;
-
 import cn.minxing.util.ActionItem;
-
 import cn.minxing.view.CategoryTabStrip;
 import cn.minxing.view.TitlePopup;
 
 import com.zhumingmin.vmsofminxing.R;
 
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -38,12 +32,17 @@ public class NongYeZhuShouFragment extends Fragment {
 	private ImageButton sousuo, gengduo;
 	private TitlePopup titlePopup;
 
-	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/news";
 	private static final String TAG = "NongYeZhuShouFragment";
 
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
+		// if (isVisibleToUser) {
+		// ZiXunFragment zx = new ZiXunFragment();
+		// zx.onCreate(getArguments());
+		// } else {
+		// // 相当于Fragment的onPause
+		// }
 	}
 
 	@Override
@@ -146,4 +145,5 @@ public class NongYeZhuShouFragment extends Fragment {
 		}
 
 	}
+
 }

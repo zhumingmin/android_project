@@ -79,7 +79,7 @@ public class ZiXunDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_zixun_detail);
-		
+
 		// ZiXunFragment zxfragment = new ZiXunFragment();
 		//
 		// getSupportFragmentManager().beginTransaction()
@@ -173,10 +173,9 @@ public class ZiXunDetailActivity extends Activity {
 		ZiXun zixun = ZiXunFragment.zixunDataList.get(position);
 		biaoti_tv.setText(zixun.getBiaoTi());
 		laiyuan_tv.setText(zixun.getLaiYuan());
-		yuedu_tv.setText(String.valueOf(Integer.parseInt(zixun.getYueDu()) +
-				 1));
+		yuedu_tv.setText(String.valueOf(Integer.parseInt(zixun.getYueDu()) + 1));
 		neirong_tv.setText(zixun.getNeiRong());
-		
+
 	}
 
 	// // 接收方法二

@@ -5,7 +5,6 @@ import cn.minxing.activity.CatchActivity;
 import cn.minxing.activity.HuJiGuanLiActivity;
 import cn.minxing.activity.JiHuaShengYuActivity;
 import cn.minxing.activity.MinXingCunJieShaoActivity;
-
 import cn.minxing.activity.YiBaoSheBaoActivity;
 import cn.minxing.restwebservice.BaoJianService;
 import cn.minxing.restwebservice.HeTongGuanLiService;
@@ -39,6 +38,17 @@ public class YeWuBanLiFragment extends Fragment {
 	private Button dianhuazixun;
 	private TextView mTime;
 	private static final int msgKey1 = 1;
+
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+		// if (isVisibleToUser) {
+		// ZiXunFragment zx = new ZiXunFragment();
+		// zx.onCreate(getArguments());
+		// } else {
+		// // 相当于Fragment的onPause
+		// }
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

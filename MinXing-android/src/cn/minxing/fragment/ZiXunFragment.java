@@ -30,6 +30,7 @@ import cn.minxing.rsystem.SerachListActivity;
 import cn.minxing.util.EventUtil;
 import cn.minxing.util.RS_News;
 import cn.minxing.util.RS_NewsAdapter;
+import cn.minxing.util.VolleyLoadPicture;
 import cn.minxing.util.ZiXun;
 import cn.minxing.util.ZiXunListViewAdapter;
 import cn.minxing.view.PullToRefreshListView;
@@ -57,6 +58,7 @@ import android.widget.FrameLayout.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -75,6 +77,7 @@ public class ZiXunFragment extends Fragment {
 	private int position;
 	String leibie;
 	private Activity mActivity;
+	ImageView zx_tupian;
 
 	public static ZiXunFragment newInstance(int position) {
 		ZiXunFragment f = new ZiXunFragment();
@@ -87,6 +90,14 @@ public class ZiXunFragment extends Fragment {
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
+		if (isVisibleToUser) {
+
+			postZiXunData();
+			getZiXunData();
+
+		} else {
+			// 相当于Fragment的onPause
+		}
 	}
 
 	@Override
@@ -96,8 +107,6 @@ public class ZiXunFragment extends Fragment {
 		position = getArguments().getInt(ARG_POSITION);
 	}
 
-
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -105,7 +114,7 @@ public class ZiXunFragment extends Fragment {
 		// --------------
 		zixunListViewAdapter = new ZiXunListViewAdapter(getActivity(),
 				R.layout.zixun_list_item, zixunDataList);
-
+		zx_tupian = (ImageView) v.findViewById(R.id.zx_tupian);
 		zixunListViewAdapter.notifyDataSetChanged();
 		pullToRefreshListView = (PullToRefreshListView) v
 				.findViewById(R.id.frame_listview_zx);
@@ -129,8 +138,18 @@ public class ZiXunFragment extends Fragment {
 		case 0:
 			leibie = "热点";
 			this.postZiXunData();
-			this.getZiXunData();
 
+			new Thread() {
+				public void run() {
+					try {
+						sleep(1000);
+						getZiXunData();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}.start();
 			pullToRefreshListView.setAdapter(zixunListViewAdapter);
 
 			fl.addView(v);
@@ -194,7 +213,7 @@ public class ZiXunFragment extends Fragment {
 								ZiXunDetailActivity.class);
 						// intent.putExtra("zixun_id", position);
 
-						EventBus.getDefault().post(new EventUtil(position));
+						EventBus.getDefault().post(position);
 						// YeWuBanLiActivity ywbl = new YeWuBanLiActivity();
 						// ywbl.setbiaoTi(zixunDataList.get(position).getBiaoTi());
 						// ywbl.setlaiYuan(zixunDataList.get(position)
@@ -209,7 +228,7 @@ public class ZiXunFragment extends Fragment {
 		return fl;
 	}
 
-	private void postZiXunData() {
+	public void postZiXunData() {
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
 				getActivity(), "加载中…");
 
@@ -219,7 +238,7 @@ public class ZiXunFragment extends Fragment {
 		wst.execute(new String[] { SERVICE_URL });
 	}
 
-	private void getZiXunData() {
+	public void getZiXunData() {
 		String sampleURL = SERVICE_URL2 + "/1";
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK,
 				getActivity(), "更新中…");
@@ -273,12 +292,16 @@ public class ZiXunFragment extends Fragment {
 
 			for (int i = 0; i < strArray.length; i++) {
 				ZiXun zixun = new ZiXun(strArray[i].replace("\"", ""),
-						strArray4[i].replace("\"", ""), strArray5[i].replace(
-								"\"", ""), strArray6[i].replace("\"", ""),
-						strArray7[i].replace("\"", ""), strArray2[i].replace(
+						strArray2[i].replace("\"", ""), strArray3[i].replace(
+								"\"", ""), strArray4[i].replace("\"", ""),
+						strArray5[i].replace("\"", ""), strArray6[i].replace(
 								"\"", "").replace("\\r\\n\\r\\n", "\r\n\r\n"),
-						strArray3[i].replace("\"", "").replace("\\r\\n", ""));
+						strArray7[i].replace("\"", "").replace("\\r\\n", ""));
 				zixunDataList.add(zixun);
+				VolleyLoadPicture vlp = new VolleyLoadPicture(getActivity(),
+						zx_tupian);
+
+				vlp.getmImageLoader().get(strArray5[i], vlp.getOne_listener());
 
 			}
 
@@ -450,6 +473,7 @@ public class ZiXunFragment extends Fragment {
 		}
 
 	}
+
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
