@@ -91,13 +91,11 @@ public class ZiXunFragment extends Fragment {
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
 		if (isVisibleToUser) {
-
-			postZiXunData();
-			getZiXunData();
-
+			// 相当于Fragment的onResume
 		} else {
 			// 相当于Fragment的onPause
 		}
+
 	}
 
 	@Override

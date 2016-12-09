@@ -42,12 +42,12 @@ public class YeWuBanLiFragment extends Fragment {
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
-		// if (isVisibleToUser) {
-		// ZiXunFragment zx = new ZiXunFragment();
-		// zx.onCreate(getArguments());
-		// } else {
-		// // 相当于Fragment的onPause
-		// }
+		if (isVisibleToUser) {
+			// 相当于Fragment的onResume
+		} else {
+			// 相当于Fragment的onPause
+		}
+
 	}
 
 	@Override

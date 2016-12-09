@@ -17,6 +17,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,18 +32,18 @@ public class NongYeZhuShouFragment extends Fragment {
 	private MyPagerAdapter adapter;
 	private ImageButton sousuo, gengduo;
 	private TitlePopup titlePopup;
-
+	private static final int DEFAULT_OFFSCREEN_PAGES = 0;
 	private static final String TAG = "NongYeZhuShouFragment";
 
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
-		// if (isVisibleToUser) {
-		// ZiXunFragment zx = new ZiXunFragment();
-		// zx.onCreate(getArguments());
-		// } else {
-		// // 相当于Fragment的onPause
-		// }
+		if (isVisibleToUser) {
+			// 相当于Fragment的onResume
+		} else {
+			// 相当于Fragment的onPause
+		}
+
 	}
 
 	@Override
@@ -51,6 +52,7 @@ public class NongYeZhuShouFragment extends Fragment {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.fragment_nongyezhushou, container,
 				false);
+
 		ExitApplication.getInstance().addActivity(getActivity());
 		// gengduo = (ImageButton) v.findViewById(R.id.gengduoxianshi);
 		// gengduo.setOnClickListener(new OnClickListener() {
@@ -64,7 +66,7 @@ public class NongYeZhuShouFragment extends Fragment {
 		initData();
 		tabs = (CategoryTabStrip) v.findViewById(R.id.category_strip);
 		pager = (ViewPager) v.findViewById(R.id.view_pager);
-
+		pager.setOffscreenPageLimit(DEFAULT_OFFSCREEN_PAGES);
 		ArrayList<View> viewList = new ArrayList<View>();
 		ListView listView1 = (ListView) (inflater.inflate(R.layout.listview,
 				null)).findViewById(R.id.list);

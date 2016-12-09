@@ -144,13 +144,13 @@ public class CatchActivity extends Activity {
 					long arg3) {
 				Map<String, Object> map = data.get(arg2);
 				String url = (String) (map.get("url"));
-				// Intent intent = new Intent(CatchActivity.this,
-				// CatchDetailActivity.class);
-				// intent.putExtra("puturl", url);
-				// startActivity(intent);
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setData(Uri.parse(url));
-				startActivity(intent);
+				 Intent intent = new Intent(CatchActivity.this,
+				 CatchDetailActivity.class);
+				 intent.putExtra("puturl", url);
+				 startActivity(intent);
+//				Intent intent = new Intent(Intent.ACTION_VIEW);
+//				intent.setData(Uri.parse(url));
+//				startActivity(intent);
 			}
 		});
 	}

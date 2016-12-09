@@ -1,5 +1,7 @@
 package cn.minxing.activity;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,7 +20,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -33,9 +37,23 @@ public class MinXingCunJieShaoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_minxingcun);
-
+		LinearLayout ly_minxing = (LinearLayout) findViewById(R.id.ly_minxing);
 		mWebView = (WebView) findViewById(com.zhumingmin.vmsofminxing.R.id.WebView02);
+		
+		
+		ly_minxing.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				finish();
+
+			}
+		});
+		
+		
+		
 		WebSettings webSettings = mWebView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 
@@ -179,9 +197,9 @@ public class MinXingCunJieShaoActivity extends Activity {
 			return true;
 		}
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
-//			Intent intent = new Intent();
-//			intent.setClass(MinXingCunJieShao.this, Gallery3DActivity.class);
-//			startActivity(intent);
+			// Intent intent = new Intent();
+			// intent.setClass(MinXingCunJieShao.this, Gallery3DActivity.class);
+			// startActivity(intent);
 			MinXingCunJieShaoActivity.this.finish();
 		}
 		return super.onKeyDown(keyCode, event);

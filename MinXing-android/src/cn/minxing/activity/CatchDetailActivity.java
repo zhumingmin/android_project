@@ -1,5 +1,7 @@
 package cn.minxing.activity;
 
+import com.zhumingmin.vmsofminxing.R;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,7 +21,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.SearchView.OnQueryTextListener;
 
@@ -35,6 +39,19 @@ public class CatchDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.catch_detail_activity);
+		LinearLayout ly_xw = (LinearLayout) findViewById(R.id.ly_xw);
+
+		ly_xw.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				finish();
+
+			}
+		});
+
 		Intent intent = getIntent();
 		String url = intent.getStringExtra("puturl");
 		mWebView = (WebView) findViewById(com.zhumingmin.vmsofminxing.R.id.WebView_catch);

@@ -62,10 +62,18 @@ public class MinXingCunFragment extends Fragment {
 			viewPager.setCurrentItem(currentItem);
 		};
 	};
+
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
+		if (isVisibleToUser) {
+			// 相当于Fragment的onResume
+		} else {
+			// 相当于Fragment的onPause
+		}
+
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
