@@ -146,7 +146,7 @@ public class SerachDetailActivity extends Activity {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					final Bitmap bitmap = getHttpBitmap("http://img.tvb.com/i news_web/web/generic_thumbnail.jpg");
+					final Bitmap bitmap = getHttpBitmap("http://img.tvb.com/inews_web/web/generic_thumbnail.jpg");
 					imageViewOne.post(new Runnable() {
 
 						@Override

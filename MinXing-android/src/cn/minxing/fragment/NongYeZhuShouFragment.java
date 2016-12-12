@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -32,41 +33,37 @@ public class NongYeZhuShouFragment extends Fragment {
 	private MyPagerAdapter adapter;
 	private ImageButton sousuo, gengduo;
 	private TitlePopup titlePopup;
-	private static final int DEFAULT_OFFSCREEN_PAGES = 0;
+
 	private static final String TAG = "NongYeZhuShouFragment";
+	View v;
+	private boolean isVisable = false;
 
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
-		super.setUserVisibleHint(isVisibleToUser);
-		if (isVisibleToUser) {
-			// 相当于Fragment的onResume
+		// 判断Fragment中的ListView时候存在，判断该Fragment时候已经正在前台显示
+		// 通过这两个判断，就可以知道什么时候去加载数据了
+		if (getUserVisibleHint() && isVisible()) {
+			isVisable = true;
 		} else {
-			// 相当于Fragment的onPause
+			isVisable = false;
 		}
-
+		super.setUserVisibleHint(isVisibleToUser);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater.inflate(R.layout.fragment_nongyezhushou, container,
-				false);
+		v = inflater.inflate(R.layout.fragment_nongyezhushou, container, false);
 
 		ExitApplication.getInstance().addActivity(getActivity());
-		// gengduo = (ImageButton) v.findViewById(R.id.gengduoxianshi);
-		// gengduo.setOnClickListener(new OnClickListener() {
-		// @Override
-		// public void onClick(View v) {
-		// titlePopup.show(v);
-		// }
-		// });
+
 		titlePopup = new TitlePopup(getActivity(), LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
 		initData();
 		tabs = (CategoryTabStrip) v.findViewById(R.id.category_strip);
 		pager = (ViewPager) v.findViewById(R.id.view_pager);
-		pager.setOffscreenPageLimit(DEFAULT_OFFSCREEN_PAGES);
+
 		ArrayList<View> viewList = new ArrayList<View>();
 		ListView listView1 = (ListView) (inflater.inflate(R.layout.listview,
 				null)).findViewById(R.id.list);
@@ -92,7 +89,13 @@ public class NongYeZhuShouFragment extends Fragment {
 
 			}
 		});
-
+		// gengduo = (ImageButton) v.findViewById(R.id.gengduoxianshi);
+		// gengduo.setOnClickListener(new OnClickListener() {
+		// @Override
+		// public void onClick(View v) {
+		// titlePopup.show(v);
+		// }
+		// });
 		return v;
 	}
 

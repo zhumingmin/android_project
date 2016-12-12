@@ -42,6 +42,7 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 	private static final int DEFAULT_OFFSCREEN_PAGES = 0;
 	private Fragment fr01, fr02, fr03, fr04;
 	private static final String TAG = "YeWuBanLiActivity";
+	int currentItem;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +142,7 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 			public void onPageSelected(int arg0) {
 				// TODO Auto-generated method stub
 
-				int currentItem = Mviewpager.getCurrentItem();
+				currentItem = Mviewpager.getCurrentItem();
 				setSelet(currentItem);
 			}
 
@@ -158,6 +159,10 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 			}
 		});
 
+	}
+
+	public int returncurrentItem() {
+		return currentItem;
 	}
 
 	@Override

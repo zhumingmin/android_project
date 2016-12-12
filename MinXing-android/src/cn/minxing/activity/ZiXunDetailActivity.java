@@ -29,13 +29,19 @@ import org.json.JSONObject;
 import cn.minxing.fragment.ZiXunFragment;
 import cn.minxing.rsystem.BASE64Decoder;
 import cn.minxing.rsystem.SerachListActivity;
+import cn.minxing.util.BroadCastManager;
 import cn.minxing.util.EventUtil;
 import cn.minxing.util.RS_News;
+import cn.minxing.util.VolleyLoadPicture;
 import cn.minxing.util.ZiXun;
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -72,18 +78,14 @@ public class ZiXunDetailActivity extends Activity {
 			SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.SINA, SHARE_MEDIA.QQ,
 			SHARE_MEDIA.QZONE, SHARE_MEDIA.DOUBAN };
 	ImageView ivPlay;
+	String picUrl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		EventBus.getDefault().register(this);
+
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_zixun_detail);
-
-		// ZiXunFragment zxfragment = new ZiXunFragment();
-		//
-		// getSupportFragmentManager().beginTransaction()
-		// .add(R.layout.fragment_zixun, zxfragment).commit();
 
 		imageViewOne = (ImageView) findViewById(R.id.tupian_zx);
 		biaoti_tv = (TextView) findViewById(R.id.biaoti_zx);
@@ -106,6 +108,7 @@ public class ZiXunDetailActivity extends Activity {
 
 			}
 		});
+
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_zixun);
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
@@ -128,16 +131,29 @@ public class ZiXunDetailActivity extends Activity {
 			}
 		});
 
-		// Intent intent = getIntent();
-		// intent.getExtras();
-		// Bundle data = intent.getExtras();
-		// int position = data.getInt("zixun_id");
-		// ZiXun zixun = ZiXunFragment.zixunDataList.get(position);
-		// biaoti_tv.setText(zixun.getBiaoTi());
-		// laiyuan_tv.setText(zixun.getLaiYuan());
-		// yuedu_tv.setText(String.valueOf(Integer.parseInt(zixun.getYueDu()) +
-		// 1));
-		// neirong_tv.setText(zixun.getNeiRong());
+		Intent intent = getIntent();
+		intent.getExtras();
+		Bundle data = intent.getExtras();
+		int position = data.getInt("zixun_id");
+		ZiXun zixun = ZiXunFragment.zixunDataList.get(position);
+		biaoti_tv.setText(zixun.getBiaoTi());
+		laiyuan_tv.setText(zixun.getLaiYuan());
+		yuedu_tv.setText(String.valueOf(Integer.parseInt(zixun.getYueDu()) + 1));
+		neirong_tv.setText(zixun.getNeiRong());
+		picUrl = zixun.getTuPian();
+		VolleyLoadPicture vlp = new VolleyLoadPicture(this, imageViewOne);
+		vlp.getmImageLoader().get(picUrl, vlp.getOne_listener());
+		//neirong_tv.setText(picUrl);
+
+		// if (picUrl != null) {
+		//
+		// vlp.getmImageLoader().get(picUrl, vlp.getOne_listener());
+		// } else {
+		//
+		// vlp.getmImageLoader().get(
+		// "http://ww1.sinaimg.cn/large/54916ae8jw1ds87vwzpjtj.jpg",
+		// vlp.getOne_listener());
+		// }
 
 		// YeWuBanLiActivity ywbl = new YeWuBanLiActivity();
 		// biaoti_tv.setText(ywbl.returnbiaoTi());
@@ -166,53 +182,6 @@ public class ZiXunDetailActivity extends Activity {
 			}
 		};
 	}
-
-	// 接收方法一
-	public void onEvent(EventUtil event) {
-		int position = event.getMsg();
-		ZiXun zixun = ZiXunFragment.zixunDataList.get(position);
-		biaoti_tv.setText(zixun.getBiaoTi());
-		laiyuan_tv.setText(zixun.getLaiYuan());
-		yuedu_tv.setText(String.valueOf(Integer.parseInt(zixun.getYueDu()) + 1));
-		neirong_tv.setText(zixun.getNeiRong());
-
-	}
-
-	// // 接收方法二
-	// public void onEventBackgroundThread(EventUtil event) {
-	// String biaoti = event.getBiaoTi();
-	// String laiyuan = event.getLaiYuan();
-	// String yuedu = event.getYueDu();
-	// String neirong = event.getNeiRong();
-	// biaoti_tv.setText(biaoti);
-	// laiyuan_tv.setText(laiyuan);
-	// yuedu_tv.setText(String.valueOf(Integer.parseInt(yuedu) + 1));
-	// neirong_tv.setText(neirong);
-	// }
-	//
-	// // 接收方法三
-	// public void onEventAsync(EventUtil event) {
-	// String biaoti = event.getBiaoTi();
-	// String laiyuan = event.getLaiYuan();
-	// String yuedu = event.getYueDu();
-	// String neirong = event.getNeiRong();
-	// biaoti_tv.setText(biaoti);
-	// laiyuan_tv.setText(laiyuan);
-	// yuedu_tv.setText(String.valueOf(Integer.parseInt(yuedu) + 1));
-	// neirong_tv.setText(neirong);
-	// }
-	//
-	// // 接收方法四
-	// public void onEventMainThread(EventUtil event) {
-	// String biaoti = event.getBiaoTi();
-	// String laiyuan = event.getLaiYuan();
-	// String yuedu = event.getYueDu();
-	// String neirong = event.getNeiRong();
-	// biaoti_tv.setText(biaoti);
-	// laiyuan_tv.setText(laiyuan);
-	// yuedu_tv.setText(String.valueOf(Integer.parseInt(yuedu) + 1));
-	// neirong_tv.setText(neirong);
-	// }
 
 	/**
 	 * 截取全屏
@@ -526,9 +495,4 @@ public class ZiXunDetailActivity extends Activity {
 		return super.onKeyDown(keyCode, event);
 	}
 
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		EventBus.getDefault().unregister(this);
-	}
 }

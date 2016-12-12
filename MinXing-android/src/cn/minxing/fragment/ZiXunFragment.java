@@ -27,6 +27,7 @@ import cn.minxing.restwebservice.LoginService;
 import cn.minxing.rsystem.SerachActivity;
 import cn.minxing.rsystem.SerachDetailActivity;
 import cn.minxing.rsystem.SerachListActivity;
+import cn.minxing.util.BroadCastManager;
 import cn.minxing.util.EventUtil;
 import cn.minxing.util.RS_News;
 import cn.minxing.util.RS_NewsAdapter;
@@ -75,9 +76,11 @@ public class ZiXunFragment extends Fragment {
 	private static final String ARG_POSITION = "position";
 	private static final String TAG = "ZiXunFragment";
 	private int position;
-	String leibie;
+	String leibie = null;
 	private Activity mActivity;
 	ImageView zx_tupian;
+	FrameLayout fl;
+	LayoutParams params;
 
 	public static ZiXunFragment newInstance(int position) {
 		ZiXunFragment f = new ZiXunFragment();
@@ -89,12 +92,40 @@ public class ZiXunFragment extends Fragment {
 
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
-		super.setUserVisibleHint(isVisibleToUser);
-		if (isVisibleToUser) {
-			// 相当于Fragment的onResume
-		} else {
-			// 相当于Fragment的onPause
+		// 判断Fragment中的ListView时候存在，判断该Fragment时候已经正在前台显示
+		// 通过这两个判断，就可以知道什么时候去加载数据了
+		if (getUserVisibleHint() && isVisible()
+				&& pullToRefreshListView.getVisibility() != View.VISIBLE) {
+			loadData();
 		}
+
+		super.setUserVisibleHint(isVisibleToUser);
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		if (getUserVisibleHint()
+				&& pullToRefreshListView.getVisibility() != View.VISIBLE) {
+			loadData();
+		}
+		super.onActivityCreated(savedInstanceState);
+	}
+
+	private void loadData() {
+
+		postZiXunData();
+
+		new Thread() {
+			public void run() {
+				try {
+					sleep(1000);
+					getZiXunData();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}.start();
 
 	}
 
@@ -108,6 +139,7 @@ public class ZiXunFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+
 		View v = inflater.inflate(R.layout.fragment_zixun, container, false);
 		// --------------
 		zixunListViewAdapter = new ZiXunListViewAdapter(getActivity(),
@@ -116,10 +148,10 @@ public class ZiXunFragment extends Fragment {
 		zixunListViewAdapter.notifyDataSetChanged();
 		pullToRefreshListView = (PullToRefreshListView) v
 				.findViewById(R.id.frame_listview_zx);
-		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT,
+		params = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
 
-		FrameLayout fl = new FrameLayout(getActivity());
+		fl = new FrameLayout(getActivity());
 		fl.setLayoutParams(params);
 
 		// final int margin = (int) TypedValue.applyDimension(
@@ -135,92 +167,57 @@ public class ZiXunFragment extends Fragment {
 		switch (position) {
 		case 0:
 			leibie = "热点";
-			this.postZiXunData();
-
-			new Thread() {
-				public void run() {
-					try {
-						sleep(1000);
-						getZiXunData();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}.start();
+			loadData();
 			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-
 			fl.addView(v);
 
 			break;
 		case 1:
 			leibie = "本地";
-			this.postZiXunData();
-			this.getZiXunData();
-
+			loadData();
 			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-
 			fl.addView(v);
 
 			break;
 		case 2:
 			leibie = "农业新闻";
-			this.postZiXunData();
-			this.getZiXunData();
-
+			loadData();
 			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-
 			fl.addView(v);
 			break;
 		case 3:
 			leibie = "农业政策";
-			this.postZiXunData();
-			this.getZiXunData();
-
+			loadData();
 			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-
 			fl.addView(v);
 			break;
 		case 4:
 			leibie = "生产指导";
-			this.postZiXunData();
-			this.getZiXunData();
-
+			loadData();
 			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-
 			fl.addView(v);
 			break;
 		case 5:
 			leibie = "其他";
-			this.postZiXunData();
-			this.getZiXunData();
-
+			loadData();
 			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-
 			fl.addView(v);
 			break;
 
 		default:
 			break;
 		}
+
 		pullToRefreshListView
 				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
-						Intent intent = new Intent(view.getContext(),
+						Intent intent = new Intent(getActivity(),
 								ZiXunDetailActivity.class);
-						// intent.putExtra("zixun_id", position);
+						intent.putExtra("position", position);
 
-						EventBus.getDefault().post(position);
-						// YeWuBanLiActivity ywbl = new YeWuBanLiActivity();
-						// ywbl.setbiaoTi(zixunDataList.get(position).getBiaoTi());
-						// ywbl.setlaiYuan(zixunDataList.get(position)
-						// .getLaiYuan());
-						// ywbl.setyueDu(zixunDataList.get(position).getYueDu());
-						//
-						// ywbl.setneiRong(zixunDataList.get(position)
-						// .getNeiRong());
-						view.getContext().startActivity(intent);
+						startActivity(intent);
+
 					}
 				});
 		return fl;
@@ -264,12 +261,12 @@ public class ZiXunFragment extends Fragment {
 			String lianjie = jso.optString("lianJie");
 
 			String pattern = "([-*/^()\\]\\[])";
-
+			String pattern1 = "([-*^()\\]\\[])";
 			biaoti = biaoti.replaceAll(pattern, "");
 			laiyuan = laiyuan.replaceAll(pattern, "");
 			yuedu = yuedu.replaceAll(pattern, "");
 			shijian = shijian.replaceAll(pattern, "");
-			tupian = tupian.replaceAll(pattern, "");
+			tupian = tupian.replaceAll(pattern1, "");
 			neirong = neirong.replaceAll(pattern, "");
 			lianjie = lianjie.replaceAll(pattern, "");
 			String[] strArray = null;
@@ -295,11 +292,10 @@ public class ZiXunFragment extends Fragment {
 						strArray5[i].replace("\"", ""), strArray6[i].replace(
 								"\"", "").replace("\\r\\n\\r\\n", "\r\n\r\n"),
 						strArray7[i].replace("\"", "").replace("\\r\\n", ""));
+//				VolleyLoadPicture vlp = new VolleyLoadPicture(getActivity(),
+//						zx_tupian);
+//				vlp.getmImageLoader().get(strArray5[i], vlp.getOne_listener());
 				zixunDataList.add(zixun);
-				VolleyLoadPicture vlp = new VolleyLoadPicture(getActivity(),
-						zx_tupian);
-
-				vlp.getmImageLoader().get(strArray5[i], vlp.getOne_listener());
 
 			}
 
@@ -472,9 +468,4 @@ public class ZiXunFragment extends Fragment {
 
 	}
 
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		mActivity = activity;
-	}
 }
