@@ -68,7 +68,7 @@ import com.zhumingmin.vmsofminxing.R;
 
 public class ZiXunDetailActivity extends Activity {
 	private ImageButton ib_share;
-	private TextView biaoti_tv, laiyuan_tv, yuedu_tv, neirong_tv;
+	private TextView biaoti_tv, laiyuan_tv, shijian_tv, yuedu_tv, neirong_tv;
 	private LinearLayout ly_fanhui;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/zixun";
 	String picturepath = null;
@@ -90,6 +90,7 @@ public class ZiXunDetailActivity extends Activity {
 		imageViewOne = (ImageView) findViewById(R.id.tupian_zx);
 		biaoti_tv = (TextView) findViewById(R.id.biaoti_zx);
 		laiyuan_tv = (TextView) findViewById(R.id.laiyuan_zx);
+		shijian_tv = (TextView) findViewById(R.id.shijian_zx);
 		yuedu_tv = (TextView) findViewById(R.id.yuedu_zx);
 
 		neirong_tv = (TextView) findViewById(R.id.neirong_zx);
@@ -137,13 +138,14 @@ public class ZiXunDetailActivity extends Activity {
 		int position = data.getInt("zixun_id");
 		ZiXun zixun = ZiXunFragment.zixunDataList.get(position);
 		biaoti_tv.setText(zixun.getBiaoTi());
-		laiyuan_tv.setText(zixun.getLaiYuan());
+		laiyuan_tv.setText("来源 " + zixun.getLaiYuan());
+		shijian_tv.setText(zixun.getShiJian());
 		yuedu_tv.setText(String.valueOf(Integer.parseInt(zixun.getYueDu()) + 1));
 		neirong_tv.setText(zixun.getNeiRong());
 		picUrl = zixun.getTuPian();
 		VolleyLoadPicture vlp = new VolleyLoadPicture(this, imageViewOne);
 		vlp.getmImageLoader().get(picUrl, vlp.getOne_listener());
-		//neirong_tv.setText(picUrl);
+		// neirong_tv.setText(picUrl);
 
 		// if (picUrl != null) {
 		//

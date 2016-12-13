@@ -298,4 +298,30 @@ public class NewsService {
 		return false;
 
 	}
+
+	public Boolean zidingyiservice(String title, String category,
+			String pubdate, String readnumber, String likenumber,
+			String unlikenumber, String body, String picturepath, String link,
+			int id) {
+
+		// 获取Sql查询语句
+		String regSql = "insert into news_table values('" + title + "','"
+				+ category + "','" + pubdate + "','" + readnumber + "','"
+				+ likenumber + "','" + unlikenumber + "','" + body + "','"
+				+ picturepath + "','" + link + "','" + id + "') ";
+
+		// 获取DB对象
+		DBManager sql = DBManager.createInstance();
+		sql.connectDB();
+		if (regSql != null) {
+			int ret = sql.executeUpdate(regSql);// 空指针异常
+			if (ret != 0) {
+				sql.closeDB();
+				return true;
+			}
+			sql.closeDB();
+		}
+		return false;
+
+	}
 }

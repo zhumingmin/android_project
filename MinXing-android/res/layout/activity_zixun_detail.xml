@@ -105,9 +105,18 @@
                         android:id="@+id/laiyuan_zx"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="类别"
+                        android:text="来源"
                         android:textColor="@color/author_text"
                         android:textSize="@dimen/text_size_13" />
+
+                    <TextView
+                        android:id="@+id/shijian_zx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6.0dip"
+                        android:text="时间"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/text_size_12" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -129,12 +138,15 @@
 
                 <View style="@style/detail_cut_line" />
 
-                <ImageView
-                    android:id="@+id/tupian_zx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" >
+
+                    <ImageView
+                        android:id="@+id/tupian_zx"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/neirong_zx"

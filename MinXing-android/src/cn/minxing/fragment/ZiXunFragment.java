@@ -68,7 +68,7 @@ import android.widget.TextView;
 
 public class ZiXunFragment extends Fragment {
 	private PullToRefreshListView pullToRefreshListView;
-	private ZiXun zixun;
+	// private ZiXun zixun;
 	public static List<ZiXun> zixunDataList = new ArrayList<ZiXun>();
 	private ZiXunListViewAdapter zixunListViewAdapter;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/leibie";
@@ -77,10 +77,12 @@ public class ZiXunFragment extends Fragment {
 	private static final String TAG = "ZiXunFragment";
 	private int position;
 	String leibie = null;
-	private Activity mActivity;
+	// private Activity mActivity;
 	ImageView zx_tupian;
 	FrameLayout fl;
 	LayoutParams params;
+	// 标志位，标志已经初始化完成。
+	private boolean isPrepared;
 
 	public static ZiXunFragment newInstance(int position) {
 		ZiXunFragment f = new ZiXunFragment();
@@ -92,23 +94,13 @@ public class ZiXunFragment extends Fragment {
 
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
-		// 判断Fragment中的ListView时候存在，判断该Fragment时候已经正在前台显示
-		// 通过这两个判断，就可以知道什么时候去加载数据了
-		if (getUserVisibleHint() && isVisible()
-				&& pullToRefreshListView.getVisibility() != View.VISIBLE) {
-			loadData();
-		}
-
 		super.setUserVisibleHint(isVisibleToUser);
-	}
-
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		if (getUserVisibleHint()
-				&& pullToRefreshListView.getVisibility() != View.VISIBLE) {
-			loadData();
+		if (isVisibleToUser) {
+			isPrepared = true;
+		} else {
+			// 相当于Fragment的onPause
+			isPrepared = false;
 		}
-		super.onActivityCreated(savedInstanceState);
 	}
 
 	private void loadData() {
@@ -118,7 +110,7 @@ public class ZiXunFragment extends Fragment {
 		new Thread() {
 			public void run() {
 				try {
-					sleep(1000);
+					sleep(5000);
 					getZiXunData();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -142,6 +134,8 @@ public class ZiXunFragment extends Fragment {
 
 		View v = inflater.inflate(R.layout.fragment_zixun, container, false);
 		// --------------
+		// isPrepared = true;
+		// lazyLoad();
 		zixunListViewAdapter = new ZiXunListViewAdapter(getActivity(),
 				R.layout.zixun_list_item, zixunDataList);
 		zx_tupian = (ImageView) v.findViewById(R.id.zx_tupian);
@@ -154,30 +148,21 @@ public class ZiXunFragment extends Fragment {
 		fl = new FrameLayout(getActivity());
 		fl.setLayoutParams(params);
 
-		// final int margin = (int) TypedValue.applyDimension(
-		// TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
-		// .getDisplayMetrics());
-		//
-		// WebView v1 = new WebView(getActivity());
-		// params.setMargins(margin, margin, margin, margin);
-		// TextView v = new TextView(getActivity());
-		// v1.setLayoutParams(params);
-		// v1.setLayoutParams(params);
-
 		switch (position) {
 		case 0:
 			leibie = "热点";
+			// if (isPrepared) {
+			// loadData();
+			// }
 			loadData();
 			pullToRefreshListView.setAdapter(zixunListViewAdapter);
 			fl.addView(v);
-
 			break;
 		case 1:
 			leibie = "本地";
 			loadData();
 			pullToRefreshListView.setAdapter(zixunListViewAdapter);
 			fl.addView(v);
-
 			break;
 		case 2:
 			leibie = "农业新闻";
@@ -220,8 +205,19 @@ public class ZiXunFragment extends Fragment {
 
 					}
 				});
+
 		return fl;
+
 	}
+
+	// @Override
+	// protected void lazyLoad() {
+	// if (!isPrepared || !isVisible) {
+	// return;
+	// }
+	// // 填充各控件的数据
+	//
+	// }
 
 	public void postZiXunData() {
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
@@ -292,9 +288,7 @@ public class ZiXunFragment extends Fragment {
 						strArray5[i].replace("\"", ""), strArray6[i].replace(
 								"\"", "").replace("\\r\\n\\r\\n", "\r\n\r\n"),
 						strArray7[i].replace("\"", "").replace("\\r\\n", ""));
-//				VolleyLoadPicture vlp = new VolleyLoadPicture(getActivity(),
-//						zx_tupian);
-//				vlp.getmImageLoader().get(strArray5[i], vlp.getOne_listener());
+
 				zixunDataList.add(zixun);
 
 			}

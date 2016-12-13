@@ -53,6 +53,8 @@ import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.minxing.activity.TianJiaHuiDaActivity;
+import cn.minxing.util.EventUtil;
 import cn.minxing.util.RS_ActionItem;
 import cn.minxing.util.RS_News;
 import cn.minxing.util.RS_RecordSQLiteOpenHelper;
@@ -88,7 +90,8 @@ public class SerachActivity extends Activity {
 	ImageButton btnSpeak;
 	private RS_TitlePopup titlePopup;
 	boolean isReqing = false;
-	static String zhuti;
+
+	// String zhuti;
 
 	// /**
 	// * 调用onCreate(), 目的是刷新数据,
@@ -167,6 +170,7 @@ public class SerachActivity extends Activity {
 				Intent intent = new Intent(SerachActivity.this,
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
+				intent.putExtra("keyword", keyword);
 				startActivity(intent);
 				finish();
 			}
@@ -178,7 +182,7 @@ public class SerachActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String keyword = soufenjiao.getText().toString();
-				zhuti = keyword;
+
 				WebServiceTask wst = new WebServiceTask(
 						WebServiceTask.POST_TASK, SerachActivity.this,
 						"正在跳转，请稍后……");
@@ -191,6 +195,7 @@ public class SerachActivity extends Activity {
 				Intent intent = new Intent(SerachActivity.this,
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
+				intent.putExtra("keyword", keyword);
 				startActivity(intent);
 				finish();
 			}
@@ -202,7 +207,7 @@ public class SerachActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String keyword = soumugua.getText().toString();
-				zhuti = keyword;
+
 				WebServiceTask wst = new WebServiceTask(
 						WebServiceTask.POST_TASK, SerachActivity.this,
 						"正在跳转，请稍后……");
@@ -214,8 +219,10 @@ public class SerachActivity extends Activity {
 				String classname = "SerachActivity";
 				Intent intent = new Intent(SerachActivity.this,
 						SerachListActivity.class);
-				startActivity(intent);
+
 				intent.putExtra("classname", classname);
+				intent.putExtra("keyword", keyword);
+				startActivity(intent);
 				finish();
 			}
 
@@ -226,7 +233,7 @@ public class SerachActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String keyword = souqita.getText().toString();
-				zhuti = keyword;
+
 				WebServiceTask wst = new WebServiceTask(
 						WebServiceTask.POST_TASK, SerachActivity.this,
 						"正在跳转，请稍后……");
@@ -239,6 +246,7 @@ public class SerachActivity extends Activity {
 				Intent intent = new Intent(SerachActivity.this,
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
+				intent.putExtra("keyword", keyword);
 				startActivity(intent);
 				finish();
 			}
@@ -250,7 +258,7 @@ public class SerachActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String keyword = newsousuo.getText().toString();
-				zhuti = keyword;
+
 				if (keyword.equals("")) {
 					Toast.makeText(getApplicationContext(), "关键词不能空！", 0)
 							.show();
@@ -268,6 +276,7 @@ public class SerachActivity extends Activity {
 				Intent intent = new Intent(SerachActivity.this,
 						SerachListActivity.class);
 				intent.putExtra("classname", classname);
+				intent.putExtra("keyword", keyword);
 				startActivity(intent);
 				finish();
 			}
@@ -304,7 +313,7 @@ public class SerachActivity extends Activity {
 							// TODO 根据输入的内容模糊查询商品，并跳转到另一个界面，由你自己去实现
 
 							String keyword = newsousuo.getText().toString();
-							zhuti = keyword;
+
 							if (keyword.equals("")) {
 								Toast.makeText(getApplicationContext(),
 										"关键词不能空！", 0).show();
@@ -320,6 +329,7 @@ public class SerachActivity extends Activity {
 							wst.execute(new String[] { SERVICE_URL });
 							Intent intent = new Intent(SerachActivity.this,
 									SerachListActivity.class);
+							intent.putExtra("keyword", keyword);
 							startActivity(intent);
 							finish();
 						}
@@ -482,14 +492,6 @@ public class SerachActivity extends Activity {
 			Log.e(TAG, e.getLocalizedMessage(), e);
 		}
 
-	}
-
-	public String zhuti() {
-		if (zhuti != null) {
-			return zhuti;
-		} else {
-			return "无明确主题";
-		}
 	}
 
 	public static String[] convertStrToArray(String str) {

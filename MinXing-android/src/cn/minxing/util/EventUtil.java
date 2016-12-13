@@ -1,13 +1,13 @@
 package cn.minxing.util;
 
 public class EventUtil {
-	private int msg;
+	private String msg;
 
-	public EventUtil(int msg) {
+	public EventUtil(String msg) {
 		this.msg = msg;
 	}
 
-	public int getMsg() {
+	public String getMsg() {
 		return this.msg;
 	}
 }

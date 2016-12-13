@@ -39,7 +39,7 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 	// static String biaoti, laiyuan, yuedu, neirong;
 	private FragmentPagerAdapter adapter;
 	private List<Fragment> mLists = new ArrayList<Fragment>();
-	private static final int DEFAULT_OFFSCREEN_PAGES = 0;
+
 	private Fragment fr01, fr02, fr03, fr04;
 	private static final String TAG = "YeWuBanLiActivity";
 	int currentItem;
@@ -54,38 +54,6 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 
 	}
 
-	// public String returnbiaoTi() {
-	// return biaoti;
-	// }
-	//
-	// public String returnlaiYuan() {
-	// return laiyuan;
-	// }
-	//
-	// public String returnyueDu() {
-	// return yuedu;
-	// }
-	//
-	// public String returnneiRong() {
-	// return neirong;
-	// }
-	//
-	// public void setbiaoTi(String biaoti) {
-	// this.biaoti = biaoti;
-	// }
-	//
-	// public void setlaiYuan(String laiyuan) {
-	// this.laiyuan = laiyuan;
-	// }
-	//
-	// public void setyueDu(String yuedu) {
-	// this.yuedu = yuedu;
-	// }
-	//
-	// public void setneiRong(String neirong) {
-	// this.neirong = neirong;
-	// }
-
 	private void initEvent() {
 		// TODO Auto-generated method stub
 		layoutfour.setOnClickListener(this);
@@ -97,7 +65,8 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 	private void initView() {
 		// TODO Auto-generated method stub
 		Mviewpager = (ViewPager) findViewById(R.id.id_mainviewpager);
-		Mviewpager.setOffscreenPageLimit(DEFAULT_OFFSCREEN_PAGES);
+		Mviewpager.setOffscreenPageLimit(1);
+
 		layoutone = getView(R.id.id_mainbuttom_one);
 		layoutfour = getView(R.id.id_mainbuttom_four);
 		layoutthree = getView(R.id.id_mainbuttom_three);

@@ -69,6 +69,7 @@ public class SerachListActivity extends Activity {
 	private static final String TAG = "SerachListActivity";
 	static String classname;
 	boolean isReqing = false;
+	static String keyword;
 
 	/**
 	 * 刷新, 这种刷新方法，只有一个Activity实例。
@@ -88,8 +89,10 @@ public class SerachListActivity extends Activity {
 		tv_ugc = (TextView) findViewById(R.id.tv_tianjiehuida);
 
 		Intent intent = getIntent();
+		keyword = intent.getStringExtra("keyword");
 		if (intent != null) {
 			classname = intent.getStringExtra("classname");
+
 			String sampleURL = SERVICE_URL + "/1";
 			WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK,
 					SerachListActivity.this, "正在加载，请稍候…");
@@ -102,6 +105,7 @@ public class SerachListActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+
 				SerachListActivity.this.finish();
 				Intent intent = new Intent(SerachListActivity.this,
 						SerachListActivity.class);
@@ -119,6 +123,7 @@ public class SerachListActivity extends Activity {
 
 				Intent intent = new Intent(SerachListActivity.this,
 						SerachActivity.class);
+
 				startActivity(intent);
 				finish();
 			}
@@ -132,6 +137,7 @@ public class SerachListActivity extends Activity {
 
 				Intent intent = new Intent(SerachListActivity.this,
 						TianJiaHuiDaActivity.class);
+				intent.putExtra("keyword", keyword);
 				startActivity(intent);
 			}
 
@@ -140,7 +146,8 @@ public class SerachListActivity extends Activity {
 		RS_NewsAdapter adapter = new RS_NewsAdapter(SerachListActivity.this,
 				R.layout.news_list_item_rs, newslist);
 		adapter.notifyDataSetChanged();
-		ListView listview = (ListView) findViewById(R.id.list);
+		listview = (ListView) findViewById(R.id.list);
+
 		listview.setAdapter(adapter);
 
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -16,17 +16,24 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.core.Request;
 
-import com.avilyne.rest.model.HeTongGuanLi;
 import com.avilyne.rest.model.News;
+import com.avilyne.rest.model.ZiDingYi;
 
 import com.avilyne.service.FuzzyQueryService;
-import com.avilyne.service.HeTongService;
+
 import com.avilyne.service.KeyWordService;
 import com.avilyne.service.NewsService;
 
 @Path("/news")
 public class NewsResource {
-
+	private final static String Title = "title";
+	private final static String Category = "category";
+	private final static String Pubdate = "pubdate";
+	private final static String Readnumber = "readnumber";
+	private final static String Likenumber = "likenumber";
+	private final static String Unlikenumber = "unlikenumber";
+	private final static String Body = "body";
+	private ZiDingYi zidingyi = new ZiDingYi();
 	NewsService newsservice = new NewsService();
 	FuzzyQueryService fqs = new FuzzyQueryService();
 	KeyWordService kws = new KeyWordService();
@@ -70,4 +77,41 @@ public class NewsResource {
 		return news;
 	}
 
+	@POST
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public ZiDingYi postZiDingYi(MultivaluedMap<String, String> zidingyiParams) {
+		// String name=new
+		// String(request.getParameter("name").getBytes("ISO8859-1"),"utf-8");
+		String title = zidingyiParams.getFirst(Title);
+
+		String category = zidingyiParams.getFirst(Category);
+		String pubdate = zidingyiParams.getFirst(Pubdate);
+		String readnumber = zidingyiParams.getFirst(Readnumber);
+		String likenumber = zidingyiParams.getFirst(Likenumber);
+		String unlikenumber = zidingyiParams.getFirst(Unlikenumber);
+		String body = zidingyiParams.getFirst(Body);
+
+		zidingyi.setTitle(Title);
+		zidingyi.setCategory(Category);
+		zidingyi.setPubDate(Pubdate);
+		zidingyi.setRead(Readnumber);
+		zidingyi.setLike(Likenumber);
+		zidingyi.setUnlike(Unlikenumber);
+		zidingyi.setBody(Body);
+
+		// 验证处理
+		boolean zidingyifuwu = newsservice.zidingyiservice(title, category,
+				pubdate, readnumber, likenumber, unlikenumber, body, null,
+				null, 0);// 空指针异常
+		if (zidingyifuwu) {
+			System.out.print("上传成功！\n");
+
+			// response.sendRedirect("welcome.jsp");
+		} else {
+			System.out.print("上传失败\n");
+		}
+		return zidingyi;
+
+	}
 }

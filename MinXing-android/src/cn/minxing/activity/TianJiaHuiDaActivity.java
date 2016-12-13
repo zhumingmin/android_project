@@ -23,7 +23,9 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
 import cn.minxing.rsystem.SerachActivity;
+import cn.minxing.util.EventUtil;
 
+import com.ypy.eventbus.EventBus;
 import com.zhumingmin.vmsofminxing.R;
 
 import android.app.Activity;
@@ -51,7 +53,7 @@ public class TianJiaHuiDaActivity extends Activity {
 	EditText content_huida;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/news";
 	private static final String TAG = "TianJiaHuiDaActivity";
-	static String zhuti;
+	String zhuti;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,9 @@ public class TianJiaHuiDaActivity extends Activity {
 		tianjiahuida = (Button) findViewById(R.id.tianjiahuida);
 		content_huida = (EditText) findViewById(R.id.content_huida);
 		LinearLayout ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_tianjia);
-
+		Intent intent = getIntent();
+		zhuti = intent.getStringExtra("keyword");
+		rs_zhuti.setText("关键词：" + zhuti);
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -74,10 +78,6 @@ public class TianJiaHuiDaActivity extends Activity {
 				finish();
 			}
 		});
-
-		SerachActivity sa = new SerachActivity();
-		zhuti = sa.zhuti();
-		rs_zhuti.setText("关键词：" + zhuti);
 
 		SimpleDateFormat formatter = new SimpleDateFormat(
 				"yyyy年MM月dd日 HH:mm:ss");

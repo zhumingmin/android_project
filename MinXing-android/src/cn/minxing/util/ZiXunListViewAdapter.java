@@ -34,12 +34,13 @@ public class ZiXunListViewAdapter extends ArrayAdapter<ZiXun> {
 		TextView laiyuan = (TextView) view.findViewById(R.id.zx_laiyuan);
 		TextView shijian = (TextView) view.findViewById(R.id.zx_shijian);
 		TextView yuedu = (TextView) view.findViewById(R.id.zx_yuedu);
-		// ImageView tupian = (ImageView) view.findViewById(R.id.zx_tupian);
+		ImageView tupian = (ImageView) view.findViewById(R.id.zx_tupian);
 		biaoti.setText(zixun.getBiaoTi());
 		laiyuan.setText(zixun.getLaiYuan());
 		shijian.setText(zixun.getShiJian());
 		yuedu.setText(zixun.getYueDu());
-		// tupian.setText(zixun.getYueDuLiang2());
+		VolleyLoadPicture vlp = new VolleyLoadPicture(getContext(), tupian);
+		vlp.getmImageLoader().get(zixun.getTuPian(), vlp.getOne_listener());
 		return view;
 	}
 

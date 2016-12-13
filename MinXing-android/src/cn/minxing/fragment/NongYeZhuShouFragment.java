@@ -63,7 +63,8 @@ public class NongYeZhuShouFragment extends Fragment {
 		initData();
 		tabs = (CategoryTabStrip) v.findViewById(R.id.category_strip);
 		pager = (ViewPager) v.findViewById(R.id.view_pager);
-
+		// 关闭预加载，默认一次只加载一个Fragment
+		pager.setOffscreenPageLimit(1);
 		ArrayList<View> viewList = new ArrayList<View>();
 		ListView listView1 = (ListView) (inflater.inflate(R.layout.listview,
 				null)).findViewById(R.id.list);
