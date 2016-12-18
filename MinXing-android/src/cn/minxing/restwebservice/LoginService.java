@@ -73,9 +73,8 @@ public class LoginService extends Activity {
 	private EditText tianxiezhanghao, tianxiemima;
 	static String account;
 	private Button denglu;
-	private String resultGET = null;
-	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/login";
-
+	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/denglu";
+	private Handler handler;
 	private static final String TAG = "LoginService";
 
 	/** Called when the activity is first created. */
@@ -91,24 +90,37 @@ public class LoginService extends Activity {
 		zhaohuimima = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.ZhaoHuiMiMa);
 		tianxiezhanghao = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.TianXieZhangHao);
 		tianxiemima = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.TianXieMiMa);
-		// EditText edEmail = (EditText)
-		// findViewById(com.zhumingmin.vmsofminxing.R.id.email);
+
 		savePasswordCB = (CheckBox) findViewById(R.id.savePasswordCB);
 
-		// tianxiezhanghao.setHint("您的身份证号码");
-		// tianxiemima.setHint("六位包括字母和数字");
 		tianxiezhanghao
 				.setFilters(new InputFilter[] { new InputFilter.LengthFilter(18) });
 		tianxiemima
 				.setFilters(new InputFilter[] { new InputFilter.LengthFilter(6) });
 
 		SharedPreferences remdname = getPreferences(Activity.MODE_PRIVATE);
+
 		String name_str = remdname.getString("name", "");
 		String pass_str = remdname.getString("pass", "");
-		tianxiezhanghao.setText(name_str);
+		if (!TextUtils.isEmpty(name_str) && name_str.length() > 6) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < name_str.length(); i++) {
+				char c = name_str.charAt(i);
+				if (i >= 3 && i <= 13) {
+					sb.append('*');
+				} else {
+					sb.append(c);
+				}
+			}
+
+			tianxiezhanghao.setText(sb.toString());
+		}
+		// tianxiezhanghao.setText(name_str);
+
 		tianxiemima.setText(pass_str);
 
 		savePasswordCB = (CheckBox) findViewById(R.id.savePasswordCB);
+
 		// 接收设置中的注销登录的操作
 		Intent intent = getIntent();
 		int from = intent.getIntExtra("from", 0);
@@ -158,66 +170,52 @@ public class LoginService extends Activity {
 			}
 		});
 
-		/*
-		 * 自动登录的功能，需要设置自动登录的条件
-		 */
-		View v = getWindow().getDecorView().findViewById(android.R.id.content);
-		if (remdname.getString("name", "") != null) {
-			v.post(new Runnable() {
-				@Override
-				public void run() {
-					denglu.performClick();
-				}
-			});
-		}
-
-		denglu.setOnClickListener(new Button.OnClickListener() {
-
-			@SuppressWarnings("deprecation")
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				m_pDialog = new ProgressDialog(LoginService.this);
-
-				m_pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-
-				m_pDialog.setTitle("提示");
-
-				m_pDialog.setMessage("登录中…");
-
-				m_pDialog
-						.setIcon(com.zhumingmin.vmsofminxing.R.drawable.tubiao1);
-
-				m_pDialog.setIndeterminate(false);
-
-				m_pDialog.setCancelable(true);
-
-				m_pDialog.setButton("确定",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int i) {
-
-								dialog.cancel();
-							}
-						});
-
-				m_pDialog.show();
-				if (savePasswordCB.isChecked())// 检测用户名密码
-				{
-					SharedPreferences remdname = getPreferences(Activity.MODE_PRIVATE);
-					SharedPreferences.Editor edit = remdname.edit();
-					edit.putString("name", tianxiezhanghao.getText().toString());
-					edit.putString("pass", tianxiemima.getText().toString());
-					edit.commit();
-				}
-				Intent intent = new Intent();
-				// intent.setClass(DengLuJieMian.this, Home.class);
-				intent.setClass(LoginService.this, YeWuBanLiActivity.class);
-				startActivity(intent);
-				LoginService.this.finish();
-
-			}
-		});
+		// denglu.setOnClickListener(new Button.OnClickListener() {
+		//
+		// @SuppressWarnings("deprecation")
+		// @Override
+		// public void onClick(View v) {
+		// // TODO Auto-generated method stub
+		//
+		// m_pDialog = new ProgressDialog(LoginService.this);
+		//
+		// m_pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		//
+		// m_pDialog.setTitle("提示");
+		//
+		// m_pDialog.setMessage("登录中…");
+		//
+		// m_pDialog.setIcon(R.drawable.tubiao1);
+		//
+		// m_pDialog.setIndeterminate(false);
+		//
+		// m_pDialog.setCancelable(true);
+		//
+		// m_pDialog.setButton("确定",
+		// new DialogInterface.OnClickListener() {
+		// public void onClick(DialogInterface dialog, int i) {
+		//
+		// dialog.cancel();
+		// }
+		// });
+		//
+		// m_pDialog.show();
+		// if (savePasswordCB.isChecked())// 检测用户名密码
+		// {
+		// SharedPreferences remdname = getPreferences(Activity.MODE_PRIVATE);
+		// SharedPreferences.Editor edit = remdname.edit();
+		// edit.putString("name", tianxiezhanghao.getText().toString());
+		// edit.putString("pass", tianxiemima.getText().toString());
+		// edit.commit();
+		// }
+		// Intent intent = new Intent();
+		// // intent.setClass(DengLuJieMian.this, Home.class);
+		// intent.setClass(LoginService.this, YeWuBanLiActivity.class);
+		// startActivity(intent);
+		// LoginService.this.finish();
+		//
+		// }
+		// });
 
 		mianfeizhuce.setOnClickListener(new Button.OnClickListener() {
 
@@ -230,37 +228,107 @@ public class LoginService extends Activity {
 
 			}
 		});
-		denglu.setOnClickListener(new LoginListener());
-		account = tianxiezhanghao.getText().toString();
+
+		denglu.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				String zhanghao = tianxiezhanghao.getText().toString();
+				String mima1 = tianxiemima.getText().toString();
+				account = tianxiezhanghao.getText().toString();
+				if (!isNetworkAvailable(LoginService.this)) {
+
+					Toast.makeText(getApplicationContext(), "网络未连接，请检查您的网络！", 0)
+							.show();
+					return;
+				}
+				if (zhanghao.equals("")) {
+					Toast.makeText(getApplicationContext(), "账号不能空！", 0).show();
+					return;
+				}
+				if (mima1.equals("")) {
+					Toast.makeText(getApplicationContext(), "密码不能为空！", 0)
+							.show();
+					return;
+				}
+
+				WebServiceTask wst = new WebServiceTask(
+						WebServiceTask.POST_TASK, LoginService.this, "正在登录…");
+
+				wst.addNameValuePair("zhangHao", zhanghao);
+				wst.addNameValuePair("miMa", mima1);
+
+				// the passed String is the URL we will POST to
+				
+				//wst.execute(new String[] { SERVICE_URL });
+				
+				 Intent intent = new Intent();
+				 intent.setClass(LoginService.this, YeWuBanLiActivity.class);
+				 startActivity(intent);
+				 finish();
+
+			}
+
+		});
+		// denglu.setOnClickListener(new LoginListener());
+
+		/*
+		 * 自动登录的功能
+		 */
+		View v = getWindow().getDecorView().findViewById(android.R.id.content);
+		if (tianxiezhanghao.getText().toString() != null
+				&& tianxiemima.getText().toString() != null) {
+			v.post(new Runnable() {
+				@Override
+				public void run() {
+					denglu.performClick();
+				}
+			});
+		}
 
 	}
+
+	// @SuppressLint("ShowToast")
+	// class LoginListener implements OnClickListener {
+	//
+	// @Override
+	// public void onClick(View v) {
+	// // TODO Auto-generated method stub
+	//
+	// }
 
 	public String account() {
 		if (account != null) {
 			return account;
 		} else {
-			return "340881199211110332";
+			return "1234";
 		}
 	}
 
 	public void handleResponse(String response) {
 
-		// tianxiezhanghao.setText("");
-		// tianxiemima.setText("");
-
 		try {
 
 			JSONObject jso = new JSONObject(response);
 
-			String firstName = jso.getString("zhanghao");
-			String lastName = jso.getString("mima1");
+			String resultGet = jso.getString("result");
+			// "=="与equals方法的区别
 
-			tianxiezhanghao.setText(firstName);
-			tianxiemima.setText(lastName);
+			if (resultGet.equals("success")) {
+				Toast.makeText(getApplicationContext(), "登录成功！", 0).show();
+				Intent intent = new Intent();
+				intent.setClass(LoginService.this, YeWuBanLiActivity.class);
+				startActivity(intent);
+				finish();
+			} else {
+				Toast.makeText(getApplicationContext(), "登录失败！", 0).show();
+			}
 
 		} catch (Exception e) {
 			Log.e(TAG, e.getLocalizedMessage(), e);
 		}
+		// Toast.makeText(getApplicationContext(), resultGet, 0).show();
 
 	}
 
@@ -361,17 +429,6 @@ public class LoginService extends Activity {
 		protected void onPostExecute(String response) {
 
 			handleResponse(response);
-			if (response != null) {
-				Toast.makeText(getApplicationContext(), "登陆成功！", 0).show();
-
-				Intent intent = new Intent();
-				intent.setClass(LoginService.this, YeWuBanLiActivity.class);
-				startActivity(intent);
-				LoginService.this.finish();
-
-			} else {
-				Toast.makeText(getApplicationContext(), "登陆失败！", 0).show();
-			}
 
 			pDlg.dismiss();
 
@@ -441,42 +498,6 @@ public class LoginService extends Activity {
 
 			// Return full string
 			return total.toString();
-		}
-
-	}
-
-	@SuppressLint("ShowToast")
-	class LoginListener implements OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			String zhanghao = tianxiezhanghao.getText().toString();
-			String mima1 = tianxiemima.getText().toString();
-			if (!isNetworkAvailable(LoginService.this)) {
-
-				Toast.makeText(getApplicationContext(), "网络未连接，请检查您的网络！", 0)
-						.show();
-				return;
-			}
-			if (zhanghao.equals("")) {
-				Toast.makeText(getApplicationContext(), "账号不能空！", 0).show();
-				return;
-			}
-			if (mima1.equals("")) {
-				Toast.makeText(getApplicationContext(), "密码不能为空！", 0).show();
-				return;
-			}
-
-			WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
-					LoginService.this, "正在登录…");
-
-			wst.addNameValuePair("loginzhanghao", zhanghao);
-			wst.addNameValuePair("loginmima", mima1);
-
-			// the passed String is the URL we will POST to
-			wst.execute(new String[] { SERVICE_URL });
-
 		}
 
 	}

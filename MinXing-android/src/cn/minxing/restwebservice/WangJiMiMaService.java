@@ -101,42 +101,26 @@ public class WangJiMiMaService extends Activity {
 				wst.addNameValuePair("shoujihaoma", lianxidianhua);
 
 				wst.execute(new String[] { SERVICE_URL });
-				handler = new Handler() {
-
-					@SuppressLint("HandlerLeak")
-					@Override
-					public void handleMessage(Message msg) {
-						// TODO Auto-generated method stub
-						super.handleMessage(msg);
-						jump();
-
-					}
-				};
-
-				handler.sendEmptyMessageDelayed(0, 1000);
+				// handler = new Handler() {
+				//
+				// @SuppressLint("HandlerLeak")
+				// @Override
+				// public void handleMessage(Message msg) {
+				// // TODO Auto-generated method stub
+				// super.handleMessage(msg);
+				// jump();
+				//
+				// }
+				// };
+				//
+				// handler.sendEmptyMessageDelayed(0, 1000);
 			}
 
 		});
 
 	}
 
-	protected void jump() {
-		// TODO jump to homepage activity
-		String sampleURL = SERVICE_URL + "/zh";
-		WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this,
-				"正在找回，请稍候...");
-		wst.execute(new String[] { sampleURL });
-	}
 
-	// 从服务器端获取信息 GET方法
-	// public void retrieveSampleData(View vw) {
-	//
-	// String sampleURL = SERVICE_URL + "/zh";
-	// WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK, this,
-	// "正在找回，请稍候...");
-	// wst.execute(new String[] { sampleURL });
-	//
-	// }
 
 	public void handleResponse(String response) {
 		dedaomima = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.dedaomima);

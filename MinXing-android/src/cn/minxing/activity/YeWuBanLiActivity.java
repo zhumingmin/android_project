@@ -29,6 +29,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 public class YeWuBanLiActivity extends FragmentActivity implements
 		View.OnClickListener {
@@ -39,7 +40,7 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 	// static String biaoti, laiyuan, yuedu, neirong;
 	private FragmentPagerAdapter adapter;
 	private List<Fragment> mLists = new ArrayList<Fragment>();
-
+	private TextView tv_minxingcun, tv_yewubanli, tv_nongyezhushou, tv_wode;
 	private Fragment fr01, fr02, fr03, fr04;
 	private static final String TAG = "YeWuBanLiActivity";
 	int currentItem;
@@ -76,6 +77,10 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 		i02 = getView(R.id.id_mainbutton_twoim);
 		i03 = getView(R.id.id_mainbutton_threeim);
 		i04 = getView(R.id.id_mainbutton_fourim);
+		tv_minxingcun = getView(R.id.tv_minxingcun);
+		tv_yewubanli = getView(R.id.tv_yewubanli);
+		tv_nongyezhushou = getView(R.id.tv_nongyezhushou);
+		tv_wode = getView(R.id.tv_wode);
 
 		fr01 = new MinXingCunFragment();
 		fr02 = new YeWuBanLiFragment();
@@ -104,7 +109,8 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 
 		Mviewpager.setAdapter(adapter);
 		Mviewpager.setCurrentItem(1);// 括号里的x变成你的默认页码
-
+		i02.setImageResource(R.drawable.tab_address_pressed);
+		tv_yewubanli.setTextColor(getResources().getColor(R.color.blue));
 		Mviewpager.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
@@ -164,20 +170,49 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 		switch (i) {
 		case 0:
 			i01.setImageResource(R.drawable.tab_weixin_pressed);
-
+			tv_minxingcun.setTextColor(getResources().getColor(R.color.blue));
+			tv_yewubanli.setTextColor(getResources()
+					.getColor(R.color.ll_chaxun));
+			tv_nongyezhushou.setTextColor(getResources().getColor(
+					R.color.ll_chaxun));
+			tv_wode.setTextColor(getResources().getColor(R.color.ll_chaxun));
 			Mviewpager.setCurrentItem(0);
 			break;
 
 		case 1:
 			i02.setImageResource(R.drawable.tab_address_pressed);
+			tv_yewubanli.setTextColor(getResources().getColor(R.color.blue));
+			tv_minxingcun.setTextColor(getResources().getColor(
+					R.color.ll_chaxun));
+
+			tv_nongyezhushou.setTextColor(getResources().getColor(
+					R.color.ll_chaxun));
+			tv_wode.setTextColor(getResources().getColor(R.color.ll_chaxun));
 			Mviewpager.setCurrentItem(1);
 			break;
 		case 2:
 			i03.setImageResource(R.drawable.tab_find_frd_pressed);
+			tv_nongyezhushou
+					.setTextColor(getResources().getColor(R.color.blue));
+
+			tv_minxingcun.setTextColor(getResources().getColor(
+					R.color.ll_chaxun));
+			tv_yewubanli.setTextColor(getResources()
+					.getColor(R.color.ll_chaxun));
+
+			tv_wode.setTextColor(getResources().getColor(R.color.ll_chaxun));
 			Mviewpager.setCurrentItem(2);
 			break;
 		case 3:
 			i04.setImageResource(R.drawable.tab_settings_pressed);
+			tv_wode.setTextColor(getResources().getColor(R.color.blue));
+			tv_minxingcun.setTextColor(getResources().getColor(
+					R.color.ll_chaxun));
+			tv_yewubanli.setTextColor(getResources()
+					.getColor(R.color.ll_chaxun));
+			tv_nongyezhushou.setTextColor(getResources().getColor(
+					R.color.ll_chaxun));
+
 			Mviewpager.setCurrentItem(3);
 			break;
 

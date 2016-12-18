@@ -7,55 +7,42 @@
     android:stretchColumns="0" >
 
     <TextView
-        android:id="@+id/wo"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:background="@drawable/btn_bg"
         android:gravity="center"
-        android:text="我的"
         android:textColor="#ffffff"
         android:textSize="25sp" >
     </TextView>
 
     <TableRow
         android:id="@+id/tr_gerenxinxi"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF" >
+        android:background="@drawable/btn_bg" >
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="70dip" >
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:gravity="center" >
 
-            <LinearLayout
+            <ImageView
                 android:id="@+id/gerenxinxi"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_marginBottom="10dip"
-                android:layout_marginLeft="10dip"
-                android:layout_marginTop="10dip"
-                android:background="@drawable/miaobian" >
-
-                <ImageView
-                    android:id="@+id/right_permsg_center_img_usericon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dip"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginRight="2dip"
-                    android:layout_marginTop="2dip"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ceshi" />
-            </LinearLayout>
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/tb_user" >
+            </ImageView>
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:layout_marginTop="13dip"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
                 android:layout_toRightOf="@id/gerenxinxi"
                 android:text="村民张三"
-                android:textSize="20sp" />
+                android:textColor="#fff"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tel"
@@ -63,11 +50,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/gerenxinxi"
                 android:layout_below="@id/name"
-                android:layout_marginLeft="10dip"
-                android:layout_marginTop="2dip"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
                 android:layout_toRightOf="@id/gerenxinxi"
                 android:text="联系方式："
-                android:textSize="15sp" />
+                android:textColor="#fff"
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/phone"
@@ -75,10 +63,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/gerenxinxi"
                 android:layout_below="@id/name"
-                android:layout_marginTop="2dip"
+                android:layout_marginTop="2dp"
                 android:layout_toRightOf="@id/tel"
                 android:text="15682215694"
-                android:textSize="15sp" />
+                android:textColor="#fff"
+                android:textSize="15dp" />
         </RelativeLayout>
 
         <ImageView
@@ -87,6 +76,15 @@
             android:layout_marginRight="10dp"
             android:src="@drawable/jiantou" />
     </TableRow>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@drawable/btn_bg"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="25sp" >
+    </TextView>
 
     <TableRow
         android:id="@+id/tr_toupiao"
@@ -99,10 +97,10 @@
 
             <LinearLayout
                 android:id="@+id/layout_1"
-                android:layout_width="20dip"
-                android:layout_height="20dip"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip" >
+                android:layout_marginLeft="10dp" >
 
                 <ImageView
                     android:id="@+id/tb_toupiao"
@@ -117,10 +115,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/layout_1"
                 android:text="民意征集"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
         </RelativeLayout>
 
         <ImageView
@@ -140,10 +138,10 @@
 
             <LinearLayout
                 android:id="@+id/layout_4"
-                android:layout_width="20dip"
-                android:layout_height="20dip"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip" >
+                android:layout_marginLeft="10dp" >
 
                 <ImageView
                     android:id="@+id/tb_xinxichaxun"
@@ -159,10 +157,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/layout_4"
-                android:text="信息查询"
-                android:textSize="20sp" />
+                android:text="标签查询"
+                android:textSize="20dp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/jiantou" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tr_chaxunjindu"
+        android:layout_marginTop="2dp"
+        android:background="#FFFFFF" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="45dp" >
+
+            <LinearLayout
+                android:id="@+id/layout_5"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp" >
+
+                <ImageView
+                    android:id="@+id/tb_chaxunjindu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tb_chaxunjindu" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/chaxunjindu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/layout_5"
+                android:text="办理进度"
+                android:textSize="20dp" />
         </RelativeLayout>
 
         <ImageView
@@ -182,10 +222,10 @@
 
             <LinearLayout
                 android:id="@+id/layout_5"
-                android:layout_width="20dip"
-                android:layout_height="20dip"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip" >
+                android:layout_marginLeft="10dp" >
 
                 <ImageView
                     android:id="@+id/tb_tongxunlu"
@@ -201,10 +241,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/layout_5"
                 android:text="民兴通讯"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
         </RelativeLayout>
 
         <ImageView
@@ -224,10 +264,10 @@
 
             <LinearLayout
                 android:id="@+id/layout_6"
-                android:layout_width="20dip"
-                android:layout_height="20dip"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip" >
+                android:layout_marginLeft="10dp" >
 
                 <ImageView
                     android:id="@+id/tb_xianliao"
@@ -243,10 +283,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/layout_6"
                 android:text="民兴闲聊"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
         </RelativeLayout>
 
         <ImageView
@@ -266,10 +306,10 @@
 
             <LinearLayout
                 android:id="@+id/layout_0"
-                android:layout_width="20dip"
-                android:layout_height="20dip"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip" >
+                android:layout_marginLeft="10dp" >
 
                 <ImageView
                     android:id="@+id/tb_rss"
@@ -284,10 +324,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/layout_0"
                 android:text="RSS新闻"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
         </RelativeLayout>
 
         <ImageView
@@ -307,10 +347,10 @@
 
             <LinearLayout
                 android:id="@+id/layout_7"
-                android:layout_width="20dip"
-                android:layout_height="20dip"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip" >
+                android:layout_marginLeft="10dp" >
 
                 <ImageView
                     android:id="@+id/tb_shezhi"
@@ -326,10 +366,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dip"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/layout_7"
                 android:text="设置"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
         </RelativeLayout>
 
         <ImageView

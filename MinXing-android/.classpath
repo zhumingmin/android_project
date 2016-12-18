@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="com/upload/|com/zhumingmin/upload/utils/|com/zhumingmin/upload/activity/" kind="src" path="src"/>
+	<classpathentry excluding="com/upload/|com/zhumingmin/upload/utils/|com/zhumingmin/upload/activity/|cn/minxing/PushMessage/wxapi/|cn/minxing/databasetest/model/" kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>

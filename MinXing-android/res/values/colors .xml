@@ -2,7 +2,8 @@
 <resources>
 
     <color name="wathet">#ffC0D9D9</color>
-    <color name="blue">#ff04aeda</color>
+    <color name="ll_chaxun">#999999</color>
+    <color name="blue">#1296db</color>
     <color name="activity_bg_color">#fffafafa</color>
     <color name="top_category_bar_background">#ffeeeeee</color>
     <color name="divider">#ffdddddd</color>

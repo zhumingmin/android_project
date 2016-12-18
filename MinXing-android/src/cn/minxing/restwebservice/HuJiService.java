@@ -80,7 +80,8 @@ public class HuJiService extends TabActivity {
 	private ImageSelect imageSelect, imageSelect1;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/hujiqianchu";
 	private static final String TAG = "HuJiGuanLi";
-	private Button paizhao, shangchuan, paizhao1, shangchuan1, tijiao, tijiao1;
+	private Button paizhao, shangchuan, paizhao1, shangchuan1, tijiao, tijiao1,
+			hj_chaxun;
 	private ImageButton fanhui;
 	TabHost mTabHost;
 	private ImageView imageView;
@@ -229,6 +230,7 @@ public class HuJiService extends TabActivity {
 		liyou1 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.LiYou1);
 		shangchuanzhaopian = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.ShangChuanZhaoPian);
 		shangchuanzhaopian1 = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.ShangChuanZhaoPian1);
+		hj_chaxun = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.hj_chaxun);
 		// shangchuan = (Button)
 		// findViewById(com.zhumingmin.vmsofminxing.R.id.huji_ShangChuan);
 		// shangchuan1 = (Button)
@@ -249,7 +251,18 @@ public class HuJiService extends TabActivity {
 		tianxiexingming1.setHint("如张三");
 		tianhaoma1.setHint("如1234567890");
 		tianxieliyou1.setHint("如出嫁");
+		hj_chaxun.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				//DisplayToast("网上查询，暂未开通");
+
+				Intent intent = new Intent();
+				intent = new Intent(HuJiService.this, ChaXunService.class);
+				startActivity(intent);
+			}
+		});
 		/*
 		 * 户籍管理中的通知功能的实现
 		 */

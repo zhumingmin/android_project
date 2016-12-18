@@ -24,6 +24,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import cn.minxing.activity.TongXunLuActivity;
 import cn.minxing.activity.YeWuBanLiActivity;
 import cn.minxing.util.CustomArrayAdapter;
 
@@ -63,7 +64,7 @@ public class BaoJianService extends Activity {
 	private Button tijiao2, chaxunjindu;
 	private ImageButton fanhui;
 	private EditText et_baojiandizhi, et_lianxifangshi;
-	private TextView baojian;
+	private TextView baojian, tv_tijiao, tv_chuli, tv_wancheng;
 	private Spinner sp_baojianxiangmu, sp_yuyueshijian;
 	private static final String[] kexuanxiangmu = { "项目一", "项目二", "项目三", "项目四",
 			"项目五" };
@@ -73,20 +74,24 @@ public class BaoJianService extends Activity {
 			"周四下午3:00~4:00", "周五上午9:00~10:00", "周五下午3:00~4:00" };
 	ProgressDialog m_pDialog;
 	int m_count = 0;
-	LinearLayout ly_baojian;
+	LinearLayout ly_baojian, ll_chaxun;
 	private CustomArrayAdapter<CharSequence> mAdapter;
 	public static final int SHOW_LOCATION = 0;
 	private LocationManager locationManager;
 	private String provider;
+	
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.webservice_baojianguanli);
 		ly_baojian = (LinearLayout) findViewById(R.id.ly_baojian);
-
+		ll_chaxun = (LinearLayout) findViewById(R.id.ll_chaxun);
 		fanhui = (ImageButton) findViewById(com.zhumingmin.vmsofminxing.R.id.FanHui);
 		baojian = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.baojian);
+		tv_tijiao = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.tv_tijiao);
+		tv_chuli = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.tv_chuli);
+		tv_wancheng = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.tv_wancheng);
 		chaxunjindu = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.ChaXunJinDu);
 		et_baojiandizhi = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.et_baojiandizhi);
 		et_lianxifangshi = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.et_lianxifangshi);
@@ -163,13 +168,35 @@ public class BaoJianService extends Activity {
 
 			}
 		});
-
+		
 		chaxunjindu.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				DisplayToast("网上查询，暂未开通");
+				//DisplayToast("网上查询，暂未开通");
+				// ll_chaxun.setBackgroundColor(getResources().getColor(
+				// R.color.ll_chaxun));
+				//
+				// if (result.equals("提交")) {
+				// tv_chuli.setText("提交中");
+				// tv_chuli.setTextColor(getResources()
+				// .getColor(R.color.black));
+				// }
+				// if (result.equals("处理")) {
+				// tv_chuli.setText("处理中");
+				// tv_chuli.setTextColor(getResources()
+				// .getColor(R.color.black));
+				// }
+				//
+				// if (result.equals("完成")) {
+				// tv_chuli.setText("完成中");
+				// tv_chuli.setTextColor(getResources()
+				// .getColor(R.color.black));
+				// }
+				Intent intent = new Intent();
+				intent = new Intent(BaoJianService.this, ChaXunService.class);
+				startActivity(intent);
 			}
 		});
 
@@ -529,7 +556,7 @@ public class BaoJianService extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 
-			BaoJianService.this.finish();
+			finish();
 
 		}
 		return super.onKeyDown(keyCode, event);

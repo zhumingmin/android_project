@@ -155,10 +155,7 @@ public class AndroidBeamMainActivity extends Activity implements
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
 
-			Intent intent = new Intent();
-			intent.setClass(AndroidBeamMainActivity.this, SZ_GRXXActivity.class);
-			startActivity(intent);
-			AndroidBeamMainActivity.this.finish();
+			finish();
 		}
 		return super.onKeyDown(keyCode, event);
 	}

@@ -52,6 +52,7 @@ public class SZ_GRXXActivity extends Activity {
 				finish();
 			}
 		});
+		
 		// 这里需要修改
 		Intent intent = getIntent();
 		String data1 = intent.getStringExtra("data1");

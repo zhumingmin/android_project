@@ -199,6 +199,88 @@
             android:text="上传"
             android:textColor="#333333" >
         </Button>
+
+        <LinearLayout
+            android:id="@+id/ll_chaxun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#F5F5F5"
+                android:gravity="center" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_tijiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="提交"
+                android:textColor="#F5F5F5"
+                android:textSize="20dp" >
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#F5F5F5"
+                android:gravity="center" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_chuli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="处理"
+                android:textColor="#F5F5F5"
+                android:textSize="20dp" >
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#F5F5F5"
+                android:gravity="center" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_wancheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="#F5F5F5"
+                android:textSize="20dp" >
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="#F8F8FF"
+                android:gravity="center" >
+            </TextView>
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

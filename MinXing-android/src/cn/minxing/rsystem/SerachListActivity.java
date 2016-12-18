@@ -26,7 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import cn.minxing.activity.TianJiaHuiDaActivity;
-
+import cn.minxing.util.ACache;
 import cn.minxing.util.RS_News;
 import cn.minxing.util.RS_NewsAdapter;
 
@@ -67,9 +67,10 @@ public class SerachListActivity extends Activity {
 	private Button load;
 	private TextView tv_result, tv_ugc;
 	private static final String TAG = "SerachListActivity";
-	static String classname;
+
 	boolean isReqing = false;
-	static String keyword;
+
+	private ACache mCache;
 
 	/**
 	 * 刷新, 这种刷新方法，只有一个Activity实例。
@@ -83,15 +84,20 @@ public class SerachListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_listview_rs);
-
+		mCache = ACache.get(this);
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_liebiao);
 		tv_result = (TextView) findViewById(R.id.tv_result);
 		tv_ugc = (TextView) findViewById(R.id.tv_tianjiehuida);
 
 		Intent intent = getIntent();
-		keyword = intent.getStringExtra("keyword");
+		// String classname = intent.getStringExtra("classname");
+
+		String tuijian_keyword = intent.getStringExtra("keyword");
+		if (tuijian_keyword != null) {
+			mCache.put("tuijian_keyword", tuijian_keyword, 300);
+		}
+
 		if (intent != null) {
-			classname = intent.getStringExtra("classname");
 
 			String sampleURL = SERVICE_URL + "/1";
 			WebServiceTask wst = new WebServiceTask(WebServiceTask.GET_TASK,
@@ -105,7 +111,6 @@ public class SerachListActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-
 				SerachListActivity.this.finish();
 				Intent intent = new Intent(SerachListActivity.this,
 						SerachListActivity.class);
@@ -137,7 +142,8 @@ public class SerachListActivity extends Activity {
 
 				Intent intent = new Intent(SerachListActivity.this,
 						TianJiaHuiDaActivity.class);
-				intent.putExtra("keyword", keyword);
+				intent.putExtra("keyword",
+						mCache.getAsString("tuijian_keyword"));
 				startActivity(intent);
 			}
 

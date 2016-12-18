@@ -101,6 +101,11 @@ public class TianJiaHuiDaActivity extends Activity {
 							.show();
 					return;
 				}
+				if (zhuti.equals(null)) {
+					Toast.makeText(getApplicationContext(), "主题不能为空！", 0)
+							.show();
+					return;
+				}
 				WebServiceTask wst = new WebServiceTask(
 						WebServiceTask.POST_TASK, TianJiaHuiDaActivity.this,
 						"正在上传中...");

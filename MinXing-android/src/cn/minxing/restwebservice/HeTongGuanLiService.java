@@ -24,6 +24,8 @@ import cn.minxing.activity.ChaKanMoBanActivity;
 import cn.minxing.fragment.YeWuBanLiFragment.TimeThread;
 import cn.minxing.restwebservice.HeTongService;
 import cn.minxing.restwebservice.WangJiMiMaService;
+import cn.minxing.util.ACache;
+import cn.minxing.util.CacheUtils;
 
 import com.zhumingmin.vmsofminxing.R;
 
@@ -62,6 +64,7 @@ public class HeTongGuanLiService extends Activity {
 	private Handler handler;
 	boolean isReqing = false;
 	static String gonggaolan, gonggaoshijian;
+	private ACache mCache;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -131,6 +134,18 @@ public class HeTongGuanLiService extends Activity {
 		// DisplayToast("方法一：拨打电话，方法二：网上反馈，暂未开通");
 		// }
 		// });
+		
+//		String gonggao = CacheUtils
+//				.readJson(getApplicationContext(), "gonggao").get(0);
+//		String time = CacheUtils.readJson(getApplicationContext(), "time").get(
+//				0);
+//		if (gonggao != null && time != null) {
+//			caiwugonggao.setText(gonggao);
+//			shijian.setText(time);
+//		} else {
+//			updating();
+//		}
+
 		handler = new Handler() {
 
 			@SuppressLint("HandlerLeak")
@@ -142,13 +157,18 @@ public class HeTongGuanLiService extends Activity {
 					updating();
 					isReqing = true;
 				} else {
-					caiwugonggao.setText(gonggaolan);
-					shijian.setText(gonggaoshijian);
+
+					caiwugonggao.setText(mCache.getAsString("caiwugonggao"));
+					shijian.setText(mCache.getAsString("shijian"));
+
+					// caiwugonggao.setText(gonggaolan);
+					// shijian.setText(gonggaoshijian);
 				}
 
 			}
 		};
 		handler.sendEmptyMessageDelayed(0, 1000);
+
 	}
 
 	protected void updating() {
@@ -168,10 +188,16 @@ public class HeTongGuanLiService extends Activity {
 
 			String announcement = jso.optString("gonggao");
 			String time = jso.optString("time");
+			// CacheUtils.writeJson(getApplicationContext(), announcement,
+			// "gonggao", false);
+			// CacheUtils.writeJson(getApplicationContext(), time, "time",
+			// false);
 			gonggaolan = announcement;
 			gonggaoshijian = time;
 			caiwugonggao.setText(announcement);
 			shijian.setText(time);
+			mCache.put("caiwugonggao", caiwugonggao.getText().toString(), 300);
+			mCache.put("shijian", shijian.getText().toString(), 300);
 
 		} catch (Exception e) {
 			Log.e(TAG, e.getLocalizedMessage(), e);

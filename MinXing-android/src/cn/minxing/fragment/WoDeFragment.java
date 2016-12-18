@@ -29,14 +29,15 @@ import cn.minxing.activity.ReadTagActivity;
 import cn.minxing.activity.RssActivity;
 import cn.minxing.activity.SZ_GRXXActivity;
 import cn.minxing.activity.SZ_SheZhiActivity;
-
 import cn.minxing.activity.SheZhiActivity;
 import cn.minxing.activity.TianQiChaXunActivity;
 import cn.minxing.activity.TongXunLuActivity;
+import cn.minxing.restwebservice.ChaXunService;
 import cn.minxing.restwebservice.LoginService;
 import cn.minxing.restwebservice.MinYiZhengJiService;
 import cn.minxing.restwebservice.RegisterService;
 import cn.minxing.restwebservice.YiBaoService;
+import cn.minxing.util.ACache;
 
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.impl.CommunityFactory;
@@ -61,6 +62,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.telephony.TelephonyManager;
 import android.text.Layout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,13 +81,15 @@ import com.umeng.comm.ui.fragments.CommunityMainFragment;
 public class WoDeFragment extends Fragment {
 	private Handler handler;
 	private TableRow tr_gerenxinxi, tr_toupiao, tr_shequ, tr_tongxun,
-			tr_xinxichaxun, tr_tongxunlu, tr_xianliao, tr_shezhi, tr_rss;
+			tr_xinxichaxun, tr_tongxunlu, tr_xianliao, tr_shezhi, tr_rss,
+			tr_chaxunjindu;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/myaccount";
 
 	private static final String TAG = "WoDeFragment";
 	TextView name, phone;
 	static String account, grxx_name, grxx_phone;
-	boolean isReqing = false;
+	static boolean isReqing;
+	private ACache mCache;
 
 	@SuppressLint("HandlerLeak")
 	@Override
@@ -94,11 +98,12 @@ public class WoDeFragment extends Fragment {
 		// TODO Auto-generated method stub
 		// View v = inflater.inflate(R.layout.fragment_shezhi, container,
 		// false);
+
 		// 2016.11.23更改
 		View v = inflater.inflate(R.layout.fragment_shezhi_new, container,
 				false);
 		ExitApplication.getInstance().addActivity(getActivity());
-
+		mCache = ACache.get(getActivity());
 		tr_gerenxinxi = (TableRow) v.findViewById(R.id.tr_gerenxinxi);
 		tr_toupiao = (TableRow) v.findViewById(R.id.tr_toupiao);
 		// tr_shequ = (TableRow) v.findViewById(R.id.tr_shequ);
@@ -108,6 +113,7 @@ public class WoDeFragment extends Fragment {
 		tr_xianliao = (TableRow) v.findViewById(R.id.tr_xianliao);
 		tr_shezhi = (TableRow) v.findViewById(R.id.tr_shezhi);
 		tr_rss = (TableRow) v.findViewById(R.id.tr_rss);
+		tr_chaxunjindu = (TableRow) v.findViewById(R.id.tr_chaxunjindu);
 		name = (TextView) v.findViewById(R.id.name);
 		phone = (TextView) v.findViewById(R.id.phone);
 
@@ -187,6 +193,19 @@ public class WoDeFragment extends Fragment {
 				} else {
 					DisplayToast("您的设备暂不支持该功能！");
 				}
+			}
+
+		});
+		tr_chaxunjindu.setOnClickListener(new Button.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				Intent intent = new Intent();
+				intent = new Intent(getActivity(), ChaXunService.class);
+				startActivity(intent);
+
 			}
 
 		});
@@ -303,10 +322,28 @@ public class WoDeFragment extends Fragment {
 
 			String xingming = jso.optString("name");
 			String dianhua = jso.optString("phonenumber");
+
 			grxx_name = xingming;
 			grxx_phone = dianhua;
+			mCache.put("name", xingming, 300);
+			mCache.put("phonenumber", dianhua, 300);
 			name.setText(xingming);
-			phone.setText(dianhua);
+			
+			if(!TextUtils.isEmpty(dianhua) && dianhua.length() > 6 ){
+	            StringBuilder sb  =new StringBuilder();
+	            for (int i = 0; i < dianhua.length(); i++) {
+	                char c = dianhua.charAt(i);
+	                if (i >= 3 && i <= 6) {
+	                    sb.append('*');
+	                } else {
+	                    sb.append(c);
+	                }
+	            }
+
+	            phone.setText(sb.toString());
+	        }
+			
+			//phone.setText(dianhua);
 
 		} catch (Exception e) {
 			Log.e(TAG, e.getLocalizedMessage(), e);
@@ -504,23 +541,25 @@ public class WoDeFragment extends Fragment {
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
 		if (isVisibleToUser) {
+
 			if (!isReqing) {
+				isReqing = true;
 				postSampleData();
 				retrieveSampleData();
-				isReqing = true;
+
 			}
 
-			// else if (isReqing && grxx_name != null && grxx_phone != null) {
-			// name.setText(grxx_name);
-			// phone.setText(grxx_phone);
-			// }
 			else {
-				name.setText(grxx_name);
-				phone.setText(grxx_phone);
+
+				// name.setText(grxx_name);
+				// phone.setText(grxx_phone);
+				name.setText(mCache.getAsString("name"));
+				phone.setText(mCache.getAsString("phonenumber"));
 			}
 
 		} else {
 			// 相当于Fragment的onPause
+
 		}
 	}
 }

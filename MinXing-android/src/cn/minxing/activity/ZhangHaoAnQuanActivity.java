@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -45,8 +46,22 @@ public class ZhangHaoAnQuanActivity extends Activity {
 		});
 
 		Intent intent = getIntent();
+		if (!TextUtils.isEmpty(intent.getStringExtra("data3"))
+				&& intent.getStringExtra("data3").length() > 6) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < intent.getStringExtra("data3").length(); i++) {
+				char c = intent.getStringExtra("data3").charAt(i);
+				if (i >= 3 && i <= 13) {
+					sb.append('*');
+				} else {
+					sb.append(c);
+				}
+			}
 
-		xianshizhanghao.setText(intent.getStringExtra("data3"));
+			xianshizhanghao.setText(sb.toString());
+		}
+		// xianshizhanghao.setText(intent.getStringExtra("data3"));
+
 		xianshixingming.setText(intent.getStringExtra("data1"));
 		xianshishoujihao.setText(intent.getStringExtra("data2"));
 		ceshirukou.setOnClickListener(new Button.OnClickListener() {

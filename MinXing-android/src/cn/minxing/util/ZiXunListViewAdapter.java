@@ -39,8 +39,10 @@ public class ZiXunListViewAdapter extends ArrayAdapter<ZiXun> {
 		laiyuan.setText(zixun.getLaiYuan());
 		shijian.setText(zixun.getShiJian());
 		yuedu.setText(zixun.getYueDu());
-		VolleyLoadPicture vlp = new VolleyLoadPicture(getContext(), tupian);
-		vlp.getmImageLoader().get(zixun.getTuPian(), vlp.getOne_listener());
+		if (zixun.getTuPian() != null) {
+			VolleyLoadPicture vlp = new VolleyLoadPicture(getContext(), tupian);
+			vlp.getmImageLoader().get(zixun.getTuPian(), vlp.getOne_listener());
+		}
 		return view;
 	}
 

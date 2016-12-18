@@ -450,6 +450,7 @@
         <activity android:name="cn.minxing.activity.GuideViewPagerActivity" />
         <activity android:name="cn.minxing.activity.TianJiaHuiDaActivity" />
         <activity android:name="cn.minxing.restwebservice.NewsService" />
+        <activity android:name="cn.minxing.restwebservice.ChaXunService" />
         <activity
             android:name="cn.minxing.activity.CatchActivity"
             android:label="时事新闻" >
