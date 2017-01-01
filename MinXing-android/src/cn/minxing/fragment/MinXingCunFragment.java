@@ -26,6 +26,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -38,7 +39,7 @@ import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
 @SuppressLint("NewApi")
-public class MinXingCunFragment extends Fragment {
+public class MinXingCunFragment extends MyFragment {
 	private Button gengduo, hezuo;
 	private TextView minxingcun, minxingcun_01, minxingcun_02, minxingcun_03,
 			text_minxingzhijia;
@@ -53,6 +54,8 @@ public class MinXingCunFragment extends Fragment {
 	private int currentItem = 0;
 	static Point size;
 	static float density;
+	View v;
+	private boolean isReady = false;
 	// An ExecutorService that can schedule commands to run after a given delay,
 	// or to execute periodically.
 	private ScheduledExecutorService scheduledExecutorService;
@@ -64,23 +67,46 @@ public class MinXingCunFragment extends Fragment {
 	};
 
 	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		super.setUserVisibleHint(isVisibleToUser);
-		if (isVisibleToUser) {
-			// 相当于Fragment的onResume
-		} else {
-			// 相当于Fragment的onPause
-		}
-
-	}
-
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater.inflate(R.layout.fragment_minxingzhijia, container,
-				false);
+
 		ExitApplication.getInstance().addActivity(getActivity());
+
+		if (v == null) {
+
+			v = inflater.inflate(R.layout.fragment_minxingzhijia, container,
+					false);
+			isReady = true;
+			delayLoad();
+			Log.d("info", "onCreateView");
+		} else {
+			Log.d("info", "rootView != null");
+		}
+
+		// Cache rootView.
+		// remove rootView from its parent
+		ViewGroup parent = (ViewGroup) v.getParent();
+		if (parent != null) {
+			parent.removeView(v);
+		}
+
+		return v;
+	}
+
+	@Override
+	protected void delayLoad() {
+		if (!isReady || !isVisible) {
+			return;
+		}
+
+		// 　This is a random widget, it will be instantiation in init()
+		if (text_minxingzhijia == null) {
+			init();
+		}
+	}
+
+	public void init() {
 		text_minxingzhijia = (TextView) v
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.text_minxingzhijia);
 		String str = "民兴村有区一级小学、幼儿园各一所，镇人民医院分院一间，综合性市场一个。民兴村政村位于万顷沙镇三民岛中部，全村共有五百五十六户， 户籍人口两千一百五十人，辖区面积为两百六十七公顷，耕地面积三千三百八十亩。二零零八年村工农业总产值两千九百二十七万元。在上级党委和政府的正确领导和大力支持下，经多年努力创建，昔日的扶贫村、问题村已先后获得广州市文明村、南沙区基层党建示范点、南沙区文明村、万顷沙镇工作先进村等区、镇荣誉称号。近几年来，该村以发展经济为中心，以村镇规划为龙头，以改善民生为重点，积极推进新农村建设，全村呈现出了经济发展、生活安定、社会和谐的生动局面。"
@@ -168,7 +194,6 @@ public class MinXingCunFragment extends Fragment {
 			}
 
 		});
-		return v;
 	}
 
 	@Override

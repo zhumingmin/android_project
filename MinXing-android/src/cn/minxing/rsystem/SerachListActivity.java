@@ -30,6 +30,7 @@ import cn.minxing.util.ACache;
 import cn.minxing.util.RS_News;
 import cn.minxing.util.RS_NewsAdapter;
 
+import com.ypy.eventbus.EventBus;
 import com.zhumingmin.vmsofminxing.R;
 
 import android.app.Activity;
@@ -47,6 +48,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -67,7 +69,7 @@ public class SerachListActivity extends Activity {
 	private Button load;
 	private TextView tv_result, tv_ugc;
 	private static final String TAG = "SerachListActivity";
-
+	EditText sla_sousuo;
 	boolean isReqing = false;
 
 	private ACache mCache;
@@ -83,13 +85,29 @@ public class SerachListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		setContentView(R.layout.activity_listview_rs);
 		mCache = ACache.get(this);
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_liebiao);
 		tv_result = (TextView) findViewById(R.id.tv_result);
 		tv_ugc = (TextView) findViewById(R.id.tv_tianjiehuida);
+		sla_sousuo = (EditText) findViewById(R.id.sla_sousuo);
+		sla_sousuo.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				SerachListActivity.this.finish();
+				Intent intent = new Intent(SerachListActivity.this,
+						SerachActivity.class);
+				startActivity(intent);
+				finish();
+
+			}
+
+		});
 		Intent intent = getIntent();
+
 		// String classname = intent.getStringExtra("classname");
 
 		String tuijian_keyword = intent.getStringExtra("keyword");
@@ -152,6 +170,7 @@ public class SerachListActivity extends Activity {
 		RS_NewsAdapter adapter = new RS_NewsAdapter(SerachListActivity.this,
 				R.layout.news_list_item_rs, newslist);
 		adapter.notifyDataSetChanged();
+		
 		listview = (ListView) findViewById(R.id.list);
 
 		listview.setAdapter(adapter);
@@ -212,8 +231,10 @@ public class SerachListActivity extends Activity {
 			strArray5 = convertStrToArray(yueduliang);
 			strArray6 = convertStrToArray(like);
 			strArray7 = convertStrToArray(unlike);
+			
 			newslist.clear();
 			tv_result.setText("");
+			
 			for (int i = 0; i < strArray.length; i++) {
 				RS_News news = new RS_News(strArray[i].replace("\"", ""),
 						strArray4[i].replace("\"", ""), strArray5[i].replace(

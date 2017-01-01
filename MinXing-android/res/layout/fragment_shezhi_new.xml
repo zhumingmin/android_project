@@ -26,7 +26,7 @@
             android:gravity="center" >
 
             <ImageView
-                android:id="@+id/gerenxinxi"
+                android:id="@+id/iv_gerenxinxi"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginLeft="10dp"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="15dp"
-                android:layout_toRightOf="@id/gerenxinxi"
+                android:layout_toRightOf="@id/iv_gerenxinxi"
                 android:text="村民张三"
                 android:textColor="#fff"
                 android:textSize="20dp" />
@@ -48,11 +48,11 @@
                 android:id="@+id/tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/gerenxinxi"
+                android:layout_alignBaseline="@id/iv_gerenxinxi"
                 android:layout_below="@id/name"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
-                android:layout_toRightOf="@id/gerenxinxi"
+                android:layout_toRightOf="@id/iv_gerenxinxi"
                 android:text="联系方式："
                 android:textColor="#fff"
                 android:textSize="15dp" />
@@ -61,7 +61,7 @@
                 android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/gerenxinxi"
+                android:layout_alignBaseline="@id/iv_gerenxinxi"
                 android:layout_below="@id/name"
                 android:layout_marginTop="2dp"
                 android:layout_toRightOf="@id/tel"

@@ -102,11 +102,18 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/laiyuan_zx"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="来源"
                         android:textColor="@color/author_text"
+                        android:textSize="@dimen/text_size_13" />
+
+                    <TextView
+                        android:id="@+id/laiyuan_zx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3.0dip"
+                        android:text="来源"
                         android:textSize="@dimen/text_size_13" />
 
                     <TextView
@@ -115,7 +122,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6.0dip"
                         android:text="时间"
-                        android:textColor="@color/gray"
                         android:textSize="@dimen/text_size_12" />
 
                     <TextView
@@ -123,16 +129,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6.0dip"
                         android:text="阅读量"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/author_text"
                         android:textSize="@dimen/text_size_12" />
 
                     <TextView
                         android:id="@+id/yuedu_zx"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="6.0dip"
+                        android:layout_marginLeft="3.0dip"
                         android:text="0"
-                        android:textColor="@color/gray"
                         android:textSize="@dimen/text_size_12" />
                 </LinearLayout>
 
@@ -163,5 +168,16 @@
     </LinearLayout>
 
     <View style="@style/detail_cut_line" />
+
+    <TextView
+        android:id="@+id/yuanwen_zx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:autoLink="web"
+        android:text="阅读原文"
+        android:textColor="#999999"
+        android:textSize="10dp" />
 
 </LinearLayout>

@@ -48,9 +48,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TianJiaHuiDaActivity extends Activity {
-	TextView rs_zhuti, rs_shijian;
+	TextView rs_shijian;
 	Button tianjiahuida;
-	EditText content_huida;
+	EditText content_huida, rs_zhuti;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/news";
 	private static final String TAG = "TianJiaHuiDaActivity";
 	String zhuti;
@@ -61,14 +61,14 @@ public class TianJiaHuiDaActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.webservice_ugc);
 
-		rs_zhuti = (TextView) findViewById(R.id.rs_zhuti);
+		rs_zhuti = (EditText) findViewById(R.id.rs_zhuti);
 		rs_shijian = (TextView) findViewById(R.id.rs_shijian);
 		tianjiahuida = (Button) findViewById(R.id.tianjiahuida);
 		content_huida = (EditText) findViewById(R.id.content_huida);
 		LinearLayout ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_tianjia);
 		Intent intent = getIntent();
 		zhuti = intent.getStringExtra("keyword");
-		rs_zhuti.setText("关键词：" + zhuti);
+		rs_zhuti.setText(zhuti);
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -110,7 +110,7 @@ public class TianJiaHuiDaActivity extends Activity {
 						WebServiceTask.POST_TASK, TianJiaHuiDaActivity.this,
 						"正在上传中...");
 
-				wst.addNameValuePair("title", zhuti);
+				wst.addNameValuePair("title", rs_zhuti.getText().toString());
 				wst.addNameValuePair("category", "用户回答");
 				wst.addNameValuePair("pubdate", rs_shijian.getText().toString());
 				wst.addNameValuePair("readnumber", "0");

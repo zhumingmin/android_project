@@ -118,7 +118,7 @@ public class LoginService extends Activity {
 		// tianxiezhanghao.setText(name_str);
 
 		tianxiemima.setText(pass_str);
-
+		account = name_str;
 		savePasswordCB = (CheckBox) findViewById(R.id.savePasswordCB);
 
 		// 接收设置中的注销登录的操作
@@ -236,7 +236,7 @@ public class LoginService extends Activity {
 				// TODO Auto-generated method stub
 				String zhanghao = tianxiezhanghao.getText().toString();
 				String mima1 = tianxiemima.getText().toString();
-				account = tianxiezhanghao.getText().toString();
+
 				if (!isNetworkAvailable(LoginService.this)) {
 
 					Toast.makeText(getApplicationContext(), "网络未连接，请检查您的网络！", 0)
@@ -260,13 +260,13 @@ public class LoginService extends Activity {
 				wst.addNameValuePair("miMa", mima1);
 
 				// the passed String is the URL we will POST to
-				
-				//wst.execute(new String[] { SERVICE_URL });
-				
-				 Intent intent = new Intent();
-				 intent.setClass(LoginService.this, YeWuBanLiActivity.class);
-				 startActivity(intent);
-				 finish();
+
+				// wst.execute(new String[] { SERVICE_URL });
+
+				Intent intent = new Intent();
+				intent.setClass(LoginService.this, YeWuBanLiActivity.class);
+				startActivity(intent);
+				finish();
 
 			}
 

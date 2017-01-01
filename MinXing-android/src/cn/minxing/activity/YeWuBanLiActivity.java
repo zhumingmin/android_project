@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 import cn.minxing.fragment.MinXingCunFragment;
+import cn.minxing.fragment.NewNongYeZhuShouFragment;
 import cn.minxing.fragment.NongYeZhuShouFragment;
 import cn.minxing.fragment.WoDeFragment;
 import cn.minxing.fragment.YeWuBanLiFragment;
@@ -44,6 +45,7 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 	private Fragment fr01, fr02, fr03, fr04;
 	private static final String TAG = "YeWuBanLiActivity";
 	int currentItem;
+	static String isReqing;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,11 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 		initView();
 		initEvent();
 
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// super.onSaveInstanceState(outState);
 	}
 
 	private void initEvent() {
@@ -84,7 +91,8 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 
 		fr01 = new MinXingCunFragment();
 		fr02 = new YeWuBanLiFragment();
-		fr03 = new NongYeZhuShouFragment();
+		fr03 = new NewNongYeZhuShouFragment();
+		// fr03 = new NongYeZhuShouFragment();
 		fr04 = new WoDeFragment();
 
 		mLists.add(fr01);
@@ -134,6 +142,16 @@ public class YeWuBanLiActivity extends FragmentActivity implements
 			}
 		});
 
+	}
+
+	public String getisReqing() {
+
+		return isReqing;
+
+	}
+
+	public void setisReqing(String isReqing) {
+		this.isReqing = isReqing;
 	}
 
 	public int returncurrentItem() {

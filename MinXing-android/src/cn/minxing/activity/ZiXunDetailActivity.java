@@ -27,6 +27,14 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
 import cn.minxing.fragment.ZiXunFragment;
+import cn.minxing.fragment.zixun.BenDiFragment;
+import cn.minxing.fragment.zixun.NongYeXinWenFragment;
+import cn.minxing.fragment.zixun.NongYeZhengCeFragment;
+import cn.minxing.fragment.zixun.QiTaFragment;
+import cn.minxing.fragment.zixun.ReDianDetailActivity;
+import cn.minxing.fragment.zixun.ReDianFragment;
+import cn.minxing.fragment.zixun.ShengChanZhiDaoFragment;
+
 import cn.minxing.rsystem.BASE64Decoder;
 import cn.minxing.rsystem.SerachListActivity;
 import cn.minxing.util.BroadCastManager;
@@ -34,6 +42,7 @@ import cn.minxing.util.EventUtil;
 import cn.minxing.util.RS_News;
 import cn.minxing.util.VolleyLoadPicture;
 import cn.minxing.util.ZiXun;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -46,6 +55,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -68,7 +79,8 @@ import com.zhumingmin.vmsofminxing.R;
 
 public class ZiXunDetailActivity extends Activity {
 	private ImageButton ib_share;
-	private TextView biaoti_tv, laiyuan_tv, shijian_tv, yuedu_tv, neirong_tv;
+	private TextView biaoti_tv, laiyuan_tv, shijian_tv, yuedu_tv, neirong_tv,
+			yuanwen_tv;
 	private LinearLayout ly_fanhui;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/zixun";
 	String picturepath = null;
@@ -94,7 +106,7 @@ public class ZiXunDetailActivity extends Activity {
 		yuedu_tv = (TextView) findViewById(R.id.yuedu_zx);
 
 		neirong_tv = (TextView) findViewById(R.id.neirong_zx);
-
+		yuanwen_tv = (TextView) findViewById(R.id.yuanwen_zx);
 		ivPlay = (ImageView) findViewById(R.id.ivPlay_zx);
 
 		ib_share = (ImageButton) findViewById(R.id.ib_share_zx);
@@ -116,17 +128,17 @@ public class ZiXunDetailActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				String biaoti = biaoti_tv.getText().toString();
-				String yuedu = yuedu_tv.getText().toString();
-				WebServiceTask wst = new WebServiceTask(
-						WebServiceTask.POST_TASK, ZiXunDetailActivity.this,
-						"提交中，请稍候…");
-
-				wst.addNameValuePair("biaoti", biaoti);
-				wst.addNameValuePair("yuedu", yuedu);
-
-				// the passed String is the URL we will POST to
-				wst.execute(new String[] { SERVICE_URL });
+				// String biaoti = biaoti_tv.getText().toString();
+				// String yuedu = yuedu_tv.getText().toString();
+				// WebServiceTask wst = new WebServiceTask(
+				// WebServiceTask.POST_TASK, ZiXunDetailActivity.this,
+				// "提交中，请稍候…");
+				//
+				// wst.addNameValuePair("biaoti", biaoti);
+				// wst.addNameValuePair("yuedu", yuedu);
+				//
+				// // the passed String is the URL we will POST to
+				// wst.execute(new String[] { SERVICE_URL });
 
 				finish();
 			}
@@ -136,33 +148,30 @@ public class ZiXunDetailActivity extends Activity {
 		intent.getExtras();
 		Bundle data = intent.getExtras();
 		int position = data.getInt("zixun_id");
+
 		ZiXun zixun = ZiXunFragment.zixunDataList.get(position);
+
 		biaoti_tv.setText(zixun.getBiaoTi());
 		laiyuan_tv.setText("来源 " + zixun.getLaiYuan());
 		shijian_tv.setText(zixun.getShiJian());
 		yuedu_tv.setText(String.valueOf(Integer.parseInt(zixun.getYueDu()) + 1));
 		neirong_tv.setText(zixun.getNeiRong());
 		picUrl = zixun.getTuPian();
+		yuanwen_tv.setText(zixun.getLianJie());
 		VolleyLoadPicture vlp = new VolleyLoadPicture(this, imageViewOne);
 		vlp.getmImageLoader().get(picUrl, vlp.getOne_listener());
-		// neirong_tv.setText(picUrl);
 
-		// if (picUrl != null) {
-		//
-		// vlp.getmImageLoader().get(picUrl, vlp.getOne_listener());
-		// } else {
-		//
-		// vlp.getmImageLoader().get(
-		// "http://ww1.sinaimg.cn/large/54916ae8jw1ds87vwzpjtj.jpg",
-		// vlp.getOne_listener());
-		// }
+		Handler handler = new Handler() {
+			@SuppressLint("HandlerLeak")
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				super.handleMessage(msg);
+				updateyuedu();
+			}
+		};
 
-		// YeWuBanLiActivity ywbl = new YeWuBanLiActivity();
-		// biaoti_tv.setText(ywbl.returnbiaoTi());
-		// laiyuan_tv.setText(ywbl.returnlaiYuan());
-		// yuedu_tv.setText(String.valueOf(Integer.parseInt(ywbl.returnyueDu())
-		// + 1));
-		// neirong_tv.setText(ywbl.returnneiRong());
+		handler.sendEmptyMessageDelayed(0, 1000);
 
 		new UMShareListener() {
 			@Override
@@ -183,6 +192,19 @@ public class ZiXunDetailActivity extends Activity {
 						Toast.LENGTH_SHORT).show();
 			}
 		};
+	}
+
+	public void updateyuedu() {
+		String biaoti = biaoti_tv.getText().toString();
+		String yuedu = yuedu_tv.getText().toString();
+		WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
+				ZiXunDetailActivity.this, "提交中，请稍候…");
+
+		wst.addNameValuePair("biaoti", biaoti);
+		wst.addNameValuePair("yuedu", yuedu);
+
+		// the passed String is the URL we will POST to
+		wst.execute(new String[] { SERVICE_URL });
 	}
 
 	/**
@@ -481,16 +503,16 @@ public class ZiXunDetailActivity extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
-			String biaoti = biaoti_tv.getText().toString();
-			String yuedu = yuedu_tv.getText().toString();
-			WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
-					ZiXunDetailActivity.this, "提交中，请稍候...");
-
-			wst.addNameValuePair("biaoti", biaoti);
-			wst.addNameValuePair("yuedu", yuedu);
-
-			// the passed String is the URL we will POST to
-			wst.execute(new String[] { SERVICE_URL });
+			// String biaoti = biaoti_tv.getText().toString();
+			// String yuedu = yuedu_tv.getText().toString();
+			// WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
+			// ZiXunDetailActivity.this, "提交中，请稍候...");
+			//
+			// wst.addNameValuePair("biaoti", biaoti);
+			// wst.addNameValuePair("yuedu", yuedu);
+			//
+			// // the passed String is the URL we will POST to
+			// wst.execute(new String[] { SERVICE_URL });
 
 			finish();
 		}

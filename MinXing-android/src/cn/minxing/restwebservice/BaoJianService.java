@@ -28,6 +28,11 @@ import cn.minxing.activity.TongXunLuActivity;
 import cn.minxing.activity.YeWuBanLiActivity;
 import cn.minxing.util.CustomArrayAdapter;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationClientOption.AMapLocationMode;
+import com.amap.api.location.AMapLocationListener;
 import com.zhumingmin.vmsofminxing.R;
 
 import android.app.Activity;
@@ -79,7 +84,36 @@ public class BaoJianService extends Activity {
 	public static final int SHOW_LOCATION = 0;
 	private LocationManager locationManager;
 	private String provider;
-	
+
+	// 声明AMapLocationClient类对象
+	public AMapLocationClient mLocationClient = null;
+	// 声明定位回调监听器
+	public AMapLocationListener mLocationListener = new AMapLocationListener() {
+
+		@Override
+		public void onLocationChanged(AMapLocation amapLocation) {
+			// TODO Auto-generated method stub
+			if (amapLocation != null) {
+				if (amapLocation.getErrorCode() == 0) {
+					// 可在其中解析amapLocation获取相应内容。
+					double locationType = amapLocation.getLocationType();// 获取当前定位结果来源，如网络定位结果，详见定位类型表
+					double latitude = amapLocation.getLatitude();// 获取纬度
+
+					Log.e("Amap==经度：纬度", "locationType:" + locationType
+							+ ",latitude:" + latitude);
+					et_baojiandizhi.setText(amapLocation.getAddress());
+				} else {
+					// 定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+					Log.e("AmapError", "location Error, ErrCode:"
+							+ amapLocation.getErrorCode() + ", errInfo:"
+							+ amapLocation.getErrorInfo());
+				}
+			}
+		}
+	};
+
+	// 声明AMapLocationClientOption对象
+	public AMapLocationClientOption mLocationOption = null;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -168,154 +202,167 @@ public class BaoJianService extends Activity {
 
 			}
 		});
-		
+
 		chaxunjindu.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//DisplayToast("网上查询，暂未开通");
-				// ll_chaxun.setBackgroundColor(getResources().getColor(
-				// R.color.ll_chaxun));
-				//
-				// if (result.equals("提交")) {
-				// tv_chuli.setText("提交中");
-				// tv_chuli.setTextColor(getResources()
-				// .getColor(R.color.black));
-				// }
-				// if (result.equals("处理")) {
-				// tv_chuli.setText("处理中");
-				// tv_chuli.setTextColor(getResources()
-				// .getColor(R.color.black));
-				// }
-				//
-				// if (result.equals("完成")) {
-				// tv_chuli.setText("完成中");
-				// tv_chuli.setTextColor(getResources()
-				// .getColor(R.color.black));
-				// }
+
 				Intent intent = new Intent();
 				intent = new Intent(BaoJianService.this, ChaXunService.class);
 				startActivity(intent);
 			}
 		});
 
-		/*
-		 * 通过locationManager实现定位功能（将经纬度通过Geocoding API进行反向解码）
+		// 初始化定位
+		mLocationClient = new AMapLocationClient(getApplicationContext());
+		// 设置定位回调监听
+		mLocationClient.setLocationListener(mLocationListener);
+
+		// 初始化AMapLocationClientOption对象
+		mLocationOption = new AMapLocationClientOption();
+		// 设置定位模式为AMapLocationMode.Battery_Saving，低功耗模式。
+		mLocationOption.setLocationMode(AMapLocationMode.Battery_Saving);
+
+		// 给定位客户端对象设置定位参数
+		mLocationClient.setLocationOption(mLocationOption);
+		// 启动定位
+		mLocationClient.startLocation();
+
+		/**
+		 * 获取一次定位
 		 */
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		// 获取所有可用的位置提供器
-		List<String> providerList = locationManager.getProviders(true);
-		if (providerList.contains(LocationManager.NETWORK_PROVIDER)) {
-			provider = LocationManager.GPS_PROVIDER;
-		} else if (providerList.contains(LocationManager.GPS_PROVIDER)) {
-			provider = LocationManager.NETWORK_PROVIDER;
-		} else {
-			// 当没有可用的位置提供器时，弹出Toast提示用户
-			Toast.makeText(this, "No location provider to use",
-					Toast.LENGTH_SHORT).show();
-			return;
-		}
-		Location location = locationManager.getLastKnownLocation(provider);
-		if (location != null) {
-			// 显示当前设备的位置信息
-			showLocation(location);
-		}
-		locationManager.requestLocationUpdates(provider, 5000, 1,
-				locationListener);
+		// 该方法默认为false，true表示只定位一次
+		mLocationOption.setOnceLocation(true);
+
+		// /*
+		// * 通过locationManager实现定位功能（将经纬度通过Geocoding API进行反向解码）
+		// */
+		// locationManager = (LocationManager)
+		// getSystemService(Context.LOCATION_SERVICE);
+		// // 获取所有可用的位置提供器
+		// List<String> providerList = locationManager.getProviders(true);
+		// if (providerList.contains(LocationManager.NETWORK_PROVIDER)) {
+		// provider = LocationManager.GPS_PROVIDER;
+		// } else if (providerList.contains(LocationManager.GPS_PROVIDER)) {
+		// provider = LocationManager.NETWORK_PROVIDER;
+		// } else {
+		// // 当没有可用的位置提供器时，弹出Toast提示用户
+		// Toast.makeText(this, "No location provider to use",
+		// Toast.LENGTH_SHORT).show();
+		// return;
+		// }
+		// Location location = locationManager.getLastKnownLocation(provider);
+		// if (location != null) {
+		// // 显示当前设备的位置信息
+		// showLocation(location);
+		// }
+		// locationManager.requestLocationUpdates(provider, 5000, 1,
+		// locationListener);
+		// }
+		//
+		// protected void onDestroy() {
+		// super.onDestroy();
+		// if (locationManager != null) {
+		// // 关闭程序时将监听器移除
+		// locationManager.removeUpdates(locationListener);
+		// }
 	}
 
+	@Override
 	protected void onDestroy() {
+		// TODO Auto-generated method stub
 		super.onDestroy();
-		if (locationManager != null) {
-			// 关闭程序时将监听器移除
-			locationManager.removeUpdates(locationListener);
-		}
+
+		mLocationClient.stopLocation();
 	}
 
-	LocationListener locationListener = new LocationListener() {
-
-		@Override
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-		}
-
-		@Override
-		public void onProviderEnabled(String provider) {
-		}
-
-		@Override
-		public void onProviderDisabled(String provider) {
-		}
-
-		@Override
-		public void onLocationChanged(Location location) {
-			// 更新当前设备的位置信息
-			showLocation(location);
-		}
-	};
-
-	private void showLocation(final Location location) {
-		// String currentPosition =
-		// "latitude is"+location.getLatitude()+"\n"+"longitude is"+location.getLongitude();
-		// et_baojiandizhi.setText(currentPosition);
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					// 组装反向地理编码的接口地址
-					StringBuilder url = new StringBuilder();
-					url.append("http://maps.googleapis.com/maps/api/geocode/json?latlng=");
-					url.append(location.getLatitude()).append(",")
-							.append(location.getLongitude());
-					url.append("&sensor=true");
-					// AIzaSyB5LUMOXNvNn0DiLnHGJY9wSfqj-e4wJkE
-					HttpClient httpClient = new DefaultHttpClient();
-					HttpGet httpGet = new HttpGet(url.toString());
-					// 在请求消息头中指定语言，保证服务器会返回中文数据
-					httpGet.addHeader("Accept-Language", "zh-CN");
-					HttpResponse httpResponse = httpClient.execute(httpGet);
-					if (httpResponse.getStatusLine().getStatusCode() == 200) {
-						HttpEntity entity = httpResponse.getEntity();
-						String response = EntityUtils.toString(entity, "utf-8");
-						JSONObject jsonObject = new JSONObject(response);
-						// 获取results节点下的位置信息
-						JSONArray resultArray = jsonObject
-								.getJSONArray("results");
-						if (resultArray.length() > 0) {
-							JSONObject subObject = resultArray.getJSONObject(0);
-							// 取出格式化后的位置信息
-							String address = subObject
-									.getString("formatted_address");
-							Message message = new Message();
-							message.what = SHOW_LOCATION;
-							message.obj = address;
-							handler.sendMessage(message);
-						}
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
-
-	/*
-	 * 开启一个线程来实现位置的显示
-	 */
-	private Handler handler = new Handler() {
-
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case SHOW_LOCATION:
-				String currentPosition = (String) msg.obj;
-				et_baojiandizhi.setText(currentPosition);
-				break;
-			default:
-				break;
-			}
-		}
-
-	};
+	//
+	// LocationListener locationListener = new LocationListener() {
+	//
+	// @Override
+	// public void onStatusChanged(String provider, int status, Bundle extras) {
+	// }
+	//
+	// @Override
+	// public void onProviderEnabled(String provider) {
+	// }
+	//
+	// @Override
+	// public void onProviderDisabled(String provider) {
+	// }
+	//
+	// @Override
+	// public void onLocationChanged(Location location) {
+	// // 更新当前设备的位置信息
+	// showLocation(location);
+	// }
+	// };
+	//
+	// private void showLocation(final Location location) {
+	// // String currentPosition =
+	// //
+	// "latitude is"+location.getLatitude()+"\n"+"longitude is"+location.getLongitude();
+	// // et_baojiandizhi.setText(currentPosition);
+	// new Thread(new Runnable() {
+	// @Override
+	// public void run() {
+	// try {
+	// // 组装反向地理编码的接口地址
+	// StringBuilder url = new StringBuilder();
+	// url.append("http://maps.googleapis.com/maps/api/geocode/json?latlng=");
+	// url.append(location.getLatitude()).append(",")
+	// .append(location.getLongitude());
+	// url.append("&sensor=true");
+	// // AIzaSyB5LUMOXNvNn0DiLnHGJY9wSfqj-e4wJkE
+	// HttpClient httpClient = new DefaultHttpClient();
+	// HttpGet httpGet = new HttpGet(url.toString());
+	// // 在请求消息头中指定语言，保证服务器会返回中文数据
+	// httpGet.addHeader("Accept-Language", "zh-CN");
+	// HttpResponse httpResponse = httpClient.execute(httpGet);
+	// if (httpResponse.getStatusLine().getStatusCode() == 200) {
+	// HttpEntity entity = httpResponse.getEntity();
+	// String response = EntityUtils.toString(entity, "utf-8");
+	// JSONObject jsonObject = new JSONObject(response);
+	// // 获取results节点下的位置信息
+	// JSONArray resultArray = jsonObject
+	// .getJSONArray("results");
+	// if (resultArray.length() > 0) {
+	// JSONObject subObject = resultArray.getJSONObject(0);
+	// // 取出格式化后的位置信息
+	// String address = subObject
+	// .getString("formatted_address");
+	// Message message = new Message();
+	// message.what = SHOW_LOCATION;
+	// message.obj = address;
+	// handler.sendMessage(message);
+	// }
+	// }
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// }).start();
+	// }
+	//
+	// /*
+	// * 开启一个线程来实现位置的显示
+	// */
+	// private Handler handler = new Handler() {
+	//
+	// public void handleMessage(Message msg) {
+	// switch (msg.what) {
+	// case SHOW_LOCATION:
+	// String currentPosition = (String) msg.obj;
+	// et_baojiandizhi.setText(currentPosition);
+	// break;
+	// default:
+	// break;
+	// }
+	// }
+	//
+	// };
 
 	public void postData(View vw) {
 		TextView tx_spinner1 = (TextView) sp_baojianxiangmu.getSelectedView();

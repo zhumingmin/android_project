@@ -32,6 +32,7 @@ import cn.minxing.activity.SZ_SheZhiActivity;
 import cn.minxing.activity.SheZhiActivity;
 import cn.minxing.activity.TianQiChaXunActivity;
 import cn.minxing.activity.TongXunLuActivity;
+import cn.minxing.activity.YeWuBanLiActivity;
 import cn.minxing.restwebservice.ChaXunService;
 import cn.minxing.restwebservice.LoginService;
 import cn.minxing.restwebservice.MinYiZhengJiService;
@@ -78,7 +79,7 @@ import android.widget.Toast;
 import com.umeng.comm.ui.fragments.CommunityMainFragment;
 
 @SuppressLint("NewApi")
-public class WoDeFragment extends Fragment {
+public class WoDeFragment extends MyFragment {
 	private Handler handler;
 	private TableRow tr_gerenxinxi, tr_toupiao, tr_shequ, tr_tongxun,
 			tr_xinxichaxun, tr_tongxunlu, tr_xianliao, tr_shezhi, tr_rss,
@@ -88,21 +89,56 @@ public class WoDeFragment extends Fragment {
 	private static final String TAG = "WoDeFragment";
 	TextView name, phone;
 	static String account, grxx_name, grxx_phone;
-	static boolean isReqing;
+	ImageView iv_gerenxinxi;
 	private ACache mCache;
+	View v;
+	private boolean isReady = false;
 
 	@SuppressLint("HandlerLeak")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+
 		// View v = inflater.inflate(R.layout.fragment_shezhi, container,
 		// false);
-
 		// 2016.11.23更改
-		View v = inflater.inflate(R.layout.fragment_shezhi_new, container,
-				false);
 		ExitApplication.getInstance().addActivity(getActivity());
+		if (v == null) {
+
+			v = inflater
+					.inflate(R.layout.fragment_shezhi_new, container, false);
+			isReady = true;
+			delayLoad();
+			Log.d("info", "onCreateView");
+		} else {
+			Log.d("info", "rootView != null");
+		}
+
+		// Cache rootView.
+		// remove rootView from its parent
+		ViewGroup parent = (ViewGroup) v.getParent();
+		if (parent != null) {
+			parent.removeView(v);
+		}
+
+		return v;
+
+	}
+
+	@Override
+	protected void delayLoad() {
+		if (!isReady || !isVisible) {
+			return;
+		}
+
+		// 　This is a random widget, it will be instantiation in init()
+		if (tr_gerenxinxi == null) {
+			init();
+		}
+	}
+
+	public void init() {
 		mCache = ACache.get(getActivity());
 		tr_gerenxinxi = (TableRow) v.findViewById(R.id.tr_gerenxinxi);
 		tr_toupiao = (TableRow) v.findViewById(R.id.tr_toupiao);
@@ -116,6 +152,21 @@ public class WoDeFragment extends Fragment {
 		tr_chaxunjindu = (TableRow) v.findViewById(R.id.tr_chaxunjindu);
 		name = (TextView) v.findViewById(R.id.name);
 		phone = (TextView) v.findViewById(R.id.phone);
+		iv_gerenxinxi = (ImageView) v.findViewById(R.id.iv_gerenxinxi);
+		YeWuBanLiActivity ywbl = new YeWuBanLiActivity();
+		if (ywbl.getisReqing() != "true") {
+			ywbl.setisReqing("true");
+			postSampleData();
+			retrieveSampleData();
+			iv_gerenxinxi.setBackgroundResource(R.drawable.tb_yidenglu);
+		}
+
+		else if (mCache.getAsString("name") != null) {
+
+			name.setText(mCache.getAsString("name"));
+			phone.setText(mCache.getAsString("phonenumber"));
+			iv_gerenxinxi.setBackgroundResource(R.drawable.tb_yidenglu);
+		}
 
 		// 希望能实现获取账号信息后不再访问后台
 
@@ -145,6 +196,7 @@ public class WoDeFragment extends Fragment {
 				startActivity(intent);
 			}
 		});
+
 		tr_tongxunlu.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -196,6 +248,7 @@ public class WoDeFragment extends Fragment {
 			}
 
 		});
+
 		tr_chaxunjindu.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -209,6 +262,7 @@ public class WoDeFragment extends Fragment {
 			}
 
 		});
+
 		tr_xianliao.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -220,6 +274,7 @@ public class WoDeFragment extends Fragment {
 				startActivity(intent);
 			}
 		});
+
 		tr_rss.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -231,13 +286,15 @@ public class WoDeFragment extends Fragment {
 				startActivity(intent);
 			}
 		});
+
 		tr_shezhi.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+
 				String data1 = name.getText().toString();
-				String data2 = phone.getText().toString();
+				String data2 = grxx_phone;
 				String data3 = account;
 				Intent intent = new Intent();
 				intent = new Intent(getActivity(), SZ_SheZhiActivity.class);
@@ -248,13 +305,14 @@ public class WoDeFragment extends Fragment {
 
 			}
 		});
+
 		tr_gerenxinxi.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String data1 = name.getText().toString();
-				String data2 = phone.getText().toString();
+				String data2 = grxx_phone;
 				String data3 = account;
 				Intent intent = new Intent();
 				intent = new Intent(getActivity(), SZ_GRXXActivity.class);
@@ -264,9 +322,6 @@ public class WoDeFragment extends Fragment {
 				startActivity(intent);
 			}
 		});
-
-		return v;
-
 	}
 
 	@SuppressLint("NewApi")
@@ -328,22 +383,22 @@ public class WoDeFragment extends Fragment {
 			mCache.put("name", xingming, 300);
 			mCache.put("phonenumber", dianhua, 300);
 			name.setText(xingming);
-			
-			if(!TextUtils.isEmpty(dianhua) && dianhua.length() > 6 ){
-	            StringBuilder sb  =new StringBuilder();
-	            for (int i = 0; i < dianhua.length(); i++) {
-	                char c = dianhua.charAt(i);
-	                if (i >= 3 && i <= 6) {
-	                    sb.append('*');
-	                } else {
-	                    sb.append(c);
-	                }
-	            }
 
-	            phone.setText(sb.toString());
-	        }
-			
-			//phone.setText(dianhua);
+			if (!TextUtils.isEmpty(dianhua) && dianhua.length() > 6) {
+				StringBuilder sb = new StringBuilder();
+				for (int i = 0; i < dianhua.length(); i++) {
+					char c = dianhua.charAt(i);
+					if (i >= 3 && i <= 6) {
+						sb.append('*');
+					} else {
+						sb.append(c);
+					}
+				}
+
+				phone.setText(sb.toString());
+			}
+
+			// phone.setText(dianhua);
 
 		} catch (Exception e) {
 			Log.e(TAG, e.getLocalizedMessage(), e);
@@ -531,35 +586,40 @@ public class WoDeFragment extends Fragment {
 		Toast.makeText(getActivity(), string, Toast.LENGTH_SHORT).show();
 	}
 
-	/*
-	 * 即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。
-	 * 
-	 * @see android.support.v4.app.Fragment#setUserVisibleHint(boolean)
-	 */
-	// 以下的方法可以实现单个fragment的网络加载，而不会带动上下文fragment的动态加载
-	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		super.setUserVisibleHint(isVisibleToUser);
-		if (isVisibleToUser) {
-
-			if (!isReqing) {
-				isReqing = true;
-				postSampleData();
-				retrieveSampleData();
-
-			}
-
-			else {
-
-				// name.setText(grxx_name);
-				// phone.setText(grxx_phone);
-				name.setText(mCache.getAsString("name"));
-				phone.setText(mCache.getAsString("phonenumber"));
-			}
-
-		} else {
-			// 相当于Fragment的onPause
-
-		}
-	}
+	// /*
+	// * 即可实现在fragment可见时才进行数据加载操作，即Fragment的懒加载。
+	// *
+	// * @see android.support.v4.app.Fragment#setUserVisibleHint(boolean)
+	// */
+	// // 以下的方法可以实现单个fragment的网络加载，而不会带动上下文fragment的动态加载
+	// @Override
+	// public void setUserVisibleHint(boolean isVisibleToUser) {
+	// super.setUserVisibleHint(isVisibleToUser);
+	// YeWuBanLiActivity ywbl = new YeWuBanLiActivity();
+	// if (isVisibleToUser) {
+	//
+	// DisplayToast(ywbl.getisReqing());
+	//
+	// if (ywbl.getisReqing() != "true") {
+	// ywbl.setisReqing("true");
+	//
+	// postSampleData();
+	// retrieveSampleData();
+	// }
+	//
+	// else {
+	//
+	// name.setText(mCache.getAsString("name"));
+	// phone.setText(mCache.getAsString("phonenumber"));
+	//
+	// // name.setText(grxx_name);
+	// // phone.setText(grxx_phone);
+	//
+	// }
+	//
+	// } else {
+	// }
+	// // 相当于Fragment的onPause
+	//
+	// }
 }

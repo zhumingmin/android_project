@@ -2,13 +2,12 @@ package cn.minxing.fragment;
 
 import cn.minxing.PushMessage.ExitApplication;
 import cn.minxing.activity.CatchActivity;
-import cn.minxing.activity.HuJiGuanLiActivity;
 import cn.minxing.activity.JiHuaShengYuActivity;
-import cn.minxing.activity.MinXingCunJieShaoActivity;
 import cn.minxing.activity.YiBaoSheBaoActivity;
 import cn.minxing.restwebservice.BaoJianService;
 import cn.minxing.restwebservice.HeTongGuanLiService;
 import cn.minxing.restwebservice.HuJiService;
+import cn.minxing.restwebservice.XiaoXiZhongXinService;
 
 import com.zhumingmin.vmsofminxing.R;
 
@@ -21,42 +20,135 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class YeWuBanLiFragment extends Fragment {
+public class YeWuBanLiFragment extends MyFragment {
 
-	private LinearLayout ll_hj, ll_yb, ll_js, ll_ht, ll_bj, ll_xw;
+	private LinearLayout ll_hj, ll_yb, ll_js, ll_ht, ll_bj, ll_xw, ll_xiaoxi;
 	private ImageButton ib_hj, ib_yb, ib_js, ib_ht, ib_bj, ib_xw;
-	private Button dianhuazixun;
+
 	private TextView mTime;
 	private static final int msgKey1 = 1;
-
-	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		super.setUserVisibleHint(isVisibleToUser);
-		if (isVisibleToUser) {
-			// 相当于Fragment的onResume
-		} else {
-			// 相当于Fragment的onPause
-		}
-
-	}
+	private ImageView iv_xiaoxi;
+	private boolean isReady = false;
+	View v;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View v = inflater
-				.inflate(R.layout.fragment_yewubanli, container, false);
+
 		ExitApplication.getInstance().addActivity(getActivity());
+
+		if (v == null) {
+
+			v = inflater.inflate(R.layout.fragment_yewubanli, container, false);
+			isReady = true;
+			delayLoad();
+			Log.d("info", "onCreateView");
+		} else {
+			Log.d("info", "rootView != null");
+		}
+
+		// Cache rootView.
+		// remove rootView from its parent
+		ViewGroup parent = (ViewGroup) v.getParent();
+		if (parent != null) {
+			parent.removeView(v);
+		}
+
+		// dianhuazixun.setOnClickListener(new OnClickListener() {
+		//
+		// public void onClick(View v) {
+		// final String[] items = getResources().getStringArray(
+		// R.array.item);
+		// new AlertDialog.Builder(getActivity()).setTitle("请点击选择咨询业务！")
+		// .setItems(items, new DialogInterface.OnClickListener() {
+		//
+		// public void onClick(DialogInterface dialog,
+		// int which) {
+		// new AlertDialog.Builder(getActivity())
+		// .setTitle("你选择了:" + items[which])
+		// .setMessage("准备接通咨询，请确认")
+		// .setPositiveButton(
+		// "确认咨询",
+		// new android.content.DialogInterface.OnClickListener() {
+		// @Override
+		// public void onClick(
+		// DialogInterface arg0,
+		// int arg1) {
+		// // TODO Auto-generated
+		// // method stub
+		// arg0.dismiss();
+		// Intent in2 = new Intent();
+		// in2.setAction(Intent.ACTION_CALL);
+		// if (items.toString() == "户籍咨询") {
+		// in2.setData(Uri
+		// .parse("tel:18826487090"));
+		// startActivity(in2);
+		// } else if (items
+		// .toString() == "医保咨询") {
+		// in2.setData(Uri
+		// .parse("tel:18826487090"));
+		// startActivity(in2);
+		// } else if (items
+		// .toString() == "财务咨询") {
+		// in2.setData(Uri
+		// .parse("tel:18826487090"));
+		// startActivity(in2);
+		// } else if (items
+		// .toString() == "计生咨询") {
+		// in2.setData(Uri
+		// .parse("tel:18826487090"));
+		// startActivity(in2);
+		// } else {
+		// in2.setData(Uri
+		// .parse("tel:18826487090"));
+		// startActivity(in2);
+		// }
+		//
+		// }
+		// })
+		// .setNegativeButton(
+		// "下次咨询",
+		// new DialogInterface.OnClickListener() {
+		//
+		// public void onClick(
+		// DialogInterface dialog,
+		// int which) {
+		// // 这里点击取消之后可以进行的操作
+		// }
+		// }).show();
+		// }
+		// }).show();
+		// }
+		// });
+		return v;
+	}
+
+	@Override
+	protected void delayLoad() {
+		if (!isReady || !isVisible) {
+			return;
+		}
+
+		// 　This is a random widget, it will be instantiation in init()
+		if (iv_xiaoxi == null) {
+			init();
+		}
+	}
+
+	public void init() {
+		ll_xiaoxi = (LinearLayout) v.findViewById(R.id.ll_xiaoxi);
 		ll_hj = (LinearLayout) v
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.ll_hj);
 		ll_yb = (LinearLayout) v
@@ -81,11 +173,37 @@ public class YeWuBanLiFragment extends Fragment {
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.ib_bj);
 		ib_xw = (ImageButton) v
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.ib_xw);
+
+		iv_xiaoxi = (ImageView) v
+				.findViewById(com.zhumingmin.vmsofminxing.R.id.iv_xiaoxi);
 		mTime = (TextView) v.findViewById(R.id.mytime);
 		new TimeThread().start();
-		// dianhuazixun = (Button) v
-		// .findViewById(com.zhumingmin.vmsofminxing.R.id.DianHuaZiXun);
 
+		iv_xiaoxi.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				Intent intent = new Intent();
+				intent = new Intent(getActivity(), XiaoXiZhongXinService.class);
+				startActivity(intent);
+
+			}
+		});
+
+		ll_xiaoxi.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				Intent intent = new Intent();
+				intent = new Intent(getActivity(), XiaoXiZhongXinService.class);
+				startActivity(intent);
+
+			}
+		});
 		ib_hj.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -159,73 +277,6 @@ public class YeWuBanLiFragment extends Fragment {
 				startActivity(intent);
 			}
 		});
-		// dianhuazixun.setOnClickListener(new OnClickListener() {
-		//
-		// public void onClick(View v) {
-		// final String[] items = getResources().getStringArray(
-		// R.array.item);
-		// new AlertDialog.Builder(getActivity()).setTitle("请点击选择咨询业务！")
-		// .setItems(items, new DialogInterface.OnClickListener() {
-		//
-		// public void onClick(DialogInterface dialog,
-		// int which) {
-		// new AlertDialog.Builder(getActivity())
-		// .setTitle("你选择了:" + items[which])
-		// .setMessage("准备接通咨询，请确认")
-		// .setPositiveButton(
-		// "确认咨询",
-		// new android.content.DialogInterface.OnClickListener() {
-		// @Override
-		// public void onClick(
-		// DialogInterface arg0,
-		// int arg1) {
-		// // TODO Auto-generated
-		// // method stub
-		// arg0.dismiss();
-		// Intent in2 = new Intent();
-		// in2.setAction(Intent.ACTION_CALL);
-		// if (items.toString() == "户籍咨询") {
-		// in2.setData(Uri
-		// .parse("tel:18826487090"));
-		// startActivity(in2);
-		// } else if (items
-		// .toString() == "医保咨询") {
-		// in2.setData(Uri
-		// .parse("tel:18826487090"));
-		// startActivity(in2);
-		// } else if (items
-		// .toString() == "财务咨询") {
-		// in2.setData(Uri
-		// .parse("tel:18826487090"));
-		// startActivity(in2);
-		// } else if (items
-		// .toString() == "计生咨询") {
-		// in2.setData(Uri
-		// .parse("tel:18826487090"));
-		// startActivity(in2);
-		// } else {
-		// in2.setData(Uri
-		// .parse("tel:18826487090"));
-		// startActivity(in2);
-		// }
-		//
-		// }
-		// })
-		// .setNegativeButton(
-		// "下次咨询",
-		// new DialogInterface.OnClickListener() {
-		//
-		// public void onClick(
-		// DialogInterface dialog,
-		// int which) {
-		// // 这里点击取消之后可以进行的操作
-		// }
-		// }).show();
-		// }
-		// }).show();
-		// }
-		// });
-		return v;
 	}
 
 	public class TimeThread extends Thread {

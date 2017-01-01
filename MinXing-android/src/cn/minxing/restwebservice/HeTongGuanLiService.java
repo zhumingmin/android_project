@@ -25,8 +25,10 @@ import cn.minxing.fragment.YeWuBanLiFragment.TimeThread;
 import cn.minxing.restwebservice.HeTongService;
 import cn.minxing.restwebservice.WangJiMiMaService;
 import cn.minxing.util.ACache;
+import cn.minxing.util.CacheServerResponse;
 import cn.minxing.util.CacheUtils;
 
+import com.ypy.eventbus.EventBus;
 import com.zhumingmin.vmsofminxing.R;
 
 import android.annotation.SuppressLint;
@@ -34,6 +36,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -62,14 +65,19 @@ public class HeTongGuanLiService extends Activity {
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/caiwugonggao";
 	private static final String TAG = "HeTongGuanLiActivity";
 	private Handler handler;
-	boolean isReqing = false;
+	SharedPreferences preferences;
+	SharedPreferences.Editor edit;
 	static String gonggaolan, gonggaoshijian;
 	private ACache mCache;
+	String hc_gonggao, hc_shijian;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// EventBus.getDefault().register(this);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_hetongguanli);
+
+		preferences = getPreferences(Activity.MODE_PRIVATE);
 
 		caiwu = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.caiwu);
 		caiwugonggao = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.caiwugonggao);
@@ -126,48 +134,26 @@ public class HeTongGuanLiService extends Activity {
 
 			}
 		});
-		// yiwenfankui.setOnClickListener(new Button.OnClickListener() {
 
-		// @Override
-		// public void onClick(View v) {
-		// TODO Auto-generated method stub
-		// DisplayToast("方法一：拨打电话，方法二：网上反馈，暂未开通");
-		// }
-		// });
+		hc_gonggao = preferences.getString("announcement", "");
+		hc_shijian = preferences.getString("time", "");
 		
-//		String gonggao = CacheUtils
-//				.readJson(getApplicationContext(), "gonggao").get(0);
-//		String time = CacheUtils.readJson(getApplicationContext(), "time").get(
-//				0);
-//		if (gonggao != null && time != null) {
-//			caiwugonggao.setText(gonggao);
-//			shijian.setText(time);
-//		} else {
-//			updating();
-//		}
+		if (hc_gonggao == "" & hc_shijian == "") {
+			handler = new Handler() {
+				@SuppressLint("HandlerLeak")
+				@Override
+				public void handleMessage(Message msg) {
+					// TODO Auto-generated method stub
+					super.handleMessage(msg);
 
-		handler = new Handler() {
-
-			@SuppressLint("HandlerLeak")
-			@Override
-			public void handleMessage(Message msg) {
-				// TODO Auto-generated method stub
-				super.handleMessage(msg);
-				if (!isReqing) {
 					updating();
-					isReqing = true;
-				} else {
-
-					caiwugonggao.setText(mCache.getAsString("caiwugonggao"));
-					shijian.setText(mCache.getAsString("shijian"));
-
-					// caiwugonggao.setText(gonggaolan);
-					// shijian.setText(gonggaoshijian);
 				}
-
-			}
-		};
-		handler.sendEmptyMessageDelayed(0, 1000);
+			};
+			handler.sendEmptyMessageDelayed(0, 1000);
+		} else {
+			caiwugonggao.setText(hc_gonggao);
+			shijian.setText(hc_shijian);
+		}
 
 	}
 
@@ -188,16 +174,19 @@ public class HeTongGuanLiService extends Activity {
 
 			String announcement = jso.optString("gonggao");
 			String time = jso.optString("time");
-			// CacheUtils.writeJson(getApplicationContext(), announcement,
-			// "gonggao", false);
-			// CacheUtils.writeJson(getApplicationContext(), time, "time",
-			// false);
+
+			EventBus.getDefault().post(announcement);
+			EventBus.getDefault().post(time);
 			gonggaolan = announcement;
 			gonggaoshijian = time;
 			caiwugonggao.setText(announcement);
 			shijian.setText(time);
 			mCache.put("caiwugonggao", caiwugonggao.getText().toString(), 300);
 			mCache.put("shijian", shijian.getText().toString(), 300);
+			edit = preferences.edit();
+			edit.putString("announcement", announcement);
+			edit.putString("time", time);
+			edit.commit();
 
 		} catch (Exception e) {
 			Log.e(TAG, e.getLocalizedMessage(), e);
@@ -379,6 +368,12 @@ public class HeTongGuanLiService extends Activity {
 		}
 
 	}
+
+	// @Override
+	// protected void onDestroy() {
+	// super.onDestroy();
+	// EventBus.getDefault().unregister(this);// 反注册EventBus
+	// }
 
 	private void DisplayToast(String string) {
 		// TODO Auto-generated method stub

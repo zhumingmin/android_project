@@ -90,10 +90,10 @@ public class ZaiRuActivity extends Activity {
 		}
 	}
 
-	protected void jump() {
+	protected void jumpHome() {
 		// TODO jump to homepage activity
 		// Intent intent = new Intent(ZaiRuActivity.this, DengLuJieMian.class);
-		Intent intent = new Intent(ZaiRuActivity.this, LoginService.class);
+		Intent intent = new Intent(ZaiRuActivity.this, YeWuBanLiActivity.class);
 		startActivity(intent);
 		finish();
 	}
@@ -105,7 +105,8 @@ public class ZaiRuActivity extends Activity {
 	}
 
 	private void goGuide() {
-		Intent intent = new Intent(ZaiRuActivity.this, GuideViewPagerActivity.class);
+		Intent intent = new Intent(ZaiRuActivity.this,
+				GuideViewPagerActivity.class);
 		startActivity(intent);
 		finish();
 	}

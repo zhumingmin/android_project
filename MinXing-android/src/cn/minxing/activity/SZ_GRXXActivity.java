@@ -34,6 +34,7 @@ public class SZ_GRXXActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_gerenxinxi);
+		
 		grxx_xingming_tv = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.grxx_xingming_tv);
 		grxx_lianxifangshi_tv = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.grxx_lianxifangshi_tv);
 		grxx_shenfenzhenghao_tv = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.grxx_shenfenzhenghao_tv);
@@ -44,6 +45,7 @@ public class SZ_GRXXActivity extends Activity {
 		shengcheng = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.shengcheng);
 		qrcodeImageView = (ImageView) findViewById(com.zhumingmin.vmsofminxing.R.id.erweima);
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_gerenxinxi);
+		
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -52,7 +54,7 @@ public class SZ_GRXXActivity extends Activity {
 				finish();
 			}
 		});
-		
+
 		// 这里需要修改
 		Intent intent = getIntent();
 		String data1 = intent.getStringExtra("data1");
@@ -105,13 +107,11 @@ public class SZ_GRXXActivity extends Activity {
 						+ grxx_shenfenzhenghao_et.getText().toString().trim();
 
 				if (null == content || "".equals(content)) {
-					Toast.makeText(SZ_GRXXActivity.this, "无法生成二维码...",
+					Toast.makeText(SZ_GRXXActivity.this, "无法生成二维码!",
 							Toast.LENGTH_SHORT).show();
 					return;
 				}
-
 				try {
-
 					Bitmap qrcodeBitmap = EncodingHandler.createQRCode(content,
 							400);
 					qrcodeImageView.setImageBitmap(qrcodeBitmap);

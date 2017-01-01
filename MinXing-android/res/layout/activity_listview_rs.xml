@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F5F5F5"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -62,12 +62,24 @@
         </Button>
     </LinearLayout>
 
+    <cn.minxing.view.ClearEditText
+        android:id="@+id/sla_sousuo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittextshape"
+        android:gravity="center"
+        android:hint="请输入关键词…"
+        android:maxLines="1" />
+
     <TextView
         android:id="@+id/tv_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="暂无搜索结果！"
         android:textColor="#808080"
@@ -77,16 +89,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#FFFFFF"
         android:orientation="vertical" >
 
         <ListView
             android:id="@+id/list"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:divider="#b5b5b5"
+            android:layout_marginTop="10dp"
+            android:divider="#DCDCDC"
             android:dividerHeight="1dp" />
     </LinearLayout>
 

@@ -10,6 +10,7 @@ import com.zhumingmin.vmsofminxing.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -37,19 +38,27 @@ public class ChaXunService extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.webservice_chaxun);
-
-		ly_cx = (LinearLayout) findViewById(R.id.ly_chaxun);
-		tv_tijiao = (TextView) findViewById(R.id.tv_tijiao);
-		tv_chuli = (TextView) findViewById(R.id.tv_chuli);
-		tv_wancheng = (TextView) findViewById(R.id.tv_wancheng);
-		tv_tijiao_shijian = (TextView) findViewById(R.id.tv_tijiao_shijian);
-		tv_chuli_shijian = (TextView) findViewById(R.id.tv_chuli_shijian);
-		tv_wancheng_shijian = (TextView) findViewById(R.id.tv_wancheng_shijian);
-		btn_chaxun = (Button) findViewById(R.id.btn_chaxun);
-		et_zhanghao = (EditText) findViewById(R.id.et_zhanghao);
+		iniView();
+		// 获取登录界面的账号
 		LoginService ls = new LoginService();
 		account = ls.account();
-		et_zhanghao.setText(account);
+
+		// 显示的是星号替换的字符串，传递的是原本的字符串
+		if (!TextUtils.isEmpty(account) && account.length() > 6) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < account.length(); i++) {
+				char c = account.charAt(i);
+				if (i >= 3 && i <= 13) {
+					sb.append('*');
+				} else {
+					sb.append(c);
+				}
+			}
+
+			et_zhanghao.setText(sb.toString());
+		}
+		// et_zhanghao.setText(account);
+
 		btn_chaxun.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -132,6 +141,18 @@ public class ChaXunService extends Activity {
 					}
 
 				});
+	}
+
+	public void iniView() {
+		ly_cx = (LinearLayout) findViewById(R.id.ly_chaxun);
+		tv_tijiao = (TextView) findViewById(R.id.tv_tijiao);
+		tv_chuli = (TextView) findViewById(R.id.tv_chuli);
+		tv_wancheng = (TextView) findViewById(R.id.tv_wancheng);
+		tv_tijiao_shijian = (TextView) findViewById(R.id.tv_tijiao_shijian);
+		tv_chuli_shijian = (TextView) findViewById(R.id.tv_chuli_shijian);
+		tv_wancheng_shijian = (TextView) findViewById(R.id.tv_wancheng_shijian);
+		btn_chaxun = (Button) findViewById(R.id.btn_chaxun);
+		et_zhanghao = (EditText) findViewById(R.id.et_zhanghao);
 	}
 
 	private void DisplayToast(String string) {

@@ -96,6 +96,13 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
+        <!-- 设置key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="38dd89535db3f874e0a6accb80fa3db2" />
+        <!-- 定位需要的服务 -->
+        <service android:name="com.amap.api.location.APSService" >
+        </service>
         <!-- 使用junit需要添加 -->
         <uses-library android:name="android.test.runner" />
         <!--  -->
@@ -451,6 +458,8 @@
         <activity android:name="cn.minxing.activity.TianJiaHuiDaActivity" />
         <activity android:name="cn.minxing.restwebservice.NewsService" />
         <activity android:name="cn.minxing.restwebservice.ChaXunService" />
+        <activity android:name="cn.minxing.restwebservice.XiaoXiZhongXinService" />
+        <activity android:name="cn.minxing.activity.XiaoXiDetailActivity" />
         <activity
             android:name="cn.minxing.activity.CatchActivity"
             android:label="时事新闻" >
@@ -462,6 +471,13 @@
         <activity android:name="cn.minxing.activity.CatchDetailActivity" />
         <activity android:name="cn.minxing.activity.LiuYanActivity" />
         <activity android:name="cn.minxing.activity.ZiXunDetailActivity" />
+        
+        <activity android:name="cn.minxing.fragment.zixun.ReDianDetailActivity" />
+        <activity android:name="cn.minxing.fragment.zixun.BenDiDetailActivity" />
+        <activity android:name="cn.minxing.fragment.zixun.NongYeXinWenDetailActivity" />
+        <activity android:name="cn.minxing.fragment.zixun.NongYeZhengCeDetailActivity" />
+        <activity android:name="cn.minxing.fragment.zixun.ShengChanZhiDaoDetailActivity" />
+        <activity android:name="cn.minxing.fragment.zixun.QiTaDetailActivity" />
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"

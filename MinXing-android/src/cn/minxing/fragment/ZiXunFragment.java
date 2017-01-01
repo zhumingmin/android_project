@@ -39,14 +39,18 @@ import cn.minxing.view.PullToRefreshListView;
 import com.ypy.eventbus.EventBus;
 import com.zhumingmin.vmsofminxing.R;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -66,9 +70,8 @@ import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-public class ZiXunFragment extends Fragment {
+public class ZiXunFragment extends MyFragment {
 	private PullToRefreshListView pullToRefreshListView;
-	// private ZiXun zixun;
 	public static List<ZiXun> zixunDataList = new ArrayList<ZiXun>();
 	private ZiXunListViewAdapter zixunListViewAdapter;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/leibie";
@@ -76,13 +79,15 @@ public class ZiXunFragment extends Fragment {
 	private static final String ARG_POSITION = "position";
 	private static final String TAG = "ZiXunFragment";
 	private int position;
+	private Handler handler;
 	String leibie = null;
-	// private Activity mActivity;
 	ImageView zx_tupian;
 	FrameLayout fl;
 	LayoutParams params;
+	View v;
+	private boolean isReady = false;
+
 	// 标志位，标志已经初始化完成。
-	private boolean isPrepared;
 
 	public static ZiXunFragment newInstance(int position) {
 		ZiXunFragment f = new ZiXunFragment();
@@ -90,17 +95,6 @@ public class ZiXunFragment extends Fragment {
 		b.putInt(ARG_POSITION, position);
 		f.setArguments(b);
 		return f;
-	}
-
-	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		super.setUserVisibleHint(isVisibleToUser);
-		if (isVisibleToUser) {
-			isPrepared = true;
-		} else {
-			// 相当于Fragment的onPause
-			isPrepared = false;
-		}
 	}
 
 	private void loadData() {
@@ -132,67 +126,100 @@ public class ZiXunFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View v = inflater.inflate(R.layout.fragment_zixun, container, false);
-		// --------------
-		// isPrepared = true;
-		// lazyLoad();
-		zixunListViewAdapter = new ZiXunListViewAdapter(getActivity(),
-				R.layout.zixun_list_item, zixunDataList);
-		zx_tupian = (ImageView) v.findViewById(R.id.zx_tupian);
-		zixunListViewAdapter.notifyDataSetChanged();
-		pullToRefreshListView = (PullToRefreshListView) v
-				.findViewById(R.id.frame_listview_zx);
+		if (v == null) {
+
+			v = inflater.inflate(R.layout.fragment_zixun, container, false);
+			isReady = true;
+			delayLoad();
+			Log.d("info", "onCreateView");
+		} else {
+			Log.d("info", "rootView != null");
+		}
+
+		// Cache rootView.
+		// remove rootView from its parent
+		ViewGroup parent = (ViewGroup) v.getParent();
+		if (parent != null) {
+			parent.removeView(v);
+		}
+
 		params = new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT);
 
 		fl = new FrameLayout(getActivity());
 		fl.setLayoutParams(params);
 
+		fl.addView(v);
+
+		return fl;
+
+	}
+
+	@Override
+	protected void delayLoad() {
+		if (!isReady || !isVisible) {
+			return;
+		}
+
+		// 　This is a random widget, it will be instantiation in init()
+		if (zx_tupian == null) {
+			init();
+		}
+	}
+
+	public void init() {
+
+		zixunListViewAdapter = new ZiXunListViewAdapter(getActivity().getApplicationContext(),
+				R.layout.zixun_list_item, zixunDataList);
+		zixunListViewAdapter.notifyDataSetChanged();
+
+		zx_tupian = (ImageView) v.findViewById(R.id.zx_tupian);
+		pullToRefreshListView = (PullToRefreshListView) v
+				.findViewById(R.id.frame_listview_zx);
+
 		switch (position) {
 		case 0:
 			leibie = "热点";
-			// if (isPrepared) {
-			// loadData();
-			// }
-			loadData();
-			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-			fl.addView(v);
 			break;
 		case 1:
 			leibie = "本地";
-			loadData();
-			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-			fl.addView(v);
 			break;
 		case 2:
 			leibie = "农业新闻";
-			loadData();
-			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-			fl.addView(v);
 			break;
 		case 3:
 			leibie = "农业政策";
-			loadData();
-			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-			fl.addView(v);
 			break;
 		case 4:
 			leibie = "生产指导";
-			loadData();
-			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-			fl.addView(v);
 			break;
 		case 5:
 			leibie = "其他";
-			loadData();
-			pullToRefreshListView.setAdapter(zixunListViewAdapter);
-			fl.addView(v);
+
+			// loadData(leibie);
+			// pullToRefreshListView.setAdapter(zixunListViewAdapter);
+			// fl.addView(v);
+
 			break;
 
 		default:
 			break;
+
 		}
 
+		handler = new Handler() {
+			@SuppressLint("HandlerLeak")
+			@Override
+			public void handleMessage(Message msg) {
+				// TODO Auto-generated method stub
+				super.handleMessage(msg);
+				loadData();
+			}
+		};
+
+		handler.sendEmptyMessageDelayed(0, 1000);
+
+		pullToRefreshListView.setAdapter(zixunListViewAdapter);
 		pullToRefreshListView
 				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 					public void onItemClick(AdapterView<?> parent, View view,
@@ -206,18 +233,7 @@ public class ZiXunFragment extends Fragment {
 					}
 				});
 
-		return fl;
-
 	}
-
-	// @Override
-	// protected void lazyLoad() {
-	// if (!isPrepared || !isVisible) {
-	// return;
-	// }
-	// // 填充各控件的数据
-	//
-	// }
 
 	public void postZiXunData() {
 		WebServiceTask wst = new WebServiceTask(WebServiceTask.POST_TASK,
@@ -264,7 +280,7 @@ public class ZiXunFragment extends Fragment {
 			shijian = shijian.replaceAll(pattern, "");
 			tupian = tupian.replaceAll(pattern1, "");
 			neirong = neirong.replaceAll(pattern, "");
-			lianjie = lianjie.replaceAll(pattern, "");
+			lianjie = lianjie.replaceAll(pattern1, "");
 			String[] strArray = null;
 			String[] strArray2 = null;
 			String[] strArray3 = null;
@@ -280,19 +296,16 @@ public class ZiXunFragment extends Fragment {
 			strArray6 = convertStrToArray(neirong);
 			strArray7 = convertStrToArray(lianjie);
 			zixunDataList.clear();
-
 			for (int i = 0; i < strArray.length; i++) {
 				ZiXun zixun = new ZiXun(strArray[i].replace("\"", ""),
 						strArray2[i].replace("\"", ""), strArray3[i].replace(
 								"\"", ""), strArray4[i].replace("\"", ""),
 						strArray5[i].replace("\"", ""), strArray6[i].replace(
 								"\"", "").replace("\\r\\n\\r\\n", "\r\n\r\n"),
-						strArray7[i].replace("\"", "").replace("\\r\\n", ""));
-
+						strArray7[i].replace("\"", ""));
 				zixunDataList.add(zixun);
 
 			}
-
 		} catch (Exception e) {
 			Log.e(TAG, e.getLocalizedMessage(), e);
 		}

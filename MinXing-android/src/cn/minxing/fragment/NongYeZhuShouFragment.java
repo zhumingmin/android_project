@@ -27,7 +27,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-public class NongYeZhuShouFragment extends Fragment {
+public class NongYeZhuShouFragment extends MyFragment {
 	private CategoryTabStrip tabs;
 	private ViewPager pager;
 	private MyPagerAdapter adapter;
@@ -36,46 +36,90 @@ public class NongYeZhuShouFragment extends Fragment {
 
 	private static final String TAG = "NongYeZhuShouFragment";
 	View v;
-	private boolean isVisable = false;
-
-	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		// 判断Fragment中的ListView时候存在，判断该Fragment时候已经正在前台显示
-		// 通过这两个判断，就可以知道什么时候去加载数据了
-		if (getUserVisibleHint() && isVisible()) {
-			isVisable = true;
-		} else {
-			isVisable = false;
-		}
-		super.setUserVisibleHint(isVisibleToUser);
-	}
+	private boolean isReady = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		v = inflater.inflate(R.layout.fragment_nongyezhushou, container, false);
 
 		ExitApplication.getInstance().addActivity(getActivity());
+		if (v == null) {
 
+			v = inflater.inflate(R.layout.fragment_nongyezhushou, container,
+					false);
+			isReady = true;
+			delayLoad();
+			Log.d("info", "onCreateView");
+		} else {
+			Log.d("info", "rootView != null");
+		}
+
+		// Cache rootView.
+		// remove rootView from its parent
+		ViewGroup parent = (ViewGroup) v.getParent();
+		if (parent != null) {
+			parent.removeView(v);
+		}
+
+		return v;
+	}
+
+	@Override
+	protected void delayLoad() {
+		if (!isReady || !isVisible) {
+			return;
+		}
+		// 　This is a random widget, it will be instantiation in init()
+		if (sousuo == null) {
+			init();
+		}
+	}
+
+	public void init() {
 		titlePopup = new TitlePopup(getActivity(), LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT);
 		initData();
 		tabs = (CategoryTabStrip) v.findViewById(R.id.category_strip);
 		pager = (ViewPager) v.findViewById(R.id.view_pager);
-		// 关闭预加载，默认一次只加载一个Fragment
-		pager.setOffscreenPageLimit(1);
-		ArrayList<View> viewList = new ArrayList<View>();
-		ListView listView1 = (ListView) (inflater.inflate(R.layout.listview,
-				null)).findViewById(R.id.list);
-
 		sousuo = (ImageButton) v.findViewById(R.id.sousuo);
 
-		adapter = new MyPagerAdapter(getChildFragmentManager());
+		// ArrayList<View> viewList = new ArrayList<View>();
+		// ListView listView1 = (ListView) (inflater.inflate(R.layout.listview,
+		// null)).findViewById(R.id.list);
 
+		// 关闭预加载，默认一次只加载一个Fragment
+		// pager.setOffscreenPageLimit(1);
+		pager.setCurrentItem(1);
+		adapter = new MyPagerAdapter(getChildFragmentManager());
 		pager.setAdapter(adapter);
 
-		tabs.setViewPager(pager);
+		/*
+		 * 在oncreateview里面只是加载fragment的根布局。
+		 * 然后在viewpager的onpagerselectlistener里面， 当选中到当前页的时候判断当前页面是否填充
+		 */
+
+		pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+			// 设置ViewPager的OnPageChangeListener监听器
+			@Override
+			public void onPageScrolled(int position, float positionOffset,
+					int positionOffsetPixels) {
+				if (positionOffsetPixels == 0 && positionOffset == 0) {
+					// 在这里面刷新数据
+					// flushData();
+					tabs.setViewPager(pager);
+				}
+			}
+
+			@Override
+			public void onPageSelected(int position) {
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int state) {
+			}
+		});
 
 		sousuo.setOnClickListener(new Button.OnClickListener() {
 
@@ -90,14 +134,6 @@ public class NongYeZhuShouFragment extends Fragment {
 
 			}
 		});
-		// gengduo = (ImageButton) v.findViewById(R.id.gengduoxianshi);
-		// gengduo.setOnClickListener(new OnClickListener() {
-		// @Override
-		// public void onClick(View v) {
-		// titlePopup.show(v);
-		// }
-		// });
-		return v;
 	}
 
 	private void initData() {
@@ -124,6 +160,7 @@ public class NongYeZhuShouFragment extends Fragment {
 			catalogs.add(getString(R.string.category_nongyezhengce));// nongyezhengce
 			catalogs.add(getString(R.string.category_shengchanzhidao));// shengchanzhidao
 			catalogs.add(getString(R.string.category_qita));// qita
+
 			/*
 			 * 这里注释后滑动出现光斑
 			 */

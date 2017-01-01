@@ -9,10 +9,20 @@
     android:paddingRight="6dip"
     android:paddingTop="8dip" >
 
+    <ImageView
+        android:id="@+id/zx_tupian"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/zixun" >
+    </ImageView>
+
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="3"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -33,7 +43,7 @@
                 android:id="@+id/zx_biaoti"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
+               android:singleLine="true"
                 android:textColor="@color/listitem_black"
                 android:textSize="@dimen/text_size_15" />
         </LinearLayout>
@@ -83,14 +93,5 @@
                 android:textSize="@dimen/text_size_10" />
         </LinearLayout>
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/zx_tupian"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:src="@drawable/my" >
-    </ImageView>
 
 </LinearLayout>
