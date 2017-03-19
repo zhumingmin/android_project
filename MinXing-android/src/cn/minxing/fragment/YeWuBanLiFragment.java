@@ -3,17 +3,24 @@ package cn.minxing.fragment;
 import cn.minxing.PushMessage.ExitApplication;
 import cn.minxing.activity.CatchActivity;
 import cn.minxing.activity.JiHuaShengYuActivity;
+import cn.minxing.activity.ShenFenRenZhengActivity;
 import cn.minxing.activity.YiBaoSheBaoActivity;
 import cn.minxing.restwebservice.BaoJianService;
 import cn.minxing.restwebservice.HeTongGuanLiService;
 import cn.minxing.restwebservice.HuJiService;
+import cn.minxing.restwebservice.LoginService;
 import cn.minxing.restwebservice.XiaoXiZhongXinService;
 
 import com.zhumingmin.vmsofminxing.R;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,21 +33,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class YeWuBanLiFragment extends MyFragment {
 
-	private LinearLayout ll_hj, ll_yb, ll_js, ll_ht, ll_bj, ll_xw, ll_xiaoxi;
+	private LinearLayout ll_hj, ll_yb, ll_js, ll_ht, ll_bj, ll_xw, ll_xiaoxi,
+			ll_yirenzheng, ll_weirenzheng;
 	private ImageButton ib_hj, ib_yb, ib_js, ib_ht, ib_bj, ib_xw;
-
+	private Button bt_renzheng;
 	private TextView mTime;
 	private static final int msgKey1 = 1;
 	private ImageView iv_xiaoxi;
 	private boolean isReady = false;
 	View v;
+	static String account;
+
+	// private final String ACTION_NAME = "FSGB";
+	// private ReceiveBroadCast receiveBroadCast;
+
+	// @Override
+	// public void onAttach(Activity activity) {
+	//
+	// /** 注册广播 */
+	// receiveBroadCast = new ReceiveBroadCast();
+	// IntentFilter filter = new IntentFilter();
+	// filter.addAction(ACTION_NAME); // 只有持有相同的action的接受者才能接收此广播
+	// activity.registerReceiver(receiveBroadCast, filter);
+	// super.onAttach(activity);
+	// }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +77,8 @@ public class YeWuBanLiFragment extends MyFragment {
 		if (v == null) {
 
 			v = inflater.inflate(R.layout.fragment_yewubanli, container, false);
+			// v = inflater.inflate(R.layout.fragment_yewubanli_weirenzheng,
+			// container, false);
 			isReady = true;
 			delayLoad();
 			Log.d("info", "onCreateView");
@@ -149,8 +176,25 @@ public class YeWuBanLiFragment extends MyFragment {
 
 	public void init() {
 		ll_xiaoxi = (LinearLayout) v.findViewById(R.id.ll_xiaoxi);
+
+		ll_yirenzheng = (LinearLayout) v
+				.findViewById(com.zhumingmin.vmsofminxing.R.id.ll_yirenzheng);
+		ll_weirenzheng = (LinearLayout) v
+				.findViewById(com.zhumingmin.vmsofminxing.R.id.ll_weirenzheng);
+		LoginService ls = new LoginService();
+		account = ls.renzheng();
+		if (account.equals("已认证")) {
+			// 如果用户属于已认证的状态
+			ll_weirenzheng.setVisibility(View.INVISIBLE);
+		} else {
+
+			// 如果用户属于未认证的状态
+			//ll_yirenzheng.setVisibility(View.INVISIBLE);
+		}
+
 		ll_hj = (LinearLayout) v
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.ll_hj);
+
 		ll_yb = (LinearLayout) v
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.ll_yb);
 		ll_js = (LinearLayout) v
@@ -173,25 +217,38 @@ public class YeWuBanLiFragment extends MyFragment {
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.ib_bj);
 		ib_xw = (ImageButton) v
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.ib_xw);
-
-		iv_xiaoxi = (ImageView) v
-				.findViewById(com.zhumingmin.vmsofminxing.R.id.iv_xiaoxi);
+		bt_renzheng = (Button) v
+				.findViewById(com.zhumingmin.vmsofminxing.R.id.bt_renzheng);
+		// iv_xiaoxi = (ImageView) v
+		// .findViewById(com.zhumingmin.vmsofminxing.R.id.iv_xiaoxi);
 		mTime = (TextView) v.findViewById(R.id.mytime);
 		new TimeThread().start();
 
-		iv_xiaoxi.setOnClickListener(new View.OnClickListener() {
+		// iv_xiaoxi.setOnClickListener(new View.OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// // TODO Auto-generated method stub
+		//
+		// Intent intent = new Intent();
+		// intent = new Intent(getActivity(), XiaoXiZhongXinService.class);
+		// startActivity(intent);
+		//
+		// }
+		// });
+		bt_renzheng.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
 				Intent intent = new Intent();
-				intent = new Intent(getActivity(), XiaoXiZhongXinService.class);
+				intent = new Intent(getActivity(),
+						ShenFenRenZhengActivity.class);
 				startActivity(intent);
 
 			}
 		});
-
 		ll_xiaoxi.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -313,4 +370,30 @@ public class YeWuBanLiFragment extends MyFragment {
 		}
 	};
 
+	// class ReceiveBroadCast extends BroadcastReceiver {
+	// @SuppressLint("ShowToast")
+	// @Override
+	// public void onReceive(Context context, Intent intent) {
+	// // 得到广播中得到的数据，并显示出来
+	// String renzheng = intent.getExtras().getString("renzheng");
+	// Toast.makeText(getActivity(), renzheng, 0).show();
+	// if (renzheng.equals("已认证")) {
+	// // 如果用户属于已认证的状态
+	// ll_weirenzheng.setVisibility(View.INVISIBLE);
+	// } else {
+	// // 如果用户属于未认证的状态
+	// ll_yirenzheng.setVisibility(View.INVISIBLE);
+	// }
+	//
+	// }
+	// }
+	//
+	// /**
+	// * 注销广播
+	// * */
+	// @Override
+	// public void onDestroyView() {
+	// getActivity().unregisterReceiver(receiveBroadCast);
+	// super.onDestroyView();
+	// }
 }

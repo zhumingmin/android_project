@@ -461,6 +461,20 @@
         <activity android:name="cn.minxing.restwebservice.XiaoXiZhongXinService" />
         <activity android:name="cn.minxing.activity.XiaoXiDetailActivity" />
         <activity
+            android:name="com.turui.bank.ocr.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity
+            android:name="com.ui.card.TRCardScan"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="cn.minxing.activity.CatchActivity"
             android:label="时事新闻" >
         </activity>
@@ -471,7 +485,7 @@
         <activity android:name="cn.minxing.activity.CatchDetailActivity" />
         <activity android:name="cn.minxing.activity.LiuYanActivity" />
         <activity android:name="cn.minxing.activity.ZiXunDetailActivity" />
-        
+        <activity android:name="cn.minxing.activity.ShenFenRenZhengActivity" />
         <activity android:name="cn.minxing.fragment.zixun.ReDianDetailActivity" />
         <activity android:name="cn.minxing.fragment.zixun.BenDiDetailActivity" />
         <activity android:name="cn.minxing.fragment.zixun.NongYeXinWenDetailActivity" />

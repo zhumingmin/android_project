@@ -3,6 +3,7 @@ package cn.minxing.restwebservice;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import cn.minxing.activity.ShenFenRenZhengActivity;
 import cn.minxing.util.CustomArrayAdapter;
 
 import com.zhumingmin.vmsofminxing.R;
@@ -19,20 +20,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ChaXunService extends Activity {
-	LinearLayout ly_cx;
+	LinearLayout ly_cx, ll_weirenzheng_chaxunjindu;
+	ScrollView ll_yirenzheng_chaxunjindu;
 	private Spinner sp_chaxunxiangmu;
 	private CustomArrayAdapter<CharSequence> mAdapter;
 	private TextView tv_tijiao, tv_chuli, tv_wancheng;
 	private TextView tv_tijiao_shijian, tv_chuli_shijian, tv_wancheng_shijian;
 	String shijian;
-	private Button btn_chaxun;
+	private Button btn_chaxun, bt_renzheng_jinduchaxun;
 	private EditText et_zhanghao;
-	static String account;
+	static String account, renzheng;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -152,6 +155,39 @@ public class ChaXunService extends Activity {
 		tv_chuli_shijian = (TextView) findViewById(R.id.tv_chuli_shijian);
 		tv_wancheng_shijian = (TextView) findViewById(R.id.tv_wancheng_shijian);
 		btn_chaxun = (Button) findViewById(R.id.btn_chaxun);
+		ll_weirenzheng_chaxunjindu = (LinearLayout) findViewById(R.id.ll_weirenzheng_chaxunjindu);
+		ll_yirenzheng_chaxunjindu = (ScrollView) findViewById(R.id.ll_yirenzheng_chaxunjindu);
+		bt_renzheng_jinduchaxun = (Button) findViewById(R.id.bt_renzheng_jinduchaxun);
+		LoginService ls = new LoginService();
+		renzheng = ls.renzheng();
+		if (renzheng.equals("已认证")) {
+			// 如果用户属于已认证的状态
+			ll_weirenzheng_chaxunjindu.setVisibility(View.INVISIBLE);
+		} else {
+
+			// 如果用户属于未认证的状态
+
+			bt_renzheng_jinduchaxun.setVisibility(View.INVISIBLE);
+		}
+		// 如果用户属于已认证的状态
+		// ll_weirenzheng_chaxunjindu.setVisibility(View.INVISIBLE);
+
+		// 如果用户属于未认证的状态
+		// ll_yirenzheng_chaxunjindu.setVisibility(View.INVISIBLE);
+
+		bt_renzheng_jinduchaxun.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				Intent intent = new Intent();
+				intent = new Intent(ChaXunService.this,
+						ShenFenRenZhengActivity.class);
+				startActivity(intent);
+
+			}
+		});
 		et_zhanghao = (EditText) findViewById(R.id.et_zhanghao);
 	}
 

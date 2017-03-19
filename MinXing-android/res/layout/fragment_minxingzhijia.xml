@@ -6,17 +6,69 @@
     android:orientation="vertical"
     android:stretchColumns="0" >
 
-    <TextView
-        android:id="@+id/minxing"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@drawable/btn_bg"
-        android:gravity="center"
-        android:text="民兴村"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:textStyle="bold" >
-    </TextView>
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dip"
+            android:background="@drawable/btn_bg"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="15dp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/minxing"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="民兴村"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:textStyle="bold" >
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/ll_dianhua"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_bg"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_zixun"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="5dip"
+                android:src="@drawable/dianhua" >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_zixun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/btn_bg"
+                android:text="咨询"
+                android:textColor="#ffffff"
+                android:textSize="15dp" >
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

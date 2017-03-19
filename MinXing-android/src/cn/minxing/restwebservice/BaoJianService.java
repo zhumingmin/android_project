@@ -153,7 +153,9 @@ public class BaoJianService extends Activity {
 		sp_baojianxiangmu = (Spinner) findViewById(com.zhumingmin.vmsofminxing.R.id.sp_baojianxiangmu);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_dropdown_item, kexuanxiangmu);
+
 		sp_baojianxiangmu.setAdapter(adapter);
+
 		sp_baojianxiangmu
 				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
 

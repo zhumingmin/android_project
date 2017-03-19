@@ -71,11 +71,15 @@ public class LoginService extends Activity {
 	public SQLiteDatabase db;
 	private TextView zhaohuimima, mianfeizhuce, huanyindenglu, zhanghao, mima;
 	private EditText tianxiezhanghao, tianxiemima;
-	static String account;
+	static String account, renzheng;
 	private Button denglu;
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/denglu";
 	private Handler handler;
 	private static final String TAG = "LoginService";
+	static String resultGet;
+	SharedPreferences remdname;
+
+	// private final String ACTION_NAME = "FSGB";
 
 	/** Called when the activity is first created. */
 	@Override
@@ -98,7 +102,7 @@ public class LoginService extends Activity {
 		tianxiemima
 				.setFilters(new InputFilter[] { new InputFilter.LengthFilter(6) });
 
-		SharedPreferences remdname = getPreferences(Activity.MODE_PRIVATE);
+		remdname = getPreferences(Activity.MODE_PRIVATE);
 
 		String name_str = remdname.getString("name", "");
 		String pass_str = remdname.getString("pass", "");
@@ -115,7 +119,7 @@ public class LoginService extends Activity {
 
 			tianxiezhanghao.setText(sb.toString());
 		}
-		// tianxiezhanghao.setText(name_str);
+		tianxiezhanghao.setText(name_str);
 
 		tianxiemima.setText(pass_str);
 		account = name_str;
@@ -261,8 +265,14 @@ public class LoginService extends Activity {
 
 				// the passed String is the URL we will POST to
 
-				// wst.execute(new String[] { SERVICE_URL });
-
+				wst.execute(new String[] { SERVICE_URL });
+				// Intent mIntent = new Intent();
+				// mIntent.setAction(ACTION_NAME);
+				// mIntent.putExtra("renzheng", "已认证");
+				// // 发送广播
+				// sendBroadcast(mIntent);
+				// Toast.makeText(getApplicationContext(), ACTION_NAME,
+				// 0).show();
 				Intent intent = new Intent();
 				intent.setClass(LoginService.this, YeWuBanLiActivity.class);
 				startActivity(intent);
@@ -282,7 +292,9 @@ public class LoginService extends Activity {
 			v.post(new Runnable() {
 				@Override
 				public void run() {
+
 					denglu.performClick();
+
 				}
 			});
 		}
@@ -306,13 +318,22 @@ public class LoginService extends Activity {
 		}
 	}
 
+	public String renzheng() {
+
+		return renzheng;
+
+	}
+
 	public void handleResponse(String response) {
 
 		try {
 
 			JSONObject jso = new JSONObject(response);
 
-			String resultGet = jso.getString("result");
+			resultGet = jso.getString("result");
+			// 后面再加上，后台数据库要增加
+			renzheng = jso.getString("renZheng");
+
 			// "=="与equals方法的区别
 
 			if (resultGet.equals("success")) {
@@ -323,6 +344,7 @@ public class LoginService extends Activity {
 				finish();
 			} else {
 				Toast.makeText(getApplicationContext(), "登录失败！", 0).show();
+
 			}
 
 		} catch (Exception e) {

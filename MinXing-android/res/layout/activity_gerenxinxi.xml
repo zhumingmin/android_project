@@ -49,12 +49,13 @@
         </TextView>
 
         <Button
+            android:id="@+id/renzheng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:background="@drawable/btn_bg"
-            android:text=""
+            android:text="认证"
             android:textColor="#fff"
             android:textSize="20dp" >
         </Button>

@@ -87,8 +87,8 @@ public class WoDeFragment extends MyFragment {
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/myaccount";
 
 	private static final String TAG = "WoDeFragment";
-	TextView name, phone;
-	static String account, grxx_name, grxx_phone;
+	TextView name, phone, tv_renzheng;
+	static String account, grxx_name, grxx_phone, grxx_renzheng;
 	ImageView iv_gerenxinxi;
 	private ACache mCache;
 	View v;
@@ -151,8 +151,17 @@ public class WoDeFragment extends MyFragment {
 		tr_rss = (TableRow) v.findViewById(R.id.tr_rss);
 		tr_chaxunjindu = (TableRow) v.findViewById(R.id.tr_chaxunjindu);
 		name = (TextView) v.findViewById(R.id.name);
+		tv_renzheng = (TextView) v.findViewById(R.id.tv_renzheng);
 		phone = (TextView) v.findViewById(R.id.phone);
 		iv_gerenxinxi = (ImageView) v.findViewById(R.id.iv_gerenxinxi);
+
+		// LoginService ls = new LoginService();
+		// renzheng = ls.renzheng();
+		// if (renzheng.equals("已认证")) {
+		// // 如果用户属于已认证的状态
+		// tv_renzheng.setText(renzheng);
+		// }
+
 		YeWuBanLiActivity ywbl = new YeWuBanLiActivity();
 		if (ywbl.getisReqing() != "true") {
 			ywbl.setisReqing("true");
@@ -165,6 +174,7 @@ public class WoDeFragment extends MyFragment {
 
 			name.setText(mCache.getAsString("name"));
 			phone.setText(mCache.getAsString("phonenumber"));
+			tv_renzheng.setText(mCache.getAsString("renzheng"));
 			iv_gerenxinxi.setBackgroundResource(R.drawable.tb_yidenglu);
 		}
 
@@ -377,12 +387,16 @@ public class WoDeFragment extends MyFragment {
 
 			String xingming = jso.optString("name");
 			String dianhua = jso.optString("phonenumber");
+			String renzheng = jso.optString("renZheng");
 
 			grxx_name = xingming;
 			grxx_phone = dianhua;
+			grxx_renzheng = renzheng;
 			mCache.put("name", xingming, 300);
 			mCache.put("phonenumber", dianhua, 300);
+			mCache.put("renzheng", renzheng, 300);
 			name.setText(xingming);
+			tv_renzheng.setText(renzheng);
 
 			if (!TextUtils.isEmpty(dianhua) && dianhua.length() > 6) {
 				StringBuilder sb = new StringBuilder();

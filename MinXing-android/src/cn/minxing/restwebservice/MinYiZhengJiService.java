@@ -21,6 +21,7 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
+import cn.minxing.activity.ShenFenRenZhengActivity;
 import cn.minxing.activity.TouPiaoJieGuoActivity;
 import cn.minxing.rsystem.SerachDetailActivity;
 import cn.minxing.rsystem.SerachListActivity;
@@ -61,14 +62,15 @@ import android.widget.Toast;
 
 @SuppressLint("HandlerLeak")
 public class MinYiZhengJiService extends Activity {
-	private Button zhichi, weiguan;
+	private Button zhichi, weiguan, bt_renzheng_minyizhengji;
 	private EditText huoqucanxuanzhiwu, huoqugerenshiji, huoqupiaoshu;
 	private Spinner xuanzecanxuanren;
 	private TextView shijian, toupiaogonggao;
-
+	static String account;
 	ProgressDialog m_pDialog;
 	int m_count = 0;
-	private LinearLayout ly_fanhui;
+	private LinearLayout ly_fanhui, ll_weirenzheng_minyizhengji,
+			ll_yirenzheng_minyizhengji;
 	private CustomArrayAdapter<CharSequence> mAdapter;
 
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/vote";
@@ -87,6 +89,7 @@ public class MinYiZhengJiService extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_minyizhengji);
 
+		bt_renzheng_minyizhengji = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.bt_renzheng_minyizhengji);
 		zhichi = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.zhichi);
 		weiguan = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.weiguan);
 		shijian = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.toupiaoshijian);
@@ -97,6 +100,37 @@ public class MinYiZhengJiService extends Activity {
 		huoqugerenshiji = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqugerenshiji);
 		huoqupiaoshu = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.huoqupiaoshu);
 
+		ll_weirenzheng_minyizhengji = (LinearLayout) findViewById(R.id.ll_weirenzheng_minyizhengji);
+		ll_yirenzheng_minyizhengji = (LinearLayout) findViewById(R.id.ll_yirenzheng_minyizhengji);
+		LoginService ls = new LoginService();
+		account = ls.renzheng();
+		if (account.equals("已认证")) {
+			// 如果用户属于已认证的状态
+			ll_weirenzheng_minyizhengji.setVisibility(View.INVISIBLE);
+		} else {
+
+			// 如果用户属于未认证的状态
+			//ll_yirenzheng_minyizhengji.setVisibility(View.INVISIBLE);
+		}
+		// 如果用户属于已认证的状态
+		// ll_weirenzheng_minyizhengji.setVisibility(View.INVISIBLE);
+
+		// 如果用户属于未认证的状态
+		// ll_yirenzheng_minyizhengji.setVisibility(View.INVISIBLE);
+
+		bt_renzheng_minyizhengji.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				Intent intent = new Intent();
+				intent = new Intent(MinYiZhengJiService.this,
+						ShenFenRenZhengActivity.class);
+				startActivity(intent);
+
+			}
+		});
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_toupiao);
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
@@ -106,6 +140,7 @@ public class MinYiZhengJiService extends Activity {
 				finish();
 			}
 		});
+
 		handler = new Handler() {
 
 			@SuppressLint("HandlerLeak")

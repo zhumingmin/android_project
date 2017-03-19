@@ -18,7 +18,7 @@
     <string name="back">返回</string>
     <string name="write_tag">写入</string>
     <string name="hint">将您的NFC标签靠在手机背面即可读取数据！</string>
-    <string name="edit_hint">请输入您要写入标签的内容</string>
+    <string name="edit_hint">您要写入标签的内容</string>
     <string name="fomate_text">格式化标签</string>
     <string name="cancel">取消</string>
     <string name="speak">Speak Now</string>

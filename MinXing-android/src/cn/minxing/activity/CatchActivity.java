@@ -38,13 +38,14 @@ import android.widget.Toast;
 
 @SuppressLint("HandlerLeak")
 public class CatchActivity extends Activity {
-	ListView listview;
+	ListView listview, listview2;
 	TextView textview;
 	Handler handler;
 	LinearLayout ly_fanhui;
 	List<Map<String, Object>> data;
 
 	// final String CSDNURL = "http://www.csdn.net/";
+
 	final String CSDNURL = "http://j.news.163.com/#newsindexguide";
 
 	@Override
@@ -144,13 +145,34 @@ public class CatchActivity extends Activity {
 					long arg3) {
 				Map<String, Object> map = data.get(arg2);
 				String url = (String) (map.get("url"));
-				 Intent intent = new Intent(CatchActivity.this,
-				 CatchDetailActivity.class);
-				 intent.putExtra("puturl", url);
-				 startActivity(intent);
-//				Intent intent = new Intent(Intent.ACTION_VIEW);
-//				intent.setData(Uri.parse(url));
-//				startActivity(intent);
+				Intent intent = new Intent(CatchActivity.this,
+						CatchDetailActivity.class);
+				intent.putExtra("puturl", url);
+				startActivity(intent);
+				// Intent intent = new Intent(Intent.ACTION_VIEW);
+				// intent.setData(Uri.parse(url));
+				// startActivity(intent);
+			}
+		});
+
+		listview2 = (ListView) findViewById(R.id.list2);
+
+		SimpleAdapter adapter2 = new SimpleAdapter(this, data,
+				R.layout.minxing_list_item, new String[] { "title" },
+				new int[] { R.id.text });
+		listview2.setAdapter(adapter2);
+		listview2.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Map<String, Object> map = data.get(arg2);
+				String url = (String) (map.get("url"));
+				Intent intent = new Intent(CatchActivity.this,
+						CatchDetailActivity.class);
+				intent.putExtra("puturl", url);
+				startActivity(intent);
+				// Intent intent = new Intent(Intent.ACTION_VIEW);
+				// intent.setData(Uri.parse(url));
+				// startActivity(intent);
 			}
 		});
 	}

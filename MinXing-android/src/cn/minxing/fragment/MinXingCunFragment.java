@@ -10,11 +10,14 @@ import cn.minxing.PushMessage.ExitApplication;
 import cn.minxing.activity.Gallery3DActivity;
 import cn.minxing.activity.MinXingCunJieShaoActivity;
 import cn.minxing.activity.YeWuBanLiActivity;
+import cn.minxing.restwebservice.XiaoXiZhongXinService;
 import cn.minxing.util.TextJustification;
 
 import com.zhumingmin.vmsofminxing.R;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.net.Uri;
@@ -35,6 +38,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
@@ -109,10 +113,82 @@ public class MinXingCunFragment extends MyFragment {
 	public void init() {
 		text_minxingzhijia = (TextView) v
 				.findViewById(com.zhumingmin.vmsofminxing.R.id.text_minxingzhijia);
-		String str = "民兴村有区一级小学、幼儿园各一所，镇人民医院分院一间，综合性市场一个。民兴村政村位于万顷沙镇三民岛中部，全村共有五百五十六户， 户籍人口两千一百五十人，辖区面积为两百六十七公顷，耕地面积三千三百八十亩。二零零八年村工农业总产值两千九百二十七万元。在上级党委和政府的正确领导和大力支持下，经多年努力创建，昔日的扶贫村、问题村已先后获得广州市文明村、南沙区基层党建示范点、南沙区文明村、万顷沙镇工作先进村等区、镇荣誉称号。近几年来，该村以发展经济为中心，以村镇规划为龙头，以改善民生为重点，积极推进新农村建设，全村呈现出了经济发展、生活安定、社会和谐的生动局面。"
-				+ "\n";
+		String str = "民兴村有区一级小学、幼儿园各一所，镇人民医院分院一间，综合性市场一个。民兴村政村位于万顷沙镇三民岛中部，全村共有五百五十六户， 户籍人口两千一百五十人，辖区面积为两百六十七公顷，耕地面积三千三百八十亩。二零零八年村工农业总产值两千九百二十七万元。在上级党委和政府的正确领导和大力支持下，经多年努力创建，昔日的扶贫村、问题村已先后获得广州市文明村、南沙区基层党建示范点、南沙区文明村、万顷沙镇工作先进村等区、镇荣誉称号。近几年来，该村以发展经济为中心，以村镇规划为龙头，以改善民生为重点，积极推进新农村建设，全村呈现出了经济发展、生活安定、社会和谐的生动局面。";
 
 		text_minxingzhijia.setText(str);
+		LinearLayout ll_dianhua = (LinearLayout) v
+				.findViewById(R.id.ll_dianhua);
+
+		ll_dianhua.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				final String[] items = getResources().getStringArray(
+						R.array.item);
+				new AlertDialog.Builder(getActivity()).setTitle("请点击选择咨询业务！")
+						.setItems(items, new DialogInterface.OnClickListener() {
+
+							public void onClick(DialogInterface dialog,
+									int which) {
+								new AlertDialog.Builder(getActivity())
+										.setTitle("你选择了:" + items[which])
+										.setMessage("准备接通咨询，请确认")
+										.setPositiveButton(
+												"确认咨询",
+												new android.content.DialogInterface.OnClickListener() {
+													@Override
+													public void onClick(
+															DialogInterface arg0,
+															int arg1) {
+														// TODO Auto-generated
+														// method stub
+														arg0.dismiss();
+														Intent in2 = new Intent();
+														in2.setAction(Intent.ACTION_CALL);
+														if (items.toString() == "户籍咨询") {
+															in2.setData(Uri
+																	.parse("tel:18826487090"));
+															startActivity(in2);
+														} else if (items
+																.toString() == "医保咨询") {
+															in2.setData(Uri
+																	.parse("tel:18826487090"));
+															startActivity(in2);
+														} else if (items
+																.toString() == "财务咨询") {
+															in2.setData(Uri
+																	.parse("tel:18826487090"));
+															startActivity(in2);
+														} else if (items
+																.toString() == "计生咨询") {
+															in2.setData(Uri
+																	.parse("tel:18826487090"));
+															startActivity(in2);
+														} else {
+															in2.setData(Uri
+																	.parse("tel:18826487090"));
+															startActivity(in2);
+														}
+
+													}
+												})
+										.setNegativeButton(
+												"下次咨询",
+												new DialogInterface.OnClickListener() {
+
+													public void onClick(
+															DialogInterface dialog,
+															int which) {
+														// 这里点击取消之后可以进行的操作
+													}
+												}).show();
+							}
+						}).show();
+
+			}
+		});
 
 		// text_minxingzhijia.post(new Runnable() {
 		//

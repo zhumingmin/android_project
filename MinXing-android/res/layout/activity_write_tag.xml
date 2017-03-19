@@ -62,28 +62,170 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:background="#F5F5F5" >
+        android:background="#fff"
+        android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/content_edit"
-            android:layout_width="fill_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="10dp"
+        <TextView
+            android:id="@+id/tv_chanpinzhonglei"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:background="#fff"
-            android:ems="10"
-            android:gravity="top"
-            android:hint="@string/edit_hint" >
+            android:text="产品种类:"
+            android:textColor="#000000"
+            android:textSize="20dp" >
+        </TextView>
 
-            <requestFocus />
-        </EditText>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <Spinner
+            android:id="@+id/sp_chanpinzhonglei"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#F0F0F0"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_chanpinshuliang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="产品数量:"
+            android:textColor="#000000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/et_chanpinshuliang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_chuchandi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="出产地:"
+            android:textColor="#000000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/et_chuchandi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_lianxidianhua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="联系方式:"
+            android:textColor="#000000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/et_lianxidianhua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_dangqianshijian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="当前时间:"
+            android:textColor="#000000"
+            android:textSize="20dp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F8F8FF" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/et_dangqianshijian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#000000"
+            android:textSize="20dp" />
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F5F5F5" >
+
+            <EditText
+                android:id="@+id/content_edit"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="#fff"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/edit_hint"
+                android:textSize="15dp" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -26,7 +26,7 @@ public class SZ_GRXXActivity extends Activity {
 			grxx_shenfenzhenghao_tv;
 	private EditText grxx_xingming_et, grxx_lianxifangshi_et,
 			grxx_shenfenzhenghao_et;
-	private Button grxx_chuansong, shengcheng;
+	private Button grxx_chuansong, shengcheng, renzheng;
 	private ImageView qrcodeImageView = null;
 	private LinearLayout ly_fanhui;
 
@@ -34,7 +34,7 @@ public class SZ_GRXXActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_gerenxinxi);
-		
+
 		grxx_xingming_tv = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.grxx_xingming_tv);
 		grxx_lianxifangshi_tv = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.grxx_lianxifangshi_tv);
 		grxx_shenfenzhenghao_tv = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.grxx_shenfenzhenghao_tv);
@@ -43,9 +43,10 @@ public class SZ_GRXXActivity extends Activity {
 		grxx_shenfenzhenghao_et = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.grxx_shenfenzhenghao_et);
 		grxx_chuansong = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.grxx_chuansong);
 		shengcheng = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.shengcheng);
+		renzheng = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.renzheng);
 		qrcodeImageView = (ImageView) findViewById(com.zhumingmin.vmsofminxing.R.id.erweima);
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_gerenxinxi);
-		
+
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
@@ -54,7 +55,18 @@ public class SZ_GRXXActivity extends Activity {
 				finish();
 			}
 		});
+		renzheng.setOnClickListener(new Button.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.setClass(SZ_GRXXActivity.this,
+						ShenFenRenZhengActivity.class);
+
+				startActivity(intent);
+			}
+		});
 		// 这里需要修改
 		Intent intent = getIntent();
 		String data1 = intent.getStringExtra("data1");

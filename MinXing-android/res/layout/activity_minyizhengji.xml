@@ -1,293 +1,401 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
     <LinearLayout
+        android:id="@+id/ll_yirenzheng_minyizhengji"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent"
+        android:background="#F5F5F5"
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/ly_fanhui_toupiao"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:background="@drawable/btn_bg"
             android:orientation="horizontal" >
 
-            <ImageButton
-                android:id="@+id/FanHui"
+            <LinearLayout
+                android:id="@+id/ly_fanhui_toupiao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="5dip"
-                android:background="@drawable/fanhui" >
-            </ImageButton>
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/FanHui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dip"
+                    android:background="@drawable/fanhui" >
+                </ImageButton>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="返回"
+                    android:textColor="#fff"
+                    android:textSize="20dp" >
+                </TextView>
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/minyizhengji"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="民意征集"
+                android:textColor="#fff"
+                android:textSize="25sp" >
+            </TextView>
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="返回"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_bg"
+                android:text=""
                 android:textColor="#fff"
                 android:textSize="20dp" >
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/gonggaolan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="公告栏"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/toupiaogonggao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:text="暂无公告"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/toupiaoshijian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:text="发布日期"
+                android:textColor="#000000"
+                android:textSize="15sp" >
             </TextView>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/minyizhengji"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="民意征集"
-            android:textColor="#fff"
-            android:textSize="25sp" >
-        </TextView>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@drawable/btn_bg"
-            android:text=""
-            android:textColor="#fff"
-            android:textSize="20dp" >
-        </Button>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/gonggaolan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="公告栏"
-            android:textSize="20sp" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/baojian"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#F8F8FF" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/toupiaogonggao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:text="暂无公告"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/toupiaoshijian"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="right"
-            android:text="发布日期"
-            android:textColor="#000000"
-            android:textSize="15sp" >
-        </TextView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/canxuanren"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="请选择参选人:"
-            android:textColor="#000000"
-            android:textSize="20sp" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/baojian"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#F8F8FF" >
-        </TextView>
-
-        <Spinner
-            android:id="@+id/xuanzecanxuanren"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="#F0F0F0"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/baojian"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#F8F8FF" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/canxuanzhiwei"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="参选职务："
-            android:textColor="#000000"
-            android:textSize="20sp" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/baojian"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#F8F8FF" >
-        </TextView>
-
-        <EditText
-            android:id="@+id/huoqucanxuanzhiwu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/gerenshiji"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:text="个人事迹："
-            android:textColor="#000000"
-            android:textSize="20sp" >
-        </TextView>
-
-        <TextView
-            android:id="@+id/baojian"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#F8F8FF" >
-        </TextView>
-
-        <EditText
-            android:id="@+id/huoqugerenshiji"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textSize="20sp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal" >
+            android:background="#FFFFFF"
+            android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/canxuanren"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="当前票数："
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:text="请选择参选人:"
                 android:textColor="#000000"
                 android:textSize="20sp" >
             </TextView>
 
-            <EditText
-                android:id="@+id/huoqupiaoshu"
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/xuanzecanxuanren"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#F0F0F0"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/canxuanzhiwei"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:text="参选职务："
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/huoqucanxuanzhiwu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/gerenshiji"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:text="个人事迹："
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/baojian"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8F8FF" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/huoqugerenshiji"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="当前票数："
+                    android:textColor="#000000"
+                    android:textSize="20sp" >
+                </TextView>
+
+                <EditText
+                    android:id="@+id/huoqupiaoshu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/zhichi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonshape3"
+                    android:text="支持"
+                    android:textColor="#333333"
+                    android:textSize="15sp" >
+                </Button>
+
+                <Button
+                    android:id="@+id/weiguan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonshape3"
+                    android:text="围观"
+                    android:textColor="#333333"
+                    android:textSize="15sp" >
+                </Button>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/gongzheng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:text="*最终解释权归民兴村村委所有"
+                android:textColor="#999999"
+                android:textSize="15sp" >
+            </TextView>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_weirenzheng_minyizhengji"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_bg"
             android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/zhichi"
+            <LinearLayout
+                android:id="@+id/ly_fanhui_toupiao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/FanHui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dip"
+                    android:background="@drawable/fanhui" >
+                </ImageButton>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="返回"
+                    android:textColor="#fff"
+                    android:textSize="20dp" >
+                </TextView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/minyizhengji"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/buttonshape3"
-                android:text="支持"
-                android:textColor="#333333"
-                android:textSize="15sp" >
-            </Button>
+                android:gravity="center"
+                android:text="民意征集"
+                android:textColor="#fff"
+                android:textSize="25sp" >
+            </TextView>
 
             <Button
-                android:id="@+id/weiguan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/buttonshape3"
-                android:text="围观"
-                android:textColor="#333333"
-                android:textSize="15sp" >
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/btn_bg"
+                android:text=""
+                android:textColor="#fff"
+                android:textSize="20dp" >
             </Button>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/gongzheng"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="right"
-            android:text="*最终解释权归民兴村村委所有"
-            android:textColor="#999999"
-            android:textSize="15sp" >
-        </TextView>
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/weirenzheng" >
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="认证后可使用该功能"
+                android:textColor="#8a8a8a"
+                android:textSize="10dp" >
+            </TextView>
+
+            <Button
+                android:id="@+id/bt_renzheng_minyizhengji"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/btn_bg"
+                android:text="认证"
+                android:textColor="#ffffff"
+                android:textSize="15dp" >
+            </Button>
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

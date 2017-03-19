@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -23,6 +25,7 @@ import org.json.JSONObject;
 import org.kobjects.base64.Base64;
 
 import cn.minxing.restwebservice.WangJiMiMaService;
+import cn.minxing.util.CustomArrayAdapter;
 import cn.minxing.util.ImageSelect;
 import cn.minxing.util.ImageSelect.OnImageSelectClickListener;
 
@@ -57,13 +60,17 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,7 +91,8 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 	TextView writeBtn;
 	boolean isWrite = false;
 	private Button bbtn_cancel;
-	EditText mContentEditText;
+	EditText mContentEditText, et_lianxidianhua, et_chuchandi,
+			et_chanpinshuliang, et_dangqianshijian;
 	private Dialog dialog = null;
 	private Handler finishHand;
 	private Uri uri;
@@ -92,6 +100,9 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 	private static final String SERVICE_URL = "http://192.168.191.1:8080/RestWebServiceDemo/rest/nfctag";
 	private static final String TAG = "WriteTagActivity";
 	private LinearLayout ly_fanhui;
+	private Spinner sp_chanpinzhonglei;
+	private CustomArrayAdapter<CharSequence> mAdapter;
+	String chanpinzhonglei;
 
 	// @Override
 	// protected void onActivityResult(int requestCode, int resultCode, Intent
@@ -143,23 +154,46 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(com.zhumingmin.vmsofminxing.R.layout.activity_write_tag);
+		setContentView(R.layout.activity_write_tag);
 		// initImageSelect();
 		ly_fanhui = (LinearLayout) findViewById(R.id.ly_fanhui_writetag);
-		writeBtn = (TextView) findViewById(com.zhumingmin.vmsofminxing.R.id.xieru);
-		writeBtn.setOnClickListener(this);
-		mContentEditText = (EditText) findViewById(com.zhumingmin.vmsofminxing.R.id.content_edit);
-		bbtn_cancel = (Button) findViewById(com.zhumingmin.vmsofminxing.R.id.btn_cancel);
+		writeBtn = (TextView) findViewById(R.id.xieru);
+		mContentEditText = (EditText) findViewById(R.id.content_edit);
+		et_lianxidianhua = (EditText) findViewById(R.id.et_lianxidianhua);
+		et_chanpinshuliang = (EditText) findViewById(R.id.et_chanpinshuliang);
+		et_chuchandi = (EditText) findViewById(R.id.et_chuchandi);
+		et_dangqianshijian = (EditText) findViewById(R.id.et_dangqianshijian);
+		bbtn_cancel = (Button) findViewById(R.id.btn_cancel);
+		sp_chanpinzhonglei = (Spinner) findViewById(R.id.sp_chanpinzhonglei);
+
 		bbtn_cancel.setOnClickListener(this);
-		// 获取nfc适配器，判断设备是否支持NFC功能
+		writeBtn.setOnClickListener(this);
+
 		ly_fanhui.setOnClickListener(new Button.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				finish();
+				if (!et_chanpinshuliang.getText().toString().equals("")
+						&& !et_chuchandi.getText().toString().equals("")
+						&& !et_lianxidianhua.getText().toString().equals("")) {
+					WebServiceTask wst = new WebServiceTask(
+							WebServiceTask.POST_TASK, WriteTagActivity.this,
+							"上传中...");
+
+					wst.addNameValuePair("nfctag", mContentEditText.getText()
+							.toString());
+
+					wst.execute(new String[] { SERVICE_URL });
+					finish();
+				} else {
+					finish();
+
+				}
 			}
 		});
+
+		// 获取nfc适配器，判断设备是否支持NFC功能
 		nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 		if (nfcAdapter == null) {
 			Toast.makeText(
@@ -192,6 +226,62 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 				}
 			}
 		};
+		String[] kexuanchanpinzhonglei = getResources().getStringArray(
+				R.array.item1);
+		this.mAdapter = new CustomArrayAdapter<CharSequence>(this,
+				kexuanchanpinzhonglei);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_dropdown_item,
+				kexuanchanpinzhonglei);
+		sp_chanpinzhonglei.setAdapter(adapter);
+		sp_chanpinzhonglei
+				.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+						// TODO Auto-generated method stub
+						arg0.setVisibility(View.VISIBLE);
+					}
+
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+
+					}
+
+				});
+
+		SimpleDateFormat formatter = new SimpleDateFormat(
+				"yyyy年MM月dd日 HH:mm:ss");
+		Date curDate = new Date(System.currentTimeMillis());// 获取当前时间
+		String str = formatter.format(curDate);
+		et_dangqianshijian.setText(str);
+
+		// et_lianxidianhua.setOnKeyListener(new EditText.OnKeyListener() {
+		// @Override
+		// public boolean onKey(View arg0, int arg1, KeyEvent arg2) {
+		// // TODO Auto-generated method stub
+		// TextView tx_spinner = (TextView) sp_chanpinzhonglei
+		// .getSelectedView();
+		// chanpinzhonglei = tx_spinner.getText().toString();
+		//
+		// if (et_chanpinshuliang.getText().toString() != null
+		// && et_lianxidianhua.getText().toString() != null) {
+		//
+		// mContentEditText
+		// .setText("产品种类：" + chanpinzhonglei + "\n" + "产品数量："
+		// + et_chanpinshuliang.getText().toString()
+		// + "\n" + "联系方式："
+		// + et_lianxidianhua.getText().toString()
+		// + "\n" + "当前时间："
+		// + et_dangqianshijian.getText().toString());
+		// }
+		//
+		// return false;
+		// }
+		// });
+
 	}
 
 	/**
@@ -210,18 +300,47 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 			// com.zhumingmin.vmsofminxing.R.anim.activity_left_in);
 		} else {
 			isWrite = true;
+			TextView tx_spinner = (TextView) sp_chanpinzhonglei
+					.getSelectedView();
+			chanpinzhonglei = tx_spinner.getText().toString();
+
+			if (et_chanpinshuliang.getText().toString() != null
+					&& et_lianxidianhua.getText().toString() != null) {
+				new Thread() {
+					public void run() {
+						// 这儿是耗时操作，完成之后更新UI；
+						runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								// 更新UI
+								mContentEditText.setText("产品种类："
+										+ chanpinzhonglei
+										+ "\n"
+										+ "产品数量："
+										+ et_chanpinshuliang.getText()
+												.toString()
+										+ "\n"
+										+ "出产地："
+										+ et_chuchandi.getText().toString()
+										+ "\n"
+										+ "联系方式："
+										+ et_lianxidianhua.getText().toString()
+										+ "\n"
+										+ "当前时间："
+										+ et_dangqianshijian.getText()
+												.toString());
+							}
+
+						});
+					}
+				}.start();
+
+			}
+
 			if (mContentEditText.getText().toString().isEmpty()) {
 				showToast("您得先输入需要写入的数据！");
 				return;
-			} else {
-				WebServiceTask wst = new WebServiceTask(
-						WebServiceTask.POST_TASK, WriteTagActivity.this,
-						"上传中...");
-
-				wst.addNameValuePair("nfctag", mContentEditText.getText()
-						.toString());
-
-				wst.execute(new String[] { SERVICE_URL });
 			}
 			dialog = new AlertDialog.Builder(this)
 					.setMessage("请您将需要写入数据的标签贴靠在手机背面！")
@@ -533,6 +652,7 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 		}
 
 	}
+
 	// private void initImageSelect() {
 	// imageSelect = (ImageSelect) findViewById(R.id.imageSelect);
 	// imageSelect
@@ -570,4 +690,28 @@ public class WriteTagActivity extends Activity implements OnClickListener {
 	// String str = new String(Base64.encode(data));
 	// return str;
 	// }
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_BACK) && (event.getRepeatCount() == 0)) {
+
+			if (!et_chanpinshuliang.getText().toString().equals("")
+					&& !et_chuchandi.getText().toString().equals("")
+					&& !et_lianxidianhua.getText().toString().equals("")) {
+				WebServiceTask wst = new WebServiceTask(
+						WebServiceTask.POST_TASK, WriteTagActivity.this,
+						"上传中...");
+
+				wst.addNameValuePair("nfctag", mContentEditText.getText()
+						.toString());
+
+				wst.execute(new String[] { SERVICE_URL });
+				finish();
+			} else {
+				finish();
+
+			}
+
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }

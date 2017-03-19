@@ -1,125 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    android:orientation="vertical"
-    android:stretchColumns="0" >
+    android:orientation="vertical" >
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent"
+        android:background="#F5F5F5"
+        android:orientation="vertical"
+        android:stretchColumns="0" >
 
         <LinearLayout
-            android:id="@+id/xw_fanhui"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:background="@drawable/btn_bg"
             android:orientation="horizontal" >
 
-            <ImageButton
-                android:id="@+id/FanHui"
+            <LinearLayout
+                android:id="@+id/xw_fanhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/FanHui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dip"
+                    android:background="@drawable/fanhui" >
+                </ImageButton>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="返回"
+                    android:textColor="#fff"
+                    android:textSize="20dp" >
+                </TextView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/shishixinwen"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="时事新闻"
+                android:textColor="#fff"
+                android:textSize="25sp" >
+            </TextView>
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dip"
-                android:background="@drawable/fanhui" >
-            </ImageButton>
+                android:background="@drawable/btn_bg"
+                android:textColor="#fff" >
+            </Button>
+        </LinearLayout>
 
-            <TextView
+        <TableRow android:background="#FFF" >
+
+            <Button
+                android:id="@+id/ReDianXinWen"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#00000000"
+                android:gravity="left|center"
+                android:text="热点新闻"
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </Button>
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="返回"
-                android:textColor="#fff"
-                android:textSize="20dp" >
-            </TextView>
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:src="@drawable/jiantou" >
+            </ImageView>
+        </TableRow>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFF" >
+
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#D3D3D3"
+                android:dividerHeight="1dp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/shishixinwen"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="时事新闻"
-            android:textColor="#fff"
-            android:textSize="25sp" >
-        </TextView>
+        <TableRow
+            android:layout_marginTop="10dp"
+            android:background="#FFF" >
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dip"
-            android:background="@drawable/btn_bg"
-            android:textColor="#fff" >
-        </Button>
-    </LinearLayout>
+            <Button
+                android:id="@+id/CunNeiXinWen"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#00000000"
+                android:gravity="left|center"
+                android:text="村内新闻"
+                android:textColor="#000000"
+                android:textSize="20sp" >
+            </Button>
 
-    <TableRow android:background="#FFF" >
-
-        <Button
-            android:id="@+id/ReDianXinWen"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="#00000000"
-            android:gravity="left|center"
-            android:text="热点新闻"
-            android:textColor="#000000"
-            android:textSize="20sp" >
-        </Button>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="20dp"
-            android:gravity="center"
-            android:src="@drawable/jiantou" >
-        </ImageView>
-    </TableRow>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="10dp"
-        android:background="#FFF" >
-
-        <ListView
-            android:id="@+id/list"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:src="@drawable/jiantou" >
+            </ImageView>
+        </TableRow>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="#D3D3D3"
-            android:dividerHeight="1dp" />
-    </LinearLayout>
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFF" >
 
-    <TableRow
-        android:layout_marginTop="10dp"
-        android:background="#FFF" >
+            <ListView
+                android:id="@+id/list2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#D3D3D3"
+                android:dividerHeight="1dp" />
+        </LinearLayout>
+    </TableLayout>
 
-        <Button
-            android:id="@+id/CunNeiXinWen"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="#00000000"
-            android:gravity="left|center"
-            android:text="村内新闻"
-            android:textColor="#000000"
-            android:textSize="20sp" >
-        </Button>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="20dp"
-            android:gravity="center"
-            android:src="@drawable/jiantou" >
-        </ImageView>
-    </TableRow>
-
-</TableLayout>
+</ScrollView>

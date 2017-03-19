@@ -25,7 +25,8 @@ public class ZaiRuActivity extends Activity {
 	private ImageView iv;
 	private Handler handler;
 	// private Drawable[] drawables;
-	public static final String picUrl = "http://imgsrc.baidu.com/forum/w%3D580/sign=dbe111adbc315c6043956be7bdb0cbe6/6fc2a21ea8d3fd1f7a2b1f82304e251f95ca5f35.jpg";
+	// public static final String picUrl =
+	// "http://imgsrc.baidu.com/forum/w%3D580/sign=dbe111adbc315c6043956be7bdb0cbe6/6fc2a21ea8d3fd1f7a2b1f82304e251f95ca5f35.jpg";
 	public static final String picUrl1 = "https://c2.staticflickr.com/4/3275/2732543799_07738a574d_b.jpg";
 	public static final String picUrl2 = "http://ww1.sinaimg.cn/large/54916ae8jw1ds87vwzpjtj.jpg";
 
@@ -44,7 +45,7 @@ public class ZaiRuActivity extends Activity {
 
 		VolleyLoadPicture vlp = new VolleyLoadPicture(this, iv);
 
-		vlp.getmImageLoader().get(picUrl, vlp.getOne_listener());
+		// vlp.getmImageLoader().get(picUrl, vlp.getOne_listener());
 		vlp.getmImageLoader().get(picUrl1, vlp.getOne_listener());
 		vlp.getmImageLoader().get(picUrl2, vlp.getOne_listener());
 
@@ -99,6 +100,7 @@ public class ZaiRuActivity extends Activity {
 	}
 
 	private void goHome() {
+
 		Intent intent = new Intent(ZaiRuActivity.this, LoginService.class);
 		startActivity(intent);
 		finish();

@@ -45,6 +45,17 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tv_renzheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/name"
+                android:text="未认证"
+                android:textColor="#fff"
+                android:textSize="10dp" />
+
+            <TextView
                 android:id="@+id/tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -201,7 +212,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/layout_5"
-                android:text="办理进度"
+                android:text="业务查询"
                 android:textSize="20dp" />
         </RelativeLayout>
 
